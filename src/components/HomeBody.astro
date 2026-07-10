@@ -1,0 +1,123 @@
+---
+import { HOME, CONTACT_ENDPOINT } from '../data/site.js';
+const { lang = 'en' } = Astro.props;
+const t = HOME[lang];
+const B = import.meta.env.BASE_URL;
+const resourcesHref = (lang === 'ua' ? `${B}ua/` : B) + 'resources/';
+const blogHref = 'https://lenafilatova.co.uk/' + (lang === 'ua' ? 'ua/' : '') + 'blog/';
+const recipesAllHref = 'https://lenafilatova.co.uk/recipes/';
+---
+<!-- HERO -->
+<section class="hero home">
+  <div class="wrap grid">
+    <div>
+      <p class="kicker">{t.heroKicker}</p>
+      <h1>{t.heroH1}</h1>
+      <p class="lead">{t.heroLead}</p>
+      <div class="hero-cta">
+        <a class="btn" href={resourcesHref}>{t.heroCta1}</a>
+        <a class="btn ghost" href={blogHref}>{t.heroCta2}</a>
+      </div>
+      <p class="hero-note"><span class="dot"></span>{t.heroNote}</p>
+    </div>
+    <div class="photo"></div>
+  </div>
+</section>
+
+<!-- WHAT I HELP WITH -->
+<section class="section">
+  <div class="wrap">
+    <h2>{t.helpTitle}</h2>
+    <p class="section-sub">{t.helpSub}</p>
+    <div class="help-grid">
+      {t.help.map((c, i) => (
+        <div class="help-card" style={`background:${HOME.helpColors[i]}`}>
+          <span class="help-num" style={`color:${HOME.helpNums[i]}`}>{String(i + 1).padStart(2, '0')}</span>
+          <h3>{c.h}</h3>
+          <p>{c.p}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED RECIPES -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><h2>{t.recipesTitle}</h2><p class="section-sub">{t.recipesSub}</p></div>
+      <a class="see-all" href={recipesAllHref}>{t.recipesAll}</a>
+    </div>
+    <div class="card-grid four">
+      {HOME.recipes.map((r) => (
+        <a class="mini-card" href={r.url}>
+          <div class="mini-photo"><img src={r.img} alt={r.title[lang]} loading="lazy" /></div>
+          <div class="mini-body">
+            <span class="mini-cat">{r.cat[lang]}</span>
+            <h3>{r.title[lang]}</h3>
+            <p class="mini-meta">GI {r.gi} · {r.carbs}{lang === 'ua' ? ' ' : 'g '}{t.carbs}</p>
+            <span class="rcta">{t.recipeCta}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FROM THE BLOG -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{t.blogTitle}</h2>
+      <a class="see-all" href={blogHref}>{t.blogAll}</a>
+    </div>
+    <div class="card-grid three">
+      {HOME.posts.map((p) => (
+        <a class="mini-card" href={p.url}>
+          <div class="mini-photo"><img src={p.img} alt={p.title[lang]} loading="lazy" /></div>
+          <div class="mini-body">
+            <span class="mini-cat">{p.cat[lang]}</span>
+            <h3>{p.title[lang]}</h3>
+            <p class="mini-excerpt">{p.excerpt[lang]}</p>
+            <span class="rcta">{t.blogCta}</span>
+            <p class="mini-date">{p.date[lang]} · {p.min} {t.readMin}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section newsletter">
+  <div class="wrap nl-box">
+    <h2>{t.nlTitle}</h2>
+    <p class="section-sub">{t.nlSub}</p>
+    <form class="nlform" action={CONTACT_ENDPOINT} method="post">
+      <input type="hidden" name="source" value="newsletter" />
+      <input type="hidden" name="lang" value={lang} />
+      <div class="nl-row">
+        <input type="email" name="email" placeholder={t.nlEmail} required />
+        <button type="submit" class="btn">{t.nlBtn}</button>
+      </div>
+      <label class="nl-consent"><input type="checkbox" required /> {t.nlConsent}</label>
+    </form>
+    <p class="nl-sent form-sent" hidden>{t.nlSent}</p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.nlform').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type=submit]');
+      if (btn) btn.disabled = true;
+      try {
+        await fetch(form.action, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) });
+      } catch (_) {}
+      form.hidden = true;
+      const sent = form.parentElement?.querySelector('.nl-sent');
+      if (sent) sent.hidden = false;
+    });
+  });
+</script>

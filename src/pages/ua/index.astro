@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeBody from '../../components/HomeBody.astro';
+import { HOME } from '../../data/site.js';
+const t = HOME.ua;
+---
+<BaseLayout lang="ua" title={t.seoTitle} description={t.seoDesc} canonical="/ua/">
+  <HomeBody lang="ua" />
+</BaseLayout>

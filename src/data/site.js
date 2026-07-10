@@ -96,6 +96,79 @@ export const BOOKING_EMBED = 'https://calendar.google.com/calendar/appointments/
 // same script that handles all site signups → Mailchimp). Posted no-cors, form-urlencoded.
 export const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw21p8PuG5jGQ7JXf7j-tX1-OZBeA1p6negAuzi7TmiyPkjEoshxLbtGc6avUVskGiK/exec';
 
+const LIVE = 'https://lenafilatova.co.uk';
+
+// Homepage. Featured recipes + blog cards link to the live site for now (repoint to
+// internal paths once recipes/blog are migrated). Newsletter posts to the same
+// Apps Script as all signups (source=newsletter → Mailchimp double opt-in).
+export const HOME = {
+  en: {
+    seoTitle: 'Lena Filatova — Evidence-based women’s health after 40',
+    seoDesc: 'Clear, evidence-based information for women 40+ living with diabetes, insulin resistance and perimenopause.',
+    heroKicker: 'Women’s health after 40',
+    heroH1: 'Feel strong through every change.',
+    heroLead: 'Clear, evidence-based information for women 40+ living with diabetes or insulin resistance, and perimenopause — the overlap almost no one explains. My mission is to help you restore your energy and confidence, and to offer practical solutions for a full life.',
+    heroCta1: 'Get evidence-based guidance', heroCta2: 'Read the blog',
+    heroNote: 'Living with type 1 diabetes since 2003 · Founder of the online School of Diabetes and the Gymbile fitness app',
+    helpTitle: 'What I help with',
+    helpSub: 'Where hormones, blood sugar and midlife meet — explained clearly, in one place.',
+    help: [
+      { h: 'Perimenopause', p: 'Understand your hormones and ease the transition with less guesswork.' },
+      { h: 'Nutrition', p: 'Simple, sustainable eating built around your real life — not a diet.' },
+      { h: 'Fitness 40+', p: 'Train smart for strength, energy and long-term health.' },
+      { h: 'Diabetes', p: 'Live well with diabetes through food and daily movement — grounded in lived experience.' },
+    ],
+    recipesTitle: 'Reader-favourite recipes',
+    recipesSub: 'The most-loved low-GI recipes from my kitchen — no sugar, no white flour.',
+    recipesAll: 'All recipes', carbs: 'carbs', recipeCta: 'View recipe →',
+    blogTitle: 'From the blog', blogAll: 'All articles', blogCta: 'Read article →', readMin: 'min read',
+    nlTitle: 'Join the newsletter',
+    nlSub: 'Occasional, science-backed notes on diabetes, perimenopause and women’s health after 40 — the overlap almost no one explains. No noise, no fads, unsubscribe anytime.',
+    nlConsent: 'I agree to receive emails and accept the Privacy Policy. I can unsubscribe at any time.',
+    nlEmail: 'Your email', nlBtn: 'Subscribe',
+    nlSent: 'Almost there — check your inbox to confirm your subscription.',
+  },
+  ua: {
+    seoTitle: 'Lena Filatova — Науково обґрунтоване жіноче здоров’я після 40',
+    seoDesc: 'Зрозуміла, науково обґрунтована інформація для жінок 40+ із діабетом, інсулінорезистентністю та перименопаузою.',
+    heroKicker: 'Жіноче здоров’я після 40',
+    heroH1: 'Почувайтесь сильною на кожному етапі життя',
+    heroLead: 'Зрозуміла, науково обґрунтована інформація для жінок 40+, які живуть із діабетом або інсулінорезистентністю та перименопаузою — перетин, який майже ніхто не пояснює. Моя місія — допомогти вам повернути енергію та впевненість і дати практичні рішення для повноцінного життя.',
+    heroCta1: 'Отримати науково обґрунтовані поради', heroCta2: 'Читати блог',
+    heroNote: 'Живу з діабетом 1 типу з 2003 · Засновниця Школи Діабету онлайн та фітнес-додатку Gymbile',
+    helpTitle: 'Чим я допомагаю',
+    helpSub: 'Де гормони, цукор у крові та середній вік перетинаються — зрозуміло, в одному місці.',
+    help: [
+      { h: 'Перименопауза', p: 'Зрозумійте свої гормони та полегшіть перехідний період.' },
+      { h: 'Харчування', p: 'Просте та збалансоване харчування для реального життя — не дієта.' },
+      { h: 'Фітнес 40+', p: 'Тренуйтеся розумно заради сили, енергії та здоров’я.' },
+      { h: 'Діабет', p: 'Живіть повноцінно з діабетом — через їжу та щоденний рух, із особистого досвіду.' },
+    ],
+    recipesTitle: 'Улюблені рецепти читачів',
+    recipesSub: 'Найпопулярніші рецепти з низьким ГІ з моєї кухні — без цукру та білого борошна.',
+    recipesAll: 'Усі рецепти', carbs: 'г вугл.', recipeCta: 'Дивитися рецепт →',
+    blogTitle: 'З блогу', blogAll: 'Усі статті', blogCta: 'Читати →', readMin: 'хв читання',
+    nlTitle: 'Підпишіться на розсилку',
+    nlSub: 'Час від часу — науково обґрунтовані нотатки про діабет, перименопаузу та жіноче здоров’я після 40. Без спаму й модних дієт, відписатися можна будь-коли.',
+    nlConsent: 'Погоджуюся отримувати листи та приймаю Політику конфіденційності. Відписатися можна будь-коли.',
+    nlEmail: 'Ваш email', nlBtn: 'Підписатися',
+    nlSent: 'Майже готово — перевірте пошту, щоб підтвердити підписку.',
+  },
+  helpColors: ['#f7eaf1', '#eeeaf6', '#e9f1ec', '#e9eef5'],
+  helpNums: ['#a24b76', '#5a5e9c', '#3f7d54', '#4d61a0'],
+  recipes: [
+    { cat: { en: 'Main', ua: 'Основне' }, title: { en: 'Zucchini Spaghetti with Salmon', ua: 'Спагеті з кабачка з лососем' }, gi: 15, carbs: 6, url: `${LIVE}/recipes/zucchini-spaghetti-salmon/`, img: `${LIVE}/recipes/images/93-zucchini-spaghetti-salmon.jpg` },
+    { cat: { en: 'Snack', ua: 'Перекус' }, title: { en: 'Almond & Pecan Cookies', ua: 'Мигдалево-пеканове печиво' }, gi: 10, carbs: 10, url: `${LIVE}/recipes/almond-pecan-cookies/`, img: `${LIVE}/recipes/images/05-almond-pecan-cookies.jpeg` },
+    { cat: { en: 'Sauce', ua: 'Соус' }, title: { en: 'Avocado Mayonnaise', ua: 'Майонез з авокадо' }, gi: 20, carbs: 3, url: `${LIVE}/recipes/avocado-mayonnaise/`, img: `${LIVE}/recipes/images/11-avocado-mayonnaise.jpg` },
+    { cat: { en: 'Dessert', ua: 'Десерт' }, title: { en: 'Sugar-free Birthday Cake', ua: 'Святковий торт без цукру' }, gi: 38, carbs: 22, url: `${LIVE}/recipes/birthday-cake-sugar-free/`, img: `${LIVE}/recipes/images/19-birthday-cake-sugar-free.jpg` },
+  ],
+  posts: [
+    { cat: { en: 'Nutrition', ua: 'Харчування' }, title: { en: 'What to replace sugar with: the evidence on sweeteners', ua: 'Чим замінити цукор: що каже наука про підсолоджувачі' }, excerpt: { en: 'Stevia, monk fruit, allulose, erythritol, xylitol, sucralose, aspartame, honey and agave — what current research actually shows about sweeteners for blood sugar and health.', ua: 'Стевія, монк-фрут, алюлоза, еритрит, ксиліт, сукралоза, аспартам, мед і агава — що насправді показують сучасні дослідження про підсолоджувачі для рівня цукру та здоров’я.' }, date: { en: '9 July 2026', ua: '9 липня 2026' }, min: 7, url: `${LIVE}/blog/natural-sweeteners/`, img: `${LIVE}/images/natural-sweeteners-stevia-monk-fruit-allulose.jpg` },
+    { cat: { en: 'Nutrition', ua: 'Харчування' }, title: { en: 'Protein for women over 40: how much do you actually need?', ua: 'Білок для жінок після 40: скільки насправді потрібно?' }, excerpt: { en: 'Why the official 0.8g/kg guideline falls short after 40 — and the protein targets that actually protect muscle, energy and blood sugar.', ua: 'Чому офіційна норма 0,8 г/кг замала після 40 — і які орієнтири білка справді захищають м’язи, енергію та цукор у крові.' }, date: { en: '4 July 2026', ua: '4 липня 2026' }, min: 8, url: `${LIVE}/blog/protein-for-women-over-40/`, img: `${LIVE}/images/protein-for-women-over-40.jpg` },
+    { cat: { en: 'Diabetes', ua: 'Діабет' }, title: { en: 'What new research says about type 2 diabetes', ua: 'Що каже нове дослідження про діабет 2 типу' }, excerpt: { en: 'Recent findings on remission, meal order, time-restricted eating and sleep — and what’s actually worth trying.', ua: 'Нові дані про ремісію, порядок їжі, обмежене в часі харчування та сон — і що справді варто спробувати.' }, date: { en: '26 June 2026', ua: '26 червня 2026' }, min: 8, url: `${LIVE}/blog/type-2-diabetes-research/`, img: `${LIVE}/images/type-2-diabetes-research-meal-order.jpg` },
+  ],
+};
+
 // Resources hub. Cards currently link to the live tools (absolute URLs) so every card
 // works from the preview; repoint `href`/`hrefUa` to internal paths as each tool migrates.
 export const RESOURCES = {
