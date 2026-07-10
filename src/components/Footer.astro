@@ -1,10 +1,12 @@
 ---
-import { NAV, FOOTER, SOCIALS } from '../data/site.js';
+import { NAV, FOOTER, SOCIALS, LEGAL_SLUGS } from '../data/site.js';
 const { lang = 'en' } = Astro.props;
 const t = FOOTER[lang];
 const n = NAV[lang];
 const B = import.meta.env.BASE_URL;
 const L = lang === 'ua' ? `${B}ua/` : B;
+// legalLinks and these slugs are in the same order (privacy, cookies, terms, refunds, accessibility).
+const legalSlugs = Object.values(LEGAL_SLUGS);
 ---
 <footer class="site-footer">
   <div class="wrap">
@@ -35,7 +37,7 @@ const L = lang === 'ua' ? `${B}ua/` : B;
       </div>
       <div>
         <h4>{t.legal}</h4>
-        <ul>{t.legalLinks.map((c) => <li><a href="#">{c}</a></li>)}</ul>
+        <ul>{t.legalLinks.map((c, i) => <li><a href={`${L}${legalSlugs[i]}/`}>{c}</a></li>)}</ul>
         <h4 style="margin-top:20px">{t.contact}</h4>
         <ul><li><a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a></li></ul>
       </div>

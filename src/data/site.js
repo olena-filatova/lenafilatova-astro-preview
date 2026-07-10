@@ -270,3 +270,455 @@ export const CONTACT = {
     fSent: 'Дякую — ваше повідомлення надіслано. Я скоро відповім.',
   },
 };
+
+// ── Legal pages ──────────────────────────────────────────────
+// Five documents (Privacy, Cookies, Terms, Refund, Accessibility),
+// EN + UA. Each doc: { seoTitle, seoDesc, h1, updated, intro, sections }.
+// A section's `body` is an array of blocks: a string = <p> (inline HTML
+// allowed), an { ul: [...] } = bullet list. LegalBody renders it and
+// base-prefixes any href="/…". Slugs are shared across languages.
+export const LEGAL_SLUGS = {
+  privacy: 'privacy',
+  cookies: 'cookies',
+  terms: 'terms',
+  refunds: 'refunds',
+  accessibility: 'accessibility',
+};
+
+const COMPANY_LINE = 'Selfound Ltd, registered in England and Wales, Company No. 16450921';
+const COMPANY_LINE_UA = 'Selfound Ltd, зареєстрована в Англії та Уельсі, реєстраційний номер 16450921';
+
+export const LEGAL = {
+  privacy: {
+    en: {
+      seoTitle: 'Privacy Policy — Lena Filatova',
+      seoDesc: 'How Selfound Ltd collects, uses and protects your personal data on lenafilatova.co.uk, under UK GDPR and the Data Protection Act 2018.',
+      kicker: 'Legal',
+      h1: 'Privacy Policy',
+      updated: 'Last updated 10 July 2026',
+      intro: 'This policy explains how <strong>Selfound Ltd</strong> (“we”, “us”, “our”) collects and uses your personal data when you visit <strong>lenafilatova.co.uk</strong>, subscribe to our newsletter, or get in touch. We are the data controller under the UK GDPR and the Data Protection Act 2018.',
+      sections: [
+        { h: 'Who we are', body: [
+          `${COMPANY_LINE}. You can reach us about anything in this policy at <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>.`,
+        ]},
+        { h: 'What data we collect', body: [
+          'We only collect what we need:',
+          { ul: [
+            '<strong>Newsletter details</strong> — your name (if given) and email address when you subscribe.',
+            '<strong>Messages</strong> — your name, email and the content of any message you send us through the contact form or by email.',
+            '<strong>Booking details</strong> — your name, email and anything you choose to share when you book an introductory or coaching call.',
+            '<strong>Usage data</strong> — if (and only if) you accept analytics cookies: approximate location, device and browser type, and the pages you view. See our <a href="/cookies/">Cookie Policy</a>.',
+          ]},
+        ]},
+        { h: 'How and why we use it', body: [
+          'We rely on these legal bases:',
+          { ul: [
+            '<strong>Consent</strong> — to send you the newsletter and to run website analytics. You can withdraw consent at any time.',
+            '<strong>Legitimate interests</strong> — to respond to your enquiries and keep the site secure and working.',
+            '<strong>Performance of a contract</strong> — to deliver any paid coaching or digital products you purchase.',
+            '<strong>Legal obligation</strong> — to keep records we are required by law to keep.',
+          ]},
+        ]},
+        { h: 'Who we share it with', body: [
+          'We never sell your data. We use a small number of trusted providers who process it on our behalf:',
+          { ul: [
+            '<strong>Mailchimp</strong> (Intuit Inc., USA) — to manage the newsletter.',
+            '<strong>Google</strong> (Google Ireland Ltd / Google LLC) — for our email, contact-form handling (Google Apps Script), call bookings (Google Calendar) and website analytics (Google Analytics).',
+            '<strong>GitHub</strong> (GitHub, Inc., a Microsoft company) — to host the website.',
+          ]},
+          'We may also disclose data if required to do so by law.',
+        ]},
+        { h: 'International transfers', body: [
+          'Some of these providers are based outside the UK (for example, in the USA). Where your data is transferred internationally, we rely on appropriate safeguards — such as UK adequacy regulations or the International Data Transfer Agreement / Standard Contractual Clauses — to keep it protected.',
+        ]},
+        { h: 'How long we keep it', body: [
+          { ul: [
+            'Newsletter data — until you unsubscribe.',
+            'Enquiry emails — for a reasonable period after we have dealt with your query.',
+            'Customer and booking records — for as long as needed to provide the service and to meet legal and accounting obligations (usually up to 6 years).',
+          ]},
+        ]},
+        { h: 'Your rights', body: [
+          'Under UK data protection law you have the right to:',
+          { ul: [
+            'access the personal data we hold about you;',
+            'have inaccurate data corrected;',
+            'have your data erased;',
+            'restrict or object to how we use it;',
+            'receive your data in a portable format;',
+            'withdraw consent at any time.',
+          ]},
+          'To exercise any of these, email <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>. If you are unhappy with how we handle your data, you can complain to the Information Commissioner’s Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.',
+        ]},
+        { h: 'Children', body: [
+          'This website is not directed at children under 16, and we do not knowingly collect their personal data.',
+        ]},
+        { h: 'Changes to this policy', body: [
+          'We may update this policy from time to time. The date at the top shows when it was last revised.',
+        ]},
+      ],
+    },
+    ua: {
+      seoTitle: 'Політика конфіденційності — Лена Філатова',
+      seoDesc: 'Як Selfound Ltd збирає, використовує та захищає ваші персональні дані на lenafilatova.co.uk згідно з UK GDPR та Data Protection Act 2018.',
+      kicker: 'Правова інформація',
+      h1: 'Політика конфіденційності',
+      updated: 'Оновлено 10 липня 2026',
+      intro: 'Ця політика пояснює, як <strong>Selfound Ltd</strong> («ми», «нас», «наш») збирає та використовує ваші персональні дані, коли ви відвідуєте <strong>lenafilatova.co.uk</strong>, підписуєтесь на розсилку або звертаєтесь до нас. Ми є контролером даних згідно з UK GDPR та Data Protection Act 2018.',
+      sections: [
+        { h: 'Хто ми', body: [
+          `${COMPANY_LINE_UA}. З будь-яких питань щодо цієї політики пишіть на <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>.`,
+        ]},
+        { h: 'Які дані ми збираємо', body: [
+          'Ми збираємо лише те, що потрібно:',
+          { ul: [
+            '<strong>Дані для розсилки</strong> — ваше ім’я (якщо вказано) та email, коли ви підписуєтесь.',
+            '<strong>Повідомлення</strong> — ваше ім’я, email і зміст будь-якого повідомлення через форму контакту або електронною поштою.',
+            '<strong>Дані бронювання</strong> — ваше ім’я, email і те, чим ви вирішите поділитися, коли записуєтесь на вступний чи коучинговий дзвінок.',
+            '<strong>Дані про використання</strong> — якщо (і тільки якщо) ви приймаєте аналітичні файли cookie: приблизне місцезнаходження, тип пристрою й браузера та переглянуті сторінки. Див. нашу <a href="/ua/cookies/">Політику cookie</a>.',
+          ]},
+        ]},
+        { h: 'Як і навіщо ми їх використовуємо', body: [
+          'Ми спираємось на такі правові підстави:',
+          { ul: [
+            '<strong>Згода</strong> — щоб надсилати розсилку та вести аналітику сайту. Ви можете відкликати згоду будь-коли.',
+            '<strong>Законні інтереси</strong> — щоб відповідати на ваші запити й підтримувати роботу та безпеку сайту.',
+            '<strong>Виконання договору</strong> — щоб надати придбаний вами коучинг або цифрові продукти.',
+            '<strong>Юридичний обов’язок</strong> — щоб зберігати записи, яких вимагає закон.',
+          ]},
+        ]},
+        { h: 'З ким ми ділимося', body: [
+          'Ми ніколи не продаємо ваші дані. Ми користуємось кількома надійними постачальниками, які обробляють дані від нашого імені:',
+          { ul: [
+            '<strong>Mailchimp</strong> (Intuit Inc., США) — для керування розсилкою.',
+            '<strong>Google</strong> (Google Ireland Ltd / Google LLC) — для нашої пошти, обробки форми контакту (Google Apps Script), бронювання дзвінків (Google Calendar) та аналітики сайту (Google Analytics).',
+            '<strong>GitHub</strong> (GitHub, Inc., компанія Microsoft) — для хостингу сайту.',
+          ]},
+          'Ми також можемо розкрити дані, якщо цього вимагає закон.',
+        ]},
+        { h: 'Міжнародна передача даних', body: [
+          'Деякі з цих постачальників розташовані за межами Великої Британії (наприклад, у США). Коли ваші дані передаються за кордон, ми застосовуємо належні гарантії — такі як рішення про адекватність або International Data Transfer Agreement / Standard Contractual Clauses — щоб зберегти їх захищеними.',
+        ]},
+        { h: 'Скільки ми зберігаємо дані', body: [
+          { ul: [
+            'Дані розсилки — доки ви не відпишетесь.',
+            'Листи-запити — розумний період після того, як ми опрацювали ваше звернення.',
+            'Записи клієнтів і бронювань — стільки, скільки потрібно для надання послуги та виконання юридичних і бухгалтерських зобов’язань (зазвичай до 6 років).',
+          ]},
+        ]},
+        { h: 'Ваші права', body: [
+          'Згідно із законодавством Великої Британії про захист даних ви маєте право:',
+          { ul: [
+            'отримати доступ до персональних даних, які ми зберігаємо;',
+            'виправити неточні дані;',
+            'видалити ваші дані;',
+            'обмежити використання або заперечити проти нього;',
+            'отримати дані у придатному для перенесення форматі;',
+            'відкликати згоду будь-коли.',
+          ]},
+          'Щоб скористатися будь-яким із цих прав, напишіть на <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>. Якщо вас не влаштовує, як ми поводимося з вашими даними, ви можете подати скаргу до Information Commissioner’s Office (ICO) на <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.',
+        ]},
+        { h: 'Діти', body: [
+          'Цей сайт не призначений для дітей віком до 16 років, і ми свідомо не збираємо їхні персональні дані.',
+        ]},
+        { h: 'Зміни до цієї політики', body: [
+          'Ми можемо час від часу оновлювати цю політику. Дата вгорі показує, коли її востаннє переглядали.',
+        ]},
+      ],
+    },
+  },
+
+  cookies: {
+    en: {
+      seoTitle: 'Cookie Policy — Lena Filatova',
+      seoDesc: 'How lenafilatova.co.uk uses cookies. We keep it minimal: an essential consent cookie and optional analytics only after you agree.',
+      kicker: 'Legal',
+      h1: 'Cookie Policy',
+      updated: 'Last updated 10 July 2026',
+      intro: 'This policy explains how <strong>lenafilatova.co.uk</strong> uses cookies and similar technologies. It should be read alongside our <a href="/privacy/">Privacy Policy</a>.',
+      sections: [
+        { h: 'What cookies are', body: [
+          'Cookies are small text files placed on your device when you visit a website. They let a site remember your actions and preferences, and help owners understand how their site is used.',
+        ]},
+        { h: 'How we use cookies', body: [
+          'We deliberately keep this to a minimum:',
+          { ul: [
+            '<strong>Essential</strong> — one cookie that remembers your cookie-consent choice, so we don’t ask on every page.',
+            '<strong>Analytics (optional)</strong> — Google Analytics (GA4) helps us understand how the site is used. These are set <em>only</em> after you accept them.',
+          ]},
+          'We do <strong>not</strong> use advertising or cross-site tracking cookies.',
+        ]},
+        { h: 'Managing your consent', body: [
+          'When you first visit, a banner lets you accept or decline analytics cookies. You can change your mind at any time by clearing cookies for this site in your browser, which will bring the banner back. Declining analytics does not affect your use of the site.',
+        ]},
+        { h: 'Third-party cookies', body: [
+          'Our contact page includes a Google Calendar booking widget. If you interact with it to book a call, Google may set its own cookies. These are governed by Google’s own privacy and cookie policies.',
+        ]},
+        { h: 'Controlling cookies in your browser', body: [
+          'All major browsers let you block or delete cookies through their settings. Doing so may affect how some websites work. Guidance for each browser is available on its help pages.',
+        ]},
+        { h: 'Changes and contact', body: [
+          `We may update this policy from time to time. Questions? Email <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>. ${COMPANY_LINE}.`,
+        ]},
+      ],
+    },
+    ua: {
+      seoTitle: 'Політика cookie — Лена Філатова',
+      seoDesc: 'Як lenafilatova.co.uk використовує файли cookie. Мінімум: необхідний cookie згоди та опційна аналітика лише після вашої згоди.',
+      kicker: 'Правова інформація',
+      h1: 'Політика cookie',
+      updated: 'Оновлено 10 липня 2026',
+      intro: 'Ця політика пояснює, як <strong>lenafilatova.co.uk</strong> використовує файли cookie та подібні технології. Її слід читати разом із нашою <a href="/ua/privacy/">Політикою конфіденційності</a>.',
+      sections: [
+        { h: 'Що таке cookie', body: [
+          'Cookie — це невеликі текстові файли, які зберігаються на вашому пристрої під час відвідування сайту. Вони дозволяють сайту запам’ятовувати ваші дії та налаштування й допомагають власникам розуміти, як використовується сайт.',
+        ]},
+        { h: 'Як ми використовуємо cookie', body: [
+          'Ми свідомо зводимо це до мінімуму:',
+          { ul: [
+            '<strong>Необхідні</strong> — один cookie, який запам’ятовує ваш вибір щодо згоди, щоб ми не запитували на кожній сторінці.',
+            '<strong>Аналітичні (опційні)</strong> — Google Analytics (GA4) допомагає зрозуміти, як використовується сайт. Вони встановлюються <em>лише</em> після вашої згоди.',
+          ]},
+          'Ми <strong>не</strong> використовуємо рекламні файли cookie чи міжсайтове відстеження.',
+        ]},
+        { h: 'Керування згодою', body: [
+          'Під час першого візиту банер дозволяє прийняти або відхилити аналітичні cookie. Ви можете змінити рішення будь-коли, очистивши cookie цього сайту у своєму браузері — тоді банер з’явиться знову. Відмова від аналітики не впливає на користування сайтом.',
+        ]},
+        { h: 'Сторонні cookie', body: [
+          'Сторінка контактів містить віджет бронювання Google Calendar. Якщо ви взаємодієте з ним, щоб записатися на дзвінок, Google може встановити власні cookie. Вони регулюються власними політиками Google щодо конфіденційності та cookie.',
+        ]},
+        { h: 'Керування cookie в браузері', body: [
+          'Усі основні браузери дозволяють блокувати або видаляти cookie через налаштування. Це може вплинути на роботу деяких сайтів. Інструкції для кожного браузера доступні на його сторінках довідки.',
+        ]},
+        { h: 'Зміни та контакти', body: [
+          `Ми можемо час від часу оновлювати цю політику. Питання? Пишіть на <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>. ${COMPANY_LINE_UA}.`,
+        ]},
+      ],
+    },
+  },
+
+  terms: {
+    en: {
+      seoTitle: 'Terms & Conditions — Lena Filatova',
+      seoDesc: 'The terms governing your use of lenafilatova.co.uk, including an important health and medical disclaimer.',
+      kicker: 'Legal',
+      h1: 'Terms & Conditions',
+      updated: 'Last updated 10 July 2026',
+      intro: 'These terms govern your use of <strong>lenafilatova.co.uk</strong>. By using the site you agree to them. Please read the health disclaimer below carefully.',
+      sections: [
+        { h: 'About us', body: [
+          `The site is operated by ${COMPANY_LINE}. Contact: <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>.`,
+        ]},
+        { h: 'Using the website', body: [
+          'You may use this site for your own personal, non-commercial use. Please don’t misuse it, attempt to disrupt it, or use it in any unlawful way.',
+        ]},
+        { h: 'Health disclaimer — please read', body: [
+          'The content on this site — including articles, recipes, nutrition information and tools — is provided for <strong>general education and information only. It is not medical advice</strong> and is not a substitute for professional care.',
+          'Using this site does not create a doctor–patient or clinician relationship. Always seek the advice of your GP or a qualified healthcare professional before making changes to your diet, exercise, medication or insulin, or if you have any concerns about a medical condition — this is especially important if you live with diabetes.',
+          'Never disregard professional medical advice or delay seeking it because of something you have read here. <strong>In a medical emergency call 999</strong> (or your local emergency number); for urgent non-emergency advice in the UK call 111.',
+        ]},
+        { h: 'Recipes and nutrition information', body: [
+          'Glycaemic index, carbohydrate and other nutritional figures are estimates and can vary with ingredients, brands and preparation. Individual responses differ. Please check ingredient labels for allergens and suitability for your own needs.',
+        ]},
+        { h: 'Intellectual property', body: [
+          'All content on this site is owned by us or our licensors and is protected by copyright. You may view and download it for your own personal use, but you may not reproduce, republish or distribute it without our permission.',
+        ]},
+        { h: 'Paid services and products', body: [
+          'Where we offer paid coaching or digital products, additional terms and our <a href="/refunds/">Refund & Cancellation Policy</a> apply. Full details are given at the point of purchase.',
+        ]},
+        { h: 'Links to other sites', body: [
+          'This site may link to third-party websites. We provide those links for convenience and are not responsible for their content or practices.',
+        ]},
+        { h: 'Availability and changes', body: [
+          'The site is provided on an “as is” basis. We may change, suspend or withdraw all or part of it at any time without notice.',
+        ]},
+        { h: 'Our liability', body: [
+          'To the fullest extent permitted by law, we are not liable for any loss arising from your reliance on the educational content of this site. Nothing in these terms excludes or limits our liability for death or personal injury caused by negligence, for fraud, or for anything else that cannot lawfully be excluded.',
+        ]},
+        { h: 'Governing law', body: [
+          'These terms are governed by the laws of England and Wales, and any disputes are subject to the courts of England and Wales.',
+        ]},
+      ],
+    },
+    ua: {
+      seoTitle: 'Умови використання — Лена Філатова',
+      seoDesc: 'Умови користування сайтом lenafilatova.co.uk, включно з важливою заявою про здоров’я та медичну інформацію.',
+      kicker: 'Правова інформація',
+      h1: 'Умови використання',
+      updated: 'Оновлено 10 липня 2026',
+      intro: 'Ці умови регулюють користування сайтом <strong>lenafilatova.co.uk</strong>. Користуючись сайтом, ви погоджуєтесь із ними. Будь ласка, уважно прочитайте заяву про здоров’я нижче.',
+      sections: [
+        { h: 'Про нас', body: [
+          `Сайтом керує ${COMPANY_LINE_UA}. Контакт: <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>.`,
+        ]},
+        { h: 'Користування сайтом', body: [
+          'Ви можете користуватися цим сайтом для власних особистих, некомерційних цілей. Будь ласка, не зловживайте ним, не намагайтеся порушити його роботу та не використовуйте незаконним чином.',
+        ]},
+        { h: 'Заява про здоров’я — прочитайте', body: [
+          'Контент на цьому сайті — зокрема статті, рецепти, інформація про харчування та інструменти — надається <strong>лише для загальної освіти та інформації. Це не медична порада</strong> і не замінює професійну допомогу.',
+          'Користування сайтом не створює відносин «лікар–пацієнт». Завжди звертайтеся до свого сімейного лікаря або кваліфікованого медичного фахівця, перш ніж змінювати харчування, фізичну активність, ліки чи інсулін, або якщо у вас є будь-які занепокоєння щодо стану здоров’я — це особливо важливо, якщо ви живете з діабетом.',
+          'Ніколи не нехтуйте професійною медичною порадою та не відкладайте звернення по неї через щось прочитане тут. <strong>У разі невідкладного стану телефонуйте 999</strong> (або місцевий номер екстреної допомоги); для термінових неекстрених порад у Великій Британії телефонуйте 111.',
+        ]},
+        { h: 'Рецепти та інформація про харчування', body: [
+          'Глікемічний індекс, вміст вуглеводів та інші показники харчування є приблизними й можуть змінюватися залежно від інгредієнтів, брендів і способу приготування. Індивідуальні реакції відрізняються. Будь ласка, перевіряйте етикетки на наявність алергенів і придатність для ваших потреб.',
+        ]},
+        { h: 'Інтелектуальна власність', body: [
+          'Весь контент на цьому сайті належить нам або нашим ліцензіарам і захищений авторським правом. Ви можете переглядати й завантажувати його для власного особистого використання, але не можете відтворювати, повторно публікувати чи поширювати без нашого дозволу.',
+        ]},
+        { h: 'Платні послуги та продукти', body: [
+          'Коли ми пропонуємо платний коучинг або цифрові продукти, застосовуються додаткові умови та наша <a href="/ua/refunds/">Політика повернення та скасування</a>. Повні деталі надаються на етапі покупки.',
+        ]},
+        { h: 'Посилання на інші сайти', body: [
+          'Цей сайт може містити посилання на сторонні вебсайти. Ми надаємо їх для зручності й не відповідаємо за їхній вміст чи практики.',
+        ]},
+        { h: 'Доступність і зміни', body: [
+          'Сайт надається на умовах «як є». Ми можемо змінювати, призупиняти або припиняти роботу всього сайту чи його частини будь-коли без попередження.',
+        ]},
+        { h: 'Наша відповідальність', body: [
+          'У межах, дозволених законом, ми не несемо відповідальності за будь-які збитки, що виникли внаслідок вашої опори на освітній контент цього сайту. Ніщо в цих умовах не виключає й не обмежує нашу відповідальність за смерть чи травми, спричинені недбалістю, за шахрайство або за будь-що інше, що не може бути законно виключене.',
+        ]},
+        { h: 'Застосовне право', body: [
+          'Ці умови регулюються законодавством Англії та Уельсу, а будь-які спори підлягають розгляду в судах Англії та Уельсу.',
+        ]},
+      ],
+    },
+  },
+
+  refunds: {
+    en: {
+      seoTitle: 'Refund & Cancellation Policy — Lena Filatova',
+      seoDesc: 'Our refund and cancellation terms for coaching sessions and digital products, in line with UK consumer law.',
+      kicker: 'Legal',
+      h1: 'Refund & Cancellation Policy',
+      updated: 'Last updated 10 July 2026',
+      intro: 'This policy applies to paid coaching sessions and digital products purchased from Selfound Ltd. <em>These offerings are in preparation; this policy will apply once they are available.</em> It sits alongside your rights under UK consumer law.',
+      sections: [
+        { h: 'Your statutory rights', body: [
+          'Nothing in this policy affects your legal rights under the Consumer Contracts Regulations 2013 and the Consumer Rights Act 2015. For most purchases you have a 14-day cooling-off period, subject to the exceptions for digital content below.',
+        ]},
+        { h: 'Digital products and downloads', body: [
+          'You have 14 days to cancel a digital product for a full refund — <strong>unless</strong> you have asked for immediate access and acknowledged that you lose this right once the download or streaming begins. We request that consent at checkout. If a product is faulty or not as described, you are entitled to a refund or replacement.',
+        ]},
+        { h: 'Coaching sessions', body: [
+          { ul: [
+            'Cancel or reschedule at least <strong>48 hours</strong> before your session for a full refund or a free reschedule.',
+            'Within 48 hours, sessions are non-refundable, but we will try to offer one reschedule at our discretion.',
+            'Missed sessions (no-shows) are non-refundable.',
+          ]},
+        ]},
+        { h: 'Programmes and multi-session packages', body: [
+          'For multi-session packages, the specific cancellation terms are set out at the point of purchase. Where a refund applies after a programme has started, it is normally calculated pro-rata for sessions not yet taken.',
+        ]},
+        { h: 'How to request a refund', body: [
+          'Email <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a> with your order details within the relevant period. We aim to respond within 5 business days, and approved refunds are made to your original payment method within 14 days.',
+        ]},
+        { h: 'Exceptions', body: [
+          'Digital content that you have already accessed or downloaded after waiving your cancellation right is non-refundable, except where it is faulty or not as described.',
+        ]},
+        { h: 'Contact', body: [
+          `${COMPANY_LINE}. Questions about this policy? Email <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>.`,
+        ]},
+      ],
+    },
+    ua: {
+      seoTitle: 'Політика повернення та скасування — Лена Філатова',
+      seoDesc: 'Умови повернення коштів і скасування для коучингових сесій та цифрових продуктів відповідно до споживчого законодавства Великої Британії.',
+      kicker: 'Правова інформація',
+      h1: 'Повернення та скасування',
+      updated: 'Оновлено 10 липня 2026',
+      intro: 'Ця політика застосовується до платних коучингових сесій і цифрових продуктів, придбаних у Selfound Ltd. <em>Ці пропозиції готуються; політика набуде чинності, щойно вони стануть доступними.</em> Вона доповнює ваші права за споживчим законодавством Великої Британії.',
+      sections: [
+        { h: 'Ваші законні права', body: [
+          'Ніщо в цій політиці не впливає на ваші законні права згідно з Consumer Contracts Regulations 2013 та Consumer Rights Act 2015. Для більшості покупок ви маєте 14-денний період на роздуми з урахуванням винятків для цифрового контенту нижче.',
+        ]},
+        { h: 'Цифрові продукти та завантаження', body: [
+          'Ви маєте 14 днів, щоб скасувати цифровий продукт і отримати повне повернення — <strong>крім випадків</strong>, коли ви попросили негайний доступ і підтвердили, що втрачаєте це право, щойно почнеться завантаження або відтворення. Ми запитуємо цю згоду під час оформлення. Якщо продукт має дефект або не відповідає опису, ви маєте право на повернення коштів чи заміну.',
+        ]},
+        { h: 'Коучингові сесії', body: [
+          { ul: [
+            'Скасуйте або перенесіть сесію щонайменше за <strong>48 годин</strong> — і отримаєте повне повернення або безкоштовне перенесення.',
+            'Протягом 48 годин до сесії кошти не повертаються, але ми намагатимемось запропонувати одне перенесення на власний розсуд.',
+            'Пропущені сесії (неявка) не підлягають поверненню.',
+          ]},
+        ]},
+        { h: 'Програми та пакети з кількох сесій', body: [
+          'Для пакетів із кількох сесій конкретні умови скасування визначаються на етапі покупки. Якщо повернення застосовується після початку програми, воно зазвичай розраховується пропорційно до ще не проведених сесій.',
+        ]},
+        { h: 'Як подати запит на повернення', body: [
+          'Напишіть на <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>, вказавши деталі замовлення, у відповідний період. Ми прагнемо відповісти протягом 5 робочих днів, а схвалені повернення здійснюються на ваш початковий спосіб оплати протягом 14 днів.',
+        ]},
+        { h: 'Винятки', body: [
+          'Цифровий контент, до якого ви вже отримали доступ або який завантажили після відмови від права на скасування, не підлягає поверненню, окрім випадків дефекту чи невідповідності опису.',
+        ]},
+        { h: 'Контакти', body: [
+          `${COMPANY_LINE_UA}. Питання щодо цієї політики? Пишіть на <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>.`,
+        ]},
+      ],
+    },
+  },
+
+  accessibility: {
+    en: {
+      seoTitle: 'Accessibility Statement — Lena Filatova',
+      seoDesc: 'Our commitment to making lenafilatova.co.uk usable for as many people as possible, aiming for WCAG 2.1 AA.',
+      kicker: 'Legal',
+      h1: 'Accessibility Statement',
+      updated: 'Last updated 10 July 2026',
+      intro: 'We want <strong>lenafilatova.co.uk</strong> to be usable and welcoming for as many people as possible, whatever their abilities or technology.',
+      sections: [
+        { h: 'Our commitment', body: [
+          'We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at level AA, and we treat accessibility as an ongoing part of how we build the site.',
+        ]},
+        { h: 'What we do', body: [
+          { ul: [
+            'Use clear, semantic HTML with a logical heading structure.',
+            'Aim for sufficient colour contrast and readable font sizes.',
+            'Keep the site navigable by keyboard.',
+            'Make the layout responsive so it works on phones, tablets and desktops.',
+            'Provide descriptive alternative text for meaningful images.',
+          ]},
+        ]},
+        { h: 'Known limitations', body: [
+          'Some third-party embeds — such as the Google Calendar booking widget — and some older content may not fully meet our standards. We are working to improve these over time.',
+        ]},
+        { h: 'Feedback and help', body: [
+          'If you have trouble accessing any part of this site, or need information in a different format, email <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a> and we will help. We aim to respond within 5 business days.',
+        ]},
+        { h: 'Alternative formats', body: [
+          'We are happy to provide the content of this site in another format on request wherever we reasonably can.',
+        ]},
+      ],
+    },
+    ua: {
+      seoTitle: 'Заява про доступність — Лена Філатова',
+      seoDesc: 'Наше прагнення зробити lenafilatova.co.uk зручним для якомога більшої кількості людей із орієнтиром на WCAG 2.1 AA.',
+      kicker: 'Правова інформація',
+      h1: 'Заява про доступність',
+      updated: 'Оновлено 10 липня 2026',
+      intro: 'Ми хочемо, щоб <strong>lenafilatova.co.uk</strong> був зручним і привітним для якомога більшої кількості людей, незалежно від їхніх можливостей чи технологій.',
+      sections: [
+        { h: 'Наше зобов’язання', body: [
+          'Ми прагнемо відповідати Web Content Accessibility Guidelines (WCAG) 2.1 рівня AA і вважаємо доступність постійною частиною того, як створюємо сайт.',
+        ]},
+        { h: 'Що ми робимо', body: [
+          { ul: [
+            'Використовуємо зрозумілий, семантичний HTML із логічною структурою заголовків.',
+            'Прагнемо достатнього контрасту кольорів і читабельного розміру шрифтів.',
+            'Забезпечуємо навігацію сайтом за допомогою клавіатури.',
+            'Робимо макет адаптивним, щоб він працював на телефонах, планшетах і комп’ютерах.',
+            'Надаємо описовий альтернативний текст для змістовних зображень.',
+          ]},
+        ]},
+        { h: 'Відомі обмеження', body: [
+          'Деякі сторонні вставки — наприклад, віджет бронювання Google Calendar — і частина старішого контенту можуть не повністю відповідати нашим стандартам. Ми працюємо над їх покращенням.',
+        ]},
+        { h: 'Відгуки та допомога', body: [
+          'Якщо у вас виникають труднощі з доступом до будь-якої частини сайту або потрібна інформація в іншому форматі, напишіть на <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a>, і ми допоможемо. Ми прагнемо відповісти протягом 5 робочих днів.',
+        ]},
+        { h: 'Альтернативні формати', body: [
+          'Ми з радістю надамо контент цього сайту в іншому форматі на запит, коли це можливо.',
+        ]},
+      ],
+    },
+  },
+};

@@ -1,0 +1,36 @@
+---
+// One template for all five legal documents, rendered from `c` (the
+// per-language legal doc). A section's `body` is an array of blocks:
+//   string       → <p> (inline HTML allowed)
+//   { ul: [...] } → <ul> of list items (inline HTML allowed)
+// Any href="/…" in the copy is base-prefixed so links stay correct under
+// the GitHub Pages project subpath (and resolve to '/' at the real domain).
+const { c } = Astro.props;
+const B = import.meta.env.BASE_URL;
+const fix = (s) => String(s).replace(/href="\//g, `href="${B}`);
+---
+<section class="legal-hero">
+  <div class="wrap">
+    <p class="kicker">{c.kicker}</p>
+    <h1>{c.h1}</h1>
+    <p class="legal-updated">{c.updated}</p>
+  </div>
+</section>
+
+<section class="legal-doc">
+  <div class="wrap">
+    <div class="legal-prose">
+      <p class="legal-intro" set:html={fix(c.intro)} />
+      {c.sections.map((s) => (
+        <section class="legal-section">
+          <h2>{s.h}</h2>
+          {s.body.map((b) =>
+            typeof b === 'string'
+              ? <p set:html={fix(b)} />
+              : <ul>{b.ul.map((li) => <li set:html={fix(li)} />)}</ul>
+          )}
+        </section>
+      ))}
+    </div>
+  </div>
+</section>
