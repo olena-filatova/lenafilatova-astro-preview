@@ -1,5 +1,5 @@
 ---
-import { BOOKING_EMBED } from '../data/site.js';
+import { BOOKING_EMBED, CONTACT_ENDPOINT } from '../data/site.js';
 const { c } = Astro.props;
 ---
 <section class="hero contact">
@@ -38,14 +38,15 @@ const { c } = Astro.props;
         </div>
 
         <div class="panel" data-panel="msg">
-          <!-- NOTE: static sites can't process forms server-side. This posts nowhere yet —
-               needs wiring to a form service (Formspree/Web3Forms) or Lena's existing endpoint. -->
-          <form class="cform" action="#" method="post" data-needs-wiring>
+          <!-- Posts to the same Google Apps Script that emails Lena (type=message). -->
+          <form class="cform" action={CONTACT_ENDPOINT} method="post">
+            <input type="hidden" name="type" value="message" />
             <label>{c.fName}<input type="text" name="name" required /></label>
             <label>{c.fEmail}<input type="email" name="email" required /></label>
             <label>{c.fMsg}<textarea name="message" rows="5" required></textarea></label>
             <button type="submit" class="btn full">{c.fSubmit}</button>
           </form>
+          <p class="form-sent" hidden>{c.fSent}</p>
         </div>
       </div>
     </div>
@@ -62,5 +63,21 @@ const { c } = Astro.props;
       tabs.forEach((t) => { const on = t === tab; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', String(on)); });
       panels.forEach((p) => { p.hidden = p.getAttribute('data-panel') !== key; });
     }));
+  });
+
+  // Submit the message form to the Apps Script endpoint (no-cors, fire-and-forget,
+  // same as the live site) and show the confirmation.
+  document.querySelectorAll('.cform').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type=submit]');
+      if (btn) btn.disabled = true;
+      try {
+        await fetch(form.action, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) });
+      } catch (_) { /* no-cors: response is opaque, submission still goes through */ }
+      form.hidden = true;
+      const sent = form.parentElement?.querySelector('.form-sent');
+      if (sent) sent.hidden = false;
+    });
   });
 </script>

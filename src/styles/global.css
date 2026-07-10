@@ -139,6 +139,7 @@ img { max-width: 100%; display: block; }
 }
 .cform input:focus, .cform textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
 .btn.full { width: 100%; text-align: center; }
+.form-sent { background: #eef7ec; border: 1px solid #cfe8c8; color: #2f6b2a; border-radius: 10px; padding: 16px; font-size: 15px; text-align: center; }
 
 /* --- footer --- */
 .site-footer { background: #fff; border-top: 1px solid var(--line); padding: 56px 0 28px; }
