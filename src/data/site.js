@@ -199,7 +199,7 @@ export const RESOURCES = {
     },
     {
       band: '#f5eaf1', head: '#a24b76',
-      href: 'https://lenafilatova.co.uk/resources/aid-comparison', hrefUa: 'https://lenafilatova.co.uk/resources/aid-comparison?lang=ua',
+      href: '/aid-comparison.html', hrefUa: '/aid-comparison-ua.html',
       en: { band: 'Pumps & AID systems', kicker: 'Comparison', title: 'AID (Automated Insulin Delivery) system comparison (2026)', desc: 'Every major insulin pump and Automated Insulin Delivery system side by side — available now and in the pipeline. Filter by type, AID and status.', cta: 'Open the comparison →' },
       ua: { band: 'Помпи та системи AID', kicker: 'Порівняння', title: 'Порівняння систем AID (автоматична подача інсуліну) (2026)', desc: 'Усі основні інсулінові помпи та системи автоматичної подачі інсуліну поряд — доступні зараз і в розробці. Фільтри за типом, AID і статусом.', cta: 'Відкрити порівняння →' },
     },

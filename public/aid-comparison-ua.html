@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Порівняння систем AID 2026 — Лена Філатова</title>
+<meta name="description" content="Усі основні інсулінові помпи та системи автоматичної подачі інсуліну (AID) поряд — доступні зараз і в розробці. Порівняйте тип, замкнений контур AID, сумісність із CGM та ціну.">
+<link rel="canonical" href="https://lenafilatova.co.uk/aid-comparison-ua.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green:#2F7A52; --green-bg:#e9f5f0; --amber:#B26A34; --amber-bg:#fff3e0;
+  --grey:#666; --grey-bg:#f2f2f2; --text:#1a1a1a; --muted:#6b7280;
+  --border:#e5e7eb; --hover:#f9fafb; --accent:#B23A63; --radius:8px;
+  --b-insulet: #0F7B6C;  --b-insulet-bg: #E4F3F0;
+  --b-tandem: #005FCC;  --b-tandem-bg: #EAF1FC;
+  --b-medtronic: #7B1D51;  --b-medtronic-bg: #F5E8F0;
+  --b-beta: #5A3FA0;  --b-beta-bg: #EEEAF8;
+  --b-sequel: #B26A34;  --b-sequel-bg: #FBEEE1;
+  --b-ypsomed: #0E6699;  --b-ypsomed-bg: #E5F1F8;
+  --b-diabeloop: #1B7B5E;  --b-diabeloop-bg: #E5F4EE;
+  --b-sooil: #8E3A1E;  --b-sooil-bg: #F8ECE7;
+  --b-roche: #1B5E9B;  --b-roche-bg: #E6EEF7;
+  --b-luna: #A0206A;  --b-luna-bg: #FBE9F3;
+}
+body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:var(--text); background:#fff; font-size:15px; line-height:1.5; }
+.page { max-width:100%; margin:0; padding:16px clamp(18px,3.5vw,40px) 28px; }
+.filters { display:flex; flex-direction:column; gap:1rem; margin-bottom:1.5rem; padding:1.25rem; background:var(--hover); border:1px solid var(--border); border-radius:var(--radius); }
+.filter-row { display:flex; align-items:flex-start; gap:0.75rem; flex-wrap:wrap; }
+.filter-label { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); padding-top:0.45rem; min-width:90px; flex-shrink:0; }
+.chips { display:flex; flex-wrap:wrap; gap:0.4rem; }
+.chip { display:inline-flex; align-items:center; padding:0.3rem 0.75rem; border-radius:20px; border:1.5px solid var(--border); background:#fff; font-size:0.82rem; font-weight:500; color:var(--text); cursor:pointer; transition:all 0.15s; white-space:nowrap; user-select:none; }
+.chip:hover { border-color:#aaa; background:#f5f5f5; }
+.chip.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.search-wrap { position:relative; flex:1; min-width:200px; max-width:360px; }
+.search-icon { position:absolute; left:0.7rem; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none; }
+#search { width:100%; padding:0.45rem 0.75rem 0.45rem 2.2rem; border:1.5px solid var(--border); border-radius:20px; font-size:0.88rem; outline:none; transition:border-color 0.15s; background:#fff; }
+#search:focus { border-color:var(--accent); }
+#clearBtn { padding:0.3rem 0.85rem; border-radius:20px; border:1.5px solid var(--border); background:#fff; font-size:0.82rem; color:var(--muted); cursor:pointer; transition:all 0.15s; align-self:center; }
+#clearBtn:hover { border-color:#aaa; color:var(--text); }
+.count-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem; margin-top:0.25rem; flex-wrap:wrap; gap:0.5rem; }
+.count-badge { font-size:0.88rem; font-weight:600; color:var(--muted); }
+.count-badge span { color:var(--text); font-size:1.05rem; }
+.table-scroll { overflow:auto; max-height:640px; border:1px solid var(--border); border-radius:var(--radius); -webkit-overflow-scrolling:touch; }
+table { width:100%; border-collapse:collapse; min-width:820px; }
+thead th { position:sticky; top:0; z-index:5; background:var(--hover); padding:0.55rem 0.7rem; text-align:left; font-size:0.68rem; font-weight:700; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; border-bottom:1.5px solid var(--border); box-shadow:inset 0 -1.5px 0 var(--border); white-space:nowrap; }
+tbody tr { border-bottom:1px solid var(--border); transition:background 0.1s; }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:hover { background:var(--hover); }
+tbody tr.pipeline-row { background:#fffef5; }
+tbody tr.pipeline-row:hover { background:#fffbea; }
+tbody tr.section-header td { background:#fffbf0; border-top:2px solid #e6c85a; padding:0.45rem 0.85rem; font-size:0.7rem; font-weight:700; color:#92680a; letter-spacing:0.07em; text-transform:uppercase; }
+td { padding:0.55rem 0.7rem; font-size:0.82rem; vertical-align:middle; }
+.dev-name { font-weight:600; font-size:0.88rem; display:block; line-height:1.3; }
+.brand-tag { display:inline-block; font-size:0.64rem; font-weight:700; border-radius:4px; padding:0.1rem 0.38rem; margin-top:0.22rem; letter-spacing:0.02em; white-space:nowrap; }
+.bt-insulet { background: var(--b-insulet-bg); color: var(--b-insulet); }
+.bt-tandem { background: var(--b-tandem-bg); color: var(--b-tandem); }
+.bt-medtronic { background: var(--b-medtronic-bg); color: var(--b-medtronic); }
+.bt-beta { background: var(--b-beta-bg); color: var(--b-beta); }
+.bt-sequel { background: var(--b-sequel-bg); color: var(--b-sequel); }
+.bt-ypsomed { background: var(--b-ypsomed-bg); color: var(--b-ypsomed); }
+.bt-diabeloop { background: var(--b-diabeloop-bg); color: var(--b-diabeloop); }
+.bt-sooil { background: var(--b-sooil-bg); color: var(--b-sooil); }
+.bt-roche { background: var(--b-roche-bg); color: var(--b-roche); }
+.bt-luna { background: var(--b-luna-bg); color: var(--b-luna); }
+.pipeline-badge { display:inline-flex; align-items:center; font-size:0.66rem; font-weight:600; background:#fff8e0; color:#92680a; border:1px solid #e6c85a; border-radius:4px; padding:0.1rem 0.38rem; margin-top:0.22rem; }
+.badge { display:inline-flex; align-items:center; padding:0.18rem 0.5rem; border-radius:20px; font-size:0.73rem; font-weight:700; white-space:nowrap; }
+.type-patch { background:var(--grey-bg); color:var(--grey); }
+.type-tubed { background:#EAF1FC; color:#005FCC; }
+.aid-closed { display:inline-flex; align-items:center; gap:0.25rem; font-size:0.8rem; font-weight:600; color:var(--green); }
+.aid-open { font-size:0.78rem; color:var(--muted); font-style:italic; }
+.cgm-cell { font-size:0.78rem; color:var(--text); line-height:1.5; }
+.avail { display:flex; flex-wrap:wrap; gap:0.22rem; }
+.flag-pill { font-size:0.68rem; padding:0.08rem 0.38rem; border:1px solid var(--border); border-radius:4px; background:#fff; white-space:nowrap; line-height:1.4; }
+.no-results { text-align:center; padding:3rem 1rem; color:var(--muted); font-size:0.95rem; }
+.footnote { margin-top:2rem; padding:1rem 1.25rem; background:var(--hover); border-left:3px solid var(--border); border-radius:0 var(--radius) var(--radius) 0; font-size:0.78rem; color:var(--muted); line-height:1.75; }
+@media (max-width:640px) { .filter-label { display:none; } .count-bar { flex-direction:column; align-items:flex-start; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="filters">
+    <div class="filter-row">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="m14 14 4 4"/></svg>
+        <input id="search" type="text" placeholder="Пошук пристроїв, брендів, систем AID…" autocomplete="off" />
+      </div>
+      <button id="clearBtn">Скинути</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Статус</span>
+      <div class="chips">
+        <button class="chip active" data-status="all">Усі</button>
+        <button class="chip" data-status="available">Доступні</button>
+        <button class="chip" data-status="pipeline">У розробці</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Тип</span>
+      <div class="chips">
+        <button class="chip active" data-type="all">Усі</button>
+        <button class="chip" data-type="tubeless">Без трубок</button>
+        <button class="chip" data-type="tubed">З трубкою</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">AID / контур</span>
+      <div class="chips">
+        <button class="chip active" data-loop="all">Усі</button>
+        <button class="chip" data-loop="closed">Замкнений контур</button>
+        <button class="chip" data-loop="open">Відкритий контур</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="count-bar">
+    <p class="count-badge"><span id="countNum">0</span> систем</p>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Пристрій</th>
+          <th>Тип</th>
+          <th>Система AID</th>
+          <th>Працює з CGM</th>
+          <th>Резервуар</th>
+          <th>Доступність</th>
+          <th>Орієнт. ціна</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="no-results" id="noResults" style="display:none;">Жодна система не відповідає обраним фільтрам.</div>
+  </div>
+
+  <div class="footnote"><strong>Освітнє порівняння — не медична порада та не рекомендація.</strong> Доступність, фінансування та характеристики відрізняються залежно від країни й часто змінюються — уточнюйте актуальні деталі у виробника та своєї діабетичної команди перед вибором системи. Помпа із <strong>замкненим контуром</strong> (AID) автоматично коригує інсулін за даними CGM; помпа з <strong>відкритим контуром</strong> потребує ручного дозування. Ціни приблизні й значною мірою залежать від страхування та статусу NHS / відшкодування. Терміни для систем у розробці є оцінками, залежать від схвалення регуляторів і можуть змінюватися. Джерела: дані виробників (Insulet · Tandem · Medtronic · Beta Bionics · Ypsomed · Diabeloop · Roche) · Diabetotech · DiaTribe · JDRF.</div>
+</div>
+
+<script>
+const DATA = [{"name":"Omnipod 5","brand":"Insulet","cls":"insulet","type":"tubeless","loop":"closed","status":"available","aid":"Omnipod 5 Horizon AID","cgm":"Dexcom G6/G7 · Libre 2+/3+","reservoir":"200 u","avail":["US","EU","UK","AU"],"cost":"~$0–820/kit"},{"name":"Omnipod DASH","brand":"Insulet","cls":"insulet","type":"tubeless","loop":"open","status":"available","aid":"","cgm":"Separate CGM","reservoir":"200 u","avail":["US","EU","UK","AU"],"cost":"~$0–500/kit"},{"name":"Tandem t:slim X2","brand":"Tandem","cls":"tandem","type":"tubed","loop":"closed","status":"available","aid":"Control-IQ","cgm":"Dexcom G6/G7 · Libre 3+","reservoir":"300 u","avail":["US","EU","UK","AU"],"cost":"~$0–4,000"},{"name":"Tandem Mobi","brand":"Tandem","cls":"tandem","type":"tubed","loop":"closed","status":"available","aid":"Control-IQ","cgm":"Dexcom G6/G7","reservoir":"200 u","avail":["US"],"cost":"~$0–4,000"},{"name":"MiniMed 780G","brand":"Medtronic","cls":"medtronic","type":"tubed","loop":"closed","status":"available","aid":"SmartGuard AID","cgm":"Guardian 4","reservoir":"176/300 u","avail":["US","EU","UK","AU"],"cost":"~$0–8,574"},{"name":"iLet Bionic Pancreas","brand":"Beta Bionics","cls":"beta","type":"tubed","loop":"closed","status":"available","aid":"Bionic Pancreas","cgm":"Dexcom G6/G7","reservoir":"300 u","avail":["US"],"cost":"~$5,287"},{"name":"twiist","brand":"Sequel Med Tech","cls":"sequel","type":"tubed","loop":"closed","status":"available","aid":"twiist AID","cgm":"Dexcom G6/G7 · Libre 3+","reservoir":"300 u","avail":["US"],"cost":"$0 w/ program"},{"name":"mylife YpsoPump + CamAPS FX","brand":"Ypsomed / TecMed","cls":"ypsomed","type":"tubed","loop":"closed","status":"available","aid":"CamAPS FX","cgm":"Dexcom G6 · Libre 3","reservoir":"160 u","avail":["EU","UK","AU"],"cost":"NHS-funded (UK)"},{"name":"Kaleido + Diabeloop DBLG1","brand":"Diabeloop","cls":"diabeloop","type":"tubed","loop":"closed","status":"available","aid":"DBLG1","cgm":"Dexcom G6","reservoir":"200 u","avail":["EU"],"cost":"Insurance (NL/DE/FR)"},{"name":"Dana-i + Diabeloop","brand":"SOOIL / Diabeloop","cls":"sooil","type":"tubed","loop":"closed","status":"available","aid":"DBLG1 / DBLG2","cgm":"Dexcom G6/G7","reservoir":"300 u","avail":["EU"],"cost":"Reimbursed (DE)"},{"name":"Accu-Chek Solo","brand":"Roche","cls":"roche","type":"tubeless","loop":"open","status":"available","aid":"","cgm":"AID-ready","reservoir":"200 u","avail":["EU"],"cost":"Reimbursed (EU)"},{"name":"MiniMed Flex","brand":"Medtronic","cls":"medtronic","type":"tubed","loop":"closed","status":"pipeline","pipe":"⏳ Summer 2026","aid":"SmartGuard AID","cgm":"Guardian 4 (+ Libre)","reservoir":"176 u","avail":["US","EU"],"cost":"TBC"},{"name":"MiniMed 8-Series","brand":"Medtronic","cls":"medtronic","type":"tubed","loop":"closed","status":"pipeline","pipe":"⏳ ~2027","aid":"Next-gen SmartGuard","cgm":"Simplera + Libre","reservoir":"TBC","avail":["US","EU"],"cost":"TBC"},{"name":"MiniMed Fit (Patch)","brand":"Medtronic","cls":"medtronic","type":"tubeless","loop":"closed","status":"pipeline","pipe":"⏳ 2027+","aid":"SmartGuard AID","cgm":"Simplera + Libre","reservoir":"300 u","avail":["US"],"cost":"TBC"},{"name":"Tandem Tubeless Mobi","brand":"Tandem","cls":"tandem","type":"tubeless","loop":"closed","status":"pipeline","pipe":"⏳ 2026–27","aid":"Control-IQ","cgm":"Dexcom G6/G7","reservoir":"200 u","avail":["US"],"cost":"TBC"},{"name":"Tandem t:slim X3","brand":"Tandem","cls":"tandem","type":"tubed","loop":"closed","status":"pipeline","pipe":"⏳ 2026–27","aid":"Control-IQ","cgm":"Dexcom + Libre","reservoir":"300 u","avail":["US","EU"],"cost":"TBC"},{"name":"Omnipod 6","brand":"Insulet","cls":"insulet","type":"tubeless","loop":"closed","status":"pipeline","pipe":"⏳ 2027","aid":"Next-gen AID","cgm":"Dexcom G7 · FSL 3+","reservoir":"200 u+","avail":["US","EU","UK","AU"],"cost":"TBC"},{"name":"Beta Bionics Mint","brand":"Beta Bionics","cls":"beta","type":"tubeless","loop":"closed","status":"pipeline","pipe":"⏳ Q2 2027","aid":"Bionic Pancreas","cgm":"Dexcom (exp.)","reservoir":"TBC","avail":["US"],"cost":"TBC"},{"name":"Luna Patch Pump","brand":"Luna Health","cls":"luna","type":"tubeless","loop":"closed","status":"pipeline","pipe":"⏳ TBC","aid":"Closed loop (night)","cgm":"iCGM","reservoir":"TBC","avail":["US"],"cost":"TBC"},{"name":"Kaleido 2 + DBLG2","brand":"Diabeloop","cls":"diabeloop","type":"tubed","loop":"closed","status":"pipeline","pipe":"⏳ End 2026","aid":"DBLG2","cgm":"Dexcom G6/G7","reservoir":"200 u","avail":["EU"],"cost":"TBC"}];
+const T = {
+  tubeless:"Без трубок", tubed:"З трубкою",
+  open:"Відкритий контур", pipelineHeader:"⏳ У розробці — 2026–2027",
+};
+let state = { search:"", status:"all", type:"all", loop:"all" };
+
+function typeBadge(t){ return t==="tubed"
+  ? '<span class="badge type-tubed">'+T.tubed+'</span>'
+  : '<span class="badge type-patch">'+T.tubeless+'</span>'; }
+function aidCell(d){ return d.loop==="open"
+  ? '<span class="aid-open">'+T.open+'</span>'
+  : '<span class="aid-closed">\u2713 '+d.aid+'</span>'; }
+function availPills(arr){ return '<div class="avail">'+arr.map(c=>'<span class="flag-pill">'+c+'</span>').join("")+'</div>'; }
+
+function render(){
+  const q = state.search.toLowerCase().trim();
+  const rows = DATA.filter(d=>{
+    if(q && !d.name.toLowerCase().includes(q) && !d.brand.toLowerCase().includes(q) &&
+       !(d.aid||"").toLowerCase().includes(q) && !(d.cgm||"").toLowerCase().includes(q)) return false;
+    if(state.status!=="all" && d.status!==state.status) return false;
+    if(state.type!=="all" && d.type!==state.type) return false;
+    if(state.loop!=="all" && d.loop!==state.loop) return false;
+    return true;
+  });
+  const tbody = document.getElementById("tbody");
+  const noRes = document.getElementById("noResults");
+  if(rows.length===0){ tbody.innerHTML=""; noRes.style.display="block"; }
+  else {
+    noRes.style.display="none";
+    let html=""; let pipeDone=false;
+    rows.forEach(d=>{
+      if(d.status==="pipeline" && !pipeDone){ html+='<tr class="section-header"><td colspan="7">'+T.pipelineHeader+'</td></tr>'; pipeDone=true; }
+      const rowCls = d.status==="pipeline" ? ' class="pipeline-row"' : "";
+      const pb = d.pipe ? '<br><span class="pipeline-badge">'+d.pipe+'</span>' : "";
+      html += '<tr'+rowCls+'>'
+        + '<td><span class="dev-name">'+d.name+'</span><span class="brand-tag bt-'+d.cls+'">'+d.brand+'</span>'+pb+'</td>'
+        + '<td>'+typeBadge(d.type)+'</td>'
+        + '<td>'+aidCell(d)+'</td>'
+        + '<td class="cgm-cell">'+d.cgm+'</td>'
+        + '<td style="white-space:nowrap;">'+d.reservoir+'</td>'
+        + '<td>'+availPills(d.avail)+'</td>'
+        + '<td style="white-space:nowrap;font-size:0.78rem;">'+d.cost+'</td>'
+        + '</tr>';
+    });
+    tbody.innerHTML = html;
+  }
+  document.getElementById("countNum").textContent = rows.length;
+}
+
+function bindChips(sel,key){
+  document.querySelectorAll(sel).forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(sel).forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      state[key]=btn.dataset[key];
+      render();
+    });
+  });
+}
+bindChips("[data-status]","status");
+bindChips("[data-type]","type");
+bindChips("[data-loop]","loop");
+document.getElementById("search").addEventListener("input",e=>{ state.search=e.target.value; render(); });
+document.getElementById("clearBtn").addEventListener("click",()=>{
+  state={ search:"", status:"all", type:"all", loop:"all" };
+  document.getElementById("search").value="";
+  ["[data-status]","[data-type]","[data-loop]"].forEach(sel=>{
+    document.querySelectorAll(sel).forEach(b=>b.classList.remove("active"));
+    document.querySelector(sel.replace("]","=\"all\"]")).classList.add("active");
+  });
+  render();
+});
+render();
+
+function __postH(){ try{ parent.postMessage({ type:"aid-height", height:document.documentElement.scrollHeight }, "*"); }catch(e){} }
+window.addEventListener("load",__postH);
+try{ new ResizeObserver(__postH).observe(document.body); }catch(e){}
+const __r=render; render=function(){ __r.apply(this,arguments); __postH(); };
+__postH();
+</script>
+</body>
+</html>
