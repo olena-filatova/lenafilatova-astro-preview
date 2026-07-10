@@ -1,5 +1,5 @@
 ---
-import { NAV, FOOTER } from '../data/site.js';
+import { NAV, FOOTER, SOCIALS } from '../data/site.js';
 const { lang = 'en' } = Astro.props;
 const t = FOOTER[lang];
 const n = NAV[lang];
@@ -12,6 +12,12 @@ const L = lang === 'ua' ? `${B}ua/` : B;
       <div>
         <a class="brand" href={L}><span class="mark">lf</span>Lena Filatova</a>
         <p class="blurb">{t.blurb}</p>
+        <h4 style="margin-top:20px">{t.follow}</h4>
+        <div class="socials">
+          {SOCIALS.map((s) => (
+            <a href={s.href} aria-label={s.name} target="_blank" rel="noopener">{s.name[0]}</a>
+          ))}
+        </div>
       </div>
       <div>
         <h4>{t.explore}</h4>

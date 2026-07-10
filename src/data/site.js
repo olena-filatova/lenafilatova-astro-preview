@@ -82,3 +82,57 @@ export const ABOUT = {
     ctaBtn: 'Працювати зі мною',
   },
 };
+
+export const SOCIALS = [
+  { name: 'Instagram', href: 'https://www.instagram.com/lena.filatova/' },
+  { name: 'Facebook', href: 'https://www.facebook.com/lenafilatovablog' },
+  { name: 'Threads', href: 'https://www.threads.com/@lena.filatova' },
+];
+
+// Google Calendar appointment scheduler — copied verbatim from the live site.
+export const BOOKING_EMBED = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0nzMnvnKmd4nOx0E1T86EQuRdnoBbYmTEXc-FEtQo9fWvhk-cz4eM8PSSvA7K-BxUJb-F9TBEg?gv=true';
+
+export const CONTACT = {
+  en: {
+    seoTitle: 'Work with me — Lena Filatova',
+    seoDesc: 'Tell me where you are and what you’d like to change. I’ll reply with how I can help and the best next step for you.',
+    kicker: 'Coaching & contact',
+    h1: 'Work with me',
+    lead: 'Tell me where you are and what you’d like to change. I’ll reply with how I can help and the best next step for you.',
+    disclaimer: 'Coaching is a wellness and educational service — not a medical service, diagnosis or treatment. Please consult your healthcare provider for medical advice.',
+    stepsTitle: 'How coaching works',
+    steps: [
+      { h: 'Apply', p: 'Send a short message about your goals and where you’re starting.' },
+      { h: 'Intro call', p: 'We map your situation, routine and what’s realistic for you.' },
+      { h: 'Your plan', p: 'A personalised menu and movement routine built around your week.' },
+      { h: 'Check-ins', p: 'Weekly support and adjustments so the plan keeps working.' },
+    ],
+    instagram: 'Or reach me on Instagram',
+    emailLabel: 'Email:',
+    tabCall: 'Book a free call',
+    tabMsg: 'Send a message',
+    callHeading: 'Free 20-minute intro call',
+    fName: 'Name', fEmail: 'Email', fMsg: 'What would you like help with?', fSubmit: 'Send message',
+  },
+  ua: {
+    seoTitle: 'Працюймо разом — Lena Filatova',
+    seoDesc: 'Розкажіть, де ви зараз і що хочете змінити. Я відповім, чим можу допомогти та який найкращий наступний крок для вас.',
+    kicker: 'Коучинг і контакти',
+    h1: 'Працюймо разом',
+    lead: 'Розкажіть, де ви зараз і що хочете змінити. Я відповім, чим можу допомогти та який найкращий наступний крок для вас.',
+    disclaimer: 'Коучинг — це велнес- та освітня послуга, а не медична послуга, діагностика чи лікування. З питань здоров’я, будь ласка, звертайтеся до свого лікаря.',
+    stepsTitle: 'Як працює коучинг',
+    steps: [
+      { h: 'Заявка', p: 'Надішліть коротке повідомлення про ваші цілі та відправну точку.' },
+      { h: 'Вступний дзвінок', p: 'Разом визначаємо ситуацію, режим і що реально для вас.' },
+      { h: 'Ваш план', p: 'Персональне меню та режим руху навколо вашого тижня.' },
+      { h: 'Зустрічі', p: 'Щотижнева підтримка та коригування, щоб план працював.' },
+    ],
+    instagram: 'Або напишіть мені в Instagram',
+    emailLabel: 'Email:',
+    tabCall: 'Записатися на дзвінок',
+    tabMsg: 'Написати',
+    callHeading: 'Безкоштовний вступний дзвінок, 20 хв',
+    fName: 'Ім’я', fEmail: 'Email', fMsg: 'З чим вам допомогти?', fSubmit: 'Надіслати повідомлення',
+  },
+};

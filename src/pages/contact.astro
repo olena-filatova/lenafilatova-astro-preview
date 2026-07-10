@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactBody from '../components/ContactBody.astro';
+import { CONTACT } from '../data/site.js';
+const c = CONTACT.en;
+---
+<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/contact">
+  <ContactBody c={c} />
+</BaseLayout>

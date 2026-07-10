@@ -1,0 +1,66 @@
+---
+import { BOOKING_EMBED } from '../data/site.js';
+const { c } = Astro.props;
+---
+<section class="hero contact">
+  <div class="wrap grid">
+    <div class="col-left">
+      <p class="kicker">{c.kicker}</p>
+      <h1>{c.h1}</h1>
+      <p class="lead">{c.lead}</p>
+
+      <div class="notice">{c.disclaimer}</div>
+
+      <h2 class="steps-title">{c.stepsTitle}</h2>
+      <ol class="steps-list">
+        {c.steps.map((s, i) => (
+          <li>
+            <span class="num">{i + 1}</span>
+            <div><strong>{s.h}</strong><p>{s.p}</p></div>
+          </li>
+        ))}
+      </ol>
+
+      <p class="reach">{c.instagram} <a href="https://www.instagram.com/lena.filatova/">@lena.filatova</a></p>
+      <p class="reach">{c.emailLabel} <a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a></p>
+    </div>
+
+    <div class="col-right">
+      <div class="contact-card">
+        <div class="tabs" role="tablist">
+          <button class="tab" data-tab="call" aria-selected="false">{c.tabCall}</button>
+          <button class="tab is-active" data-tab="msg" aria-selected="true">{c.tabMsg}</button>
+        </div>
+
+        <div class="panel" data-panel="call" hidden>
+          <h3 class="call-heading">{c.callHeading}</h3>
+          <iframe src={BOOKING_EMBED} title={c.callHeading} loading="lazy" style="border:0" width="100%" height="600"></iframe>
+        </div>
+
+        <div class="panel" data-panel="msg">
+          <!-- NOTE: static sites can't process forms server-side. This posts nowhere yet —
+               needs wiring to a form service (Formspree/Web3Forms) or Lena's existing endpoint. -->
+          <form class="cform" action="#" method="post" data-needs-wiring>
+            <label>{c.fName}<input type="text" name="name" required /></label>
+            <label>{c.fEmail}<input type="email" name="email" required /></label>
+            <label>{c.fMsg}<textarea name="message" rows="5" required></textarea></label>
+            <button type="submit" class="btn full">{c.fSubmit}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Tiny tab toggle for the Book-a-call / Send-a-message card.
+  document.querySelectorAll('.contact-card').forEach((card) => {
+    const tabs = card.querySelectorAll('.tab');
+    const panels = card.querySelectorAll('.panel');
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      const key = tab.getAttribute('data-tab');
+      tabs.forEach((t) => { const on = t === tab; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', String(on)); });
+      panels.forEach((p) => { p.hidden = p.getAttribute('data-panel') !== key; });
+    }));
+  });
+</script>
