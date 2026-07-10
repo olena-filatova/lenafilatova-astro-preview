@@ -5,14 +5,19 @@ const { lang = 'en' } = Astro.props;
 const t = NAV[lang];
 const B = import.meta.env.BASE_URL;                 // '/…preview/' now, '/' at root
 const L = lang === 'ua' ? `${B}ua/` : B;            // language-scoped base
+// Blog + recipes still live on the current site (recipes are their own static
+// system; blog is migrated last) — link out until they move into Astro.
+const LIVE = 'https://lenafilatova.co.uk';
+const liveBlog = `${LIVE}/${lang === 'ua' ? 'ua/' : ''}blog/`;
+const liveRecipes = `${LIVE}/recipes/`;
 ---
 <header class="site-header">
   <div class="wrap inner">
     <a class="brand" href={L}><span class="mark">lf</span>Lena Filatova</a>
     <nav class="site-nav">
-      <a href={`${L}blog/`}>{t.blog}</a>
+      <a href={liveBlog}>{t.blog}</a>
       <a href={`${L}resources/`}>{t.resources}</a>
-      <a href={`${L}recipes/`}>{t.recipes}</a>
+      <a href={liveRecipes}>{t.recipes}</a>
       <a href={`${L}about/`}>{t.about}</a>
       <a href={`${L}contact/`}>{t.contact}</a>
     </nav>

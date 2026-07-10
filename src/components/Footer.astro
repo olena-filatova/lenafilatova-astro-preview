@@ -7,6 +7,10 @@ const B = import.meta.env.BASE_URL;
 const L = lang === 'ua' ? `${B}ua/` : B;
 // legalLinks and these slugs are in the same order (privacy, cookies, terms, refunds, accessibility).
 const legalSlugs = Object.values(LEGAL_SLUGS);
+// Blog + recipes still live on the current site — link out until they move into Astro.
+const LIVE = 'https://lenafilatova.co.uk';
+const liveBlog = `${LIVE}/${lang === 'ua' ? 'ua/' : ''}blog/`;
+const liveRecipes = `${LIVE}/recipes/`;
 ---
 <footer class="site-footer">
   <div class="wrap">
@@ -24,9 +28,9 @@ const legalSlugs = Object.values(LEGAL_SLUGS);
       <div>
         <h4>{t.explore}</h4>
         <ul>
-          <li><a href={`${L}blog/`}>{n.blog}</a></li>
+          <li><a href={liveBlog}>{n.blog}</a></li>
           <li><a href={`${L}resources/`}>{n.resources}</a></li>
-          <li><a href={`${L}recipes/`}>{n.recipes}</a></li>
+          <li><a href={liveRecipes}>{n.recipes}</a></li>
           <li><a href={`${L}about/`}>{n.about}</a></li>
           <li><a href={`${L}contact/`}>{n.contact}</a></li>
         </ul>
