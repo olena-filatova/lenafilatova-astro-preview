@@ -205,19 +205,19 @@ export const RESOURCES = {
     },
     {
       band: '#e4f1f0', head: '#3a827a',
-      href: 'https://lenafilatova.co.uk/cgm-comparison.html', hrefUa: 'https://lenafilatova.co.uk/cgm-comparison-ua.html',
+      href: '/cgm-comparison.html', hrefUa: '/cgm-comparison-ua.html',
       en: { band: 'CGM sensors', kicker: 'Comparison', title: 'CGM sensor comparison (2026)', desc: 'Every major continuous glucose monitor side by side — Abbott, Dexcom, Medtronic and more. Compare wear time, calibration, alerts and AID compatibility.', cta: 'Open the comparison →' },
       ua: { band: 'Сенсори CGM', kicker: 'Порівняння', title: 'Порівняння CGM-сенсорів (2026)', desc: 'Усі основні монітори глюкози безперервної дії поряд — Abbott, Dexcom, Medtronic та інші. Порівняйте час носіння, калібрування, сповіщення й сумісність з AID.', cta: 'Відкрити порівняння →' },
     },
     {
       band: '#fbf0f4', head: '#bb5480',
-      href: 'https://lenafilatova.co.uk/blood-sugar-investigator.html', hrefUa: 'https://lenafilatova.co.uk/blood-sugar-investigator-ua.html',
+      href: '/blood-sugar-investigator.html', hrefUa: '/blood-sugar-investigator-ua.html',
       en: { band: 'Troubleshooter', kicker: 'Interactive', title: 'Blood Sugar Investigator', desc: 'A guided troubleshooter for an unexpected high or low. Answer simple questions and get the most likely cause, what to do, and a summary to share with your diabetes team.', cta: 'Start the investigation →' },
       ua: { band: 'Помічник', kicker: 'Інтерактивний', title: 'Дослідник цукру в крові', desc: 'Покроковий помічник для несподіваного підйому чи гіпо. Дайте відповіді на прості запитання й отримайте найімовірнішу причину, що робити, і підсумок для діабетичної команди.', cta: 'Почати дослідження →' },
     },
     {
       band: '#eaf0f6', head: '#4d61a0',
-      href: 'https://lenafilatova.co.uk/carb-gi-table.html', hrefUa: 'https://lenafilatova.co.uk/carb-gi-table-ua.html',
+      href: '/carb-gi-table.html', hrefUa: '/carb-gi-table-ua.html',
       en: { band: 'Carbs & GI', kicker: 'Interactive table', title: 'Carbohydrate & glycaemic index table', desc: '200+ foods with carbs per 100g and glycaemic index — Ukrainian and British staples included. Filter, search and sort to see how each food is likely to affect blood sugar.', cta: 'Open the table →' },
       ua: { band: 'Вуглеводи та ГІ', kicker: 'Інтерактивна таблиця', title: 'Таблиця вуглеводів і глікемічного індексу', desc: 'Понад 200 продуктів із вуглеводами на 100 г і глікемічним індексом — з українськими та британськими стравами. Фільтруйте, шукайте й сортуйте, щоб побачити ймовірний вплив на цукор.', cta: 'Відкрити таблицю →' },
     },

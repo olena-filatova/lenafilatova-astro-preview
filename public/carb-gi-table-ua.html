@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Таблиця вуглеводів і глікемічного індексу — Lena Filatova</title>
+<meta name="description" content="Безкоштовна довідкова таблиця вуглеводів і глікемічного індексу (ГІ) продуктів — практичні, науково обґрунтовані поради щодо жіночого здоров'я після 40.">
+<link rel="canonical" href="https://lenafilatova.co.uk/carb-gi-table-ua.html">
+<link rel="alternate" hreflang="en" href="https://lenafilatova.co.uk/carb-gi-table.html">
+<link rel="alternate" hreflang="uk" href="https://lenafilatova.co.uk/carb-gi-table-ua.html">
+<link rel="alternate" hreflang="x-default" href="https://lenafilatova.co.uk/carb-gi-table.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Таблиця вуглеводів і глікемічного індексу">
+<meta property="og:description" content="Безкоштовна довідкова таблиця вуглеводів і глікемічного індексу (ГІ) повсякденних продуктів.">
+<meta property="og:url" content="https://lenafilatova.co.uk/carb-gi-table-ua.html">
+<meta property="og:site_name" content="Lena Filatova">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:  #2F7A52;
+  --green-bg: #e9f5f0;
+  --amber:  #B26A34;
+  --amber-bg: #fff3e0;
+  --red:    #b52b2b;
+  --red-bg: #fdeaea;
+  --grey:   #666;
+  --grey-bg: #f2f2f2;
+  --text:   #1a1a1a;
+  --muted:  #6b7280;
+  --border: #e5e7eb;
+  --hover:  #f9fafb;
+  --accent: #B23A63;
+  --accent-bg: #FBF3F7;
+  --uk-color: #b52b2b;
+  --ua-color: #1d6b2f;
+  --radius: 8px;
+}
+
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: #fff;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ── Page layout ───────────────────────────────────── */
+.page {
+  max-width: 100%;
+  margin: 0;
+  padding: 4px 20px 14px;
+}
+
+/* ── Header ────────────────────────────────────────── */
+.page-header { margin-bottom: 2rem; }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+.back-link:hover { color: var(--text); }
+
+h1 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: var(--muted);
+  max-width: 680px;
+  font-size: 0.95rem;
+}
+
+/* ── Filters ───────────────────────────────────────── */
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.filter-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding-top: 0.45rem;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.chip:hover { border-color: #aaa; background: #f5f5f5; }
+
+.chip.active {
+  background: #B23A63;
+  border-color: #B23A63;
+  color: #fff;
+}
+
+.chip.gi-low.active   { background: var(--green); border-color: var(--green); }
+.chip.gi-medium.active{ background: var(--amber); border-color: var(--amber); }
+.chip.gi-high.active  { background: var(--red);   border-color: var(--red);   }
+
+/* Search */
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 360px;
+}
+.search-icon {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+#search {
+  width: 100%;
+  padding: 0.45rem 0.75rem 0.45rem 2.2rem;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.15s;
+  background: #fff;
+}
+#search:focus { border-color: var(--accent); }
+
+/* Clear button */
+#clearBtn {
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 0.82rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  align-self: center;
+}
+#clearBtn:hover { border-color: #aaa; color: var(--text); }
+
+/* ── Count bar ─────────────────────────────────────── */
+.count-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.count-badge {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.count-badge span {
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.leg {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-low    { background: var(--green); }
+.dot-medium { background: var(--amber); }
+.dot-high   { background: var(--red); }
+.dot-none   { background: #ccc; }
+
+/* ── Table ─────────────────────────────────────────── */
+.table-scroll {
+  overflow: auto;
+  max-height: 720px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--hover);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid var(--border);
+  box-shadow: inset 0 -1.5px 0 var(--border);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+thead th:nth-child(3),
+thead th:nth-child(4),
+thead th:nth-child(5) { text-align: center; }
+
+thead th.sorted-asc::after  { content: " ↑"; opacity: 0.6; }
+thead th.sorted-desc::after { content: " ↓"; opacity: 0.6; }
+thead th:hover { color: var(--text); }
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--hover); }
+
+td {
+  padding: 0.72rem 1rem;
+  font-size: 0.88rem;
+  vertical-align: middle;
+}
+
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5) { text-align: center; }
+
+/* Food name cell */
+.food-name { font-weight: 500; }
+
+/* Cuisine flags */
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+  letter-spacing: 0.02em;
+}
+.tag-uk { background: #fce4e4; color: var(--uk-color); }
+.tag-ua { background: #e0f5e6; color: var(--ua-color); }
+
+/* Category pill */
+.cat-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: var(--grey-bg);
+  border-radius: 10px;
+  padding: 0.1rem 0.5rem;
+  white-space: nowrap;
+}
+
+/* GI badge */
+.gi-badge {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.77rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.gi-low    { background: var(--green-bg); color: var(--green); }
+.gi-medium { background: var(--amber-bg); color: var(--amber); }
+.gi-high   { background: var(--red-bg);   color: var(--red); }
+.gi-none   { background: var(--grey-bg);  color: var(--grey); }
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ── Footer note ───────────────────────────────────── */
+.footnote {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--hover);
+  border-left: 3px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 640px) {
+  .filter-label { display: none; }
+  .count-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Filters -->
+  <div class="filters">
+
+    <!-- Row 1: Search + Clear -->
+    <div class="filter-row">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="8" cy="8" r="6"/><path d="m14 14 4 4"/>
+        </svg>
+        <input id="search" type="text" placeholder="Пошук продуктів…" autocomplete="off" />
+      </div>
+      <button id="clearBtn">Очистити</button>
+    </div>
+
+    <!-- Row 2: Category -->
+    <div class="filter-row">
+      <span class="filter-label">Категорія</span>
+      <div class="chips" id="catChips"></div>
+    </div>
+
+    <!-- Row 3: GI Level -->
+    <div class="filter-row">
+      <span class="filter-label">Рівень ГІ</span>
+      <div class="chips">
+        <button class="chip active" data-gi="all">Усі</button>
+        <button class="chip gi-low"    data-gi="low">Низький ≤ 55</button>
+        <button class="chip gi-medium" data-gi="medium">Середній 56–69</button>
+        <button class="chip gi-high"   data-gi="high">Високий ≥ 70</button>
+        <button class="chip"           data-gi="negligible">Незначний</button>
+      </div>
+    </div>
+
+    <!-- Row 4: Cuisine -->
+    <div class="filter-row">
+      <span class="filter-label">Кухня</span>
+      <div class="chips">
+        <button class="chip active" data-cuisine="all">Усі</button>
+        <button class="chip" data-cuisine="ua">🇺🇦 Українська</button>
+        <button class="chip" data-cuisine="uk">🇬🇧 Британська</button>
+        <button class="chip" data-cuisine="general">Міжнародна</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Count + Legend -->
+  <div class="count-bar">
+    <p class="count-badge"><span id="countNum">0</span> продуктів</p>
+    <div class="legend">
+      <div class="leg"><span class="dot dot-low"></span>Низький ГІ (≤ 55)</div>
+      <div class="leg"><span class="dot dot-medium"></span>Середній (56–69)</div>
+      <div class="leg"><span class="dot dot-high"></span>Високий (≥ 70)</div>
+      <div class="leg"><span class="dot dot-none"></span>Незначний</div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th data-col="name">Продукт</th>
+          <th data-col="category">Категорія</th>
+          <th data-col="carbs">Вуглеводи (г / 100 г)</th>
+          <th data-col="gi">ГІ</th>
+          <th data-col="gi_level">Рівень ГІ</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="no-results" id="noResults" style="display:none;">Немає продуктів за вашими фільтрами.</div>
+  </div>
+
+  <!-- Footnote -->
+  <div class="footnote">
+    <strong>Джерела та примітки:</strong> Значення ГІ — з бази глікемічного індексу Університету Сіднея (Atkinson FS та ін., 2008), робіт Jenkins DJ та ін. і дієтичних настанов NHS. Значення з позначкою ~ — оцінки на основі складників. ГІ залежить від стиглості, способу приготування, поєднання продуктів та індивідуальної реакції. Вуглеводи для готових страв — на 100 г готового продукту. Таблиця має освітній характер і не є медичною порадою. Завжди звертайтеся до своєї команди з догляду за діабетом за індивідуальними рекомендаціями.
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// ────────────────────────────────────────────────────
+//  DATA
+//  cuisine: "ua" | "uk" | "general"
+//  gi_level: "low" | "medium" | "high" | "negligible"
+// ────────────────────────────────────────────────────
+const FOODS = [
+
+  // ── GRAINS, BREAD & CEREALS ──────────────────────
+  { name:"Білий хліб",            category:"Крупи та хліб", cuisine:"general", carbs:49, gi:75,  gi_level:"high" },
+  { name:"Цільнозерновий хліб",        category:"Крупи та хліб", cuisine:"general", carbs:42, gi:69,  gi_level:"medium" },
+  { name:"Хліб на заквасці (пшеничний)",category:"Крупи та хліб", cuisine:"general", carbs:46, gi:54,  gi_level:"low" },
+  { name:"Житній хліб (темний)",       category:"Крупи та хліб", cuisine:"general", carbs:48, gi:41,  gi_level:"low" },
+  { name:"Бородинський хліб",       category:"Крупи та хліб", cuisine:"ua",      carbs:40, gi:45,  gi_level:"low" },
+  { name:"Пампушки (часникові)",category:"Крупи та хліб",cuisine:"ua",      carbs:50, gi:72,  gi_level:"high" },
+  { name:"Крампет",                category:"Крупи та хліб", cuisine:"uk",      carbs:39, gi:69,  gi_level:"medium" },
+  { name:"Англійський мафін",         category:"Крупи та хліб", cuisine:"uk",      carbs:46, gi:77,  gi_level:"high" },
+  { name:"Скон (звичайний)",          category:"Крупи та хліб", cuisine:"uk",      carbs:55, gi:92,  gi_level:"high" },
+  { name:"Вівсяне печиво (oatcake)",                category:"Крупи та хліб", cuisine:"uk",      carbs:62, gi:57,  gi_level:"medium" },
+  { name:"Печиво «дайджестив»",      category:"Крупи та хліб", cuisine:"uk",      carbs:64, gi:59,  gi_level:"medium" },
+  { name:"Білий рис (варений)",    category:"Крупи та хліб", cuisine:"general", carbs:28, gi:72,  gi_level:"high" },
+  { name:"Коричневий рис (варений)",    category:"Крупи та хліб", cuisine:"general", carbs:23, gi:50,  gi_level:"low" },
+  { name:"Рис басматі (варений)",  category:"Крупи та хліб", cuisine:"general", carbs:25, gi:57,  gi_level:"medium" },
+  { name:"Біла паста (варена)",   category:"Крупи та хліб", cuisine:"general", carbs:31, gi:49,  gi_level:"low" },
+  { name:"Цільнозернова паста (варена)",category:"Крупи та хліб",cuisine:"general", carbs:27, gi:42,  gi_level:"low" },
+  { name:"Вівсяна каша (варена)",category:"Крупи та хліб",cuisine:"uk",   carbs:12, gi:55,  gi_level:"low" },
+  { name:"Вівсяні пластівці (сухі)",      category:"Крупи та хліб", cuisine:"general", carbs:66, gi:55,  gi_level:"low" },
+  { name:"Гречана каша (варена)", category:"Крупи та хліб", cuisine:"ua", carbs:20, gi:51, gi_level:"low" },
+  { name:"Пшоняна каша (варена)",     category:"Крупи та хліб", cuisine:"ua", carbs:23, gi:71, gi_level:"high" },
+  { name:"Манна каша (варена)",    category:"Крупи та хліб", cuisine:"ua", carbs:17, gi:66, gi_level:"medium" },
+  { name:"Кукурудзяна каша / Мамалига (варена)",      category:"Крупи та хліб", cuisine:"ua", carbs:21, gi:69, gi_level:"medium" },
+  { name:"Кіноа (варена)",        category:"Крупи та хліб", cuisine:"general", carbs:21, gi:53,  gi_level:"low" },
+  { name:"Перлова крупа (варена)",        category:"Крупи та хліб", cuisine:"general", carbs:28, gi:28,  gi_level:"low" },
+  { name:"Кускус (варений)",      category:"Крупи та хліб", cuisine:"general", carbs:23, gi:65,  gi_level:"medium" },
+  { name:"Рисові хлібці (звичайні)",     category:"Крупи та хліб", cuisine:"general", carbs:79, gi:82,  gi_level:"high" },
+  { name:"Кукурудзяні пластівці",             category:"Крупи та хліб", cuisine:"general", carbs:84, gi:81,  gi_level:"high" },
+  { name:"Висівкові пластівці",            category:"Крупи та хліб", cuisine:"uk",      carbs:67, gi:74,  gi_level:"high" },
+  { name:"Weetabix",               category:"Крупи та хліб", cuisine:"uk",      carbs:69, gi:70,  gi_level:"high" },
+  { name:"Мюслі (без цукру)",category:"Крупи та хліб", cuisine:"general", carbs:61, gi:57,  gi_level:"medium" },
+  { name:"Житні хлібці",       category:"Крупи та хліб", cuisine:"general", carbs:71, gi:45,  gi_level:"low" },
+
+  // ── VEGETABLES ──────────────────────────────────
+  { name:"Спаржа",              category:"Овочі", cuisine:"general", carbs:4,  gi:15, gi_level:"low" },
+  { name:"Баклажан",   category:"Овочі", cuisine:"general", carbs:6,  gi:15, gi_level:"low" },
+  { name:"Буряк (варений)",      category:"Овочі", cuisine:"ua",      carbs:10, gi:64, gi_level:"medium" },
+  { name:"Броколі",               category:"Овочі", cuisine:"general", carbs:7,  gi:15, gi_level:"low" },
+  { name:"Брюссельська капуста",       category:"Овочі", cuisine:"uk",      carbs:9,  gi:15, gi_level:"low" },
+  { name:"Гарбуз баттернат (варений)",category:"Овочі",cuisine:"general", carbs:10, gi:51, gi_level:"low" },
+  { name:"Морква (сира)",           category:"Овочі", cuisine:"general", carbs:10, gi:39, gi_level:"low" },
+  { name:"Цвітна капуста",            category:"Овочі", cuisine:"general", carbs:5,  gi:15, gi_level:"low" },
+  { name:"Селера",                 category:"Овочі", cuisine:"general", carbs:3,  gi:15, gi_level:"low" },
+  { name:"Кабачок / Цукіні",   category:"Овочі", cuisine:"general", carbs:3,  gi:15, gi_level:"low" },
+  { name:"Огірок",               category:"Овочі", cuisine:"general", carbs:4,  gi:15, gi_level:"low" },
+  { name:"Часник",                 category:"Овочі", cuisine:"general", carbs:33, gi:10, gi_level:"low" },
+  { name:"Зелена квасоля",            category:"Овочі", cuisine:"general", carbs:7,  gi:15, gi_level:"low" },
+  { name:"Капуста кейл",                   category:"Овочі", cuisine:"general", carbs:9,  gi:15, gi_level:"low" },
+  { name:"Цибуля-порей",                   category:"Овочі", cuisine:"uk",      carbs:14, gi:15, gi_level:"low" },
+  { name:"Гриби",              category:"Овочі", cuisine:"general", carbs:3,  gi:15, gi_level:"low" },
+  { name:"Цибуля (сира)",            category:"Овочі", cuisine:"general", carbs:9,  gi:10, gi_level:"low" },
+  { name:"Пастернак (варений)",       category:"Овочі", cuisine:"uk",      carbs:18, gi:52, gi_level:"low" },
+  { name:"Горошок (заморожений, варений)",  category:"Овочі", cuisine:"general", carbs:14, gi:54, gi_level:"low" },
+  { name:"Гороховий пюре (mushy peas)",             category:"Овочі", cuisine:"uk",      carbs:14, gi:45, gi_level:"low" },
+  { name:"Солодкий перець (будь-який колір)",category:"Овочі", cuisine:"general", carbs:6,  gi:15, gi_level:"low" },
+  { name:"Картопля — варена (біла)",category:"Овочі", cuisine:"general", carbs:17, gi:78, gi_level:"high" },
+  { name:"Картопля — запечена в мундирі",category:"Овочі", cuisine:"uk",      carbs:20, gi:85, gi_level:"high" },
+  { name:"Картопляне пюре",        category:"Овочі", cuisine:"general", carbs:16, gi:87, gi_level:"high" },
+  { name:"Молода картопля (варена)",  category:"Овочі", cuisine:"uk",      carbs:15, gi:62, gi_level:"medium" },
+  { name:"Картопля фрі",   category:"Овочі", cuisine:"uk",      carbs:30, gi:63, gi_level:"medium" },
+  { name:"Шпинат",                category:"Овочі", cuisine:"general", carbs:4,  gi:15, gi_level:"low" },
+  { name:"Квашена капуста",category:"Овочі",cuisine:"ua",    carbs:4,  gi:15, gi_level:"low" },
+  { name:"Бруква (варена)",category:"Овочі", cuisine:"uk",    carbs:6,  gi:72, gi_level:"high" },
+  { name:"Батат (варений)",  category:"Овочі", cuisine:"general", carbs:20, gi:63, gi_level:"medium" },
+  { name:"Кукурудза (варена)",     category:"Овочі", cuisine:"general", carbs:19, gi:52, gi_level:"low" },
+  { name:"Помідор (сирий)",           category:"Овочі", cuisine:"general", carbs:4,  gi:15, gi_level:"low" },
+  { name:"Ріпа (варена)",        category:"Овочі", cuisine:"general", carbs:6,  gi:62, gi_level:"medium" },
+
+  // ── FRUITS ──────────────────────────────────────
+  { name:"Яблуко",                  category:"Фрукти", cuisine:"general", carbs:14, gi:36, gi_level:"low" },
+  { name:"Абрикос (свіжий)",        category:"Фрукти", cuisine:"general", carbs:11, gi:34, gi_level:"low" },
+  { name:"Банан (стиглий)",          category:"Фрукти", cuisine:"general", carbs:23, gi:51, gi_level:"low" },
+  { name:"Ожина",           category:"Фрукти", cuisine:"general", carbs:10, gi:25, gi_level:"low" },
+  { name:"Чорна смородина",          category:"Фрукти", cuisine:"uk",      carbs:14, gi:25, gi_level:"low" },
+  { name:"Чорниця",            category:"Фрукти", cuisine:"general", carbs:14, gi:53, gi_level:"low" },
+  { name:"Вишні",               category:"Фрукти", cuisine:"ua",      carbs:16, gi:22, gi_level:"low" },
+  { name:"Клементин / Мандарин",   category:"Фрукти", cuisine:"general", carbs:12, gi:30, gi_level:"low" },
+  { name:"Фініки (сушені)",          category:"Фрукти", cuisine:"general", carbs:75, gi:42, gi_level:"low" },
+  { name:"Грейпфрут",             category:"Фрукти", cuisine:"general", carbs:9,  gi:25, gi_level:"low" },
+  { name:"Виноград",                 category:"Фрукти", cuisine:"general", carbs:18, gi:59, gi_level:"medium" },
+  { name:"Ківі",                   category:"Фрукти", cuisine:"general", carbs:15, gi:53, gi_level:"low" },
+  { name:"Манго",                  category:"Фрукти", cuisine:"general", carbs:17, gi:51, gi_level:"low" },
+  { name:"Апельсин",                 category:"Фрукти", cuisine:"general", carbs:12, gi:43, gi_level:"low" },
+  { name:"Персик",                  category:"Фрукти", cuisine:"general", carbs:10, gi:42, gi_level:"low" },
+  { name:"Груша",                   category:"Фрукти", cuisine:"general", carbs:15, gi:38, gi_level:"low" },
+  { name:"Ананас",              category:"Фрукти", cuisine:"general", carbs:13, gi:59, gi_level:"medium" },
+  { name:"Слива",                   category:"Фрукти", cuisine:"ua",      carbs:11, gi:40, gi_level:"low" },
+  { name:"Гранат",            category:"Фрукти", cuisine:"general", carbs:19, gi:35, gi_level:"low" },
+  { name:"Малина",            category:"Фрукти", cuisine:"ua",      carbs:12, gi:40, gi_level:"low" },
+  { name:"Ревінь (варений, без цукру)",category:"Фрукти",cuisine:"uk",    carbs:3,  gi:15, gi_level:"low" },
+  { name:"Полуниця",           category:"Фрукти", cuisine:"general", carbs:8,  gi:40, gi_level:"low" },
+  { name:"Кавун",             category:"Фрукти", cuisine:"ua",      carbs:8,  gi:76, gi_level:"high" },
+
+  // ── LEGUMES & PULSES ─────────────────────────────
+  { name:"Квасоля в томаті (консервована)", category:"Бобові", cuisine:"uk", carbs:14, gi:48, gi_level:"low" },
+  { name:"Чорна квасоля (варена)",   category:"Бобові", cuisine:"general", carbs:24, gi:30, gi_level:"low" },
+  { name:"Квасоля ліма (варена)",  category:"Бобові", cuisine:"uk",      carbs:20, gi:36, gi_level:"low" },
+  { name:"Нут (варений)",     category:"Бобові", cuisine:"general", carbs:27, gi:28, gi_level:"low" },
+  { name:"Едамаме (варене)",       category:"Бобові", cuisine:"general", carbs:12, gi:18, gi_level:"low" },
+  { name:"Червона квасоля (варена)",  category:"Бобові", cuisine:"general", carbs:22, gi:29, gi_level:"low" },
+  { name:"Сочевиця — червона (варена)", category:"Бобові", cuisine:"general", carbs:20, gi:26, gi_level:"low" },
+  { name:"Сочевиця — зелена / Пюї (варена)",category:"Бобові",cuisine:"general",carbs:20, gi:32, gi_level:"low" },
+  { name:"Горох маррофат",         category:"Бобові", cuisine:"uk",      carbs:16, gi:39, gi_level:"low" },
+  { name:"Соєві боби (варені)",    category:"Бобові", cuisine:"general", carbs:9,  gi:16, gi_level:"low" },
+  { name:"Лущений горох (варений)",    category:"Бобові", cuisine:"general", carbs:21, gi:32, gi_level:"low" },
+
+  // ── DAIRY & EGGS ─────────────────────────────────
+  { name:"Молоко (незбиране)",category:"Молочне та яйця", cuisine:"general", carbs:5,  gi:31, gi_level:"low" },
+  { name:"Грецький йогурт (без добавок)",  category:"Молочне та яйця", cuisine:"general", carbs:4,  gi:12, gi_level:"low" },
+  { name:"Йогурт (нежирний, без добавок)",category:"Молочне та яйця", cuisine:"general", carbs:7,  gi:36, gi_level:"low" },
+  { name:"Кефір (1%)",             category:"Молочне та яйця", cuisine:"ua",      carbs:4,  gi:32, gi_level:"low" },
+  { name:"Ряжанка",category:"Молочне та яйця",cuisine:"ua",carbs:5,gi:33, gi_level:"low" },
+  { name:"Творог / кисломолочний сир (нежирний)",category:"Молочне та яйця",cuisine:"ua",      carbs:3,  gi:30, gi_level:"low" },
+  { name:"Сметана",   category:"Молочне та яйця", cuisine:"ua",      carbs:4,  gi:0,  gi_level:"negligible" },
+  { name:"Сир чедер",         category:"Молочне та яйця", cuisine:"uk",      carbs:0.1,gi:0,  gi_level:"negligible" },
+  { name:"Зернистий сир",         category:"Молочне та яйця", cuisine:"general", carbs:3,  gi:10, gi_level:"low" },
+  { name:"Моцарела",             category:"Молочне та яйця", cuisine:"general", carbs:2,  gi:0,  gi_level:"negligible" },
+  { name:"Сир фета",            category:"Молочне та яйця", cuisine:"general", carbs:1,  gi:0,  gi_level:"negligible" },
+  { name:"Вершкове масло",                 category:"Молочне та яйця", cuisine:"general", carbs:0.1,gi:0,  gi_level:"negligible" },
+  { name:"Топлені вершки",          category:"Молочне та яйця", cuisine:"uk",      carbs:2,  gi:0,  gi_level:"negligible" },
+  { name:"Морозиво (ванільне)",    category:"Молочне та яйця", cuisine:"general", carbs:24, gi:57, gi_level:"medium" },
+  { name:"Яйця (цілі)",           category:"Молочне та яйця", cuisine:"general", carbs:0.7,gi:0,  gi_level:"negligible" },
+  { name:"Вівсяне молоко (без цукру)", category:"Молочне та яйця", cuisine:"general", carbs:6,  gi:69, gi_level:"medium" },
+  { name:"Мигдалеве молоко (без цукру)",category:"Молочне та яйця",cuisine:"general",carbs:1,  gi:25, gi_level:"low" },
+  { name:"Соєве молоко (без цукру)",category:"Молочне та яйця", cuisine:"general", carbs:3,  gi:34, gi_level:"low" },
+
+  // ── MEAT, FISH & SEAFOOD ─────────────────────────
+  { name:"Куряча грудка (гриль)",category:"М'ясо та риба", cuisine:"general", carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Грудка індички",          category:"М'ясо та риба", cuisine:"general",  carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Яловичина (нежирний фарш)",category:"М'ясо та риба",cuisine:"general", carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Свиняча корейка (готова)",     category:"М'ясо та риба", cuisine:"general",  carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Ягнятина (нога, запечена)",    category:"М'ясо та риба", cuisine:"uk",       carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Бекон (спинний, гриль)",  category:"М'ясо та риба", cuisine:"uk",       carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Свиняча ковбаска",           category:"М'ясо та риба", cuisine:"uk",       carbs:6,  gi:28, gi_level:"low" },
+  { name:"Кров'янка",          category:"М'ясо та риба", cuisine:"uk",       carbs:15, gi:30, gi_level:"low" },
+  { name:"Ковбаса (копчена)",category:"М'ясо та риба", cuisine:"ua",      carbs:3,  gi:28, gi_level:"low" },
+  { name:"Сало",  category:"М'ясо та риба", cuisine:"ua",       carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Лосось (готовий)",        category:"М'ясо та риба", cuisine:"general",  carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Тунець (консервований у воді)", category:"М'ясо та риба", cuisine:"general",  carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Тріска (запечена)",            category:"М'ясо та риба", cuisine:"general",  carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Пікша (запечена)",        category:"М'ясо та риба", cuisine:"uk",       carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Скумбрія (копчена)",      category:"М'ясо та риба", cuisine:"uk",       carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Сардини (в олії)",      category:"М'ясо та риба", cuisine:"general",  carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Креветки (готові)",category:"М'ясо та риба",cuisine:"general",  carbs:0.5,gi:0,  gi_level:"negligible" },
+  { name:"Рибні палички (запечені)",   category:"М'ясо та риба", cuisine:"uk",       carbs:17, gi:38, gi_level:"low" },
+
+  // ── NUTS & SEEDS ─────────────────────────────────
+  { name:"Мигдаль",                category:"Горіхи та насіння", cuisine:"general", carbs:22, gi:15, gi_level:"low" },
+  { name:"Кеш'ю",                category:"Горіхи та насіння", cuisine:"general", carbs:30, gi:25, gi_level:"low" },
+  { name:"Насіння чіа",             category:"Горіхи та насіння", cuisine:"general", carbs:42, gi:1,  gi_level:"low" },
+  { name:"Насіння льону",     category:"Горіхи та насіння", cuisine:"general", carbs:29, gi:35, gi_level:"low" },
+  { name:"Фундук",              category:"Горіхи та насіння", cuisine:"general", carbs:17, gi:15, gi_level:"low" },
+  { name:"Арахіс",                category:"Горіхи та насіння", cuisine:"general", carbs:16, gi:14, gi_level:"low" },
+  { name:"Гарбузове насіння",          category:"Горіхи та насіння", cuisine:"general", carbs:15, gi:25, gi_level:"low" },
+  { name:"Кунжут",           category:"Горіхи та насіння", cuisine:"general", carbs:23, gi:35, gi_level:"low" },
+  { name:"Насіння соняшнику",        category:"Горіхи та насіння", cuisine:"ua",      carbs:20, gi:35, gi_level:"low" },
+  { name:"Волоські горіхи",                category:"Горіхи та насіння", cuisine:"ua",      carbs:14, gi:15, gi_level:"low" },
+  { name:"Соняшникова халва",        category:"Горіхи та насіння", cuisine:"ua",      carbs:54, gi:70, gi_level:"high" },
+
+  // ── CONDIMENTS & SPREADS ─────────────────────────
+  { name:"Мед",                  category:"Соуси та спреди", cuisine:"general", carbs:82, gi:61, gi_level:"medium" },
+  { name:"Джем / Варення",   category:"Соуси та спреди", cuisine:"uk",      carbs:65, gi:55, gi_level:"low" },
+  { name:"Мармелад (цитрусовий)",              category:"Соуси та спреди", cuisine:"uk",      carbs:63, gi:55, gi_level:"low" },
+  { name:"Мармайт (Marmite)",                category:"Соуси та спреди", cuisine:"uk",      carbs:24, gi:40, gi_level:"low" },
+  { name:"Арахісова паста (без цукру)",category:"Соуси та спреди",cuisine:"general",carbs:20,gi:14,gi_level:"low" },
+  { name:"Хумус",                 category:"Соуси та спреди", cuisine:"general", carbs:15, gi:6,  gi_level:"low" },
+  { name:"Тахіні",                 category:"Соуси та спреди", cuisine:"general", carbs:26, gi:35, gi_level:"low" },
+  { name:"Томатний кетчуп",         category:"Соуси та спреди", cuisine:"general", carbs:27, gi:55, gi_level:"low" },
+  { name:"Соус HP",               category:"Соуси та спреди", cuisine:"uk",      carbs:37, gi:50, gi_level:"low" },
+  { name:"Вустерський соус",   category:"Соуси та спреди", cuisine:"uk",      carbs:23, gi:40, gi_level:"low" },
+  { name:"Майонез (жирний)",  category:"Соуси та спреди", cuisine:"general", carbs:3,  gi:0,  gi_level:"negligible" },
+  { name:"Оливкова олія",              category:"Соуси та спреди", cuisine:"general", carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Цукор (білий)",          category:"Соуси та спреди", cuisine:"general", carbs:100,gi:65, gi_level:"medium" },
+  { name:"Золотий сироп",           category:"Соуси та спреди", cuisine:"uk",      carbs:79, gi:63, gi_level:"medium" },
+  { name:"Сироп агави",            category:"Соуси та спреди", cuisine:"general", carbs:76, gi:19, gi_level:"low" },
+
+  // ── SNACKS & TREATS ──────────────────────────────
+  { name:"Чорний шоколад (70%+)",  category:"Снеки та солодощі", cuisine:"general", carbs:46, gi:23, gi_level:"low" },
+  { name:"Молочний шоколад",         category:"Снеки та солодощі", cuisine:"general", carbs:60, gi:43, gi_level:"low" },
+  { name:"Чипси",  category:"Снеки та солодощі", cuisine:"uk",      carbs:51, gi:56, gi_level:"medium" },
+  { name:"Попкорн (без добавок)",category:"Снеки та солодощі",cuisine:"general",carbs:74,gi:65,gi_level:"medium" },
+  { name:"Пісочне печиво",             category:"Снеки та солодощі", cuisine:"uk",      carbs:68, gi:64, gi_level:"medium" },
+  { name:"Печиво Jaffa",            category:"Снеки та солодощі", cuisine:"uk",      carbs:73, gi:65, gi_level:"medium" },
+  { name:"Печиво Hobnob",         category:"Снеки та солодощі", cuisine:"uk",      carbs:65, gi:55, gi_level:"low" },
+  { name:"Вівсяний батончик (flapjack)",     category:"Снеки та солодощі", cuisine:"uk",      carbs:68, gi:68, gi_level:"medium" },
+  { name:"Соняшникова халва",        category:"Снеки та солодощі", cuisine:"ua",      carbs:54, gi:70, gi_level:"high" },
+
+  // ── DRINKS ───────────────────────────────────────
+  { name:"Вода",                  category:"Напої", cuisine:"general", carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Чай (чорний, без цукру)",  category:"Напої", cuisine:"uk",      carbs:0.2,gi:0,  gi_level:"negligible" },
+  { name:"Кава (чорна, без цукру)",category:"Напої",cuisine:"general", carbs:0,  gi:0,  gi_level:"negligible" },
+  { name:"Апельсиновий сік (свіжий)",   category:"Напої", cuisine:"general", carbs:10, gi:50, gi_level:"low" },
+  { name:"Яблучний сік",            category:"Напої", cuisine:"general", carbs:12, gi:41, gi_level:"low" },
+  { name:"Томатний сік",           category:"Напої", cuisine:"general", carbs:4,  gi:35, gi_level:"low" },
+  { name:"Coca-Cola (звичайна)",    category:"Напої", cuisine:"general", carbs:11, gi:63, gi_level:"medium" },
+  { name:"Лимонад (з цукром)",  category:"Напої", cuisine:"uk",      carbs:9,  gi:58, gi_level:"medium" },
+  { name:"Концентрат-напій (розведений)",category:"Напої",cuisine:"uk",   carbs:5,  gi:45, gi_level:"low" },
+  { name:"Квас",                  category:"Напої", cuisine:"ua",      carbs:5,  gi:45, gi_level:"low" },
+  { name:"Узвар",category:"Напої",cuisine:"ua",  carbs:15, gi:42, gi_level:"low" },
+  { name:"Компот (без цукру)",category:"Напої",cuisine:"ua",carbs:8,gi:40,gi_level:"low" },
+  { name:"Кефір (1%)",             category:"Напої", cuisine:"ua",      carbs:4,  gi:32, gi_level:"low" },
+  { name:"Молоко (незбиране)",           category:"Напої", cuisine:"general", carbs:5,  gi:31, gi_level:"low" },
+  { name:"Пиво (звичайне)",         category:"Напої", cuisine:"general", carbs:3,  gi:66, gi_level:"medium" },
+  { name:"Вино (сухе)",             category:"Напої", cuisine:"general", carbs:1,  gi:15, gi_level:"low" },
+
+  // ── UKRAINIAN DISHES ─────────────────────────────
+  { name:"Борщ зі сметаною", category:"Українські страви", cuisine:"ua", carbs:8,  gi:35, gi_level:"low" },
+  { name:"Вареники з картоплею",    category:"Українські страви", cuisine:"ua", carbs:23, gi:65, gi_level:"medium" },
+  { name:"Вареники з сиром",   category:"Українські страви", cuisine:"ua", carbs:21, gi:55, gi_level:"low" },
+  { name:"Вареники з вишнями",          category:"Українські страви", cuisine:"ua", carbs:26, gi:55, gi_level:"low" },
+  { name:"Голубці",category:"Українські страви", cuisine:"ua", carbs:10, gi:42, gi_level:"low" },
+  { name:"Деруни",        category:"Українські страви", cuisine:"ua", carbs:20, gi:78, gi_level:"high" },
+  { name:"Сирники",category:"Українські страви",cuisine:"ua", carbs:18, gi:52, gi_level:"low" },
+  { name:"Млинці / Налисники",    category:"Українські страви", cuisine:"ua", carbs:22, gi:68, gi_level:"medium" },
+  { name:"Окрошка",      category:"Українські страви", cuisine:"ua", carbs:5,  gi:30, gi_level:"low" },
+  { name:"Капусняк",     category:"Українські страви", cuisine:"ua", carbs:6,  gi:35, gi_level:"low" },
+  { name:"Галушки",   category:"Українські страви", cuisine:"ua", carbs:22, gi:62, gi_level:"medium" },
+  { name:"Плов",      category:"Українські страви", cuisine:"ua", carbs:22, gi:68, gi_level:"medium" },
+  { name:"Вінегрет",           category:"Українські страви", cuisine:"ua", carbs:9,  gi:40, gi_level:"low" },
+  { name:"Салат «Олів'є»",        category:"Українські страви", cuisine:"ua", carbs:8,  gi:35, gi_level:"low" },
+  { name:"Гречка зі смаженою цибулею",      category:"Українські страви", cuisine:"ua", carbs:21, gi:52, gi_level:"low" },
+
+  // ── BRITISH DISHES ───────────────────────────────
+  { name:"Повний англійський сніданок",          category:"Британські страви", cuisine:"uk", carbs:25, gi:45, gi_level:"low" },
+  { name:"Квасоля на тості",                  category:"Британські страви", cuisine:"uk", carbs:28, gi:56, gi_level:"medium" },
+  { name:"Яєчня на тості",         category:"Британські страви", cuisine:"uk", carbs:24, gi:52, gi_level:"low" },
+  { name:"Картопля в мундирі із сиром",       category:"Британські страви", cuisine:"uk", carbs:21, gi:80, gi_level:"high" },
+  { name:"Пастуший пиріг (баранина)",                  category:"Британські страви", cuisine:"uk", carbs:14, gi:50, gi_level:"low" },
+  { name:"Котеджний пиріг (яловичина)",                     category:"Британські страви", cuisine:"uk", carbs:13, gi:48, gi_level:"low" },
+  { name:"Тушкована яловичина з овочами",       category:"Британські страви", cuisine:"uk", carbs:10, gi:40, gi_level:"low" },
+  { name:"Курка тікка масала",            category:"Британські страви", cuisine:"uk", carbs:9,  gi:45, gi_level:"low" },
+  { name:"Запечений обід (курка, картопля, овочі)",category:"Британські страви",cuisine:"uk",carbs:22,gi:55,gi_level:"low" },
+  { name:"Риба зі смаженою картоплею",                    category:"Британські страви", cuisine:"uk", carbs:28, gi:60, gi_level:"medium" },
+  { name:"Вівсянка з ягодами",           category:"Британські страви", cuisine:"uk", carbs:18, gi:52, gi_level:"low" },
+  { name:"Авокадо на тості",                category:"Британські страви", cuisine:"uk", carbs:22, gi:52, gi_level:"low" },
+  { name:"Обід фермера",               category:"Британські страви", cuisine:"uk", carbs:22, gi:45, gi_level:"low" },
+  { name:"Валлійський грінок із сиром",                   category:"Британські страви", cuisine:"uk", carbs:24, gi:58, gi_level:"medium" },
+  { name:"Ковбаски в тісті",                category:"Британські страви", cuisine:"uk", carbs:22, gi:55, gi_level:"low" },
+];
+
+// ── Remove duplicate halva entry ────────────────────
+// (appears in two categories — keep both intentionally for searching)
+
+// ────────────────────────────────────────────────────
+//  STATE
+// ────────────────────────────────────────────────────
+let state = {
+  search: "",
+  category: "all",
+  gi: "all",
+  cuisine: "all",
+  sortCol: "name",
+  sortDir: "asc",
+};
+
+// ────────────────────────────────────────────────────
+//  BUILD CATEGORY CHIPS DYNAMICALLY
+// ────────────────────────────────────────────────────
+const cats = ["all", ...new Set(FOODS.map(f => f.category))];
+const catChips = document.getElementById("catChips");
+cats.forEach(c => {
+  const btn = document.createElement("button");
+  btn.className = "chip" + (c === "all" ? " active" : "");
+  btn.dataset.cat = c;
+  btn.textContent = c === "all" ? "Усі" : c;
+  catChips.appendChild(btn);
+});
+
+// ────────────────────────────────────────────────────
+//  HELPERS
+// ────────────────────────────────────────────────────
+function cuisineTag(c) {
+  if (c === "uk") return `<span class="tag tag-uk">🇬🇧 Британська</span>`;
+  if (c === "ua") return `<span class="tag tag-ua">🇺🇦 Українська</span>`;
+  return "";
+}
+
+function giBadge(level) {
+  const map = {
+    low:        ['gi-low',    'Низький'],
+    medium:     ['gi-medium', 'Середній'],
+    high:       ['gi-high',   'Високий'],
+    negligible: ['gi-none',   'Незначний'],
+  };
+  const [cls, label] = map[level] || ['gi-none', '–'];
+  return `<span class="gi-badge ${cls}">${label}</span>`;
+}
+
+function giDisplay(item) {
+  if (item.gi_level === "negligible") return "–";
+  if (String(item.gi).startsWith("~")) return item.gi;
+  return item.gi;
+}
+
+// ────────────────────────────────────────────────────
+//  RENDER
+// ────────────────────────────────────────────────────
+function render() {
+  const q = state.search.toLowerCase().trim();
+
+  let rows = FOODS.filter(f => {
+    if (q && !f.name.toLowerCase().includes(q)) return false;
+    if (state.category !== "all" && f.category !== state.category) return false;
+    if (state.gi !== "all" && f.gi_level !== state.gi) return false;
+    if (state.cuisine !== "all" && f.cuisine !== state.cuisine) return false;
+    return true;
+  });
+
+  // Sort
+  rows.sort((a, b) => {
+    let va = a[state.sortCol], vb = b[state.sortCol];
+    if (typeof va === "string") va = va.toLowerCase();
+    if (typeof vb === "string") vb = vb.toLowerCase();
+    const cmp = va < vb ? -1 : va > vb ? 1 : 0;
+    return state.sortDir === "asc" ? cmp : -cmp;
+  });
+
+  const tbody = document.getElementById("tbody");
+  const noRes = document.getElementById("noResults");
+
+  if (rows.length === 0) {
+    tbody.innerHTML = "";
+    noRes.style.display = "block";
+  } else {
+    noRes.style.display = "none";
+    tbody.innerHTML = rows.map(f => `
+      <tr>
+        <td><span class="food-name">${f.name}</span>${cuisineTag(f.cuisine)}</td>
+        <td><span class="cat-pill">${f.category}</span></td>
+        <td>${f.carbs}</td>
+        <td>${giDisplay(f)}</td>
+        <td>${giBadge(f.gi_level)}</td>
+      </tr>
+    `).join("");
+  }
+
+  document.getElementById("countNum").textContent = rows.length;
+
+  // Update sort indicators
+  document.querySelectorAll("thead th").forEach(th => {
+    th.classList.remove("sorted-asc", "sorted-desc");
+    if (th.dataset.col === state.sortCol) {
+      th.classList.add(state.sortDir === "asc" ? "sorted-asc" : "sorted-desc");
+    }
+  });
+}
+
+// ────────────────────────────────────────────────────
+//  EVENTS — chips
+// ────────────────────────────────────────────────────
+function bindChipGroup(selector, key) {
+  document.querySelectorAll(selector).forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(selector).forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      state[key] = btn.dataset[key === "category" ? "cat" : key];
+      render();
+    });
+  });
+}
+
+// Category chips
+document.querySelectorAll("#catChips .chip").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#catChips .chip").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.category = btn.dataset.cat;
+    render();
+  });
+});
+
+// GI chips
+document.querySelectorAll("[data-gi]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("[data-gi]").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.gi = btn.dataset.gi;
+    render();
+  });
+});
+
+// Cuisine chips
+document.querySelectorAll("[data-cuisine]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("[data-cuisine]").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.cuisine = btn.dataset.cuisine;
+    render();
+  });
+});
+
+// Search
+document.getElementById("search").addEventListener("input", e => {
+  state.search = e.target.value;
+  render();
+});
+
+// Clear
+document.getElementById("clearBtn").addEventListener("click", () => {
+  state = { ...state, search: "", category: "all", gi: "all", cuisine: "all" };
+  document.getElementById("search").value = "";
+  document.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+  document.querySelector('[data-cat="all"]').classList.add("active");
+  document.querySelector('[data-gi="all"]').classList.add("active");
+  document.querySelector('[data-cuisine="all"]').classList.add("active");
+  render();
+});
+
+// Sort
+document.querySelectorAll("thead th[data-col]").forEach(th => {
+  th.addEventListener("click", () => {
+    const col = th.dataset.col;
+    if (state.sortCol === col) {
+      state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+    } else {
+      state.sortCol = col;
+      state.sortDir = col === "name" || col === "category" || col === "gi_level" ? "asc" : "asc";
+    }
+    render();
+  });
+});
+
+// Initial render
+render();
+// ── auto-height for iframe embed ──
+function __postH(){ try { parent.postMessage({ type:'carbgi-height', height: document.documentElement.scrollHeight }, '*'); } catch(e){} }
+window.addEventListener('load', __postH);
+try { new ResizeObserver(__postH).observe(document.body); } catch(e){}
+const __origRender = render;
+render = function(){ __origRender.apply(this, arguments); __postH(); };
+__postH();
+</script>
+</body>
+</html>

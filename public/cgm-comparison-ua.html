@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Порівняння CGM-сенсорів 2026 — Олена Філатова</title>
+<meta name="description" content="Зрозуміле порівняння систем безперервного моніторингу глюкози (CGM-сенсорів) 2026 — точність, час носіння, функції та ціна, щоб обрати потрібний сенсор.">
+<link rel="canonical" href="https://lenafilatova.co.uk/cgm-comparison-ua.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:            #2F7A52;
+  --green-bg:         #e9f5f0;
+  --amber:            #B26A34;
+  --amber-bg:         #fff3e0;
+  --red:              #b52b2b;
+  --red-bg:           #fdeaea;
+  --grey:             #666;
+  --grey-bg:          #f2f2f2;
+  --text:             #1a1a1a;
+  --muted:            #6b7280;
+  --border:           #e5e7eb;
+  --hover:            #f9fafb;
+  --accent:           #B23A63;
+  /* Brand colours */
+  --libre-color:      #005FCC;
+  --libre-bg:         #EEF4FF;
+  --dexcom-color:     #006D36;
+  --dexcom-bg:        #E6F5EC;
+  --medtronic-color:  #7B1D51;
+  --medtronic-bg:     #F5E8F0;
+  --senseonics-color: #5040A0;
+  --senseonics-bg:    #EEECF8;
+  --sinocare-color:   #1B7B5E;
+  --sinocare-bg:      #E5F4EE;
+  --aidex-color:      #0E6699;
+  --aidex-bg:         #E5F1F8;
+  --sibionics-color:  #8E3A1E;
+  --sibionics-bg:     #F8EDE9;
+  --medtrum-color:    #B05000;
+  --medtrum-bg:       #FDF0E5;
+  --radius:           8px;
+}
+
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: #fff;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.page { max-width: 100%; margin: 0; padding: 16px clamp(18px, 3.5vw, 40px) 28px; }
+
+/* ── Filters ─────────────────────────────────────── */
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.filter-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding-top: 0.45rem;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+.chip:hover { border-color: #aaa; background: #f5f5f5; }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Brand-coloured active state */
+.chip.b-libre.active      { background: var(--libre-color);      border-color: var(--libre-color); }
+.chip.b-dexcom.active     { background: var(--dexcom-color);     border-color: var(--dexcom-color); }
+.chip.b-medtronic.active  { background: var(--medtronic-color);  border-color: var(--medtronic-color); }
+.chip.b-senseonics.active { background: var(--senseonics-color); border-color: var(--senseonics-color); }
+.chip.b-sinocare.active   { background: var(--sinocare-color);   border-color: var(--sinocare-color); }
+.chip.b-aidex.active      { background: var(--aidex-color);      border-color: var(--aidex-color); }
+.chip.b-sibionics.active  { background: var(--sibionics-color);  border-color: var(--sibionics-color); }
+.chip.b-medtrum.active    { background: var(--medtrum-color);    border-color: var(--medtrum-color); }
+
+/* Search */
+.search-wrap { position: relative; flex: 1; min-width: 200px; max-width: 360px; }
+.search-icon {
+  position: absolute; left: 0.7rem; top: 50%;
+  transform: translateY(-50%); color: var(--muted); pointer-events: none;
+}
+#search {
+  width: 100%;
+  padding: 0.45rem 0.75rem 0.45rem 2.2rem;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.15s;
+  background: #fff;
+}
+#search:focus { border-color: var(--accent); }
+#clearBtn {
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 0.82rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  align-self: center;
+}
+#clearBtn:hover { border-color: #aaa; color: var(--text); }
+
+/* ── Count / legend ──────────────────────────────── */
+.count-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.count-badge { font-size: 0.88rem; font-weight: 600; color: var(--muted); }
+.count-badge span { color: var(--text); font-size: 1.05rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: 0.75rem; color: var(--muted); }
+.leg { display: flex; align-items: center; gap: 0.3rem; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-libre      { background: var(--libre-color); }
+.dot-dexcom     { background: var(--dexcom-color); }
+.dot-medtronic  { background: var(--medtronic-color); }
+.dot-senseonics { background: var(--senseonics-color); }
+.dot-sinocare   { background: var(--sinocare-color); }
+.dot-aidex      { background: var(--aidex-color); }
+.dot-sibionics  { background: var(--sibionics-color); }
+.dot-medtrum    { background: var(--medtrum-color); }
+
+/* ── Table ───────────────────────────────────────── */
+.table-scroll {
+  overflow: auto;
+  max-height: 640px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  -webkit-overflow-scrolling: touch;
+}
+table { width: 100%; border-collapse: collapse; min-width: 860px; }
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--hover);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid var(--border);
+  box-shadow: inset 0 -1.5px 0 var(--border);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+thead th.sorted-asc::after  { content: " ↑"; opacity: 0.6; }
+thead th.sorted-desc::after { content: " ↓"; opacity: 0.6; }
+thead th:hover { color: var(--text); }
+thead th.no-sort { cursor: default; }
+thead th.no-sort:hover { color: var(--muted); }
+
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--hover); }
+tbody tr.pipeline-row { background: #fffef5; }
+tbody tr.pipeline-row:hover { background: #fffbea; }
+tbody tr.section-header td {
+  background: #fffbf0;
+  border-top: 2px solid #e6c85a;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #92680a;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+td { padding: 0.55rem 0.7rem; font-size: 0.82rem; vertical-align: middle; }
+
+/* Sensor cell */
+.sensor-name { font-weight: 600; font-size: 0.88rem; display: block; line-height: 1.3; }
+.sensor-note {
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-style: italic;
+  display: block;
+  margin-top: 0.2rem;
+  line-height: 1.35;
+}
+.brand-tag {
+  display: inline-block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.1rem 0.38rem;
+  margin-top: 0.22rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.bt-libre      { background: var(--libre-bg);      color: var(--libre-color); }
+.bt-dexcom     { background: var(--dexcom-bg);     color: var(--dexcom-color); }
+.bt-medtronic  { background: var(--medtronic-bg);  color: var(--medtronic-color); }
+.bt-senseonics { background: var(--senseonics-bg); color: var(--senseonics-color); }
+.bt-sinocare   { background: var(--sinocare-bg);   color: var(--sinocare-color); }
+.bt-aidex      { background: var(--aidex-bg);      color: var(--aidex-color); }
+.bt-sibionics  { background: var(--sibionics-bg);  color: var(--sibionics-color); }
+.bt-medtrum    { background: var(--medtrum-bg);    color: var(--medtrum-color); }
+
+.pipeline-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.66rem;
+  font-weight: 600;
+  background: #fff8e0;
+  color: #92680a;
+  border: 1px solid #e6c85a;
+  border-radius: 4px;
+  padding: 0.1rem 0.38rem;
+  margin-top: 0.22rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.b-yes      { background: var(--green-bg);  color: var(--green); }
+.b-no       { background: var(--grey-bg);   color: var(--grey); }
+.b-limited  { background: var(--amber-bg);  color: var(--amber); }
+.b-eu       { background: var(--libre-bg);  color: var(--libre-color); }
+.cal-none   { background: var(--green-bg);  color: var(--green); }
+.cal-opt    { background: var(--amber-bg);  color: var(--amber); }
+.cal-req    { background: var(--red-bg);    color: var(--red); }
+.type-impl  { background: var(--senseonics-bg); color: var(--senseonics-color); }
+.type-otc   { background: #fff0f8; color: #A0206A; }
+.type-patch { background: var(--grey-bg);   color: var(--grey); }
+
+/* Country pills */
+.avail { display: flex; flex-wrap: wrap; gap: 0.22rem; }
+.flag-pill {
+  font-size: 0.68rem;
+  padding: 0.08rem 0.38rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+/* AID text */
+.aid-list { font-size: 0.77rem; color: var(--muted); line-height: 1.55; }
+.aid-none { font-size: 0.77rem; color: #bbb; }
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ── Footnote ──────────────────────────────────── */
+.footnote {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--hover);
+  border-left: 3px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+@media (max-width: 640px) {
+  .filter-label { display: none; }
+  .count-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="filters">
+
+    <!-- Search + Clear -->
+    <div class="filter-row">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="8" cy="8" r="6"/><path d="m14 14 4 4"/>
+        </svg>
+        <input id="search" type="text" placeholder="Пошук сенсорів, брендів, систем AID…" autocomplete="off" />
+      </div>
+      <button id="clearBtn">Очистити все</button>
+    </div>
+
+    <!-- Status -->
+    <div class="filter-row">
+      <span class="filter-label">Статус</span>
+      <div class="chips">
+        <button class="chip active" data-status="all">Усі</button>
+        <button class="chip" data-status="available">Доступні зараз</button>
+        <button class="chip" data-status="pipeline">У розробці</button>
+      </div>
+    </div>
+
+    <!-- Type -->
+    <div class="filter-row">
+      <span class="filter-label">Тип</span>
+      <div class="chips">
+        <button class="chip active" data-type="all">Усі</button>
+        <button class="chip" data-type="patch">Пластир</button>
+        <button class="chip" data-type="implantable">Імплант</button>
+        <button class="chip" data-type="otc">OTC / Велнес</button>
+      </div>
+    </div>
+
+    <!-- Brand -->
+    <div class="filter-row">
+      <span class="filter-label">Бренд</span>
+      <div class="chips">
+        <button class="chip active" data-brand="all">Усі</button>
+        <button class="chip b-libre"      data-brand="Abbott">Abbott (Libre)</button>
+        <button class="chip b-dexcom"     data-brand="Dexcom">Dexcom</button>
+        <button class="chip b-medtronic"  data-brand="Medtronic">Medtronic</button>
+        <button class="chip b-senseonics" data-brand="Senseonics">Senseonics</button>
+        <button class="chip b-sinocare"   data-brand="Sinocare">Sinocare</button>
+        <button class="chip b-aidex"      data-brand="AiDEX">AiDEX</button>
+        <button class="chip b-sibionics"  data-brand="Sibionics">Sibionics</button>
+        <button class="chip b-medtrum"    data-brand="Medtrum">Medtrum</button>
+      </div>
+    </div>
+
+    <!-- Calibration -->
+    <div class="filter-row">
+      <span class="filter-label">Калібрування</span>
+      <div class="chips">
+        <button class="chip active" data-cal="all">Усі</button>
+        <button class="chip" data-cal="none">Не потрібне</button>
+        <button class="chip" data-cal="optional">Опційне</button>
+        <button class="chip" data-cal="required">Потрібне</button>
+      </div>
+    </div>
+
+  </div><!-- /filters -->
+
+  <!-- Count + legend -->
+  <div class="count-bar">
+    <p class="count-badge"><span id="countNum">0</span> сенсорів</p>
+    <div class="legend">
+      <div class="leg"><span class="dot dot-libre"></span>Abbott</div>
+      <div class="leg"><span class="dot dot-dexcom"></span>Dexcom</div>
+      <div class="leg"><span class="dot dot-medtronic"></span>Medtronic</div>
+      <div class="leg"><span class="dot dot-senseonics"></span>Senseonics</div>
+      <div class="leg"><span class="dot dot-sinocare"></span>Sinocare</div>
+      <div class="leg"><span class="dot dot-aidex"></span>AiDEX</div>
+      <div class="leg"><span class="dot dot-sibionics"></span>Sibionics</div>
+      <div class="leg"><span class="dot dot-medtrum"></span>Medtrum</div>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th data-col="name">Сенсор</th>
+          <th class="no-sort">Тип</th>
+          <th data-col="wearDays">Час носіння</th>
+          <th data-col="warmupMin">Розігрів</th>
+          <th data-col="calibration">Калібрування</th>
+          <th data-col="intervalMin">Оновлення</th>
+          <th class="no-sort">Сповіщення</th>
+          <th class="no-sort">iCGM / AID<br>схвалено</th>
+          <th data-col="aid">Сумісність з AID</th>
+          <th class="no-sort">Доступність</th>
+          <th data-col="cost">Орієнт. ціна</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="no-results" id="noResults" style="display:none;">Немає сенсорів за цими фільтрами.</div>
+  </div>
+
+  <div class="footnote">
+    <strong>Лише освітнє порівняння — не медична порада та не рекомендація.</strong> Обговоріть вибір CGM зі своєю діабетичною командою перед переходом. Ціна орієнтовна й суттєво залежить від країни, страховки та статусу фінансування NHS/CDEC. <strong>iCGM</strong> — регуляторна категорія FDA (США); в ЄС/ВБ застосовується еквівалент із маркуванням CE/UKCA. Сенсори Medtronic працюють виключно в екосистемі Medtronic SmartGuard. Dexcom ONE+ має маркування CE для використання в AID у ЄС/ВБ, але недоступний у США. <strong>Sibionics GS1</strong> є предметом чинного патентного спору з Abbott і не може продаватися в Німеччині, Франції, Нідерландах та Ірландії — на GS3 таких обмежень немає. Специфікації китайських брендів, позначені ~, звірені з документацією виробника; реальна точність може відрізнятися. Терміни для продуктів у розробці орієнтовні, залежать від регуляторного схвалення й можуть змінюватися. Джерела: Diabetotech.com · пресрелізи Eversense / Senseonics · Dexcom · Abbott · Medtronic · Sibionics · Medtrum · AiDEX · дані виробника Sinocare · DiaTribe · JDRF.
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// ──────────────────────────────────────────────────────────────
+//  DATA
+//  status:      "available" | "pipeline"
+//  brand:       "Abbott"|"Dexcom"|"Medtronic"|"Senseonics"|
+//               "Sinocare"|"AiDEX"|"Sibionics"|"Medtrum"
+//  type:        "patch" | "implantable" | "otc"
+//  calibration: "none" | "optional" | "required"
+//  icgm:        "yes" | "eu" | "no"
+//  alerts:      "yes" | "limited" | "no"
+// ──────────────────────────────────────────────────────────────
+const SENSORS = [
+
+  // ──────── ABBOTT (FREESTYLE LIBRE) ────────────────────────
+
+  {
+    name: "FreeStyle Libre 2",
+    brand: "Abbott", type: "patch", status: "available",
+    note: "Передає щохвилини · сповіщення включені (ЄС/ВБ)",
+    wear: "14 днів", wearDays: 14,
+    warmup: "60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "1 хв", intervalMin: 1,
+    alerts: "yes", icgm: "eu",
+    aid: "Omnipod 5 · CamAPS FX",
+    availability: ["UK","EU","AU"],
+    cost: "NHS (ВБ) · €55–65/сенсор"
+  },
+  {
+    name: "FreeStyle Libre 2 Plus",
+    brand: "Abbott", type: "patch", status: "available",
+    note: "Передає щохвилини",
+    wear: "15 днів", wearDays: 15,
+    warmup: "60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "1 хв", intervalMin: 1,
+    alerts: "yes", icgm: "yes",
+    aid: "Omnipod 5",
+    availability: ["US","EU"],
+    cost: "~$89/сенсор"
+  },
+  {
+    name: "FreeStyle Libre 3",
+    brand: "Abbott", type: "patch", status: "available",
+    note: "Найменший CGM-сенсор у світі (на момент запуску) · передача щохвилини",
+    wear: "14 днів", wearDays: 14,
+    warmup: "60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "1 хв", intervalMin: 1,
+    alerts: "yes", icgm: "yes",
+    aid: "Tandem t:slim X2 (Control-IQ)",
+    availability: ["US"],
+    cost: "~$89/сенсор"
+  },
+  {
+    name: "FreeStyle Libre 3 Plus",
+    brand: "Abbott", type: "patch", status: "available",
+    note: "Подовжене носіння · найширша сумісність з AID у лінійці Libre",
+    wear: "15 днів", wearDays: 15,
+    warmup: "60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "1 хв", intervalMin: 1,
+    alerts: "yes", icgm: "yes",
+    aid: "Omnipod 5 · Tandem t:slim X2 · twiist",
+    availability: ["US","EU","UK"],
+    cost: "~$89/сенсор"
+  },
+  {
+    name: "Abbott Lingo",
+    brand: "Abbott", type: "otc", status: "available",
+    note: "OTC велнес — без рецепта · не для дозування інсуліну",
+    wear: "14 днів", wearDays: 14,
+    warmup: "60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "1 хв", intervalMin: 1,
+    alerts: "limited", icgm: "no",
+    aid: "Немає — OTC велнес",
+    availability: ["US","UK","EU"],
+    cost: "~$84/міс (США) · ~£49/сенсор (ВБ)"
+  },
+
+  // ──────── DEXCOM ──────────────────────────────────────────
+
+  {
+    name: "Dexcom G6",
+    brand: "Dexcom", type: "patch", status: "available",
+    note: "Найширша сумісність з AID серед усіх CGM",
+    wear: "10 днів", wearDays: 10,
+    warmup: "2 год", warmupMin: 120,
+    calibration: "optional",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "yes",
+    aid: "Omnipod 5 · Control-IQ · iLet · CamAPS FX · DBLG1",
+    availability: ["US","EU","UK","AU"],
+    cost: "~$120/сенсор"
+  },
+  {
+    name: "Dexcom G7",
+    brand: "Dexcom", type: "patch", status: "available",
+    note: "На 60% менший за G6 · 12 год пільгового періоду після завершення",
+    wear: "10 днів + 12 год", wearDays: 10,
+    warmup: "30 хв", warmupMin: 30,
+    calibration: "none",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "yes",
+    aid: "Omnipod 5 · Control-IQ · iLet · twiist · CamAPS FX",
+    availability: ["US","EU","UK","AU"],
+    cost: "~$120/сенсор"
+  },
+  {
+    name: "Dexcom ONE+",
+    brand: "Dexcom", type: "patch", status: "available",
+    note: "Бюджетніша альтернатива G7 для ЄС/ВБ · те саме апаратне забезпечення",
+    wear: "10 днів + 12 год", wearDays: 10,
+    warmup: "30 хв", warmupMin: 30,
+    calibration: "none",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "eu",
+    aid: "CamAPS FX (EU/UK)",
+    availability: ["EU","UK"],
+    cost: "~£35–40/сенсор"
+  },
+  {
+    name: "Dexcom Stelo",
+    brand: "Dexcom", type: "otc", status: "available",
+    note: "OTC — без рецепта · не для інсулінозалежних · без сповіщень про критично низький рівень",
+    wear: "15 днів", wearDays: 15,
+    warmup: "30 хв", warmupMin: 30,
+    calibration: "none",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "limited", icgm: "no",
+    aid: "Немає — OTC, не для AID",
+    availability: ["US"],
+    cost: "~$89/міс (2 сенсори)"
+  },
+
+  // ──────── MEDTRONIC ───────────────────────────────────────
+
+  {
+    name: "Guardian Sensor 3",
+    brand: "Medtronic", type: "patch", status: "available",
+    note: "Потребує калібрування проколом 2–4 рази на день",
+    wear: "7 днів", wearDays: 7,
+    warmup: "2 год", warmupMin: 120,
+    calibration: "required",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "MiniMed 670G · MiniMed 770G",
+    availability: ["US","EU","UK","AU"],
+    cost: "~$70–80/сенсор"
+  },
+  {
+    name: "Guardian 4",
+    brand: "Medtronic", type: "patch", status: "available",
+    note: "Без калібрування при використанні з 780G SmartGuard AID",
+    wear: "7 днів", wearDays: 7,
+    warmup: "2 год", warmupMin: 120,
+    calibration: "none",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "MiniMed 780G",
+    availability: ["US","EU","UK","AU"],
+    cost: "~$70–80/сенсор"
+  },
+  {
+    name: "Simplera",
+    brand: "Medtronic", type: "patch", status: "available",
+    note: "Менший, простіший сенсор · замінює Guardian 4 в ЄС",
+    wear: "7 днів", wearDays: 7,
+    warmup: "2 год", warmupMin: 120,
+    calibration: "none",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "MiniMed 780G (впроваджується)",
+    availability: ["EU","AU"],
+    cost: "Як у Guardian 4"
+  },
+
+  // ──────── SENSEONICS ──────────────────────────────────────
+
+  {
+    name: "Eversense 365",
+    brand: "Senseonics", type: "implantable", status: "available",
+    note: "Встановлюється лікарем під шкіру · трансмітер вібрує при сповіщеннях (телефон не потрібен) · замінює E3 (180 днів)",
+    wear: "365 днів", wearDays: 365,
+    warmup: "24 год (після встановлення)", warmupMin: 1440,
+    calibration: "required",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "yes",
+    aid: "twiist (Sequel Med Tech)",
+    availability: ["US","EU"],
+    cost: "Процедура + ~$200–400/сенсор екв."
+  },
+
+  // ──────── SINOCARE ────────────────────────────────────────
+
+  {
+    name: "iCan i3 (GlucoMen iCan in EU)",
+    brand: "Sinocare", type: "patch", status: "available",
+    note: "ЄС: продається через Menarini як GlucoMen iCan · бюджетний варіант",
+    wear: "~14 днів", wearDays: 14,
+    warmup: "~60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "~5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "Немає",
+    availability: ["EU","UK"],
+    cost: "~€30–50/сенсор"
+  },
+
+  // ──────── AIDEX ───────────────────────────────────────────
+
+  {
+    name: "AiDEX / LinX",
+    brand: "AiDEX", type: "patch", status: "available",
+    note: "LinX — оновлена версія AiDEX «все в одному» · маркування CE · широко доступний онлайн",
+    wear: "14 днів", wearDays: 14,
+    warmup: "~60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "~5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "Немає",
+    availability: ["EU","UK"],
+    cost: "~£25–35/сенсор"
+  },
+
+  // ──────── SIBIONICS ───────────────────────────────────────
+
+  {
+    name: "Sibionics GS3",
+    brand: "Sibionics", type: "patch", status: "available",
+    note: "Маркування CE · ⚠ GS1 обмежений у DE/FR/NL/IE (патентний спір з Abbott) — GS3 без обмежень",
+    wear: "14 днів", wearDays: 14,
+    warmup: "~60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "~5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "Немає",
+    availability: ["EU"],
+    cost: "~€30–45/сенсор"
+  },
+
+  // ──────── MEDTRUM ─────────────────────────────────────────
+
+  {
+    name: "Medtrum S9 / S10",
+    brand: "Medtrum", type: "patch", status: "available",
+    note: "S10 — серед найменших CGM на ринку · підтримує AID з власною помпою E-Patch",
+    wear: "14 днів", wearDays: 14,
+    warmup: "~60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "~5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "Medtrum E-Patch (власна система замкненого циклу)",
+    availability: ["EU","UK"],
+    cost: "~€40–55/сенсор"
+  },
+
+  // ──────── PIPELINE ────────────────────────────────────────
+
+  {
+    name: "FreeStyle Libre 4",
+    brand: "Abbott", type: "patch", status: "pipeline",
+    pipelineLabel: "⏳ ~2027 (ще не анонсовано)",
+    note: "Ймовірний наступник — очікується довше носіння та ширша інтеграція з AID",
+    wear: "Уточн.", wearDays: 9999,
+    warmup: "Уточн.", warmupMin: 9999,
+    calibration: "none",
+    interval: "1 хв", intervalMin: 1,
+    alerts: "yes", icgm: "yes",
+    aid: "Уточн.",
+    availability: ["US","EU"],
+    cost: "Уточн."
+  },
+  {
+    name: "Sinocare iCan i6",
+    brand: "Sinocare", type: "patch", status: "pipeline",
+    pipelineLabel: "⏳ Уточн. 2026–27",
+    note: "Компактніший дизайн · анонсовано інтеграцію ШІ-асистента",
+    wear: "~14 днів", wearDays: 9999,
+    warmup: "Уточн.", warmupMin: 9999,
+    calibration: "none",
+    interval: "~5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "Не очікується",
+    availability: ["EU","UK"],
+    cost: "Уточн."
+  },
+  {
+    name: "Dexcom G8",
+    brand: "Dexcom", type: "patch", status: "pipeline",
+    pipelineLabel: "⏳ ~2027",
+    note: "Наступник G7 — деталі ще не анонсовано",
+    wear: "Уточн.", wearDays: 9999,
+    warmup: "Уточн.", warmupMin: 9999,
+    calibration: "none",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "yes",
+    aid: "Уточн. — інтегруватиметься з екосистемою AID G7",
+    availability: ["US","EU"],
+    cost: "Уточн."
+  },
+  {
+    name: "Libre integration — MiniMed Flex / Fit",
+    brand: "Medtronic", type: "patch", status: "pipeline",
+    pipelineLabel: "⏳ 2026–27",
+    note: "Партнерство Medtronic–Abbott · Libre 3+ як CGM для помп MiniMed нового покоління",
+    wear: "15 днів (Libre)", wearDays: 15,
+    warmup: "60 хв", warmupMin: 60,
+    calibration: "none",
+    interval: "1 хв", intervalMin: 1,
+    alerts: "yes", icgm: "yes",
+    aid: "MiniMed Flex · MiniMed Fit (заплановано)",
+    availability: ["US","EU"],
+    cost: "Уточн."
+  },
+  {
+    name: "Medtronic next-gen sensor",
+    brand: "Medtronic", type: "patch", status: "pipeline",
+    pipelineLabel: "⏳ ~2027 (для MiniMed 8-Series)",
+    note: "Запланований сенсор-наступник для майбутньої помпи MiniMed 8-Series",
+    wear: "Уточн.", wearDays: 9999,
+    warmup: "Уточн.", warmupMin: 9999,
+    calibration: "none",
+    interval: "5 хв", intervalMin: 5,
+    alerts: "yes", icgm: "no",
+    aid: "MiniMed 8-Series",
+    availability: ["US","EU"],
+    cost: "Уточн."
+  },
+];
+
+// ──────────────────────────────────────────────────────────────
+//  STATE
+// ──────────────────────────────────────────────────────────────
+let state = {
+  search: "", status: "all", type: "all", brand: "all", cal: "all",
+  sortCol: "brand", sortDir: "asc",
+};
+
+// ──────────────────────────────────────────────────────────────
+//  HELPERS
+// ──────────────────────────────────────────────────────────────
+const brandCls = {
+  Abbott: "libre", Dexcom: "dexcom", Medtronic: "medtronic",
+  Senseonics: "senseonics", Sinocare: "sinocare",
+  AiDEX: "aidex", Sibionics: "sibionics", Medtrum: "medtrum"
+};
+
+function brandTag(brand) {
+  const cls = brandCls[brand] || "grey";
+  return `<span class="brand-tag bt-${cls}">${brand}</span>`;
+}
+
+function typeBadge(type) {
+  if (type === "implantable") return `<span class="badge type-impl">Імплант</span>`;
+  if (type === "otc")         return `<span class="badge type-otc">OTC / Велнес</span>`;
+  return `<span class="badge type-patch">Пластир</span>`;
+}
+
+function calBadge(cal) {
+  if (cal === "none")     return `<span class="badge cal-none">Не потрібне ✓</span>`;
+  if (cal === "optional") return `<span class="badge cal-opt">Опційне</span>`;
+  if (cal === "required") return `<span class="badge cal-req">Потрібне</span>`;
+  return "";
+}
+
+function alertsBadge(v) {
+  if (v === "yes")     return `<span class="badge b-yes">Так</span>`;
+  if (v === "limited") return `<span class="badge b-limited">Обмежені</span>`;
+  return `<span class="badge b-no">Ні</span>`;
+}
+
+function icgmBadge(v) {
+  if (v === "yes") return `<span class="badge b-yes">✓ Так (iCGM)</span>`;
+  if (v === "eu")  return `<span class="badge b-eu">✓ ЄС / ВБ</span>`;
+  return `<span class="badge b-no">Ні / Власна</span>`;
+}
+
+const COUNTRY_UA = { US: "США", UK: "ВБ", EU: "ЄС", AU: "Австралія" };
+function availPills(arr) {
+  return `<div class="avail">${arr.map(c => `<span class="flag-pill">${COUNTRY_UA[c]||c}</span>`).join("")}</div>`;
+}
+
+// ──────────────────────────────────────────────────────────────
+//  RENDER
+// ──────────────────────────────────────────────────────────────
+function render() {
+  const q = state.search.toLowerCase().trim();
+
+  let rows = SENSORS.filter(s => {
+    if (q && !s.name.toLowerCase().includes(q) &&
+             !s.brand.toLowerCase().includes(q) &&
+             !(s.aid || "").toLowerCase().includes(q) &&
+             !(s.note || "").toLowerCase().includes(q)) return false;
+    if (state.status !== "all" && s.status !== state.status) return false;
+    if (state.type   !== "all" && s.type   !== state.type)   return false;
+    if (state.brand  !== "all" && s.brand  !== state.brand)  return false;
+    if (state.cal    !== "all" && s.calibration !== state.cal) return false;
+    return true;
+  });
+
+  // Sort: available always before pipeline; then by chosen column
+  rows.sort((a, b) => {
+    if (a.status !== b.status) return a.status === "available" ? -1 : 1;
+    let va = a[state.sortCol], vb = b[state.sortCol];
+    if (typeof va === "string") va = va.toLowerCase();
+    if (typeof vb === "string") vb = vb.toLowerCase();
+    const cmp = va < vb ? -1 : va > vb ? 1 : 0;
+    return state.sortDir === "asc" ? cmp : -cmp;
+  });
+
+  const tbody = document.getElementById("tbody");
+  const noRes = document.getElementById("noResults");
+
+  if (rows.length === 0) {
+    tbody.innerHTML = "";
+    noRes.style.display = "block";
+  } else {
+    noRes.style.display = "none";
+    let html = "";
+    let pipelineHeaderDone = false;
+
+    rows.forEach(s => {
+      if (s.status === "pipeline" && !pipelineHeaderDone) {
+        html += `<tr class="section-header"><td colspan="11">⏳ У розробці — очікується 2026–2027</td></tr>`;
+        pipelineHeaderDone = true;
+      }
+
+      const rowCls = s.status === "pipeline" ? ' class="pipeline-row"' : "";
+      const pb = s.pipelineLabel ? `<br><span class="pipeline-badge">${s.pipelineLabel}</span>` : "";
+      const noteHtml = s.note ? `<span class="sensor-note">${s.note}</span>` : "";
+      const aidHtml = s.aid.startsWith("Немає") || s.aid.startsWith("Не очікується") || s.aid === "Уточн."
+        ? `<span class="aid-none">${s.aid}</span>`
+        : `<span class="aid-list">${s.aid}</span>`;
+
+      html += `<tr${rowCls}>
+        <td>
+          <span class="sensor-name">${s.name}</span>
+          ${brandTag(s.brand)}${pb}
+          ${noteHtml}
+        </td>
+        <td>${typeBadge(s.type)}</td>
+        <td>${s.wear}</td>
+        <td>${s.warmup}</td>
+        <td>${calBadge(s.calibration)}</td>
+        <td>${s.interval}</td>
+        <td>${alertsBadge(s.alerts)}</td>
+        <td>${icgmBadge(s.icgm)}</td>
+        <td>${aidHtml}</td>
+        <td>${availPills(s.availability)}</td>
+        <td style="white-space:nowrap;font-size:0.78rem;">${s.cost}</td>
+      </tr>`;
+    });
+
+    tbody.innerHTML = html;
+  }
+
+  document.getElementById("countNum").textContent = rows.length;
+
+  document.querySelectorAll("thead th[data-col]").forEach(th => {
+    th.classList.remove("sorted-asc", "sorted-desc");
+    if (th.dataset.col === state.sortCol)
+      th.classList.add(state.sortDir === "asc" ? "sorted-asc" : "sorted-desc");
+  });
+}
+
+// ──────────────────────────────────────────────────────────────
+//  EVENTS
+// ──────────────────────────────────────────────────────────────
+function bindChips(selector, key) {
+  document.querySelectorAll(selector).forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(selector).forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      state[key] = btn.dataset[key];
+      render();
+    });
+  });
+}
+bindChips("[data-status]", "status");
+bindChips("[data-type]",   "type");
+bindChips("[data-brand]",  "brand");
+bindChips("[data-cal]",    "cal");
+
+document.getElementById("search").addEventListener("input", e => {
+  state.search = e.target.value;
+  render();
+});
+
+document.getElementById("clearBtn").addEventListener("click", () => {
+  state = { ...state, search: "", status: "all", type: "all", brand: "all", cal: "all" };
+  document.getElementById("search").value = "";
+  ["[data-status]","[data-type]","[data-brand]","[data-cal]"].forEach(sel => {
+    document.querySelectorAll(sel).forEach(b => b.classList.remove("active"));
+    document.querySelector(sel.replace("]", "=\"all\"]")).classList.add("active");
+  });
+  render();
+});
+
+document.querySelectorAll("thead th[data-col]").forEach(th => {
+  th.addEventListener("click", () => {
+    const col = th.dataset.col;
+    state.sortDir = (state.sortCol === col && state.sortDir === "asc") ? "desc" : "asc";
+    state.sortCol = col;
+    render();
+  });
+});
+
+// Initial render
+render();
+
+// Auto-height for iframe embed
+function __postH() {
+  try { parent.postMessage({ type: "cgm-height", height: document.documentElement.scrollHeight }, "*"); } catch(e) {}
+}
+window.addEventListener("load", __postH);
+try { new ResizeObserver(__postH).observe(document.body); } catch(e) {}
+const __origRender = render;
+render = function() { __origRender.apply(this, arguments); __postH(); };
+__postH();
+</script>
+</body>
+</html>

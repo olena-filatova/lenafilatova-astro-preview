@@ -1,0 +1,2374 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Дослідник цукру в крові — Ліна Філатова</title>
+<meta name="description" content="Безкоштовний інтерактивний інструмент, щоб дослідити, що впливає на коливання цукру в крові — їжа, рух, сон і стрес — з науково обґрунтованими порадами.">
+<link rel="canonical" href="https://lenafilatova.co.uk/blood-sugar-investigator-ua.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:       #2F7A52;
+    --green-dark:  #1E5631;
+    --green-soft:  #EAF4EC;
+    --green-line:  #CDE6D6;
+    --green-bg:    #F1F8F3;
+    --pink:        #B23A63;
+    --pink-soft:   #F7ECF1;
+    --ink:         #331B33;
+    --body:        #4A3A48;
+    --muted:       #6A5668;
+    --faint:       #9A8896;
+    --radius:      16px;
+  }
+
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--green-bg);
+    min-height: 100vh;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrapper { max-width: 680px; margin: 0 auto; padding: 16px 16px 32px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1E5631 0%, #2D6A4F 100%);
+    color: #fff;
+    padding: 22px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .header h1 { font-size: 20px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.2px; }
+  .header p { font-size: 13px; opacity: 0.88; font-weight: 500; }
+
+  /* Progress */
+  .progress-bar {
+    height: 5px; background: var(--green-line);
+    border-radius: 3px; margin-bottom: 16px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: var(--green);
+    border-radius: 3px; transition: width 0.4s ease;
+  }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    box-shadow: 0 2px 16px rgba(51,27,51,0.06);
+    margin-bottom: 12px;
+    animation: fadeUp 0.3s ease;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Question */
+  .step-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--green); margin-bottom: 10px;
+  }
+  .question { font-size: 18px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .subtitle { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 20px; }
+
+  /* Options */
+  .options { display: flex; flex-direction: column; gap: 9px; }
+  .opt {
+    background: var(--green-soft);
+    border: 2px solid var(--green-line);
+    border-radius: 11px;
+    padding: 13px 16px;
+    text-align: left; cursor: pointer;
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    color: var(--ink); line-height: 1.4;
+    transition: all 0.18s;
+  }
+  .opt:hover { background: #E1F0E7; border-color: var(--green); transform: translateX(4px); }
+  .opt:active { transform: translateX(2px); }
+
+  /* Nav */
+  .nav { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+  .back {
+    background: none; border: none; color: var(--faint);
+    font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    padding: 6px 8px; border-radius: 8px; transition: all 0.15s;
+  }
+  .back:hover { background: #F3EEF1; color: var(--muted); }
+  .step-count { font-size: 12px; color: var(--faint); }
+
+  /* Result card */
+  .result-icon { font-size: 34px; margin-bottom: 10px; display: block; }
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 8px;
+  }
+  .urgency-tag { float: right; padding: 3px 9px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+  .u-low   { background: #D1FAE5; color: #065F46; }
+  .u-medium{ background: #FEF3C7; color: #92400E; }
+  .u-high  { background: #FED7AA; color: #C2410C; }
+  .u-critical{ background: #FEE2E2; color: #991B1B; }
+
+  .b-food        { background: #DBEAFE; color: #1E40AF; }
+  .b-insulin     { background: #EDE9FE; color: #5B21B6; }
+  .b-medication  { background: #FEE2E2; color: #991B1B; }
+  .b-illness     { background: #FEF3C7; color: #92400E; }
+  .b-lifestyle   { background: #D1FAE5; color: #065F46; }
+  .b-hormones    { background: #FCE7F3; color: #9D174D; }
+  .b-exercise    { background: #DBEAFE; color: #1E40AF; }
+  .b-equipment   { background: #F3F4F6; color: #374151; }
+  .b-environment { background: #ECFDF5; color: #065F46; }
+  .b-physiology  { background: #EDE9FE; color: #5B21B6; }
+  .b-emergency   { background: #FEE2E2; color: #991B1B; }
+  .b-medical     { background: #FEF3C7; color: #92400E; }
+  .b-unknown     { background: #F3F4F6; color: #374151; }
+
+  .result-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; clear: both; letter-spacing: -0.2px; }
+  .result-title.critical-color { color: #DC2626; }
+  .explanation { font-size: 14px; line-height: 1.65; color: var(--body); margin-bottom: 18px; }
+
+  .tips-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.7px; color: var(--green); margin-bottom: 8px;
+  }
+  .tips { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .tips li { font-size: 13px; line-height: 1.5; color: var(--body); padding-left: 20px; position: relative; }
+  .tips li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+  .consult-note {
+    background: var(--green-bg); border-left: 3px solid var(--green);
+    padding: 10px 14px; border-radius: 0 8px 8px 0;
+    font-size: 12px; color: var(--body); margin-top: 16px; line-height: 1.5;
+  }
+
+  .btn-continue {
+    background: var(--green); color: #fff; border: none; border-radius: 11px;
+    padding: 13px 18px; width: 100%; font-family: inherit; font-size: 14px; font-weight: 700;
+    cursor: pointer; margin-top: 14px; transition: background 0.2s;
+  }
+  .btn-continue:hover { background: var(--green-dark); }
+
+  .btn-restart {
+    background: transparent; color: var(--green); border: 2px solid var(--green-line);
+    border-radius: 11px; padding: 11px 18px; width: 100%;
+    font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+    margin-top: 8px; transition: all 0.2s;
+  }
+  .btn-restart:hover { background: var(--green-soft); }
+
+  .card.critical-border { border: 2px solid #EF4444; animation: fadeUp 0.3s ease, pulse-border 2s infinite; }
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
+    50%      { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+  }
+
+  .footer { text-align: center; font-size: 11px; color: var(--faint); margin-top: 8px; line-height: 1.5; }
+  .footer a { color: var(--pink); text-decoration: none; font-weight: 600; }
+
+  /* Cover slide */
+  .cover-badge {
+    display: inline-block; background: var(--pink-soft); color: var(--pink);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+    padding: 5px 12px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .cover-title {
+    font-family: 'Spectral', Georgia, serif; font-weight: 600;
+    font-size: 30px; line-height: 1.15; letter-spacing: -0.4px;
+    color: var(--ink); margin-bottom: 14px;
+  }
+  .cover-intro { font-size: 14.5px; line-height: 1.6; color: var(--body); margin-bottom: 22px; }
+  .cover-example-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px;
+    color: var(--green); margin-bottom: 10px;
+  }
+  .preview {
+    background: linear-gradient(160deg, #FCF5F9 0%, #F5FAF6 100%);
+    border: 1.5px solid var(--green-line);
+    border-radius: 14px; padding: 18px 18px 16px; margin-bottom: 14px;
+  }
+  .preview .p-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+  .preview .p-title { font-size: 16px; font-weight: 800; margin-bottom: 7px; letter-spacing: -0.2px; }
+  .preview .p-exp { font-size: 13px; line-height: 1.55; color: var(--body); margin-bottom: 12px; }
+  .preview .tips li { font-size: 12.5px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+  .chip {
+    font-size: 12px; font-weight: 600; color: var(--muted);
+    background: #fff; border: 1.5px solid var(--green-line);
+    padding: 6px 11px; border-radius: 20px;
+  }
+  .cover-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+  .cover-bullets li { font-size: 13px; line-height: 1.5; color: var(--body); padding-left: 24px; position: relative; }
+  .cover-bullets li::before { content: '•'; position: absolute; left: 6px; color: var(--pink); font-weight: 800; font-size: 15px; }
+  .btn-start {
+    background: var(--green); color: #fff; border: none; border-radius: 12px;
+    padding: 16px 18px; width: 100%; font-family: inherit; font-size: 15.5px; font-weight: 800;
+    cursor: pointer; transition: background 0.2s; letter-spacing: 0.1px;
+  }
+  .btn-start:hover { background: var(--green-dark); }
+  .cover-note { font-size: 11.5px; color: var(--faint); text-align: center; margin-top: 12px; line-height: 1.5; }
+
+  /* Disclaimer gate */
+  .disclaimer-card { border: 2px solid #FCD34D; background: #FFFEF7; }
+  .disclaimer-heading { font-size: 21px; font-weight: 800; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.2px; }
+  .disclaimer-items { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .disclaimer-items li { font-size: 14px; line-height: 1.55; color: var(--body); padding-left: 24px; position: relative; }
+  .disclaimer-items li::before { content: '⚠️'; position: absolute; left: 0; font-size: 12px; top: 1px; }
+  .disclaimer-confirm {
+    background: #FEF9C3; border: 1px solid #FDE047; border-radius: 8px;
+    padding: 13px 15px; font-size: 13px; font-weight: 600; color: #713F12;
+    margin-bottom: 20px; line-height: 1.5;
+  }
+  .btn-agree {
+    background: var(--green); color: #fff; border: none; border-radius: 11px;
+    padding: 15px 18px; width: 100%; font-family: inherit; font-size: 15px; font-weight: 800;
+    cursor: pointer; margin-bottom: 10px; transition: background 0.2s;
+  }
+  .btn-agree:hover { background: var(--green-dark); }
+  .btn-decline {
+    background: transparent; color: var(--faint); border: 2px solid #E5E7EB; border-radius: 11px;
+    padding: 11px 18px; width: 100%; font-family: inherit; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-decline:hover { background: #F9FAFB; color: var(--muted); border-color: #D1D5DB; }
+
+  /* Summary section */
+  .summary-box { margin-top: 18px; background: var(--green-bg); border: 1.5px solid var(--green-line); border-radius: 12px; padding: 15px 17px; }
+  .btn-summary-toggle {
+    background: none; border: none; font-family: inherit; font-size: 14px; font-weight: 700;
+    color: var(--green-dark); cursor: pointer; padding: 0; text-align: left; width: 100%;
+  }
+  .btn-summary-toggle:hover { color: var(--green); text-decoration: underline; }
+  .summary-hint { font-size: 12px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+  .summary-textarea {
+    width: 100%; min-height: 180px; font-size: 12px;
+    font-family: 'Courier New', Courier, monospace; line-height: 1.6; color: var(--body);
+    background: #fff; border: 1px solid #D1D5DB; border-radius: 8px; padding: 10px 12px;
+    resize: vertical; margin-bottom: 10px;
+  }
+  .summary-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn-sum { flex: 1; min-width: 100px; padding: 10px 12px; border-radius: 9px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.18s; }
+  .btn-sum-email { background: var(--green); color: #fff; border: none; }
+  .btn-sum-email:hover { background: var(--green-dark); }
+  .btn-sum-copy { background: var(--pink-soft); color: var(--pink); border: 1.5px solid #E7C4D5; }
+  .btn-sum-copy:hover { background: #F1DCE6; }
+  .btn-sum-print { background: #F3F4F6; color: #374151; border: 1.5px solid #D1D5DB; }
+  .btn-sum-print:hover { background: #E5E7EB; }
+
+  /* Subscribe + email-summary */
+  .sub-form { margin-top: 14px; border-top: 1px solid var(--green-line); padding-top: 13px; }
+  .sub-hint { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 9px; }
+  .sub-email {
+    width: 100%; font-family: inherit; font-size: 14px; padding: 11px 12px;
+    border: 1.5px solid var(--green-line); border-radius: 9px; margin-bottom: 8px; color: var(--ink); background: #fff;
+  }
+  .sub-email:focus { outline: none; border-color: var(--green); }
+  .sub-consent { display: flex; gap: 8px; align-items: flex-start; font-size: 11.5px; color: var(--muted); line-height: 1.45; margin-bottom: 10px; cursor: pointer; }
+  .sub-consent input { margin-top: 2px; flex: 0 0 auto; accent-color: var(--pink); }
+  .btn-sub-email {
+    width: 100%; background: var(--pink); color: #fff; border: none; border-radius: 9px;
+    padding: 12px 14px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-sub-email:hover { background: #8f2b4e; }
+  .sub-status { font-size: 12px; margin-top: 8px; line-height: 1.45; }
+  .sub-status.ok { color: var(--green-dark); font-weight: 600; }
+  .sub-status.err { color: #b52b2b; font-weight: 600; }
+
+  @media (max-width: 480px) { .cover-title { font-size: 26px; } }
+
+  @media print {
+    .header, .progress-bar, .footer, .btn-restart, .btn-continue,
+    .summary-btns, .btn-summary-toggle, .sub-form, .nav, .back { display: none !important; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+    .summary-textarea { min-height: unset; border: none; padding: 0; font-size: 11px; }
+    #summaryPanel { display: block !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <h1 id="hdrTitle"></h1>
+    <p id="hdrSub"></p>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div id="content"></div>
+  <div class="footer" id="footer"></div>
+</div>
+<script>
+// LANG is 'en' here; the Ukrainian file sets it to 'ua'. Everything else is identical.
+const LANG = 'ua';
+</script>
+<script>
+// ─────────────────────────────────────────────
+// TREE = LOGIC ONLY (structure, routing, category, icon, urgency).
+// All display text lives in STR[lang][nodeId] further below, so the
+// English and Ukrainian versions stay perfectly in sync.
+// Node types: 'cover' | 'disclaimer' | 'result' | (default) question
+// ─────────────────────────────────────────────
+const TREE = {
+  cover: { type: 'cover', start: 'disclaimer_gate' },
+
+  disclaimer_gate: { type: 'disclaimer', agreeNext: 'start', declineNext: 'disclaimer_declined' },
+  disclaimer_declined: { type: 'result', category: 'medical', icon: '👋', urgency: 'low' },
+
+  start: { options: [{ next: 'which_type' }, { next: 'no_diagnosis' }] },
+  no_diagnosis: { type: 'result', category: 'medical', icon: '🏥', urgency: 'high' },
+
+  which_type: { options: [{ next: 'high_or_low' }, { next: 'high_or_low' }, { next: 'high_or_low' }, { next: 'high_or_low' }, { next: 'high_or_low' }] },
+  high_or_low: { options: [{ next: 'high_how_high' }, { next: 'low_severity' }] },
+
+  // HIGH branch
+  high_how_high: { options: [{ next: 'high_recent_food' }, { next: 'high_recent_food' }, { next: 'high_very_high_warning' }] },
+  high_very_high_warning: { type: 'result', category: 'emergency', icon: '🚨', urgency: 'critical', continueNext: 'high_recent_food' },
+  high_recent_food: { options: [{ next: 'high_food_carbs' }, { next: 'high_insulin_check' }] },
+  high_food_carbs: { options: [{ next: 'result_carb_load' }, { next: 'high_hidden_carbs' }] },
+  high_hidden_carbs: { options: [{ next: 'result_hidden_carbs' }, { next: 'high_insulin_check' }] },
+  high_insulin_check: { options: [{ next: 'high_missed_dose' }, { next: 'high_pump_check' }, { next: 'high_t2_meds' }] },
+  high_missed_dose: { options: [{ next: 'result_missed_dose' }, { next: 'high_dose_correct' }] },
+  high_dose_correct: { options: [{ next: 'result_miscalculation' }, { next: 'high_injection_site' }] },
+  high_injection_site: { options: [{ next: 'result_injection_site' }, { next: 'high_insulin_freshness' }] },
+  high_insulin_freshness: { options: [{ next: 'result_bad_insulin' }, { next: 'high_illness' }] },
+  high_pump_check: { options: [{ next: 'result_pump_issue' }, { next: 'high_illness' }] },
+  high_t2_meds: { options: [{ next: 'result_missed_meds' }, { next: 'high_illness' }] },
+  high_illness: { options: [{ next: 'result_illness' }, { next: 'high_stress' }] },
+  high_stress: { options: [{ next: 'result_stress' }, { next: 'high_hormones' }] },
+  high_hormones: { options: [{ next: 'result_hormones_high' }, { next: 'high_hormones_menopause' }] },
+  high_hormones_menopause: { options: [{ next: 'result_menopause_high' }, { next: 'high_hormones_contraception' }] },
+  high_hormones_contraception: { options: [{ next: 'result_contraception_high' }, { next: 'high_growth_hormones' }] },
+  high_growth_hormones: { options: [{ next: 'result_growth_hormones' }, { next: 'high_protein_fat' }] },
+  high_protein_fat: { options: [{ next: 'result_gluconeogenesis' }, { next: 'high_caffeine' }] },
+  high_caffeine: { options: [{ next: 'result_caffeine' }, { next: 'high_sleep' }] },
+  high_sleep: { options: [{ next: 'result_sleep' }, { next: 'high_exercise_type' }] },
+  high_exercise_type: { options: [{ next: 'result_intense_exercise' }, { next: 'high_cgm_check' }] },
+  high_cgm_check: { options: [{ next: 'result_cgm_high' }, { next: 'high_dehydration' }] },
+  high_dehydration: { options: [{ next: 'result_dehydration' }, { next: 'high_temperature' }] },
+  high_temperature: { options: [{ next: 'result_temperature_high' }, { next: 'high_altitude' }] },
+  high_altitude: { options: [{ next: 'result_altitude' }, { next: 'high_blood_pressure' }] },
+  high_blood_pressure: { options: [{ next: 'result_blood_pressure_high' }, { next: 'high_dawn' }] },
+  high_dawn: { options: [{ next: 'result_dawn' }, { next: 'high_somogyi' }] },
+  high_somogyi: { options: [{ next: 'result_somogyi' }, { next: 'result_unknown_high' }] },
+
+  // LOW branch
+  low_severity: { options: [{ next: 'low_treat_mild' }, { next: 'low_treat_moderate' }, { next: 'low_emergency' }] },
+  low_emergency: { type: 'result', category: 'emergency', icon: '🚨', urgency: 'critical' },
+  low_treat_mild: { type: 'result', category: 'illness', icon: '🍬', urgency: 'medium', continueNext: 'low_insulin_check' },
+  low_treat_moderate: { type: 'result', category: 'illness', icon: '🍬', urgency: 'high', continueNext: 'low_insulin_check' },
+  low_insulin_check: { options: [{ next: 'low_too_much_insulin' }, { next: 'low_too_much_insulin' }, { next: 'low_t2_meds' }] },
+  low_too_much_insulin: { options: [{ next: 'result_too_much_insulin' }, { next: 'low_food_timing' }] },
+  low_t2_meds: { options: [{ next: 'result_sulfonylurea' }, { next: 'low_food_timing' }] },
+  low_food_timing: { options: [{ next: 'result_missed_meal' }, { next: 'low_exercise' }] },
+  low_exercise: { options: [{ next: 'low_exercise_type' }, { next: 'low_alcohol' }] },
+  low_exercise_type: { options: [{ next: 'result_exercise_low' }, { next: 'result_exercise_delayed_low' }] },
+  low_alcohol: { options: [{ next: 'result_alcohol' }, { next: 'low_hormones' }] },
+  low_hormones: { options: [{ next: 'result_hormones_low' }, { next: 'low_hormones_menopause' }] },
+  low_hormones_menopause: { options: [{ next: 'result_menopause_low' }, { next: 'low_hormones_contraception' }] },
+  low_hormones_contraception: { options: [{ next: 'result_contraception_low' }, { next: 'low_gastroparesis' }] },
+  low_gastroparesis: { options: [{ next: 'result_gastroparesis' }, { next: 'low_weight_change' }] },
+  low_weight_change: { options: [{ next: 'result_weight_change' }, { next: 'low_hot_bath' }] },
+  low_hot_bath: { options: [{ next: 'result_heat_absorption' }, { next: 'low_cgm_check' }] },
+  low_cgm_check: { options: [{ next: 'result_cgm_false_low' }, { next: 'low_temperature' }] },
+  low_temperature: { options: [{ next: 'result_heat_low' }, { next: 'low_blood_pressure' }] },
+  low_blood_pressure: { options: [{ next: 'result_low_bp' }, { next: 'result_unknown_low' }] },
+
+  // Results — HIGH
+  result_carb_load:          { type: 'result', category: 'food',        icon: '🍞', urgency: 'low' },
+  result_hidden_carbs:       { type: 'result', category: 'food',        icon: '🕵️', urgency: 'low' },
+  result_missed_dose:        { type: 'result', category: 'insulin',     icon: '💉', urgency: 'medium' },
+  result_miscalculation:     { type: 'result', category: 'insulin',     icon: '🔢', urgency: 'low' },
+  result_injection_site:     { type: 'result', category: 'insulin',     icon: '📍', urgency: 'medium' },
+  result_bad_insulin:        { type: 'result', category: 'insulin',     icon: '🌡️', urgency: 'medium' },
+  result_pump_issue:         { type: 'result', category: 'insulin',     icon: '⚙️', urgency: 'high' },
+  result_missed_meds:        { type: 'result', category: 'medication',  icon: '💊', urgency: 'medium' },
+  result_illness:            { type: 'result', category: 'illness',     icon: '🤒', urgency: 'medium' },
+  result_stress:             { type: 'result', category: 'lifestyle',   icon: '😰', urgency: 'low' },
+  result_hormones_high:      { type: 'result', category: 'hormones',    icon: '🌀', urgency: 'low' },
+  result_menopause_high:     { type: 'result', category: 'hormones',    icon: '🌸', urgency: 'low' },
+  result_contraception_high: { type: 'result', category: 'hormones',    icon: '💊', urgency: 'low' },
+  result_growth_hormones:    { type: 'result', category: 'physiology',  icon: '📈', urgency: 'low' },
+  result_gluconeogenesis:    { type: 'result', category: 'food',        icon: '🥩', urgency: 'low' },
+  result_caffeine:           { type: 'result', category: 'lifestyle',   icon: '☕', urgency: 'low' },
+  result_sleep:              { type: 'result', category: 'lifestyle',   icon: '😴', urgency: 'low' },
+  result_intense_exercise:   { type: 'result', category: 'exercise',    icon: '💪', urgency: 'low' },
+  result_cgm_high:           { type: 'result', category: 'equipment',   icon: '📱', urgency: 'low' },
+  result_dehydration:        { type: 'result', category: 'lifestyle',   icon: '💧', urgency: 'low' },
+  result_temperature_high:   { type: 'result', category: 'environment', icon: '☀️', urgency: 'low' },
+  result_altitude:           { type: 'result', category: 'environment', icon: '🏔️', urgency: 'low' },
+  result_blood_pressure_high:{ type: 'result', category: 'physiology',  icon: '💓', urgency: 'low' },
+  result_dawn:               { type: 'result', category: 'physiology',  icon: '🌅', urgency: 'low' },
+  result_somogyi:            { type: 'result', category: 'physiology',  icon: '🔄', urgency: 'low' },
+  result_unknown_high:       { type: 'result', category: 'unknown',     icon: '🔍', urgency: 'low' },
+
+  // Results — LOW
+  result_too_much_insulin:   { type: 'result', category: 'insulin',     icon: '💉', urgency: 'medium' },
+  result_sulfonylurea:       { type: 'result', category: 'medication',  icon: '💊', urgency: 'medium' },
+  result_missed_meal:        { type: 'result', category: 'food',        icon: '🍽️', urgency: 'medium' },
+  result_exercise_low:       { type: 'result', category: 'exercise',    icon: '🏃', urgency: 'medium' },
+  result_exercise_delayed_low:{ type: 'result', category: 'exercise',   icon: '💪', urgency: 'medium' },
+  result_alcohol:            { type: 'result', category: 'lifestyle',   icon: '🍷', urgency: 'high' },
+  result_hormones_low:       { type: 'result', category: 'hormones',    icon: '🌀', urgency: 'low' },
+  result_menopause_low:      { type: 'result', category: 'hormones',    icon: '🌸', urgency: 'low' },
+  result_contraception_low:  { type: 'result', category: 'hormones',    icon: '💊', urgency: 'low' },
+  result_gastroparesis:      { type: 'result', category: 'physiology',  icon: '⏳', urgency: 'medium' },
+  result_weight_change:      { type: 'result', category: 'physiology',  icon: '⚖️', urgency: 'low' },
+  result_heat_absorption:    { type: 'result', category: 'environment', icon: '🛁', urgency: 'medium' },
+  result_cgm_false_low:      { type: 'result', category: 'equipment',   icon: '📱', urgency: 'low' },
+  result_heat_low:           { type: 'result', category: 'environment', icon: '🌡️', urgency: 'medium' },
+  result_low_bp:             { type: 'result', category: 'physiology',  icon: '💓', urgency: 'medium' },
+  result_unknown_low:        { type: 'result', category: 'unknown',     icon: '🔍', urgency: 'low' }
+};
+const STR = {};
+STR.en = {
+  cover: {
+    badge: "Free interactive tool · 40+ possible causes",
+    title: "Why is my blood sugar high or low?",
+    intro: "When a reading doesn't make sense, it's rarely random. This guided investigator walks you through the possible reasons — one simple question at a time — and gives you clear, practical next steps to talk through with your diabetes team.",
+    exampleLabel: "For example, it might find:",
+    ex_icon: '🌸', ex_cat: 'hormones', ex_urgency: 'low',
+    ex_title: "Perimenopause — unpredictable insulin resistance",
+    ex_exp: "Fluctuating oestrogen during perimenopause disrupts glucose in erratic ways — weeks of stable control followed by weeks of resistance with no obvious cause.",
+    ex_tips: [
+      "A CGM is especially valuable here — the pattern changes too fast for finger pricks alone",
+      "HRT stabilises oestrogen and often improves blood sugar predictability — discuss it with your GP"
+    ],
+    chips: ["🌅 Dawn phenomenon", "🍞 Post-meal spike", "😰 Stress response", "💉 Injection-site issue", "🍷 Alcohol & overnight lows"],
+    bullets: [
+      "Private — your answers stay on your device and are never sent anywhere",
+      "Covers food, insulin, hormones, illness, stress, sleep, exercise and more",
+      "Ends with a summary you can copy, print or have emailed to yourself"
+    ],
+    startBtn: "Start the investigation →",
+    note: "Takes about a minute · Works on your phone · For education only — not medical advice"
+  },
+
+  disclaimer_gate: {
+    title: "Before you use this tool",
+    items: [
+      "This tool is for educational purposes only — it is NOT medical advice or a diagnosis",
+      "It does not replace your diabetes team, GP, or any other healthcare professional",
+      "It cannot account for your full medical history, medications, or individual circumstances",
+      "Never change your medication or treatment based on this tool alone — always consult your team first",
+      "If you feel seriously unwell right now — stop and seek medical help immediately"
+    ],
+    confirmation: "By continuing, you confirm you understand this tool is for education only and is not a substitute for professional medical advice."
+  },
+  disclaimer_declined: {
+    title: "No problem at all",
+    exp: "This tool isn't right for everyone and that's completely fine. If you have questions or concerns about your blood sugar, the best people to help you are your doctor, GP, or diabetes team.",
+    tips: [
+      "Contact your diabetes team through your GP surgery or diabetes clinic",
+      "In the UK: Diabetes UK helpline — 0345 123 2399 (Mon–Fri, 9am–6pm)",
+      "If you feel unwell right now: call 111 or go to your nearest A&E"
+    ]
+  },
+
+  start: {
+    q: "Do you currently have a diabetes diagnosis?",
+    sub: "This tool is designed for people who have already been diagnosed with diabetes or are tracking unexplained blood sugar changes.",
+    opts: ["Yes — I have a diabetes diagnosis", "No, or I'm not sure"]
+  },
+  no_diagnosis: {
+    title: "Please speak to a doctor first",
+    exp: "Unusual blood sugar symptoms — excessive thirst, frequent urination, extreme fatigue, blurred vision, unexplained weight loss — can be signs of undiagnosed diabetes or another condition. Only a doctor can confirm this with a blood test.",
+    tips: [
+      "Book a GP appointment and ask for a fasting glucose or HbA1c test",
+      "In children or young adults with sudden severe symptoms, seek urgent medical attention",
+      "Bring a note of your symptoms and when they started",
+      "Pre-diabetes and gestational diabetes can also cause raised readings"
+    ]
+  },
+  which_type: {
+    q: "Which type of diabetes do you have?",
+    sub: "This helps tailor the questions — different types have different risk factors.",
+    opts: ["Type 1 (T1D)", "Type 2 (T2D)", "Gestational diabetes", "LADA / Type 1.5", "MODY, monogenic, or other"]
+  },
+  high_or_low: {
+    q: "Is your blood sugar reading HIGH or LOW right now?",
+    opts: ["⬆️  HIGH — above my target range", "⬇️  LOW — below my target range"]
+  },
+
+  high_how_high: {
+    q: "How high is the reading?",
+    sub: "This helps us assess how urgently you need to act.",
+    opts: ["Slightly above range — up to 12 mmol/L (216 mg/dL)", "Moderately high — 12–16 mmol/L (216–288 mg/dL)", "Very high — over 16 mmol/L (288 mg/dL), or I feel unwell"]
+  },
+  high_very_high_warning: {
+    title: "Very high reading — act now",
+    exp: "A reading above 16 mmol/L (288 mg/dL) — especially with symptoms like nausea, vomiting, stomach pain, or confusion — may indicate diabetic ketoacidosis (DKA) in T1/LADA, or hyperosmolar hyperglycaemic state (HHS) in T2. Both need prompt medical attention.",
+    tips: [
+      "Check blood ketones immediately if you have T1 or LADA: below 0.6 mmol/L = normal; 0.6–1.4 mmol/L = retest in 1 hour, extra insulin likely needed; 1.5–2.9 mmol/L = contact your diabetes team or call 111 urgently; 3.0 mmol/L or above = go to A&E immediately",
+      "DKA warning signs: nausea or vomiting, stomach pain, fruity or pear-drop smell on breath, fast or deep breathing, confusion — go to A&E if any of these are present",
+      "T1/LADA with no DKA symptoms and BG above 11 mmol/L: check ketones, administer correction dose, and recheck in 1 hour",
+      "Do not exercise if ketones are 1.5 mmol/L or above — physical activity worsens DKA",
+      "T2 on insulin: contact your GP or team if BG stays above 15 mmol/L despite your correction dose"
+    ],
+    continueLabel: "I'm OK — continue to find the cause"
+  },
+  high_recent_food: { q: "Did you eat or drink anything in the last 2–3 hours?", opts: ["Yes", "No"] },
+  high_food_carbs: {
+    q: "Did you eat more carbs than usual, or something high GI?",
+    sub: "e.g. white bread, rice, pasta, pastries, sweets, fruit juice, a larger portion than normal",
+    opts: ["Yes — probably more than usual", "I ate normally, nothing unusual"]
+  },
+  high_hidden_carbs: {
+    q: "Could there be hidden carbs you didn't account for?",
+    sub: "Sauces, dressings, flavoured drinks, alcohol mixers, restaurant food, 'sugar-free' or low-carb products — all common culprits",
+    opts: ["Possibly, yes", "No — I'm quite sure"]
+  },
+  high_insulin_check: {
+    q: "Do you use insulin to manage your diabetes?",
+    opts: ["Yes — insulin injections (pens)", "Yes — insulin pump", "No — diet, tablets, GLP-1, or other non-insulin"]
+  },
+  high_missed_dose: {
+    q: "Did you take your insulin for this meal, or a correction dose?",
+    opts: ["No — I forgot or delayed it", "Yes, I took it"]
+  },
+  high_dose_correct: {
+    q: "Do you think the dose was calculated correctly?",
+    sub: "Right insulin-to-carb ratio? Did you account for everything you ate? Correct correction factor?",
+    opts: ["Probably not — I may have under-dosed", "I think the dose was right"]
+  },
+  high_injection_site: {
+    q: "Is your injection site healthy — no lumps or hardened areas?",
+    sub: "Lipohypertrophy (fatty lumps from repeated injections) causes unpredictable absorption — sometimes barely any insulin gets in",
+    opts: ["There are lumps, or I injected into an area I use a lot", "Sites look fine"]
+  },
+  high_insulin_freshness: {
+    q: "Is your insulin still good — not expired or heat-exposed?",
+    sub: "Open pens/vials last ~28 days; insulin left in a hot car or direct sunlight loses potency and can look cloudy",
+    opts: ["It might be compromised — old, or left in heat", "Yes, it's fine"]
+  },
+  high_pump_check: {
+    q: "Any issues with your pump or infusion set?",
+    sub: "Kinked cannula, blockage alarm, air bubbles in the line, site overdue for a change — any of these can stop insulin delivery silently",
+    opts: ["Yes — possible pump or site issue", "No, everything looks fine"]
+  },
+  high_t2_meds: {
+    q: "Did you take your diabetes medication today as prescribed?",
+    opts: ["No — I missed or delayed a dose", "Yes, I took everything"]
+  },
+  high_illness: {
+    q: "Are you feeling unwell in any way — even mildly?",
+    sub: "Infection, cold, toothache, UTI, injury, sore throat — even something minor triggers a cortisol response that raises blood sugar significantly",
+    opts: ["Yes — I'm not 100% well", "No, I feel fine"]
+  },
+  high_stress: {
+    q: "Have you been under significant stress recently?",
+    sub: "Emotional stress (arguments, work pressure, anxiety, grief) or physical stress (pain, injury) both raise cortisol and adrenaline, which directly raise blood sugar",
+    opts: ["Yes — I've been stressed", "Not particularly"]
+  },
+  high_hormones: {
+    q: "Are you female, and are you around ovulation or the days just before your period?",
+    sub: "Progesterone in the luteal phase (days 15–28) causes notable insulin resistance in many women. This is one of the most underrecognised causes of high BG",
+    opts: ["Yes — that timing fits", "Not applicable / No"]
+  },
+  high_hormones_menopause: {
+    q: "Are you perimenopausal or menopausal?",
+    sub: "Fluctuating and declining oestrogen during perimenopause causes unpredictable insulin resistance — often with no pattern at all. Many women find their previously stable BG control becomes erratic during this transition",
+    opts: ["Yes — I'm perimenopausal or menopausal", "No"]
+  },
+  high_hormones_contraception: {
+    q: "Are you on hormonal contraception?",
+    sub: "The pill, patch, implant, hormonal coil (IUS), or injection — progesterone-dominant types in particular can increase insulin resistance. Effects vary significantly between individuals and contraception types",
+    opts: ["Yes — hormonal contraception (pill, implant, injection, patch, or coil)", "No / non-hormonal"]
+  },
+  high_growth_hormones: {
+    q: "Are you a child or teenager, or going through a significant growth spurt?",
+    sub: "Growth hormone released during puberty and rapid growth phases directly antagonises insulin — meaning much more insulin is needed to achieve the same effect. Overnight highs are especially common as most growth hormone pulses happen during sleep",
+    opts: ["Yes — child, teenager, or currently in a growth phase", "No"]
+  },
+  high_protein_fat: {
+    q: "Did you eat a high-protein or high-fat meal 3–6 hours ago?",
+    sub: "The liver converts protein and fat into glucose over hours (gluconeogenesis) — a large steak, cheese board, or fatty meal can cause a slow rise long after eating, even if the meal was low-carb",
+    opts: ["Yes — steak, eggs, cheese, dairy, or very fatty food", "No"]
+  },
+  high_caffeine: {
+    q: "Have you had more caffeine than usual today?",
+    sub: "Coffee and energy drinks stimulate cortisol and adrenaline, which can cause insulin resistance — especially on an empty stomach or combined with stress",
+    opts: ["Yes — more caffeine than usual", "No / I don't have caffeine"]
+  },
+  high_sleep: {
+    q: "Did you sleep poorly or less than usual last night?",
+    sub: "Even a single night of bad sleep significantly raises cortisol and reduces insulin sensitivity — fasting BG can rise by 1–3 mmol/L from sleep deprivation alone",
+    opts: ["Yes — poor or short sleep", "No, I slept fine"]
+  },
+  high_exercise_type: {
+    q: "Did you do high-intensity exercise recently? (HIIT, heavy weights, sprints)",
+    sub: "Intense anaerobic exercise releases adrenaline and cortisol — which spike blood sugar. This is the OPPOSITE of moderate exercise, which lowers BG",
+    opts: ["Yes — intense or anaerobic exercise", "No / I did light or moderate exercise"]
+  },
+  high_cgm_check: {
+    q: "Could the reading be inaccurate?",
+    sub: "CGM sensors near end of life, dirty hands before a finger prick, rapid BG change (sensor lag), or lying on the sensor can all cause misleading readings",
+    opts: ["Possibly — I should double-check with a finger prick", "No — I've verified it"]
+  },
+  high_dehydration: {
+    q: "Are you dehydrated — haven't drunk much water today?",
+    sub: "Less fluid in the blood concentrates glucose, giving higher readings. High BG also causes you to urinate more, compounding dehydration",
+    opts: ["Probably yes — not drinking enough", "No, I've been hydrating fine"]
+  },
+  high_temperature: {
+    q: "Are you in a very hot environment or do you have a fever?",
+    sub: "Extreme ambient heat can affect insulin absorption. A fever raises blood sugar directly — even a mild temperature is effectively 'illness'",
+    opts: ["Yes — very hot, or I have a fever/temperature", "No"]
+  },
+  high_altitude: {
+    q: "Have you recently changed altitude? (flew, drove to mountains, high elevation resort)",
+    sub: "Altitude affects air pressure, which affects CGM sensor accuracy (lower oxygen = less accurate readings). It can also affect glucose metabolism",
+    opts: ["Yes — recently at altitude or on a flight", "No"]
+  },
+  high_blood_pressure: {
+    q: "Do you have high blood pressure, or have you been feeling unusually tense or anxious?",
+    sub: "Hypertension and sustained high cardiovascular stress can affect blood sugar regulation — and many BP medications interact with glucose metabolism",
+    opts: ["Yes — high BP or on BP medication", "No"]
+  },
+  high_dawn: {
+    q: "Is this a morning reading — before eating anything?",
+    sub: "Cortisol and growth hormone are released naturally in the early hours (4–8am) to prepare your body for the day — this raises blood sugar even without food",
+    opts: ["Yes — fasting or morning reading", "No"]
+  },
+  high_somogyi: {
+    q: "Did you have a low blood sugar overnight, or could you have had one undetected?",
+    sub: "The Somogyi effect: an undetected overnight low triggers a surge of glucagon and adrenaline — which can cause a significant rebound high by morning",
+    opts: ["Possibly — or I'm not sure about overnight", "No — overnight readings were fine"]
+  },
+
+  low_severity: {
+    q: "How low is the reading?",
+    sub: "This determines how urgently you need to act before we investigate causes. NHS guidance: treat any reading below 4 mmol/L.",
+    opts: [
+      "3.0–3.9 mmol/L (54–70 mg/dL) — below range but I feel OK or mildly symptomatic",
+      "Below 3.0 mmol/L (54 mg/dL) — symptomatic (shaky, sweaty, confused)",
+      "Severe — very confused, seizure, or unconscious / unable to swallow"
+    ]
+  },
+  low_emergency: {
+    title: "Severe hypoglycaemia — call 999 now",
+    exp: "This is a medical emergency. If the person cannot swallow safely, do NOT give food or drink. Call 999 immediately. If glucagon is available and someone is trained, give it while waiting for the ambulance.",
+    tips: [
+      "Call 999 immediately if the person is unconscious, having a seizure, or unable to respond",
+      "Put them in the recovery position if unconscious but breathing — tilt head back, support jaw",
+      "CONSCIOUS and able to swallow: give 15–20g fast-acting glucose now — 5–6 Dextrose tablets, 4 jelly babies, 2 x GlucoGel tubes, or 150–200ml non-diet fizzy drink",
+      "If trained: give glucagon while waiting — GlucaGen HypoKit (injection) or Baqsimi (nasal powder spray, NHS prescription) — both suitable if unconscious",
+      "Do NOT give food or drink to anyone unconscious or who cannot swallow",
+      "Stay with the person until emergency services arrive or they have fully recovered",
+      "After recovery: give a longer-acting carb snack to prevent a second low"
+    ]
+  },
+  low_treat_mild: {
+    title: "Treat the low first — then find the cause",
+    exp: "Any reading below 4 mmol/L should be treated now. Take fast-acting carbs, wait 10–15 minutes, recheck. Once back in range, you can investigate why it happened.",
+    tips: [
+      "Take 15–20g fast-acting carbs NOW: 5–6 Dextrose Energy tablets, OR 4 jelly babies, OR 150–200ml non-diet fizzy drink or pure fruit juice, OR 2 tubes GlucoGel",
+      "Wait 10–15 minutes before rechecking — do not keep eating in between",
+      "If still below 4 mmol/L after 10–15 min: repeat 15–20g and recheck again",
+      "Avoid chocolate, biscuits, or milk — fat slows glucose absorption and they won't raise your blood sugar quickly enough",
+      "Do not over-treat — this causes a rebound high"
+    ],
+    continueLabel: "I've treated it — now find the cause"
+  },
+  low_treat_moderate: {
+    title: "Treat this low now — it's significant",
+    exp: "A significant low with symptoms needs immediate fast-acting glucose. Do not wait or try to investigate first — treat now, then find the cause.",
+    tips: [
+      "Take 15–20g fast-acting carbs immediately: 5–6 Dextrose tablets, 4 jelly babies, 150–200ml non-diet fizzy drink or pure fruit juice, or 2 x GlucoGel tubes",
+      "Recheck in 10–15 minutes — if still below 4 mmol/L, repeat 15–20g",
+      "Tell someone nearby that you are having a hypo",
+      "Avoid chocolate, biscuits, or milk — these are too slow-acting",
+      "After recovering: have a longer-acting carb snack (crackers, slice of bread) to prevent another drop",
+      "If you cannot keep carbs down or feel very unwell: call 999"
+    ],
+    continueLabel: "I've treated it — now find the cause"
+  },
+  low_insulin_check: {
+    q: "Do you use insulin (injections or pump)?",
+    opts: ["Yes — insulin injections", "Yes — insulin pump", "No — diet, tablets, or GLP-1 only"]
+  },
+  low_too_much_insulin: {
+    q: "Could you have taken too much insulin?",
+    sub: "Overcorrection for a high, wrong carb ratio, stacking doses without accounting for insulin still active (IOB), accidentally double-dosed",
+    opts: ["Yes — probably overdosed", "No — the dose seemed correct"]
+  },
+  low_t2_meds: {
+    q: "Do you take sulphonylureas or glinides? (glipizide, glibenclamide, gliclazide, repaglinide, etc.)",
+    sub: "These medication types stimulate insulin release regardless of blood sugar level — they can cause hypos if a meal is skipped or delayed",
+    opts: ["Yes — I take one of these", "No / I'm not sure"]
+  },
+  low_food_timing: {
+    q: "Did you delay, skip, or eat significantly less than planned?",
+    sub: "Taking insulin or sulphonylureas and then not eating enough — or eating later than expected — is one of the most common causes of lows",
+    opts: ["Yes — delayed or skipped meal, or ate much less", "No — I ate as planned"]
+  },
+  low_exercise: {
+    q: "Did you exercise recently, or more than usual?",
+    sub: "Exercise increases insulin sensitivity significantly — a low can happen during exercise, immediately after, or even 12–24 hours later as muscles replenish glycogen. Even a long walk counts",
+    opts: ["Yes — exercised today or yesterday", "No"]
+  },
+  low_exercise_type: {
+    q: "What type of exercise was it?",
+    opts: ["Moderate / aerobic — walking, cycling, swimming, yoga", "High intensity / anaerobic — HIIT, heavy lifting, sprints"]
+  },
+  low_alcohol: {
+    q: "Have you had alcohol in the last 8 hours — including overnight?",
+    sub: "Alcohol blocks the liver from releasing glucose when your BG drops. This disables your body's safety net and can cause severe, delayed lows — especially overnight while asleep",
+    opts: ["Yes — I've had alcohol", "No"]
+  },
+  low_hormones: {
+    q: "Are you female, and are you in the first few days of your period?",
+    sub: "When oestrogen rises as your period begins, many women experience a significant increase in insulin sensitivity — the same dose now causes a bigger drop than usual",
+    opts: ["Yes — period just started", "Not applicable / No"]
+  },
+  low_hormones_menopause: {
+    q: "Are you perimenopausal or menopausal?",
+    sub: "During perimenopause, oestrogen levels drop unpredictably — when oestrogen falls, insulin sensitivity often increases, causing lows. This can alternate erratically with periods of high BG",
+    opts: ["Yes — perimenopausal or menopausal", "No"]
+  },
+  low_hormones_contraception: {
+    q: "Have you recently stopped or changed your hormonal contraception?",
+    sub: "Stopping progesterone-dominant contraception (implant, Depo injection, mini-pill) often increases insulin sensitivity temporarily as the progesterone effect clears — sometimes over several weeks",
+    opts: ["Yes — recently stopped or changed contraception", "No"]
+  },
+  low_gastroparesis: {
+    q: "Do you have gastroparesis, or did you eat a very high-fat or high-protein meal?",
+    sub: "Slow gastric emptying means food is digested later than expected — insulin acts on time, but the glucose from food arrives hours later. Classic cause of a low followed by a later high",
+    opts: ["Yes — possibly delayed digestion", "No"]
+  },
+  low_weight_change: {
+    q: "Have you lost weight recently, or changed your diet significantly?",
+    sub: "Weight loss — especially of abdominal fat — significantly increases insulin sensitivity. Doses that worked before may now be too strong",
+    opts: ["Yes — lost weight or eating quite differently", "No"]
+  },
+  low_hot_bath: {
+    q: "Did you have a hot bath, sauna, or hot shower soon after injecting?",
+    sub: "Heat dramatically increases blood flow to injection sites, causing rapid insulin absorption — the dose acts much faster and more strongly than expected",
+    opts: ["Yes — hot bath or sauna after injecting", "No"]
+  },
+  low_cgm_check: {
+    q: "Could this be a false low reading from your CGM?",
+    sub: "Compression lows (lying on the sensor), sensor nearing end of life, first day of a new sensor, or certain medications (paracetamol/acetaminophen) can give falsely low readings",
+    opts: ["Possibly — I haven't verified with a finger prick", "I've verified with a finger prick — it is genuinely low"]
+  },
+  low_temperature: {
+    q: "Are you in a hot environment, or did you exercise in the heat?",
+    sub: "Heat increases both insulin absorption speed and exercise effectiveness — combining them amplifies the glucose-lowering effect significantly",
+    opts: ["Yes — hot weather or exercised in heat", "No"]
+  },
+  low_blood_pressure: {
+    q: "Do you have low blood pressure, or have you felt dizzy or faint recently?",
+    sub: "Hypotension and hypoglycaemia can feel similar and sometimes co-occur. Some blood pressure medications also affect glucose regulation",
+    opts: ["Yes — low BP or dizzy spells", "No"]
+  },
+
+  result_carb_load: {
+    title: "Post-meal spike — carbohydrate load",
+    exp: "High GI foods or a larger carb portion can cause blood sugar to rise faster than insulin can keep up, especially if timing was off. This is one of the most common causes of a post-meal high.",
+    tips: [
+      "Consider pre-bolusing (injecting 15–20 minutes before eating) to match the carb rise",
+      "Pair carbs with protein, fat, and fibre to slow the absorption and flatten the spike",
+      "Try lower GI alternatives — swapping white rice for basmati, or white bread for sourdough",
+      "Review your insulin-to-carb ratio if this happens repeatedly with the same foods"
+    ]
+  },
+  result_hidden_carbs: {
+    title: "Hidden carbohydrates",
+    exp: "Hidden carbs in sauces, dressings, 'sugar-free' or low-carb products, restaurant food, smoothies, and flavoured coffees are one of the most common causes of unexplained highs. Restaurant portion carbs are notoriously hard to estimate.",
+    tips: [
+      "Check labels — even 'healthy' or 'diet' foods often contain surprising sugar",
+      "Restaurant meals can easily have 2–3x more carbs than a home-cooked equivalent",
+      "Alcohol mixers, flavoured coffees, and fruit juices are particularly hidden culprits",
+      "If a restaurant meal consistently spikes you, consider adding a small extra correction next time"
+    ]
+  },
+  result_missed_dose: {
+    title: "Missed or delayed insulin dose",
+    exp: "Without insulin, glucose from food — or the liver's background glucose release — accumulates in the bloodstream. Even a delayed dose (taken 30+ minutes late) can significantly blunt insulin effectiveness.",
+    tips: [
+      "Take a correction dose now using your correction factor (check with your team if unsure)",
+      "Don't try to 'catch up' with a doubled dose — this risks a severe rebound low",
+      "Set phone alarms for meal-time insulin if forgetting is a recurring issue",
+      "If using a pump: check your basal history in case the issue is ongoing"
+    ]
+  },
+  result_miscalculation: {
+    title: "Insulin miscalculation",
+    exp: "Getting your insulin-to-carb ratio wrong — or underestimating the carbs in a meal — is extremely common, especially with restaurant food, mixed dishes, or unfamiliar recipes. Even small errors compound over a meal.",
+    tips: [
+      "Log this meal and the rise so you can adjust your ratio for that food type next time",
+      "A food tracking app (Carbs & Cals, MyFitnessPal) gives more accurate carb counts",
+      "Your ratio can vary by time of day — many people need more insulin per carb at breakfast",
+      "If miscalculations are frequent, a diet and insulin review with your team can help"
+    ]
+  },
+  result_injection_site: {
+    title: "Injection site issue (lipohypertrophy)",
+    exp: "Fatty lumps from repeatedly injecting in the same spot absorb insulin unpredictably — sometimes barely any gets in, sometimes it releases in a sudden burst. This is more common than many people realise and causes significant BG variability.",
+    tips: [
+      "Rotate injection sites systematically — create a pattern across the abdomen, then thighs",
+      "Avoid any area with visible lumps or unusual hardness",
+      "Lipohypertrophy takes months to resolve if you stop using a site — be patient",
+      "Ask your diabetes nurse to check your injection sites at your next appointment"
+    ]
+  },
+  result_bad_insulin: {
+    title: "Compromised insulin",
+    exp: "Insulin that's expired, been left in heat, or stored incorrectly loses potency and won't work as expected. Rapid-acting insulin shouldn't look cloudy — if it does, it's degraded.",
+    tips: [
+      "Start a fresh pen or vial and compare the effect",
+      "Never leave insulin in a hot car or in direct sunlight — even 20 minutes can degrade it",
+      "Open insulin can be stored at room temperature (below 25°C) for up to 28–30 days",
+      "Spare/unopened insulin should be refrigerated at 2–8°C — but never frozen",
+      "Cloudy rapid-acting insulin = discard immediately"
+    ]
+  },
+  result_pump_issue: {
+    title: "Insulin pump or infusion set issue",
+    exp: "A kinked cannula, blocked set, air bubble, or site overdue for a change can stop insulin delivery completely — often silently, without an obvious alarm. This is a very common cause of rapid unexplained highs in pump users.",
+    tips: [
+      "Change the infusion set and site now — do not try to troubleshoot the current set",
+      "Inject a correction dose with an insulin pen to bypass the pump immediately",
+      "Prime the new set carefully to remove any air",
+      "Check your pump's bolus and basal delivery log for missed or interrupted deliveries",
+      "T1/LADA: check blood ketones immediately — above 1.5 mmol/L contact your team or call 111 urgently; above 3.0 mmol/L go to A&E. Pump failure can cause DKA rapidly — do not wait to see if BG comes down on its own"
+    ]
+  },
+  result_missed_meds: {
+    title: "Missed or delayed medication",
+    exp: "Skipping or delaying your diabetes tablets means their glucose-lowering effect is absent or reduced for that window. Metformin and SGLT-2 inhibitors also have broader metabolic effects that don't recover immediately.",
+    tips: [
+      "Take the missed dose as soon as you remember — unless it's nearly time for the next dose",
+      "Never double up to compensate — check your medication's guidance",
+      "A pill organiser or medication app can help prevent this from recurring",
+      "If you're frequently forgetting, discuss a simpler regimen with your doctor"
+    ]
+  },
+  result_illness: {
+    title: "Illness or infection raising blood sugar",
+    exp: "Any illness — even a mild cold, toothache, UTI, or small wound — triggers a stress response: cortisol and adrenaline are released, which directly raise blood sugar. This can happen even if you're not eating. Infections often cause dramatic spikes.",
+    tips: [
+      "Never stop your insulin — even if you cannot eat. When ill, your body releases more glucose and you are likely to need more insulin, not less",
+      "T1/LADA: check blood ketones if BG rises above 11 mmol/L. Ketones 1.5–2.9 mmol/L = contact your team or call 111 urgently; 3.0 mmol/L or above = go to A&E",
+      "Check your blood glucose every 2–4 hours when unwell; check ketones every 2 hours if elevated",
+      "Drink plenty of fluids — at least 100ml per hour (water or sugar-free drinks) unless vomiting",
+      "T1/LADA: you may need 10–30% more rapid-acting insulin during illness — follow your sick day rules or contact your team",
+      "T2 on tablets: contact your GP or diabetes team if BG stays persistently above 15 mmol/L",
+      "Go to A&E or call 999 if you are vomiting and cannot keep fluids down, ketones are rising despite extra insulin, or you feel very unwell"
+    ]
+  },
+  result_stress: {
+    title: "Stress response (cortisol spike)",
+    exp: "Physical or emotional stress triggers a surge of cortisol and adrenaline, both of which directly raise blood sugar. This can happen from work pressure, an argument, anxiety, anticipating a difficult event, pain — or even watching something scary.",
+    tips: [
+      "This is a physiological response — not something you did wrong",
+      "Some people need a small extra correction during particularly stressful periods",
+      "Chronic stress requires a different approach — not just dose adjustments",
+      "Strategies like box breathing, exercise, and good sleep meaningfully reduce cortisol long-term",
+      "If stress is consistently affecting your BG, discuss with your team — a temporary basal increase may help"
+    ]
+  },
+  result_hormones_high: {
+    title: "Hormonal insulin resistance (menstrual cycle)",
+    exp: "Progesterone in the second half of the menstrual cycle (days 15–28) causes significant insulin resistance in many women with diabetes. The days before a period — and around ovulation — are often the most challenging for blood sugar control.",
+    tips: [
+      "Track your cycle alongside your BG to identify your personal pattern",
+      "Many women need 10–30% more insulin in the luteal phase (second half of the cycle)",
+      "Apps like Clue or Flo can help you correlate your cycle and BG patterns",
+      "Discuss a hormonal dosing protocol with your diabetes team if this is consistent",
+      "This usually resolves as your period begins — insulin needs may drop sharply"
+    ]
+  },
+  result_menopause_high: {
+    title: "Perimenopause or menopause — unpredictable insulin resistance",
+    exp: "Fluctuating and declining oestrogen during perimenopause disrupts glucose metabolism in complex, erratic ways. Unlike the regular menstrual cycle where patterns are somewhat predictable, perimenopausal fluctuations are chaotic — weeks of stable control followed by weeks of resistance with no apparent cause. Post-menopause, consistently lower oestrogen tends to increase insulin resistance overall.",
+    tips: [
+      "Track BG over weeks and months — perimenopause makes day-to-day comparisons unreliable",
+      "HRT (hormone replacement therapy) stabilises oestrogen and often significantly improves BG predictability — discuss with your GP or menopause specialist",
+      "A CGM is especially valuable during this phase — the pattern changes too quickly for finger prick monitoring alone",
+      "Insulin requirements can shift dramatically over weeks; adjust doses slowly and verify before making large changes",
+      "This is a clinically real but under-discussed challenge — push for a joint review with your diabetes team and a menopause specialist"
+    ]
+  },
+  result_contraception_high: {
+    title: "Hormonal contraception increasing insulin resistance",
+    exp: "Progesterone-dominant contraception — the mini-pill, implant (Nexplanon), Depo-Provera injection, and some combined pills — can increase insulin resistance and raise blood sugar in some women. The Depo injection tends to have the most pronounced effect. Effects vary enormously between individuals and contraception types.",
+    tips: [
+      "The Depo-Provera (progesterone-only injection) tends to have the strongest effect on BG",
+      "Implants (Nexplanon) — some women report significant changes, others none at all",
+      "Combined pills with higher oestrogen content may have less impact than progesterone-only methods",
+      "If you started a new contraception recently and noticed BG changes, discuss switching types with your GP",
+      "Non-hormonal options (copper coil, condoms, diaphragm) have no effect on blood sugar",
+      "Track your BG before and after starting a new contraception to identify your personal response"
+    ]
+  },
+  result_growth_hormones: {
+    title: "Growth hormone — puberty and growth spurts",
+    exp: "Growth hormone is released in large pulses during sleep throughout childhood and adolescence, and directly antagonises insulin — meaning significantly more insulin is needed to achieve the same effect. Teenagers typically require much higher doses, particularly overnight and in the early morning. This is normal physiology, not a management failure.",
+    tips: [
+      "Insulin requirements during puberty and active growth spurts can increase by 30–50% or more",
+      "Overnight and early morning highs are particularly common — most growth hormone is released during sleep",
+      "More frequent dose reviews are essential during growth phases — don't wait for the annual appointment",
+      "This will stabilise as growth completes (usually mid-teens for girls, late teens for boys)",
+      "Parents: this phase is genuinely difficult and is not caused by poor management or compliance — be patient and work closely with your paediatric diabetes team"
+    ]
+  },
+  result_gluconeogenesis: {
+    title: "Gluconeogenesis — protein & fat converting to glucose",
+    exp: "The liver converts excess dietary protein and fat into glucose over 3–6+ hours after eating. A high-protein meal (steak, eggs, large amounts of dairy) or very high-fat meal can cause a slow, stubborn BG rise hours later — even if the meal had virtually no carbs.",
+    tips: [
+      "This is especially relevant on low-carb or carnivore-style diets",
+      "Consider a small extended bolus ('dual-wave' on pumps) after very high-protein meals",
+      "The rise is slower and lower than carbs — avoid over-correcting",
+      "Experiment cautiously — adding 10–15% extra insulin for high-protein meals (with team guidance)",
+      "Log the meal and timing to find your personal pattern"
+    ]
+  },
+  result_caffeine: {
+    title: "Caffeine sensitivity",
+    exp: "Caffeine stimulates cortisol and adrenaline, which can cause insulin resistance in sensitive individuals. The effect is stronger on an empty stomach, after poor sleep, or when combined with stress. Energy drinks add hidden sugars on top.",
+    tips: [
+      "Try having coffee with or after food rather than on an empty stomach",
+      "Some people are much more caffeine-sensitive than others — experiment by reducing and observing",
+      "Energy drinks: double problem — caffeine AND often significant hidden sugar",
+      "The effect is amplified when you're also stressed or sleep-deprived"
+    ]
+  },
+  result_sleep: {
+    title: "Poor sleep raising blood sugar",
+    exp: "Even a single night of short or broken sleep significantly raises cortisol, reduces insulin sensitivity, and increases appetite — particularly for carbohydrates. Some people see fasting BG rise by 1–3 mmol/L after a bad night.",
+    tips: [
+      "Sleep is a legitimate part of diabetes management — as important as diet",
+      "You may need slightly more insulin the day after a bad night",
+      "A consistent sleep schedule (same time to bed and to wake) helps regulate cortisol",
+      "If insomnia is chronic, speak to your GP — melatonin or CBT-I can help",
+      "Screen time before bed, alcohol, and caffeine in the afternoon all worsen sleep quality"
+    ]
+  },
+  result_intense_exercise: {
+    title: "Anaerobic exercise — adrenaline-driven spike",
+    exp: "High-intensity exercise (HIIT, heavy weight training, sprinting) floods the body with adrenaline and cortisol, which temporarily raise blood sugar — sometimes dramatically. This is the opposite of moderate aerobic exercise, which lowers BG. The spike usually resolves within 1–2 hours.",
+    tips: [
+      "Don't over-correct during the spike — a rebound low is a real risk as adrenaline clears",
+      "Wait 1–2 hours after intense exercise before correcting, unless very high",
+      "A 10–15 minute moderate walk after intense exercise can help bring BG down safely",
+      "Some people take a small correction 1–2 hours post-workout if BG is still elevated",
+      "Consider timing workouts, meals, and insulin together with your team"
+    ]
+  },
+  result_cgm_high: {
+    title: "CGM or meter accuracy issue",
+    exp: "CGMs are highly accurate most of the time, but can give misleading high readings near end of sensor life, during rapid BG change (where sensor lag means the real value is already lower), or when calibration data is outdated.",
+    tips: [
+      "Always verify an unexpected high with a clean-hands finger prick before correcting",
+      "Wash and dry hands thoroughly before a finger prick — fruit residue can add 2–3 mmol/L",
+      "Sensors in the last 1–2 days of wear often become less reliable",
+      "CGM 'lag' during rapid rises means your actual BG may already be lower than displayed",
+      "If consistently inaccurate: try a new sensor and recalibrate"
+    ]
+  },
+  result_dehydration: {
+    title: "Dehydration concentrating blood glucose",
+    exp: "When you're dehydrated, less fluid in the blood means glucose is more concentrated — producing a higher reading even if the total glucose hasn't changed. High blood sugar also causes excess urination, which makes dehydration worse — a vicious cycle.",
+    tips: [
+      "Drink a large glass of water now and continue hydrating throughout the day",
+      "Aim for 2–2.5 litres daily — more in hot weather, after exercise, or when BG is high",
+      "Avoid sugary drinks to rehydrate — use water or electrolyte tablets (sugar-free)",
+      "Caffeine and alcohol both worsen dehydration — counterbalance them with water"
+    ]
+  },
+  result_temperature_high: {
+    title: "Heat effects on blood sugar and insulin",
+    exp: "Extreme ambient heat speeds up blood flow to injection sites, causing faster insulin absorption — which can paradoxically lead to an initial high (if you corrected expecting slow absorption) and then a delayed low. A fever raises blood sugar directly as part of the immune response.",
+    tips: [
+      "In hot weather, be more cautious with correction doses — insulin will work faster",
+      "Keep insulin cool and away from direct sun — never leave it in a hot car",
+      "If you have a fever, treat it as illness (your body is fighting something)",
+      "Stay well hydrated — heat and high BG together cause significant fluid loss"
+    ]
+  },
+  result_altitude: {
+    title: "Altitude and air pressure affecting readings",
+    exp: "Altitude reduces atmospheric oxygen, which affects electrochemical CGM sensors — readings can be off by 1–2 mmol/L or more. Blood glucose metabolism also changes slightly at altitude due to the physiological stress response.",
+    tips: [
+      "Verify with finger prick tests more frequently when at altitude (flights, mountains, skiing)",
+      "Don't rely solely on CGM readings at high altitude — cross-check consistently",
+      "Altitude sickness is a physical stress that raises cortisol and can raise BG",
+      "Allow a day or two to acclimatise to new altitudes if possible",
+      "Your CGM should re-calibrate and improve accuracy after 24–48 hours at the same altitude"
+    ]
+  },
+  result_blood_pressure_high: {
+    title: "Blood pressure and blood sugar interaction",
+    exp: "High blood pressure and insulin resistance often co-exist and reinforce each other. Several blood pressure medications — particularly thiazide diuretics and some beta-blockers — can raise blood glucose levels or blunt the body's response to hypoglycaemia.",
+    tips: [
+      "Check your blood pressure medication list with your pharmacist or GP for glucose-raising effects",
+      "Beta-blockers can mask hypo symptoms — be particularly vigilant with CGM or regular checks",
+      "Reducing salt, managing stress, and regular moderate exercise help both BP and BG",
+      "Discuss whether your BP medication is affecting your glucose control at your next review"
+    ]
+  },
+  result_dawn: {
+    title: "Dawn phenomenon — morning cortisol rise",
+    exp: "Between approximately 4–8am, the body naturally releases cortisol and growth hormone to prepare for the day. In people with diabetes, this hormonal surge raises blood sugar — even without eating. It's a normal physiological process, not a mistake.",
+    tips: [
+      "T1/LADA on a pump: increase basal rate between 4–7am to match the cortisol rise",
+      "T1/LADA on injections: switching long-acting insulin to before bed (vs. morning) can help",
+      "T2: a low-carb or protein-focused breakfast can reduce the post-breakfast spike",
+      "Document your fasting readings over 1–2 weeks to confirm the pattern before adjusting doses",
+      "This is the dawn phenomenon — distinct from the Somogyi effect (rebound from overnight low)"
+    ]
+  },
+  result_somogyi: {
+    title: "Somogyi effect — rebound from overnight low",
+    exp: "An undetected low during the night causes a surge of counter-regulatory hormones (glucagon, adrenaline, cortisol) which overshoot and cause a high by morning. The key clue is that increasing the overnight dose makes it worse, not better.",
+    tips: [
+      "Set a 3am alarm to check BG for a few nights to confirm the pattern",
+      "A CGM with overnight low alerts is the best way to detect and prevent this",
+      "If confirmed: reduce overnight basal or long-acting insulin — not increase it",
+      "This is the opposite of the dawn phenomenon — important distinction for treatment",
+      "Share the 3am readings with your team before adjusting any doses"
+    ]
+  },
+  result_unknown_high: {
+    title: "Cause not identified — log it and look for patterns",
+    exp: "Blood sugar is influenced by dozens of interacting variables. Occasional unexplained readings are normal — even with excellent management. The key is to log them carefully and look for recurring patterns over time.",
+    tips: [
+      "Log: time, reading, last meal (what and how much), last dose, activity, stress, sleep, and anything unusual",
+      "Look for patterns: same time of day? Same day of the week? After specific foods?",
+      "A fortnightly diabetes diary review often reveals patterns that individual readings hide",
+      "Share data with your team at your next appointment — consider a CGM download review",
+      "T1/LADA with persistent unexplained highs: consider antibody testing, or a thyroid check (thyroid affects insulin sensitivity)"
+    ]
+  },
+
+  result_too_much_insulin: {
+    title: "Too much insulin",
+    exp: "Taking more insulin than needed — through an overcorrection, wrong carb ratio, stacking doses (correcting before previous dose has finished acting), or accidentally double-dosing — is the most common cause of hypoglycaemia in insulin users.",
+    tips: [
+      "Review your correction factor — if you frequently over-correct, it may need adjusting",
+      "Rapid-acting insulin remains active for 3–4 hours — never correct without accounting for IOB (insulin on board)",
+      "Use your pump's or CGM app's IOB calculator if available",
+      "Discuss your carb ratio at your next appointment if the current ratio consistently causes lows"
+    ]
+  },
+  result_sulfonylurea: {
+    title: "Medication-induced hypoglycaemia",
+    exp: "Sulphonylureas and glinides stimulate insulin release independently of your blood sugar level. This means a low can happen if you eat less than usual, delay a meal, or are more active — the medication doesn't automatically adjust.",
+    tips: [
+      "Always eat on time and consistently when taking these medications",
+      "Carry fast-acting glucose with you at all times — this is non-negotiable",
+      "Tell family, close friends, and colleagues you have diabetes and how to help",
+      "Discuss with your GP if hypos are frequent — the dose can often be reduced safely",
+      "Consider asking about switching to a medication class with lower hypo risk (e.g. DPP-4 or SGLT-2)"
+    ]
+  },
+  result_missed_meal: {
+    title: "Delayed or missed meal after insulin or medication",
+    exp: "Taking insulin or sulphonylureas and then eating later than planned — or eating much less than usual — leaves the medication without glucose to process, causing blood sugar to fall. This is one of the most straightforward causes of a hypo.",
+    tips: [
+      "Always eat within 15–20 minutes of rapid-acting insulin (unless using a post-meal insulin)",
+      "If a meal is unavoidably delayed: consider taking insulin after the first few bites",
+      "Keep emergency snacks accessible — in your bag, desk, and bedside table",
+      "If meal timing is unpredictable, discuss 'flexible bolusing' strategies with your team"
+    ]
+  },
+  result_exercise_low: {
+    title: "Exercise-related low (aerobic / moderate)",
+    exp: "Moderate aerobic exercise increases insulin sensitivity and causes muscles to absorb glucose directly without needing insulin. This can cause lows during exercise, immediately after, or even 12–24 hours later as muscles replenish glycogen stores.",
+    tips: [
+      "For planned moderate exercise, reduce the preceding bolus by 20–30% (or reduce basal on a pump)",
+      "Check BG before starting; if below 6 mmol/L (108 mg/dL) have 15–20g carbs first",
+      "Check during exercise if it lasts more than 45 minutes",
+      "The delayed (post-exercise) low risk is highest overnight after afternoon or evening sessions",
+      "Consider a small bedtime snack on exercise days to prevent overnight lows"
+    ]
+  },
+  result_exercise_delayed_low: {
+    title: "Delayed low after high-intensity exercise",
+    exp: "High-intensity exercise initially raises BG (adrenaline spike) but then significantly increases insulin sensitivity as muscles work to replenish glycogen. The low often comes several hours after exercise ends — a delayed effect that catches many people off guard.",
+    tips: [
+      "Expect a delayed low 4–12 hours after intense exercise — particularly overnight",
+      "Reduce overnight basal (pump) or have a slow-release carb snack before bed on intense workout days",
+      "Avoid correcting the immediate post-workout high too aggressively — it will fall",
+      "Reduce your bolus for the first meal after intense exercise",
+      "Track how your body responds to different workout types over time — the pattern becomes predictable"
+    ]
+  },
+  result_alcohol: {
+    title: "Alcohol blocking liver glucose release",
+    exp: "Alcohol blocks gluconeogenesis — the liver's ability to release glucose when your blood sugar falls. This removes your body's natural safety net, making hypoglycaemia more severe and dangerous. The effect can last 8–16 hours, making overnight lows a serious risk.",
+    tips: [
+      "Always eat carbohydrates when drinking alcohol — don't drink on an empty stomach",
+      "Reduce insulin for any meal accompanied by alcohol",
+      "Set a CGM overnight low alert, or ask someone to check on you",
+      "Glucagon may be less effective when alcohol is in your system — keep glucose gel accessible",
+      "Inform anyone you're with that you have diabetes in case of emergency",
+      "Be especially vigilant the morning after heavy drinking"
+    ]
+  },
+  result_hormones_low: {
+    title: "Hormonal shift — increased insulin sensitivity",
+    exp: "When oestrogen rises at the start of the menstrual cycle (when your period begins), many women experience a significant jump in insulin sensitivity. The same dose that was right last week can now cause a low. This flip happens quickly and is often unexpected.",
+    tips: [
+      "Track your cycle and BG together to identify your personal pattern",
+      "You may need noticeably less insulin in the days just after your period starts",
+      "Consider a temporary basal reduction (pump) or reduced correction doses during this phase",
+      "This is predictable once you know your pattern — plan proactively rather than reacting",
+      "Apps that overlay cycle data with BG data (some CGM apps, Clue, etc.) can help spot this clearly"
+    ]
+  },
+  result_menopause_low: {
+    title: "Perimenopause — oestrogen drop increasing insulin sensitivity",
+    exp: "During perimenopause, oestrogen levels fluctuate erratically. When oestrogen drops, many women experience increased insulin sensitivity — the same dose now causes a bigger fall. This can alternate unpredictably with periods of insulin resistance (highs), making management feel chaotic and demoralising.",
+    tips: [
+      "A CGM is particularly valuable during perimenopause — the pattern changes too quickly for finger prick monitoring alone",
+      "Reduce insulin doses cautiously when lows are recurrent; verify the pattern over several days before making changes",
+      "Discuss HRT with your GP — stabilising oestrogen levels often significantly improves BG predictability",
+      "Keep your diabetes team informed — insulin requirements can swing dramatically week-to-week during this transition",
+      "This phase is real, clinically recognised, and under-researched — you are not imagining it"
+    ]
+  },
+  result_contraception_low: {
+    title: "Stopping hormonal contraception — increased insulin sensitivity",
+    exp: "Stopping or changing progesterone-dominant contraception (implant, Depo-Provera injection, mini-pill) often increases insulin sensitivity as the progesterone effect clears. The transition period — especially the first 2–6 weeks after stopping — can be the most unpredictable.",
+    tips: [
+      "Monitor more closely for 2–6 weeks after stopping or switching contraception",
+      "Reduce insulin doses conservatively if lows are recurrent — small reductions (5–10%) to start",
+      "The effect of the Depo injection can persist for several months after the last dose",
+      "Discuss the timing of contraception changes with your diabetes team so they can help manage the transition",
+      "Track your BG before and after the change to document your personal response"
+    ]
+  },
+  result_gastroparesis: {
+    title: "Delayed gastric emptying (gastroparesis)",
+    exp: "With gastroparesis, food digests and releases glucose much later than expected. Insulin acts at the normal time — but glucose arrives late. The result is a low shortly after eating, followed by a high several hours later as digestion finally catches up.",
+    tips: [
+      "Consider taking rapid-acting insulin after eating, not before — or using a post-meal insulin",
+      "Small, frequent meals with less fat and fibre are easier to digest",
+      "Discuss with your team — a gastric emptying study can formally confirm gastroparesis",
+      "Pump users: a dual-wave or extended bolus spread over 1–3 hours can help match delayed absorption",
+      "Avoid lying down immediately after eating — it slows gastric emptying further"
+    ]
+  },
+  result_weight_change: {
+    title: "Increased insulin sensitivity from weight loss",
+    exp: "Weight loss — particularly of visceral (abdominal) fat — significantly increases insulin sensitivity. Doses that were calibrated for your previous weight may now be too strong. This is a positive sign, but requires proactive dose adjustment.",
+    tips: [
+      "This is good news — your insulin requirements may genuinely be lower",
+      "Discuss a formal dose review with your diabetes team",
+      "Don't reduce doses unilaterally by large amounts — make small, measured changes (5–10% at a time)",
+      "Keep detailed logs so you can demonstrate the pattern to your team at your next appointment",
+      "If losing weight through a GLP-1 medication, your team should already be monitoring this"
+    ]
+  },
+  result_heat_absorption: {
+    title: "Heat accelerating insulin absorption",
+    exp: "Applying heat to an injection site dramatically increases blood flow, causing insulin to absorb far faster and more potently than expected. A hot bath, sauna, or even vigorous massage of the injection area can trigger this.",
+    tips: [
+      "Avoid hot baths within 1–2 hours of injecting into the same body area",
+      "If you regularly have hot baths: inject into the abdomen rather than thighs or buttocks",
+      "The effect is strongest with rapid-acting insulin — be more cautious with the timing",
+      "In hot weather, insulin from any site may absorb faster than usual",
+      "If this happened: treat the hypo, then consider a slightly reduced next dose if the pattern repeats"
+    ]
+  },
+  result_cgm_false_low: {
+    title: "Possible false low from CGM",
+    exp: "CGMs can report falsely low readings from compression (lying on the sensor), during the first 24 hours of a new sensor, near the end of sensor life, or with certain medications. High-dose paracetamol/acetaminophen interferes with some sensor types.",
+    tips: [
+      "Always verify a hypoglycaemia reading with a clean-hands finger prick before treating",
+      "If symptoms match the reading: treat first, verify after",
+      "Compression artefacts (from lying on the sensor) typically resolve within minutes of moving",
+      "Check if you've taken high-dose paracetamol — this interferes with some CGM sensors",
+      "The first day of a new sensor is often less accurate — finger prick more frequently"
+    ]
+  },
+  result_heat_low: {
+    title: "Heat increasing insulin effect",
+    exp: "Hot weather increases both insulin absorption speed and the muscles' use of glucose during activity. When exercise and heat combine, the glucose-lowering effect is significantly amplified — leading to faster, deeper lows than expected.",
+    tips: [
+      "In hot weather, consider reducing insulin doses by 10–20% (with team guidance)",
+      "Be extra vigilant during and after exercise in warm conditions",
+      "Hydrate aggressively — dehydration and heat together worsen glycaemic instability",
+      "Carry more fast-acting glucose than usual on hot days",
+      "If using a pump: consider a temporary basal reduction during outdoor activity in heat"
+    ]
+  },
+  result_low_bp: {
+    title: "Low blood pressure and blood sugar overlap",
+    exp: "Hypotension and hypoglycaemia share similar symptoms — dizziness, weakness, confusion — and can sometimes occur together. Some diabetes medications (SGLT-2 inhibitors, in combination with certain BP meds) can lower blood pressure, amplifying the effect.",
+    tips: [
+      "Always verify with a blood glucose reading when you feel dizzy or faint",
+      "Sitting or lying down for a few minutes helps both BP and mild BG drops",
+      "Discuss your full medication list with your GP — some combinations affect BP and BG simultaneously",
+      "Dehydration worsens both conditions — increase fluid intake",
+      "If dizziness on standing is frequent, a postural hypotension check at your GP may be worthwhile"
+    ]
+  },
+  result_unknown_low: {
+    title: "Cause not identified — track and look for patterns",
+    exp: "Occasional lows without an obvious cause do happen, even with careful management. The key is to document as much as possible and review the data over time to find hidden patterns.",
+    tips: [
+      "Log: time, BG reading, last insulin or medication dose, last meal, activity, and anything unusual",
+      "Look for patterns: same time of day? After a particular food or activity? Certain day of the week?",
+      "If lows are fasting or overnight: basal or long-acting insulin may need reducing",
+      "A CGM download review with your team can reveal patterns that individual readings hide",
+      "Recurrent unexplained lows may indicate your overall insulin doses need reviewing downward"
+    ]
+  }
+};
+STR.ua = {
+  cover: {
+    badge: "Безкоштовний інтерактивний інструмент · 40+ можливих причин",
+    title: "Чому мій цукор у крові високий або низький?",
+    intro: "Коли показник не має пояснення, це рідко буває випадковістю. Цей покроковий помічник проведе вас через можливі причини — по одному простому запитанню за раз — і дасть чіткі практичні кроки, які можна обговорити зі своєю діабетичною командою.",
+    exampleLabel: "Наприклад, він може виявити:",
+    ex_icon: '🌸', ex_cat: 'hormones', ex_urgency: 'low',
+    ex_title: "Перименопауза — непередбачувана інсулінорезистентність",
+    ex_exp: "Коливання естрогену під час перименопаузи порушують обмін глюкози хаотично — тижні стабільного контролю змінюються тижнями резистентності без очевидної причини.",
+    ex_tips: [
+      "CGM тут особливо цінний — картина змінюється надто швидко для вимірювань лише з пальця",
+      "ЗГТ стабілізує естроген і часто робить цукор передбачуванішим — обговоріть це з лікарем"
+    ],
+    chips: ["🌅 Феномен ранкової зорі", "🍞 Стрибок після їжі", "😰 Реакція на стрес", "💉 Проблема з місцем ін'єкції", "🍷 Алкоголь і нічні гіпо"],
+    bullets: [
+      "Приватно — ваші відповіді залишаються на вашому пристрої й нікуди не надсилаються",
+      "Охоплює їжу, інсулін, гормони, хворобу, стрес, сон, фізичне навантаження та інше",
+      "Наприкінці — підсумок, який можна скопіювати, роздрукувати чи надіслати собі на пошту"
+    ],
+    startBtn: "Почати дослідження →",
+    note: "Займає близько хвилини · Працює на телефоні · Лише для навчання — не медична порада"
+  },
+
+  disclaimer_gate: {
+    title: "Перш ніж скористатися цим інструментом",
+    items: [
+      "Цей інструмент має лише освітню мету — це НЕ медична порада й не діагноз",
+      "Він не замінює вашу діабетичну команду, сімейного лікаря чи будь-якого іншого медичного працівника",
+      "Він не може врахувати вашу повну історію хвороби, ліки чи індивідуальні обставини",
+      "Ніколи не змінюйте ліки чи лікування, спираючись лише на цей інструмент — спершу завжди радьтеся зі своєю командою",
+      "Якщо ви зараз почуваєтеся серйозно погано — зупиніться й негайно зверніться по медичну допомогу"
+    ],
+    confirmation: "Продовжуючи, ви підтверджуєте, що розумієте: цей інструмент призначений лише для навчання й не замінює професійної медичної поради."
+  },
+  disclaimer_declined: {
+    title: "Жодних проблем",
+    exp: "Цей інструмент підходить не всім, і це цілком нормально. Якщо у вас є питання чи занепокоєння щодо цукру в крові, найкраще вам допоможуть ваш лікар, сімейний лікар або діабетична команда.",
+    tips: [
+      "Зверніться до своєї діабетичної команди через сімейну амбулаторію чи діабетичну клініку",
+      "У Великій Британії: гаряча лінія Diabetes UK — 0345 123 2399 (пн–пт, 9:00–18:00)",
+      "Якщо вам зараз погано: телефонуйте 111 (у Великій Британії) або 103 (в Україні), чи зверніться до найближчого приймального відділення"
+    ]
+  },
+
+  start: {
+    q: "Чи маєте ви наразі встановлений діагноз діабету?",
+    sub: "Цей інструмент створено для людей, яким уже діагностували діабет, або які відстежують незрозумілі зміни цукру в крові.",
+    opts: ["Так — у мене діагностований діабет", "Ні, або я не впевнений(-а)"]
+  },
+  no_diagnosis: {
+    title: "Спершу зверніться до лікаря",
+    exp: "Незвичні симптоми з боку цукру в крові — надмірна спрага, часте сечовипускання, сильна втома, розмите зір, незрозуміла втрата ваги — можуть бути ознаками недіагностованого діабету чи іншого стану. Підтвердити це може лише лікар за допомогою аналізу крові.",
+    tips: [
+      "Запишіться до сімейного лікаря й попросіть аналіз глюкози натще або HbA1c",
+      "У дітей чи молодих людей із раптовими тяжкими симптомами — терміново зверніться по медичну допомогу",
+      "Візьміть із собою нотатку про симптоми та коли вони почалися",
+      "Переддіабет і гестаційний діабет також можуть спричиняти підвищені показники"
+    ]
+  },
+  which_type: {
+    q: "Який тип діабету у вас?",
+    sub: "Це допоможе підлаштувати запитання — різні типи мають різні фактори ризику.",
+    opts: ["Тип 1 (T1D)", "Тип 2 (T2D)", "Гестаційний діабет", "LADA / Тип 1.5", "MODY, моногенний чи інший"]
+  },
+  high_or_low: {
+    q: "Ваш показник цукру зараз ВИСОКИЙ чи НИЗЬКИЙ?",
+    opts: ["⬆️  ВИСОКИЙ — вище мого цільового діапазону", "⬇️  НИЗЬКИЙ — нижче мого цільового діапазону"]
+  },
+
+  high_how_high: {
+    q: "Наскільки високий показник?",
+    sub: "Це допоможе оцінити, наскільки терміново потрібно діяти.",
+    opts: ["Трохи вище діапазону — до 12 ммоль/л (216 мг/дл)", "Помірно високий — 12–16 ммоль/л (216–288 мг/дл)", "Дуже високий — понад 16 ммоль/л (288 мг/дл), або я почуваюся погано"]
+  },
+  high_very_high_warning: {
+    title: "Дуже високий показник — дійте зараз",
+    exp: "Показник понад 16 ммоль/л (288 мг/дл) — особливо з такими симптомами, як нудота, блювання, біль у животі чи сплутаність — може вказувати на діабетичний кетоацидоз (ДКА) при T1/LADA або гіперосмолярний гіперглікемічний стан (ГГС) при T2. Обидва потребують невідкладної медичної допомоги.",
+    tips: [
+      "Негайно перевірте кетони крові, якщо у вас T1 або LADA: нижче 0,6 ммоль/л = норма; 0,6–1,4 ммоль/л = повторіть за 1 годину, ймовірно потрібен додатковий інсулін; 1,5–2,9 ммоль/л = терміново зв'яжіться з діабетичною командою або телефонуйте 111; 3,0 ммоль/л і вище = негайно до приймального відділення",
+      "Ознаки ДКА: нудота чи блювання, біль у животі, фруктовий запах з рота (як від ацетону), швидке чи глибоке дихання, сплутаність — за наявності будь-якої з них зверніться до приймального відділення",
+      "T1/LADA без симптомів ДКА і глюкозою понад 11 ммоль/л: перевірте кетони, введіть корекційну дозу й перевірте знову за 1 годину",
+      "Не займайтеся фізичними вправами, якщо кетони 1,5 ммоль/л і вище — навантаження погіршує ДКА",
+      "T2 на інсуліні: зв'яжіться з лікарем чи командою, якщо глюкоза лишається понад 15 ммоль/л попри корекційну дозу"
+    ],
+    continueLabel: "Я в порядку — продовжити пошук причини"
+  },
+  high_recent_food: { q: "Ви щось їли чи пили за останні 2–3 години?", opts: ["Так", "Ні"] },
+  high_food_carbs: {
+    q: "Ви з'їли більше вуглеводів, ніж зазвичай, або щось із високим ГІ?",
+    sub: "напр. білий хліб, рис, паста, випічка, солодощі, фруктовий сік, більша порція, ніж звичайно",
+    opts: ["Так — мабуть, більше, ніж зазвичай", "Я їв(-ла) як завжди, нічого незвичного"]
+  },
+  high_hidden_carbs: {
+    q: "Чи могли бути приховані вуглеводи, які ви не врахували?",
+    sub: "Соуси, заправки, ароматизовані напої, міксери для алкоголю, ресторанна їжа, продукти «без цукру» чи низьковуглеводні — усе це поширені винуватці",
+    opts: ["Можливо, так", "Ні — я цілком упевнений(-а)"]
+  },
+  high_insulin_check: {
+    q: "Чи використовуєте ви інсулін для контролю діабету?",
+    opts: ["Так — ін'єкції інсуліну (шприц-ручки)", "Так — інсулінова помпа", "Ні — дієта, таблетки, GLP-1 чи інше без інсуліну"]
+  },
+  high_missed_dose: {
+    q: "Ви ввели інсулін на цей прийом їжі чи корекційну дозу?",
+    opts: ["Ні — забув(-ла) або відклав(-ла)", "Так, ввів(-вела)"]
+  },
+  high_dose_correct: {
+    q: "Чи думаєте ви, що доза була розрахована правильно?",
+    sub: "Правильне співвідношення інсулін-вуглеводи? Ви врахували все з'їдене? Правильний фактор корекції?",
+    opts: ["Мабуть, ні — можливо, доза була замалою", "Думаю, доза була правильною"]
+  },
+  high_injection_site: {
+    q: "Чи здорове місце ін'єкції — без ущільнень чи затверділих ділянок?",
+    sub: "Ліпогіпертрофія (жирові ущільнення від повторних ін'єкцій) спричиняє непередбачуване всмоктування — інколи інсулін майже не потрапляє в кров",
+    opts: ["Є ущільнення, або я колов(-ла) у часто використовувану ділянку", "Місця виглядають нормально"]
+  },
+  high_insulin_freshness: {
+    q: "Чи ваш інсулін ще придатний — не прострочений і не перегрітий?",
+    sub: "Відкриті ручки/флакони служать ~28 днів; інсулін, залишений у гарячому авто чи на сонці, втрачає активність і може стати каламутним",
+    opts: ["Можливо, зіпсований — старий чи був у теплі", "Так, з ним усе гаразд"]
+  },
+  high_pump_check: {
+    q: "Чи є проблеми з помпою або інфузійним набором?",
+    sub: "Перегнута канюля, сигнал про закупорку, бульбашки повітря в трубці, набір, який давно час міняти — усе це може непомітно зупинити подачу інсуліну",
+    opts: ["Так — можлива проблема з помпою чи місцем", "Ні, усе виглядає гаразд"]
+  },
+  high_t2_meds: {
+    q: "Ви приймали свої ліки від діабету сьогодні за призначенням?",
+    opts: ["Ні — пропустив(-ла) чи відклав(-ла) дозу", "Так, прийняв(-ла) все"]
+  },
+  high_illness: {
+    q: "Чи почуваєтеся ви хоч трохи погано?",
+    sub: "Інфекція, застуда, зубний біль, інфекція сечових шляхів, травма, біль у горлі — навіть щось незначне запускає реакцію кортизолу, яка суттєво підвищує цукор",
+    opts: ["Так — я не на 100% здоровий(-а)", "Ні, почуваюся добре"]
+  },
+  high_stress: {
+    q: "Чи були ви останнім часом під значним стресом?",
+    sub: "Емоційний стрес (сварки, тиск на роботі, тривога, горе) чи фізичний стрес (біль, травма) підвищують кортизол і адреналін, які напряму піднімають цукор",
+    opts: ["Так — я був(-ла) у стресі", "Не особливо"]
+  },
+  high_hormones: {
+    q: "Ви жінка, і чи це період овуляції або дні перед місячними?",
+    sub: "Прогестерон у лютеїновій фазі (дні 15–28) спричиняє помітну інсулінорезистентність у багатьох жінок. Це одна з найменш усвідомлюваних причин високого цукру",
+    opts: ["Так — цей час підходить", "Не стосується / Ні"]
+  },
+  high_hormones_menopause: {
+    q: "Чи ви в перименопаузі або менопаузі?",
+    sub: "Коливання та зниження естрогену під час перименопаузи спричиняють непередбачувану інсулінорезистентність — часто взагалі без закономірності. Багато жінок помічають, що раніше стабільний контроль стає хаотичним у цей період",
+    opts: ["Так — я в перименопаузі або менопаузі", "Ні"]
+  },
+  high_hormones_contraception: {
+    q: "Чи приймаєте ви гормональну контрацепцію?",
+    sub: "Таблетки, пластир, імплант, гормональна спіраль (ВМС) чи ін'єкція — особливо прогестеронові типи можуть підвищувати інсулінорезистентність. Ефект суттєво різниться між людьми й типами контрацепції",
+    opts: ["Так — гормональна контрацепція (таблетки, імплант, ін'єкція, пластир чи спіраль)", "Ні / негормональна"]
+  },
+  high_growth_hormones: {
+    q: "Ви дитина чи підліток, або переживаєте активний стрибок росту?",
+    sub: "Гормон росту, що виділяється під час статевого дозрівання й фаз швидкого росту, напряму протидіє інсуліну — тобто потрібно набагато більше інсуліну для того самого ефекту. Нічні підйоми особливо поширені, бо більшість імпульсів гормону росту відбувається уві сні",
+    opts: ["Так — дитина, підліток чи зараз у фазі росту", "Ні"]
+  },
+  high_protein_fat: {
+    q: "Ви їли багату на білки чи жири їжу 3–6 годин тому?",
+    sub: "Печінка перетворює білки й жири на глюкозу протягом годин (глюконеогенез) — великий стейк, сирна тарілка чи жирна страва можуть спричинити повільний підйом задовго після їжі, навіть якщо вона була низьковуглеводною",
+    opts: ["Так — стейк, яйця, сир, молочне чи дуже жирна їжа", "Ні"]
+  },
+  high_caffeine: {
+    q: "Чи вжили ви сьогодні більше кофеїну, ніж зазвичай?",
+    sub: "Кава та енергетики стимулюють кортизол і адреналін, що може спричинити інсулінорезистентність — особливо натще або в поєднанні зі стресом",
+    opts: ["Так — більше кофеїну, ніж зазвичай", "Ні / я не вживаю кофеїн"]
+  },
+  high_sleep: {
+    q: "Ви погано або менше спали минулої ночі?",
+    sub: "Навіть одна ніч поганого сну суттєво підвищує кортизол і знижує чутливість до інсуліну — цукор натще може зрости на 1–3 ммоль/л лише через нестачу сну",
+    opts: ["Так — поганий чи короткий сон", "Ні, я спав(-ла) добре"]
+  },
+  high_exercise_type: {
+    q: "Ви нещодавно робили високоінтенсивні вправи? (HIIT, важкі ваги, спринти)",
+    sub: "Інтенсивні анаеробні вправи вивільняють адреналін і кортизол, які піднімають цукор. Це ПРОТИЛЕЖНЕ помірним вправам, що знижують цукор",
+    opts: ["Так — інтенсивні чи анаеробні вправи", "Ні / легкі чи помірні вправи"]
+  },
+  high_cgm_check: {
+    q: "Чи міг показник бути неточним?",
+    sub: "Сенсори CGM наприкінці терміну служби, брудні руки перед проколом пальця, швидка зміна глюкози (затримка сенсора) чи лежання на сенсорі можуть давати оманливі показники",
+    opts: ["Можливо — варто перевірити проколом пальця", "Ні — я вже перевірив(-ла)"]
+  },
+  high_dehydration: {
+    q: "Чи є у вас зневоднення — пили мало води сьогодні?",
+    sub: "Менше рідини в крові концентрує глюкозу, даючи вищі показники. Високий цукор також спричиняє часте сечовипускання, посилюючи зневоднення",
+    opts: ["Мабуть, так — п'ю недостатньо", "Ні, я добре пив(-ла) воду"]
+  },
+  high_temperature: {
+    q: "Ви перебуваєте в дуже спекотному місці або маєте гарячку?",
+    sub: "Сильна спека може впливати на всмоктування інсуліну. Гарячка напряму піднімає цукор — навіть невелика температура фактично є «хворобою»",
+    opts: ["Так — дуже спекотно, або в мене гарячка/температура", "Ні"]
+  },
+  high_altitude: {
+    q: "Ви нещодавно змінювали висоту? (літак, гори, високогірний курорт)",
+    sub: "Висота впливає на тиск повітря, що впливає на точність сенсора CGM (менше кисню = менш точні показники). Вона також може впливати на обмін глюкози",
+    opts: ["Так — нещодавно на висоті або в польоті", "Ні"]
+  },
+  high_blood_pressure: {
+    q: "Чи маєте ви високий тиск, або почуваєтеся незвично напруженим(-ою) чи тривожним(-ою)?",
+    sub: "Гіпертонія та тривалий серцево-судинний стрес можуть впливати на регуляцію цукру — і багато ліків від тиску взаємодіють з обміном глюкози",
+    opts: ["Так — високий тиск чи ліки від тиску", "Ні"]
+  },
+  high_dawn: {
+    q: "Це ранковий показник — до того, як щось з'їсти?",
+    sub: "Кортизол і гормон росту природно виділяються в ранні години (4–8 ранку), щоб підготувати тіло до дня — це піднімає цукор навіть без їжі",
+    opts: ["Так — натще чи ранковий показник", "Ні"]
+  },
+  high_somogyi: {
+    q: "Чи був у вас низький цукор уночі, або міг бути непоміченим?",
+    sub: "Ефект Сомоджі: непомічена нічна гіпо запускає викид глюкагону й адреналіну — що може спричинити значний підйом до ранку",
+    opts: ["Можливо — або я не впевнений(-а) щодо ночі", "Ні — нічні показники були в нормі"]
+  },
+
+  low_severity: {
+    q: "Наскільки низький показник?",
+    sub: "Це визначає, наскільки терміново треба діяти, перш ніж шукати причину. Настанова NHS: лікуйте будь-який показник нижче 4 ммоль/л.",
+    opts: [
+      "3,0–3,9 ммоль/л (54–70 мг/дл) — нижче діапазону, але я почуваюся нормально чи з легкими симптомами",
+      "Нижче 3,0 ммоль/л (54 мг/дл) — із симптомами (тремтіння, піт, сплутаність)",
+      "Тяжкий стан — сильна сплутаність, судоми, або непритомність / не може ковтати"
+    ]
+  },
+  low_emergency: {
+    title: "Тяжка гіпоглікемія — негайно телефонуйте 999",
+    exp: "Це невідкладний стан. Якщо людина не може безпечно ковтати, НЕ давайте їжу чи пиття. Негайно телефонуйте 999 (в Україні — 103). Якщо доступний глюкагон і є навчена людина, введіть його, чекаючи на швидку.",
+    tips: [
+      "Негайно телефонуйте 999 (в Україні — 103), якщо людина непритомна, має судоми чи не реагує",
+      "Покладіть її у відновлювальне положення, якщо непритомна, але дихає — відхиліть голову назад, підтримайте щелепу",
+      "ПРИТОМНА і може ковтати: дайте 15–20 г швидких вуглеводів — 5–6 таблеток декстрози, 4 мармеладки, 2 тюбики GlucoGel чи 150–200 мл недієтичного газованого напою",
+      "Якщо навчені: введіть глюкагон, чекаючи на допомогу — GlucaGen HypoKit (ін'єкція) чи Baqsimi (назальний спрей) — обидва підходять для непритомних",
+      "НЕ давайте їжу чи пиття тому, хто непритомний або не може ковтати",
+      "Залишайтеся з людиною, доки не приїде швидка або вона повністю не оговтається",
+      "Після відновлення: дайте перекус із довшими вуглеводами, щоб запобігти повторній гіпо"
+    ]
+  },
+  low_treat_mild: {
+    title: "Спершу вилікуйте гіпо — потім шукайте причину",
+    exp: "Будь-який показник нижче 4 ммоль/л потрібно лікувати зараз. Прийміть швидкі вуглеводи, зачекайте 10–15 хвилин, перевірте знову. Повернувшись у діапазон, можна шукати причину.",
+    tips: [
+      "Прийміть 15–20 г швидких вуглеводів ЗАРАЗ: 5–6 таблеток декстрози АБО 4 мармеладки АБО 150–200 мл недієтичного газованого напою чи чистого соку АБО 2 тюбики GlucoGel",
+      "Зачекайте 10–15 хвилин перед повторною перевіркою — не їжте більше в цей час",
+      "Якщо все ще нижче 4 ммоль/л через 10–15 хв: повторіть 15–20 г і перевірте знову",
+      "Уникайте шоколаду, печива чи молока — жир сповільнює всмоктування, і вони не піднімуть цукор достатньо швидко",
+      "Не перестарайтеся — це спричинить зворотний підйом"
+    ],
+    continueLabel: "Я вилікував(-ла) — тепер знайти причину"
+  },
+  low_treat_moderate: {
+    title: "Вилікуйте цю гіпо зараз — вона значна",
+    exp: "Значна гіпо з симптомами потребує негайних швидких вуглеводів. Не чекайте й не шукайте причину спершу — лікуйте зараз, потім знаходьте причину.",
+    tips: [
+      "Прийміть 15–20 г швидких вуглеводів негайно: 5–6 таблеток декстрози, 4 мармеладки, 150–200 мл недієтичного газованого напою чи чистого соку, або 2 тюбики GlucoGel",
+      "Перевірте знову за 10–15 хвилин — якщо все ще нижче 4 ммоль/л, повторіть 15–20 г",
+      "Скажіть комусь поряд, що у вас гіпо",
+      "Уникайте шоколаду, печива чи молока — вони діють надто повільно",
+      "Після відновлення: з'їжте перекус із довшими вуглеводами (крекери, скибка хліба), щоб запобігти повторному падінню",
+      "Якщо не можете втримати вуглеводи чи почуваєтеся дуже погано: телефонуйте 999 (в Україні — 103)"
+    ],
+    continueLabel: "Я вилікував(-ла) — тепер знайти причину"
+  },
+  low_insulin_check: {
+    q: "Чи використовуєте ви інсулін (ін'єкції чи помпа)?",
+    opts: ["Так — ін'єкції інсуліну", "Так — інсулінова помпа", "Ні — лише дієта, таблетки чи GLP-1"]
+  },
+  low_too_much_insulin: {
+    q: "Чи могли ви ввести забагато інсуліну?",
+    sub: "Надмірна корекція високого, неправильне співвідношення вуглеводів, накладання доз без урахування активного інсуліну (IOB), випадкове подвійне введення",
+    opts: ["Так — мабуть, передозував(-ла)", "Ні — доза здавалася правильною"]
+  },
+  low_t2_meds: {
+    q: "Чи приймаєте ви сульфонілсечовину або глініди? (гліпізид, глібенкламід, гліклазид, репаглінід тощо)",
+    sub: "Ці типи ліків стимулюють вивільнення інсуліну незалежно від рівня цукру — вони можуть спричинити гіпо, якщо пропустити чи відкласти прийом їжі",
+    opts: ["Так — я приймаю один із них", "Ні / я не впевнений(-а)"]
+  },
+  low_food_timing: {
+    q: "Ви відклали, пропустили чи з'їли значно менше, ніж планували?",
+    sub: "Прийняти інсулін чи сульфонілсечовину, а потім не з'їсти достатньо — чи поїсти пізніше, ніж очікувалося — одна з найпоширеніших причин гіпо",
+    opts: ["Так — відклав/пропустив прийом їжі чи з'їв значно менше", "Ні — я поїв(-ла) за планом"]
+  },
+  low_exercise: {
+    q: "Ви нещодавно займалися спортом чи більше, ніж зазвичай?",
+    sub: "Фізичне навантаження суттєво підвищує чутливість до інсуліну — гіпо може статися під час, одразу після, або навіть за 12–24 години, коли м'язи поповнюють глікоген. Навіть довга прогулянка рахується",
+    opts: ["Так — займався сьогодні чи вчора", "Ні"]
+  },
+  low_exercise_type: {
+    q: "Який це був тип навантаження?",
+    opts: ["Помірне / аеробне — ходьба, велосипед, плавання, йога", "Високоінтенсивне / анаеробне — HIIT, важкі ваги, спринти"]
+  },
+  low_alcohol: {
+    q: "Чи вживали ви алкоголь за останні 8 годин — зокрема вночі?",
+    sub: "Алкоголь блокує вивільнення глюкози печінкою, коли цукор падає. Це вимикає природний захисний механізм і може спричинити тяжкі, відкладені гіпо — особливо вночі уві сні",
+    opts: ["Так — я вживав(-ла) алкоголь", "Ні"]
+  },
+  low_hormones: {
+    q: "Ви жінка, і чи це перші кілька днів місячних?",
+    sub: "Коли естроген зростає з початком менструації, багато жінок відчувають значне підвищення чутливості до інсуліну — та сама доза тепер спричиняє більше падіння, ніж зазвичай",
+    opts: ["Так — місячні щойно почалися", "Не стосується / Ні"]
+  },
+  low_hormones_menopause: {
+    q: "Чи ви в перименопаузі або менопаузі?",
+    sub: "Під час перименопаузи рівень естрогену падає непередбачувано — коли естроген знижується, чутливість до інсуліну часто зростає, спричиняючи гіпо. Це може хаотично чергуватися з періодами високого цукру",
+    opts: ["Так — перименопауза чи менопауза", "Ні"]
+  },
+  low_hormones_contraception: {
+    q: "Чи ви нещодавно припинили або змінили гормональну контрацепцію?",
+    sub: "Припинення прогестеронової контрацепції (імплант, ін'єкція Depo, міні-пілі) часто тимчасово підвищує чутливість до інсуліну, коли ефект прогестерону минає — інколи протягом кількох тижнів",
+    opts: ["Так — нещодавно припинив(-ла) чи змінив(-ла) контрацепцію", "Ні"]
+  },
+  low_gastroparesis: {
+    q: "Чи маєте ви гастропарез, або з'їли дуже жирну чи багату на білки їжу?",
+    sub: "Повільне спорожнення шлунка означає, що їжа перетравлюється пізніше, ніж очікувалося — інсулін діє вчасно, а глюкоза з їжі надходить за години. Класична причина гіпо з подальшим пізнішим підйомом",
+    opts: ["Так — можливо, сповільнене травлення", "Ні"]
+  },
+  low_weight_change: {
+    q: "Чи схудли ви нещодавно або значно змінили харчування?",
+    sub: "Втрата ваги — особливо абдомінального жиру — суттєво підвищує чутливість до інсуліну. Дози, що працювали раніше, тепер можуть бути завеликими",
+    opts: ["Так — схуд(-ла) чи їм зовсім інакше", "Ні"]
+  },
+  low_hot_bath: {
+    q: "Чи приймали ви гарячу ванну, сауну чи гарячий душ невдовзі після ін'єкції?",
+    sub: "Тепло різко посилює кровообіг у місцях ін'єкцій, спричиняючи швидке всмоктування інсуліну — доза діє набагато швидше й сильніше, ніж очікувалося",
+    opts: ["Так — гаряча ванна чи сауна після ін'єкції", "Ні"]
+  },
+  low_cgm_check: {
+    q: "Чи може це бути хибно низький показник вашого CGM?",
+    sub: "Компресійні гіпо (лежання на сенсорі), сенсор наприкінці служби, перший день нового сенсора чи певні ліки (парацетамол) можуть давати хибно низькі показники",
+    opts: ["Можливо — я не перевіряв(-ла) проколом пальця", "Я перевірив(-ла) проколом пальця — цукор справді низький"]
+  },
+  low_temperature: {
+    q: "Ви перебуваєте в спекотному місці або займалися спортом у спеку?",
+    sub: "Тепло підвищує і швидкість всмоктування інсуліну, і ефективність вправ — поєднання значно посилює цукрознижувальний ефект",
+    opts: ["Так — спека чи вправи в спеку", "Ні"]
+  },
+  low_blood_pressure: {
+    q: "Чи маєте ви низький тиск, або відчували запаморочення чи слабкість останнім часом?",
+    sub: "Гіпотонія та гіпоглікемія можуть відчуватися схоже й інколи виникають разом. Деякі ліки від тиску також впливають на регуляцію глюкози",
+    opts: ["Так — низький тиск чи запаморочення", "Ні"]
+  },
+
+  result_carb_load: {
+    title: "Стрибок після їжі — вуглеводне навантаження",
+    exp: "Продукти з високим ГІ чи більша порція вуглеводів можуть підняти цукор швидше, ніж встигає інсулін, особливо якщо час був невдалим. Це одна з найпоширеніших причин підйому після їжі.",
+    tips: [
+      "Розгляньте попередній болюс (ін'єкцію за 15–20 хвилин до їжі), щоб збігтися з підйомом вуглеводів",
+      "Поєднуйте вуглеводи з білками, жиром і клітковиною, щоб сповільнити всмоктування й згладити стрибок",
+      "Спробуйте альтернативи з нижчим ГІ — замініть білий рис на басматі, білий хліб на житній на заквасці",
+      "Перегляньте співвідношення інсулін-вуглеводи, якщо це повторюється з тими самими продуктами"
+    ]
+  },
+  result_hidden_carbs: {
+    title: "Приховані вуглеводи",
+    exp: "Приховані вуглеводи в соусах, заправках, продуктах «без цукру» чи низьковуглеводних, ресторанній їжі, смузі та ароматизованій каві — одна з найпоширеніших причин незрозумілих підйомів. Вуглеводи в ресторанних порціях сумнозвісно важко оцінити.",
+    tips: [
+      "Читайте етикетки — навіть «здорові» чи «дієтичні» продукти часто містять несподіваний цукор",
+      "Ресторанні страви легко можуть мати у 2–3 рази більше вуглеводів, ніж домашній аналог",
+      "Міксери для алкоголю, ароматизована кава й фруктові соки — особливо приховані винуватці",
+      "Якщо ресторанна страва щоразу дає стрибок, наступного разу можна додати невелику додаткову корекцію"
+    ]
+  },
+  result_missed_dose: {
+    title: "Пропущена чи відкладена доза інсуліну",
+    exp: "Без інсуліну глюкоза з їжі — чи фонове вивільнення глюкози печінкою — накопичується в крові. Навіть відкладена доза (введена на 30+ хвилин пізніше) може суттєво знизити ефективність інсуліну.",
+    tips: [
+      "Введіть корекційну дозу зараз, використовуючи свій фактор корекції (за сумнівів звіртеся з командою)",
+      "Не намагайтеся «наздогнати» подвійною дозою — це загрожує тяжкою зворотною гіпо",
+      "Налаштуйте нагадування на телефоні для інсуліну до їжі, якщо забуваєте регулярно",
+      "Якщо на помпі: перевірте історію базалу на випадок, якщо проблема триває"
+    ]
+  },
+  result_miscalculation: {
+    title: "Помилка розрахунку інсуліну",
+    exp: "Неправильне співвідношення інсулін-вуглеводи чи недооцінка вуглеводів у страві трапляються дуже часто, особливо з ресторанною їжею, змішаними стравами чи незнайомими рецептами. Навіть невеликі помилки накопичуються за прийом їжі.",
+    tips: [
+      "Занотуйте цю страву й підйом, щоб наступного разу скоригувати співвідношення для цього типу їжі",
+      "Застосунок для підрахунку вуглеводів (Carbs & Cals, MyFitnessPal) дає точніші дані",
+      "Ваше співвідношення може змінюватися залежно від часу доби — багатьом потрібно більше інсуліну на вуглевод зранку",
+      "Якщо помилки часті, огляд харчування й інсуліну з командою може допомогти"
+    ]
+  },
+  result_injection_site: {
+    title: "Проблема з місцем ін'єкції (ліпогіпертрофія)",
+    exp: "Жирові ущільнення від повторних ін'єкцій у те саме місце всмоктують інсулін непередбачувано — інколи майже нічого не потрапляє, інколи вивільняється раптовим викидом. Це поширеніше, ніж багато хто думає, і спричиняє значну мінливість цукру.",
+    tips: [
+      "Систематично чергуйте місця ін'єкцій — створіть схему по животу, потім по стегнах",
+      "Уникайте будь-якої ділянки з видимими ущільненнями чи незвичною твердістю",
+      "Ліпогіпертрофія розсмоктується місяцями, якщо припинити використання місця — будьте терплячі",
+      "Попросіть діабетичну медсестру оглянути ваші місця ін'єкцій на наступному прийомі"
+    ]
+  },
+  result_bad_insulin: {
+    title: "Зіпсований інсулін",
+    exp: "Інсулін, що прострочений, був у теплі чи неправильно зберігався, втрачає активність і не діятиме як очікувалося. Швидкий інсулін не має бути каламутним — якщо він такий, він зіпсований.",
+    tips: [
+      "Почніть нову ручку чи флакон і порівняйте ефект",
+      "Ніколи не залишайте інсулін у гарячому авто чи на прямому сонці — навіть 20 хвилин можуть його зіпсувати",
+      "Відкритий інсулін можна зберігати за кімнатної температури (нижче 25°C) до 28–30 днів",
+      "Запасний/невідкритий інсулін тримайте в холодильнику за 2–8°C — але ніколи не заморожуйте",
+      "Каламутний швидкий інсулін = негайно викиньте"
+    ]
+  },
+  result_pump_issue: {
+    title: "Проблема з помпою чи інфузійним набором",
+    exp: "Перегнута канюля, закупорений набір, бульбашка повітря чи місце, яке давно час міняти, можуть повністю зупинити подачу інсуліну — часто непомітно, без явного сигналу. Це дуже поширена причина швидких незрозумілих підйомів у користувачів помп.",
+    tips: [
+      "Замініть інфузійний набір і місце зараз — не намагайтеся налагодити поточний набір",
+      "Введіть корекційну дозу шприц-ручкою, щоб негайно обійти помпу",
+      "Обережно заправте новий набір, щоб видалити повітря",
+      "Перевірте журнал болюсів і базалу помпи на пропущені чи перервані подачі",
+      "T1/LADA: негайно перевірте кетони крові — понад 1,5 ммоль/л терміново зв'яжіться з командою чи телефонуйте 111; понад 3,0 ммоль/л — до приймального відділення. Відмова помпи може швидко спричинити ДКА — не чекайте, чи цукор спаде сам"
+    ]
+  },
+  result_missed_meds: {
+    title: "Пропущені чи відкладені ліки",
+    exp: "Пропуск чи відкладання таблеток від діабету означає, що їхній цукрознижувальний ефект відсутній чи знижений на цей проміжок. Метформін та інгібітори SGLT-2 також мають ширші метаболічні ефекти, що не відновлюються миттєво.",
+    tips: [
+      "Прийміть пропущену дозу, щойно згадаєте — хіба що вже майже час наступної дози",
+      "Ніколи не подвоюйте для компенсації — звіртеся з інструкцією до ліків",
+      "Органайзер для таблеток чи застосунок для ліків допоможе уникнути повторення",
+      "Якщо часто забуваєте, обговоріть із лікарем простіший режим"
+    ]
+  },
+  result_illness: {
+    title: "Хвороба чи інфекція, що піднімає цукор",
+    exp: "Будь-яка хвороба — навіть легка застуда, зубний біль, інфекція сечових шляхів чи невелика рана — запускає стресову реакцію: виділяються кортизол і адреналін, які напряму піднімають цукор. Це може відбуватися, навіть якщо ви не їсте. Інфекції часто дають різкі стрибки.",
+    tips: [
+      "Ніколи не припиняйте інсулін — навіть якщо не можете їсти. Під час хвороби тіло вивільняє більше глюкози, і вам, імовірно, потрібно більше інсуліну, а не менше",
+      "T1/LADA: перевіряйте кетони крові, якщо цукор понад 11 ммоль/л. Кетони 1,5–2,9 ммоль/л = терміново зв'яжіться з командою чи телефонуйте 111; 3,0 ммоль/л і вище = до приймального відділення",
+      "Перевіряйте цукор кожні 2–4 години під час хвороби; кетони — кожні 2 години, якщо підвищені",
+      "Пийте багато рідини — щонайменше 100 мл на годину (вода чи напої без цукру), якщо немає блювання",
+      "T1/LADA: під час хвороби може знадобитися на 10–30% більше швидкого інсуліну — дотримуйтесь правил на день хвороби чи зв'яжіться з командою",
+      "T2 на таблетках: зв'яжіться з лікарем чи командою, якщо цукор стабільно понад 15 ммоль/л",
+      "Зверніться до приймального відділення чи телефонуйте 999 (в Україні — 103), якщо блюєте й не можете втримати рідину, кетони зростають попри додатковий інсулін, чи почуваєтеся дуже погано"
+    ]
+  },
+  result_stress: {
+    title: "Реакція на стрес (викид кортизолу)",
+    exp: "Фізичний чи емоційний стрес запускає викид кортизолу й адреналіну, які напряму піднімають цукор. Це може статися від тиску на роботі, сварки, тривоги, очікування складної події, болю — чи навіть перегляду чогось страшного.",
+    tips: [
+      "Це фізіологічна реакція — а не щось, що ви зробили не так",
+      "Деяким людям потрібна невелика додаткова корекція в особливо стресові періоди",
+      "Хронічний стрес потребує іншого підходу — не лише коригування доз",
+      "Такі стратегії, як дихання по квадрату, вправи й добрий сон, помітно знижують кортизол у довгостроковій перспективі",
+      "Якщо стрес постійно впливає на цукор, обговоріть із командою — може допомогти тимчасове підвищення базалу"
+    ]
+  },
+  result_hormones_high: {
+    title: "Гормональна інсулінорезистентність (менструальний цикл)",
+    exp: "Прогестерон у другій половині менструального циклу (дні 15–28) спричиняє значну інсулінорезистентність у багатьох жінок із діабетом. Дні перед місячними — і навколо овуляції — часто найскладніші для контролю цукру.",
+    tips: [
+      "Відстежуйте цикл разом із цукром, щоб виявити свою особисту закономірність",
+      "Багатьом жінкам потрібно на 10–30% більше інсуліну в лютеїновій фазі (друга половина циклу)",
+      "Застосунки на кшталт Clue чи Flo допоможуть зіставити цикл і показники цукру",
+      "Обговоріть протокол гормонального дозування з діабетичною командою, якщо це стабільно",
+      "Це зазвичай минає з початком місячних — потреба в інсуліні може різко впасти"
+    ]
+  },
+  result_menopause_high: {
+    title: "Перименопауза чи менопауза — непередбачувана інсулінорезистентність",
+    exp: "Коливання та зниження естрогену під час перименопаузи порушують обмін глюкози складно й хаотично. На відміну від регулярного циклу, де закономірності певною мірою передбачувані, перименопаузальні коливання хаотичні — тижні стабільного контролю змінюються тижнями резистентності без видимої причини. Після менопаузи стабільно нижчий естроген зазвичай підвищує загальну інсулінорезистентність.",
+    tips: [
+      "Відстежуйте цукор тижнями й місяцями — перименопауза робить порівняння день-у-день ненадійними",
+      "ЗГТ (замісна гормональна терапія) стабілізує естроген і часто суттєво покращує передбачуваність цукру — обговоріть із лікарем чи фахівцем із менопаузи",
+      "CGM особливо цінний у цей період — картина змінюється надто швидко для моніторингу лише з пальця",
+      "Потреба в інсуліні може різко змінюватися за тижні; коригуйте дози повільно й перевіряйте перед великими змінами",
+      "Це клінічно реальний, але недостатньо обговорюваний виклик — наполягайте на спільному огляді діабетичної команди та фахівця з менопаузи"
+    ]
+  },
+  result_contraception_high: {
+    title: "Гормональна контрацепція, що підвищує інсулінорезистентність",
+    exp: "Прогестеронова контрацепція — міні-пілі, імплант (Nexplanon), ін'єкція Depo-Provera та деякі комбіновані таблетки — може підвищувати інсулінорезистентність і цукор у деяких жінок. Ін'єкція Depo зазвичай має найпомітніший ефект. Дія дуже різниться між людьми й типами контрацепції.",
+    tips: [
+      "Depo-Provera (прогестеронова ін'єкція) зазвичай має найсильніший вплив на цукор",
+      "Імпланти (Nexplanon) — одні жінки повідомляють про значні зміни, інші — жодних",
+      "Комбіновані таблетки з вищим вмістом естрогену можуть впливати менше, ніж суто прогестеронові методи",
+      "Якщо ви нещодавно почали нову контрацепцію й помітили зміни цукру, обговоріть зміну типу з лікарем",
+      "Негормональні варіанти (мідна спіраль, презервативи, діафрагма) не впливають на цукор",
+      "Відстежуйте цукор до й після початку нової контрацепції, щоб виявити свою реакцію"
+    ]
+  },
+  result_growth_hormones: {
+    title: "Гормон росту — статеве дозрівання й стрибки росту",
+    exp: "Гормон росту виділяється великими імпульсами уві сні протягом дитинства й підліткового віку й напряму протидіє інсуліну — тобто потрібно значно більше інсуліну для того самого ефекту. Підліткам зазвичай потрібні набагато вищі дози, особливо вночі й рано вранці. Це нормальна фізіологія, а не невдача в контролі.",
+    tips: [
+      "Потреба в інсуліні під час статевого дозрівання й активних стрибків росту може зрости на 30–50% чи більше",
+      "Нічні й ранкові підйоми особливо поширені — більшість гормону росту виділяється уві сні",
+      "Частіші перегляди доз украй важливі у фази росту — не чекайте щорічного прийому",
+      "Це стабілізується із завершенням росту (зазвичай середина підліткового віку в дівчат, кінець — у хлопців)",
+      "Батькам: цей етап справді складний і не спричинений поганим контролем чи недотриманням — будьте терплячі й тісно співпрацюйте з дитячою діабетичною командою"
+    ]
+  },
+  result_gluconeogenesis: {
+    title: "Глюконеогенез — білки й жири перетворюються на глюкозу",
+    exp: "Печінка перетворює надлишок харчових білків і жирів на глюкозу протягом 3–6+ годин після їжі. Багата на білки страва (стейк, яйця, багато молочного) чи дуже жирна їжа можуть спричинити повільний, стійкий підйом цукру за години — навіть якщо вуглеводів у страві майже не було.",
+    tips: [
+      "Це особливо актуально на низьковуглеводних чи карнівор-дієтах",
+      "Розгляньте невеликий подовжений болюс («dual-wave» на помпах) після дуже білкових страв",
+      "Підйом повільніший і нижчий, ніж від вуглеводів — уникайте надмірної корекції",
+      "Обережно експериментуйте — додайте 10–15% інсуліну для дуже білкових страв (за настановою команди)",
+      "Занотуйте страву й час, щоб знайти свою закономірність"
+    ]
+  },
+  result_caffeine: {
+    title: "Чутливість до кофеїну",
+    exp: "Кофеїн стимулює кортизол і адреналін, що може спричиняти інсулінорезистентність у чутливих людей. Ефект сильніший натще, після поганого сну чи в поєднанні зі стресом. Енергетики додають ще й прихований цукор.",
+    tips: [
+      "Спробуйте пити каву з їжею чи після неї, а не натще",
+      "Одні люди набагато чутливіші до кофеїну, ніж інші — поекспериментуйте, зменшуючи й спостерігаючи",
+      "Енергетики: подвійна проблема — кофеїн І часто значний прихований цукор",
+      "Ефект посилюється, коли ви ще й у стресі чи недоспали"
+    ]
+  },
+  result_sleep: {
+    title: "Поганий сон, що піднімає цукор",
+    exp: "Навіть одна ніч короткого чи переривчастого сну суттєво підвищує кортизол, знижує чутливість до інсуліну й посилює апетит — особливо до вуглеводів. У декого цукор натще зростає на 1–3 ммоль/л після поганої ночі.",
+    tips: [
+      "Сон — повноправна частина контролю діабету, така ж важлива, як харчування",
+      "Наступного дня після поганої ночі вам може знадобитися трохи більше інсуліну",
+      "Стабільний графік сну (однаковий час засинання й пробудження) допомагає регулювати кортизол",
+      "Якщо безсоння хронічне, зверніться до лікаря — можуть допомогти мелатонін чи КПТ-Б",
+      "Екрани перед сном, алкоголь і кофеїн у другій половині дня погіршують якість сну"
+    ]
+  },
+  result_intense_exercise: {
+    title: "Анаеробні вправи — стрибок від адреналіну",
+    exp: "Високоінтенсивні вправи (HIIT, важкі ваги, спринти) наповнюють тіло адреналіном і кортизолом, які тимчасово піднімають цукор — інколи різко. Це протилежне помірним аеробним вправам, що знижують цукор. Стрибок зазвичай минає за 1–2 години.",
+    tips: [
+      "Не корегуйте надмірно під час стрибка — зворотна гіпо реальна, коли адреналін минає",
+      "Зачекайте 1–2 години після інтенсивних вправ перед корекцією, хіба що цукор дуже високий",
+      "10–15-хвилинна помірна прогулянка після інтенсивних вправ допоможе безпечно знизити цукор",
+      "Дехто робить невелику корекцію через 1–2 години після тренування, якщо цукор ще високий",
+      "Обговоріть з командою узгодження часу тренувань, їжі та інсуліну"
+    ]
+  },
+  result_cgm_high: {
+    title: "Проблема точності CGM чи глюкометра",
+    exp: "CGM здебільшого дуже точні, але можуть давати оманливо високі показники наприкінці служби сенсора, під час швидкої зміни цукру (де затримка сенсора означає, що реальне значення вже нижче) чи коли дані калібрування застаріли.",
+    tips: [
+      "Завжди перевіряйте несподіваний високий показник проколом пальця з чистими руками перед корекцією",
+      "Ретельно мийте й сушіть руки перед проколом — залишки фруктів можуть додати 2–3 ммоль/л",
+      "Сенсори в останні 1–2 дні носіння часто стають менш надійними",
+      "«Затримка» CGM під час швидких підйомів означає, що ваш реальний цукор може вже бути нижчим за показаний",
+      "Якщо неточність стабільна: спробуйте новий сенсор і перекалібруйте"
+    ]
+  },
+  result_dehydration: {
+    title: "Зневоднення концентрує глюкозу крові",
+    exp: "Коли ви зневоднені, менше рідини в крові означає, що глюкоза концентрованіша — даючи вищий показник, навіть якщо загальна глюкоза не змінилася. Високий цукор також спричиняє надмірне сечовипускання, що погіршує зневоднення — замкнене коло.",
+    tips: [
+      "Випийте велику склянку води зараз і продовжуйте пити протягом дня",
+      "Прагніть 2–2,5 літра на день — більше в спеку, після вправ чи коли цукор високий",
+      "Не пийте солодкі напої для регідратації — використовуйте воду чи електролітні таблетки (без цукру)",
+      "Кофеїн і алкоголь погіршують зневоднення — компенсуйте їх водою"
+    ]
+  },
+  result_temperature_high: {
+    title: "Вплив спеки на цукор та інсулін",
+    exp: "Сильна спека прискорює кровообіг у місцях ін'єкцій, спричиняючи швидше всмоктування інсуліну — що парадоксально може призвести до початкового підйому (якщо ви корегували, очікуючи повільного всмоктування), а потім до відкладеної гіпо. Гарячка піднімає цукор напряму як частина імунної реакції.",
+    tips: [
+      "У спеку будьте обережніші з корекційними дозами — інсулін діятиме швидше",
+      "Тримайте інсулін у прохолоді й подалі від прямого сонця — ніколи не залишайте в гарячому авто",
+      "Якщо у вас гарячка, ставтеся до цього як до хвороби (тіло з чимось бореться)",
+      "Пийте достатньо — спека й високий цукор разом спричиняють значну втрату рідини"
+    ]
+  },
+  result_altitude: {
+    title: "Висота й тиск повітря впливають на показники",
+    exp: "Висота знижує вміст кисню в атмосфері, що впливає на електрохімічні сенсори CGM — показники можуть відхилятися на 1–2 ммоль/л чи більше. Обмін глюкози також дещо змінюється на висоті через фізіологічну стресову реакцію.",
+    tips: [
+      "Частіше перевіряйте проколом пальця на висоті (польоти, гори, лижі)",
+      "Не покладайтеся лише на показники CGM на великій висоті — стабільно перевіряйте",
+      "Гірська хвороба — це фізичний стрес, що піднімає кортизол і може підняти цукор",
+      "За можливості дайте день-два на акліматизацію до нової висоти",
+      "Ваш CGM має перекалібруватися й покращити точність за 24–48 годин на тій самій висоті"
+    ]
+  },
+  result_blood_pressure_high: {
+    title: "Взаємодія тиску й цукру",
+    exp: "Високий тиск та інсулінорезистентність часто співіснують і посилюють одне одного. Деякі ліки від тиску — особливо тіазидні діуретики й певні бета-блокатори — можуть підвищувати цукор чи притупляти реакцію тіла на гіпоглікемію.",
+    tips: [
+      "Перевірте список ліків від тиску з фармацевтом чи лікарем на предмет цукропідвищувальних ефектів",
+      "Бета-блокатори можуть маскувати симптоми гіпо — будьте особливо пильні з CGM чи регулярними перевірками",
+      "Зменшення солі, керування стресом і регулярні помірні вправи допомагають і тиску, і цукру",
+      "Обговоріть на наступному огляді, чи впливають ваші ліки від тиску на контроль цукру"
+    ]
+  },
+  result_dawn: {
+    title: "Феномен ранкової зорі — ранковий підйом кортизолу",
+    exp: "Приблизно між 4 і 8 ранку тіло природно вивільняє кортизол і гормон росту, щоб підготуватися до дня. У людей із діабетом цей гормональний викид піднімає цукор — навіть без їжі. Це нормальний фізіологічний процес, а не помилка.",
+    tips: [
+      "T1/LADA на помпі: підвищте базальну швидкість між 4–7 ранку, щоб збігтися з підйомом кортизолу",
+      "T1/LADA на ін'єкціях: перенесення тривалого інсуліну на перед сном (замість ранку) може допомогти",
+      "T2: низьковуглеводний чи білковий сніданок може зменшити стрибок після сніданку",
+      "Занотуйте показники натще за 1–2 тижні, щоб підтвердити закономірність перед зміною доз",
+      "Це феномен ранкової зорі — відмінний від ефекту Сомоджі (зворотний підйом від нічної гіпо)"
+    ]
+  },
+  result_somogyi: {
+    title: "Ефект Сомоджі — зворотний підйом від нічної гіпо",
+    exp: "Непомічена гіпо вночі спричиняє викид контррегуляторних гормонів (глюкагон, адреналін, кортизол), які перевищують потрібне й дають підйом до ранку. Ключова підказка: збільшення нічної дози погіршує це, а не покращує.",
+    tips: [
+      "Поставте будильник на 3 ночі, щоб перевірити цукор кілька ночей і підтвердити закономірність",
+      "CGM зі сповіщеннями про нічні гіпо — найкращий спосіб виявити й запобігти цьому",
+      "Якщо підтвердилося: зменште нічний базал чи тривалий інсулін — а не збільшуйте",
+      "Це протилежне феномену ранкової зорі — важлива різниця для лікування",
+      "Поділіться показниками о 3 ночі з командою перед зміною доз"
+    ]
+  },
+  result_unknown_high: {
+    title: "Причину не знайдено — занотуйте й шукайте закономірності",
+    exp: "На цукор впливають десятки взаємодіючих чинників. Поодинокі незрозумілі показники — це нормально навіть за чудового контролю. Головне — ретельно їх записувати й шукати повторювані закономірності з часом.",
+    tips: [
+      "Занотуйте: час, показник, останній прийом їжі (що й скільки), останню дозу, активність, стрес, сон і все незвичне",
+      "Шукайте закономірності: той самий час доби? Той самий день тижня? Після певних продуктів?",
+      "Огляд щоденника діабету раз на два тижні часто виявляє закономірності, приховані в окремих показниках",
+      "Поділіться даними з командою на наступному прийомі — розгляньте огляд завантаження CGM",
+      "T1/LADA зі стійкими незрозумілими підйомами: розгляньте тест на антитіла чи перевірку щитоподібної залози (щитоподібка впливає на чутливість до інсуліну)"
+    ]
+  },
+
+  result_too_much_insulin: {
+    title: "Забагато інсуліну",
+    exp: "Введення більше інсуліну, ніж потрібно — через надмірну корекцію, неправильне співвідношення вуглеводів, накладання доз (корекція до завершення дії попередньої) чи випадкове подвійне введення — найпоширеніша причина гіпоглікемії в користувачів інсуліну.",
+    tips: [
+      "Перегляньте свій фактор корекції — якщо часто перекорегуєте, його, можливо, треба скоригувати",
+      "Швидкий інсулін лишається активним 3–4 години — ніколи не корегуйте без урахування IOB (активного інсуліну)",
+      "Використовуйте калькулятор IOB помпи чи застосунку CGM, якщо доступний",
+      "Обговоріть співвідношення вуглеводів на наступному прийомі, якщо поточне стабільно спричиняє гіпо"
+    ]
+  },
+  result_sulfonylurea: {
+    title: "Гіпоглікемія від ліків",
+    exp: "Сульфонілсечовина й глініди стимулюють вивільнення інсуліну незалежно від рівня цукру. Це означає, що гіпо може статися, якщо ви з'їли менше, ніж зазвичай, відклали прийом їжі чи були активнішими — ліки не підлаштовуються автоматично.",
+    tips: [
+      "Завжди їжте вчасно й регулярно, приймаючи ці ліки",
+      "Завжди носіть із собою швидкі вуглеводи — це обов'язково",
+      "Скажіть родині, близьким друзям і колегам, що у вас діабет і як допомогти",
+      "Обговоріть із лікарем, якщо гіпо часті — дозу часто можна безпечно зменшити",
+      "Розгляньте питання переходу на клас ліків із нижчим ризиком гіпо (напр. DPP-4 чи SGLT-2)"
+    ]
+  },
+  result_missed_meal: {
+    title: "Відкладений чи пропущений прийом їжі після інсуліну чи ліків",
+    exp: "Прийняти інсулін чи сульфонілсечовину, а потім поїсти пізніше, ніж планувалося — чи з'їсти значно менше — залишає ліки без глюкози для переробки, спричиняючи падіння цукру. Це одна з найпростіших причин гіпо.",
+    tips: [
+      "Завжди їжте протягом 15–20 хвилин після швидкого інсуліну (якщо не використовуєте інсулін після їжі)",
+      "Якщо прийом їжі неминуче відкладається: розгляньте введення інсуліну після перших кількох шматків",
+      "Тримайте аварійні перекуси під рукою — у сумці, на столі, біля ліжка",
+      "Якщо час прийомів їжі непередбачуваний, обговоріть стратегії «гнучкого болюсу» з командою"
+    ]
+  },
+  result_exercise_low: {
+    title: "Гіпо від навантаження (аеробне / помірне)",
+    exp: "Помірні аеробні вправи підвищують чутливість до інсуліну й змушують м'язи поглинати глюкозу напряму без інсуліну. Це може спричинити гіпо під час вправ, одразу після, чи навіть за 12–24 години, коли м'язи поповнюють запаси глікогену.",
+    tips: [
+      "Для запланованих помірних вправ зменште попередній болюс на 20–30% (чи зменште базал на помпі)",
+      "Перевірте цукор перед початком; якщо нижче 6 ммоль/л (108 мг/дл), спершу з'їжте 15–20 г вуглеводів",
+      "Перевіряйте під час вправ, якщо вони тривають понад 45 хвилин",
+      "Ризик відкладеної (післятренувальної) гіпо найвищий уночі після денних чи вечірніх занять",
+      "Розгляньте невеликий перекус перед сном у дні вправ, щоб запобігти нічним гіпо"
+    ]
+  },
+  result_exercise_delayed_low: {
+    title: "Відкладена гіпо після високоінтенсивних вправ",
+    exp: "Високоінтенсивні вправи спершу піднімають цукор (стрибок адреналіну), але потім суттєво підвищують чутливість до інсуліну, коли м'язи поповнюють глікоген. Гіпо часто настає за кілька годин після вправ — відкладений ефект, що застає багатьох зненацька.",
+    tips: [
+      "Очікуйте відкладену гіпо за 4–12 годин після інтенсивних вправ — особливо вночі",
+      "Зменште нічний базал (помпа) чи з'їжте перекус із повільними вуглеводами перед сном у дні інтенсивних тренувань",
+      "Не корегуйте надто агресивно негайний післятренувальний підйом — він спаде",
+      "Зменште болюс на перший прийом їжі після інтенсивних вправ",
+      "Відстежуйте, як тіло реагує на різні типи тренувань — закономірність стає передбачуваною"
+    ]
+  },
+  result_alcohol: {
+    title: "Алкоголь блокує вивільнення глюкози печінкою",
+    exp: "Алкоголь блокує глюконеогенез — здатність печінки вивільняти глюкозу, коли цукор падає. Це прибирає природний захисний механізм, роблячи гіпоглікемію тяжчою й небезпечнішою. Ефект може тривати 8–16 годин, роблячи нічні гіпо серйозним ризиком.",
+    tips: [
+      "Завжди їжте вуглеводи, вживаючи алкоголь — не пийте натще",
+      "Зменшуйте інсулін на будь-який прийом їжі з алкоголем",
+      "Поставте сповіщення CGM про нічну гіпо чи попросіть когось вас перевірити",
+      "Глюкагон може бути менш ефективним, коли в організмі алкоголь — тримайте глюкозний гель під рукою",
+      "Повідомте тих, з ким ви, що у вас діабет, на випадок надзвичайної ситуації",
+      "Будьте особливо пильні наступного ранку після значного вживання алкоголю"
+    ]
+  },
+  result_hormones_low: {
+    title: "Гормональний зсув — підвищена чутливість до інсуліну",
+    exp: "Коли естроген зростає на початку менструального циклу (з початком місячних), багато жінок відчувають значний стрибок чутливості до інсуліну. Та сама доза, що була правильною минулого тижня, тепер може спричинити гіпо. Цей перехід відбувається швидко й часто несподівано.",
+    tips: [
+      "Відстежуйте цикл і цукор разом, щоб виявити свою закономірність",
+      "У дні одразу після початку місячних вам може знадобитися помітно менше інсуліну",
+      "Розгляньте тимчасове зменшення базалу (помпа) чи знижені корекційні дози в цей період",
+      "Це передбачувано, щойно ви знаєте свою закономірність — плануйте наперед, а не реагуйте",
+      "Застосунки, що накладають дані циклу на дані цукру (деякі застосунки CGM, Clue тощо), допоможуть це чітко помітити"
+    ]
+  },
+  result_menopause_low: {
+    title: "Перименопауза — падіння естрогену підвищує чутливість до інсуліну",
+    exp: "Під час перименопаузи рівень естрогену коливається хаотично. Коли естроген падає, багато жінок відчувають підвищену чутливість до інсуліну — та сама доза тепер спричиняє більше падіння. Це може непередбачувано чергуватися з періодами інсулінорезистентності (підйоми), роблячи контроль хаотичним і виснажливим.",
+    tips: [
+      "CGM особливо цінний під час перименопаузи — картина змінюється надто швидко для моніторингу лише з пальця",
+      "Обережно зменшуйте дози інсуліну при повторюваних гіпо; перевіряйте закономірність кілька днів перед змінами",
+      "Обговоріть ЗГТ із лікарем — стабілізація естрогену часто суттєво покращує передбачуваність цукру",
+      "Тримайте діабетичну команду в курсі — потреба в інсуліні може різко коливатися тиждень до тижня в цей період",
+      "Цей етап реальний, клінічно визнаний і недостатньо досліджений — вам це не здається"
+    ]
+  },
+  result_contraception_low: {
+    title: "Припинення гормональної контрацепції — підвищена чутливість до інсуліну",
+    exp: "Припинення чи зміна прогестеронової контрацепції (імплант, ін'єкція Depo-Provera, міні-пілі) часто підвищує чутливість до інсуліну, коли ефект прогестерону минає. Перехідний період — особливо перші 2–6 тижнів після припинення — може бути найбільш непередбачуваним.",
+    tips: [
+      "Стежте уважніше протягом 2–6 тижнів після припинення чи зміни контрацепції",
+      "Обережно зменшуйте дози інсуліну при повторюваних гіпо — починайте з малого (5–10%)",
+      "Ефект ін'єкції Depo може зберігатися кілька місяців після останньої дози",
+      "Обговоріть час зміни контрацепції з діабетичною командою, щоб вони допомогли керувати переходом",
+      "Відстежуйте цукор до й після зміни, щоб задокументувати свою реакцію"
+    ]
+  },
+  result_gastroparesis: {
+    title: "Сповільнене спорожнення шлунка (гастропарез)",
+    exp: "При гастропарезі їжа перетравлюється й вивільняє глюкозу набагато пізніше, ніж очікувалося. Інсулін діє у звичний час — а глюкоза надходить пізно. У результаті гіпо невдовзі після їжі, а потім підйом за кілька годин, коли травлення нарешті наздоганяє.",
+    tips: [
+      "Розгляньте введення швидкого інсуліну після їжі, а не до неї — чи використання інсуліну після їжі",
+      "Малі, часті прийоми їжі з меншою кількістю жиру й клітковини легше перетравлюються",
+      "Обговоріть із командою — дослідження спорожнення шлунка може формально підтвердити гастропарез",
+      "Користувачам помп: подовжений болюс (dual-wave) на 1–3 години допоможе збігтися з відкладеним всмоктуванням",
+      "Уникайте лежання одразу після їжі — це ще більше сповільнює спорожнення шлунка"
+    ]
+  },
+  result_weight_change: {
+    title: "Підвищена чутливість до інсуліну від втрати ваги",
+    exp: "Втрата ваги — особливо вісцерального (абдомінального) жиру — суттєво підвищує чутливість до інсуліну. Дози, підібрані для вашої попередньої ваги, тепер можуть бути завеликими. Це позитивний знак, але потребує проактивного коригування доз.",
+    tips: [
+      "Це хороша новина — ваша потреба в інсуліні може справді бути нижчою",
+      "Обговоріть формальний перегляд доз із діабетичною командою",
+      "Не зменшуйте дози самотужки на великі величини — робіть малі, зважені зміни (5–10% за раз)",
+      "Ведіть детальні записи, щоб показати закономірність команді на наступному прийомі",
+      "Якщо худнете завдяки ліку GLP-1, ваша команда вже має це відстежувати"
+    ]
+  },
+  result_heat_absorption: {
+    title: "Тепло прискорює всмоктування інсуліну",
+    exp: "Прикладання тепла до місця ін'єкції різко посилює кровообіг, спричиняючи набагато швидше й потужніше всмоктування інсуліну, ніж очікувалося. Гаряча ванна, сауна чи навіть енергійний масаж місця ін'єкції можуть це запустити.",
+    tips: [
+      "Уникайте гарячих ванн протягом 1–2 годин після ін'єкції в ту саму ділянку тіла",
+      "Якщо регулярно приймаєте гарячі ванни: коліть у живіт, а не в стегна чи сідниці",
+      "Ефект найсильніший зі швидким інсуліном — будьте обережніші з часом",
+      "У спеку інсулін із будь-якого місця може всмоктуватися швидше, ніж зазвичай",
+      "Якщо це сталося: вилікуйте гіпо, потім розгляньте трохи меншу наступну дозу, якщо закономірність повторюється"
+    ]
+  },
+  result_cgm_false_low: {
+    title: "Можлива хибна гіпо від CGM",
+    exp: "CGM можуть показувати хибно низькі значення через компресію (лежання на сенсорі), у перші 24 години нового сенсора, наприкінці служби сенсора чи через певні ліки. Високі дози парацетамолу заважають деяким типам сенсорів.",
+    tips: [
+      "Завжди перевіряйте показник гіпоглікемії проколом пальця з чистими руками перед лікуванням",
+      "Якщо симптоми збігаються з показником: спершу лікуйте, перевіряйте потім",
+      "Компресійні артефакти (від лежання на сенсорі) зазвичай минають за кілька хвилин після руху",
+      "Перевірте, чи не приймали ви високу дозу парацетамолу — це заважає деяким сенсорам CGM",
+      "Перший день нового сенсора часто менш точний — частіше перевіряйте проколом пальця"
+    ]
+  },
+  result_heat_low: {
+    title: "Тепло посилює дію інсуліну",
+    exp: "Спека підвищує і швидкість всмоктування інсуліну, і використання глюкози м'язами під час активності. Коли вправи й спека поєднуються, цукрознижувальний ефект значно посилюється — призводячи до швидших, глибших гіпо, ніж очікувалося.",
+    tips: [
+      "У спеку розгляньте зменшення доз інсуліну на 10–20% (за настановою команди)",
+      "Будьте особливо пильні під час і після вправ у теплих умовах",
+      "Активно пийте воду — зневоднення й спека разом погіршують нестабільність цукру",
+      "Носіть більше швидких вуглеводів, ніж зазвичай, у спекотні дні",
+      "Якщо на помпі: розгляньте тимчасове зменшення базалу під час активності на вулиці в спеку"
+    ]
+  },
+  result_low_bp: {
+    title: "Перетин низького тиску й цукру",
+    exp: "Гіпотонія та гіпоглікемія мають схожі симптоми — запаморочення, слабкість, сплутаність — і інколи виникають разом. Деякі ліки від діабету (інгібітори SGLT-2 у поєднанні з певними ліками від тиску) можуть знижувати тиск, посилюючи ефект.",
+    tips: [
+      "Завжди перевіряйте цукор, коли відчуваєте запаморочення чи слабкість",
+      "Сісти чи полежати кілька хвилин допомагає і тиску, і легкому падінню цукру",
+      "Обговоріть повний список ліків із лікарем — деякі поєднання впливають на тиск і цукор одночасно",
+      "Зневоднення погіршує обидва стани — збільште вживання рідини",
+      "Якщо запаморочення при вставанні часте, варто перевірити ортостатичну гіпотонію в лікаря"
+    ]
+  },
+  result_unknown_low: {
+    title: "Причину не знайдено — відстежуйте й шукайте закономірності",
+    exp: "Поодинокі гіпо без очевидної причини трапляються навіть за уважного контролю. Головне — документувати якомога більше й переглядати дані з часом, щоб знайти приховані закономірності.",
+    tips: [
+      "Занотуйте: час, показник цукру, останню дозу інсуліну чи ліків, останній прийом їжі, активність і все незвичне",
+      "Шукайте закономірності: той самий час доби? Після певної їжі чи активності? Певний день тижня?",
+      "Якщо гіпо натще чи вночі: базал чи тривалий інсулін, можливо, треба зменшити",
+      "Огляд завантаження CGM із командою може виявити закономірності, приховані в окремих показниках",
+      "Повторювані незрозумілі гіпо можуть вказувати, що загальні дози інсуліну варто переглянути в бік зменшення"
+    ]
+  }
+};
+</script>
+<script>
+// ─────────────────────────────────────────────
+// UI LABELS (chrome text, not tied to a node)
+// ─────────────────────────────────────────────
+const UI = {
+  en: {
+    hdrTitle: "🔍 Blood Sugar Investigator",
+    hdrSub: "Find out why your blood sugar might be high or low — step by step",
+    footer: 'lenafilatova.co.uk · Created by Lena Filatova · Not a substitute for medical advice',
+    step: "Step",
+    back: "← Back",
+    goBackStep: "← Go back one step",
+    restart: "🔄 Start again",
+    whatToDo: "What to do",
+    exampleTag: "Example",
+    consultNote: "💬 If this cause doesn't resolve your blood sugar, or if these readings are frequent, always speak to your diabetes team. This tool cannot replace clinical advice.",
+    agree: "✓ I understand and agree — continue",
+    decline: "I do not agree",
+    summaryToggle: "📋 View & share your session summary",
+    summaryHide: "▲ Hide summary",
+    summaryHint: "A record of your answers and this finding — copy it, print it, or have it emailed to yourself to share with your diabetes nurse or doctor.",
+    copy: "📋 Copy", print: "🖨️ Print", copied: "✓ Copied!", copyFail: "Copy failed — select manually",
+    subHint: "Want a copy? Add your email and I'll open a ready-to-send message with your summary — and send you occasional science-backed notes on diabetes and women's health after 40. Free, unsubscribe anytime.",
+    subEmailPlaceholder: "your@email.com",
+    subConsent: "I agree to receive emails and accept the Privacy Policy. I can unsubscribe at any time.",
+    subBtn: "📧 Email me my summary",
+    subBusy: "Subscribing…",
+    subDone: "You're subscribed ✓ Opening your email with the summary…",
+    subErrEmail: "Please enter a valid email address.",
+    subErrConsent: "Please tick the box to continue.",
+    urgency: { low: "Low urgency", medium: "Act soon", high: "Act today", critical: "Emergency" },
+    cat: { food:"Food", insulin:"Insulin", medication:"Medication", illness:"Illness", lifestyle:"Lifestyle", hormones:"Hormones", exercise:"Exercise", equipment:"Equipment", environment:"Environment", physiology:"Physiology", emergency:"Emergency", medical:"Medical", unknown:"Unknown" },
+    locale: 'en-GB',
+    sumTitle: "BLOOD SUGAR INVESTIGATOR — SESSION SUMMARY",
+    sumGenerated: "Generated:", sumAt: "at", sumTool: "Tool: lenafilatova.co.uk",
+    sumAnswers: "MY ANSWERS", sumCause: "MOST LIKELY CAUSE IDENTIFIED",
+    sumDiscussLabel: "POINTS TO DISCUSS WITH MY DIABETES TEAM:",
+    sumDisclaimer1: "DISCLAIMER",
+    sumDisclaimer2: "This summary is for educational purposes only.",
+    sumDisclaimer3: "It is not a diagnosis or medical advice. Please share it",
+    sumDisclaimer4: "with your diabetes team for personalised clinical guidance.",
+    emailSubject: "My Blood Sugar Investigation"
+  },
+  ua: {
+    hdrTitle: "🔍 Дослідник цукру в крові",
+    hdrSub: "Дізнайтеся, чому цукор може бути високим чи низьким — крок за кроком",
+    footer: 'lenafilatova.co.uk · Створено Ліною Філатовою · Не замінює медичну пораду',
+    step: "Крок",
+    back: "← Назад",
+    goBackStep: "← Повернутися на крок назад",
+    restart: "🔄 Почати знову",
+    whatToDo: "Що робити",
+    exampleTag: "Приклад",
+    consultNote: "💬 Якщо ця причина не пояснює ваш цукор, або якщо такі показники часті, завжди звертайтеся до діабетичної команди. Цей інструмент не замінює клінічної поради.",
+    agree: "✓ Розумію та погоджуюся — продовжити",
+    decline: "Я не погоджуюся",
+    summaryToggle: "📋 Переглянути та поділитися підсумком",
+    summaryHide: "▲ Сховати підсумок",
+    summaryHint: "Запис ваших відповідей і цього висновку — скопіюйте, роздрукуйте чи надішліть собі на пошту, щоб поділитися з діабетичною медсестрою або лікарем.",
+    copy: "📋 Копіювати", print: "🖨️ Друк", copied: "✓ Скопійовано!", copyFail: "Не вдалося — виділіть вручну",
+    subHint: "Хочете копію? Додайте email — і я відкрию готовий лист із вашим підсумком, а також надсилатиму зрідка науково обґрунтовані нотатки про діабет і жіноче здоров'я після 40. Безкоштовно, відписатися будь-коли.",
+    subEmailPlaceholder: "your@email.com",
+    subConsent: "Я погоджуюся отримувати листи та приймаю Політику конфіденційності. Я можу відписатися будь-коли.",
+    subBtn: "📧 Надіслати мені підсумок",
+    subBusy: "Підписуємо…",
+    subDone: "Ви підписані ✓ Відкриваємо ваш лист із підсумком…",
+    subErrEmail: "Введіть, будь ласка, дійсну електронну адресу.",
+    subErrConsent: "Позначте, будь ласка, поле, щоб продовжити.",
+    urgency: { low: "Низька терміновість", medium: "Дійте скоро", high: "Дійте сьогодні", critical: "Невідкладно" },
+    cat: { food:"Їжа", insulin:"Інсулін", medication:"Ліки", illness:"Хвороба", lifestyle:"Спосіб життя", hormones:"Гормони", exercise:"Навантаження", equipment:"Обладнання", environment:"Довкілля", physiology:"Фізіологія", emergency:"Невідкладно", medical:"Медичне", unknown:"Невідомо" },
+    locale: 'uk-UA',
+    sumTitle: "ДОСЛІДНИК ЦУКРУ В КРОВІ — ПІДСУМОК СЕСІЇ",
+    sumGenerated: "Створено:", sumAt: "о", sumTool: "Інструмент: lenafilatova.co.uk",
+    sumAnswers: "МОЇ ВІДПОВІДІ", sumCause: "НАЙІМОВІРНІША ВИЯВЛЕНА ПРИЧИНА",
+    sumDiscussLabel: "ПИТАННЯ ДЛЯ ОБГОВОРЕННЯ З ДІАБЕТИЧНОЮ КОМАНДОЮ:",
+    sumDisclaimer1: "ЗАСТЕРЕЖЕННЯ",
+    sumDisclaimer2: "Цей підсумок призначений лише для навчальних цілей.",
+    sumDisclaimer3: "Це не діагноз і не медична порада. Будь ласка, поділіться ним",
+    sumDisclaimer4: "зі своєю діабетичною командою для персональних клінічних настанов.",
+    emailSubject: "Моє дослідження цукру в крові"
+  }
+};
+
+const U = UI[LANG] || UI.en;
+function s(id) { return (STR[LANG] && STR[LANG][id]) || STR.en[id] || {}; }
+function catLabel(c) { return (U.cat && U.cat[c]) || (c ? c.charAt(0).toUpperCase() + c.slice(1) : ''); }
+function urgLabel(u) { return (U.urgency && U.urgency[u]) || ''; }
+
+// ─────────────────────────────────────────────
+// APP ENGINE
+// ─────────────────────────────────────────────
+let currentId = 'cover';
+let trail = []; // [{ id, optIdx }] — the node we came FROM and the option chosen there
+const MAX_DEPTH = 20;
+
+function questionsAnswered() { return trail.filter(e => TREE[e.id] && !TREE[e.id].type).length; }
+
+function goTo(id, optIdx) { trail.push({ id: currentId, optIdx: optIdx }); currentId = id; render(); }
+function goBack() { if (!trail.length) return; currentId = trail.pop().id; render(); }
+function restart() { currentId = 'start'; trail = []; render(); }
+
+function render() {
+  const node = TREE[currentId];
+  if (!node) { console.error('Missing node:', currentId); return; }
+  const fill = document.getElementById('progressFill');
+  if (node.type === 'cover' || node.type === 'disclaimer') {
+    fill.style.width = '0%';
+  } else {
+    const pct = Math.min(4 + (questionsAnswered() / MAX_DEPTH) * 95, 99);
+    fill.style.width = Math.max(pct, 4) + '%';
+  }
+  if (node.type === 'cover')            renderCover();
+  else if (node.type === 'result')      renderResult(node);
+  else if (node.type === 'disclaimer')  renderDisclaimer(node);
+  else                                  renderQuestion(node);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  postHeight();
+}
+
+function renderCover() {
+  const c = s('cover');
+  const tips = (c.ex_tips || []).map(t => `<li>${escHtml(t)}</li>`).join('');
+  const chips = (c.chips || []).map(ch => `<span class="chip">${escHtml(ch)}</span>`).join('');
+  const bullets = (c.bullets || []).map(b => `<li>${escHtml(b)}</li>`).join('');
+  document.getElementById('content').innerHTML = `
+    <div class="card">
+      <span class="cover-badge">${escHtml(c.badge)}</span>
+      <div class="cover-title">${escHtml(c.title)}</div>
+      <div class="cover-intro">${escHtml(c.intro)}</div>
+      <div class="cover-example-label">${escHtml(c.exampleLabel)}</div>
+      <div class="preview">
+        <span class="urgency-tag u-${c.ex_urgency}">${escHtml(urgLabel(c.ex_urgency))}</span>
+        <span class="p-icon">${c.ex_icon || '🌸'}</span>
+        <span class="badge b-${c.ex_cat}">${escHtml(catLabel(c.ex_cat))}</span>
+        <div class="p-title">${escHtml(c.ex_title)}</div>
+        <div class="p-exp">${escHtml(c.ex_exp)}</div>
+        ${tips ? `<div class="tips-label">${escHtml(U.whatToDo)}</div><ul class="tips">${tips}</ul>` : ''}
+      </div>
+      <div class="chips">${chips}</div>
+      <ul class="cover-bullets">${bullets}</ul>
+      <button class="btn-start" onclick="goTo('${TREE.cover.start}')">${escHtml(c.startBtn)}</button>
+      <div class="cover-note">${escHtml(c.note)}</div>
+    </div>
+  `;
+}
+
+function renderDisclaimer(node) {
+  const d = s('disclaimer_gate');
+  const items = (d.items || []).map(i => `<li>${escHtml(i)}</li>`).join('');
+  document.getElementById('content').innerHTML = `
+    <div class="card disclaimer-card">
+      <div class="disclaimer-heading">⚕️ ${escHtml(d.title)}</div>
+      <ul class="disclaimer-items">${items}</ul>
+      <div class="disclaimer-confirm">${escHtml(d.confirmation)}</div>
+      <button class="btn-agree" onclick="goTo('${node.agreeNext}')">${escHtml(U.agree)}</button>
+      <button class="btn-decline" onclick="goTo('${node.declineNext}')">${escHtml(U.decline)}</button>
+    </div>
+  `;
+}
+
+function renderQuestion(node) {
+  const txt = s(currentId);
+  const stepNum = questionsAnswered() + 1;
+  const opts = node.options.map((opt, i) =>
+    `<button class="opt" onclick="goTo('${opt.next}', ${i})">${escHtml((txt.opts && txt.opts[i]) || '')}</button>`
+  ).join('');
+  const backBtn = trail.length > 0 ? `<button class="back" onclick="goBack()">${escHtml(U.back)}</button>` : `<span></span>`;
+  document.getElementById('content').innerHTML = `
+    <div class="card">
+      <div class="step-label">${escHtml(U.step)} ${stepNum}</div>
+      <div class="question">${escHtml(txt.q || '')}</div>
+      ${txt.sub ? `<div class="subtitle">${escHtml(txt.sub)}</div>` : ''}
+      <div class="options">${opts}</div>
+      <div class="nav">${backBtn}<span class="step-count">${escHtml(U.step)} ${stepNum}</span></div>
+    </div>
+  `;
+}
+
+function renderResult(node) {
+  const txt = s(currentId);
+  const tips = (txt.tips || []).map(t => `<li>${escHtml(t)}</li>`).join('');
+  const continueBtn = node.continueNext
+    ? `<button class="btn-continue" onclick="goTo('${node.continueNext}')">${escHtml(txt.continueLabel || '')}</button>`
+    : '';
+  const cardClass = node.urgency === 'critical' ? 'card critical-border' : 'card';
+  const titleClass = node.urgency === 'critical' ? 'result-title critical-color' : 'result-title';
+  document.getElementById('content').innerHTML = `
+    <div class="${cardClass}">
+      <span class="result-icon">${node.icon || '🔍'}</span>
+      <span class="urgency-tag u-${node.urgency}">${escHtml(urgLabel(node.urgency))}</span>
+      <span class="badge b-${node.category}">${escHtml(catLabel(node.category))}</span>
+      <div class="${titleClass}">${escHtml(txt.title || '')}</div>
+      <div class="explanation">${escHtml(txt.exp || '')}</div>
+      ${tips ? `<div class="tips-label">${escHtml(U.whatToDo)}</div><ul class="tips">${tips}</ul>` : ''}
+      <div class="consult-note">${escHtml(U.consultNote)}</div>
+      ${continueBtn}
+      <div class="summary-box">
+        <button id="summaryToggleBtn" class="btn-summary-toggle" onclick="toggleSummary()">${escHtml(U.summaryToggle)}</button>
+        <div id="summaryPanel" style="display:none; margin-top:12px">
+          <p class="summary-hint">${escHtml(U.summaryHint)}</p>
+          <textarea id="summaryText" class="summary-textarea" readonly></textarea>
+          <div class="summary-btns">
+            <button id="copyBtn" class="btn-sum btn-sum-copy" onclick="copySummary()">${escHtml(U.copy)}</button>
+            <button class="btn-sum btn-sum-print" onclick="window.print()">${escHtml(U.print)}</button>
+          </div>
+          <form class="sub-form" onsubmit="subscribeSummary(event)">
+            <p class="sub-hint">${escHtml(U.subHint)}</p>
+            <input type="email" class="sub-email" placeholder="${escHtml(U.subEmailPlaceholder)}" autocomplete="email" />
+            <label class="sub-consent"><input type="checkbox" class="sub-consent-box" /> <span>${escHtml(U.subConsent)}</span></label>
+            <button type="submit" class="btn-sub-email">${escHtml(U.subBtn)}</button>
+            <div class="sub-status" id="subStatus"></div>
+          </form>
+        </div>
+      </div>
+      <button class="btn-restart" onclick="restart()">${escHtml(U.restart)}</button>
+    </div>
+    ${trail.length > 0 ? `<div style="text-align:center; margin-top:4px"><button class="back" onclick="goBack()">${escHtml(U.goBackStep)}</button></div>` : ''}
+  `;
+}
+
+// ─────────────────────────────────────────────
+// SUMMARY / SHARE
+// ─────────────────────────────────────────────
+function buildQAPairs() {
+  const pairs = [];
+  trail.forEach(e => {
+    const node = TREE[e.id];
+    if (!node || node.type) return;            // only question nodes
+    if (e.optIdx === undefined || e.optIdx === null) return;
+    const txt = s(e.id);
+    if (txt.q && txt.opts && txt.opts[e.optIdx]) pairs.push({ q: txt.q, a: txt.opts[e.optIdx] });
+  });
+  return pairs;
+}
+
+function getSummaryText() {
+  const pairs = buildQAPairs();
+  const node = TREE[currentId];
+  const txt = s(currentId);
+  const now = new Date();
+  const dateStr = now.toLocaleDateString(U.locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const timeStr = now.toLocaleTimeString(U.locale, { hour: '2-digit', minute: '2-digit' });
+  const line = '══════════════════════════════════════════\n';
+  const thin = '──────────────────────────────────────────\n';
+  let t = U.sumTitle + '\n' + U.sumGenerated + ' ' + dateStr + ' ' + U.sumAt + ' ' + timeStr + '\n' + U.sumTool + '\n' + line + '\n';
+  if (pairs.length) {
+    t += U.sumAnswers + '\n' + thin;
+    pairs.forEach((p, i) => { t += '\nQ' + (i + 1) + ': ' + p.q + '\n   → ' + p.a + '\n'; });
+    t += '\n';
+  }
+  if (node && node.type === 'result') {
+    t += line + U.sumCause + '\n' + thin + '\n' + (txt.title || '') + '\n\n' + (txt.exp || '') + '\n\n';
+    if (txt.tips && txt.tips.length) {
+      t += U.sumDiscussLabel + '\n';
+      txt.tips.forEach(tip => { t += '• ' + tip + '\n'; });
+      t += '\n';
+    }
+  }
+  t += line + U.sumDisclaimer1 + '\n' + U.sumDisclaimer2 + '\n' + U.sumDisclaimer3 + '\n' + U.sumDisclaimer4 + '\n' + line;
+  return t;
+}
+
+function toggleSummary() {
+  const panel = document.getElementById('summaryPanel');
+  const btn = document.getElementById('summaryToggleBtn');
+  const ta = document.getElementById('summaryText');
+  if (!panel) return;
+  const isHidden = panel.style.display === 'none' || panel.style.display === '';
+  panel.style.display = isHidden ? 'block' : 'none';
+  btn.textContent = isHidden ? U.summaryHide : U.summaryToggle;
+  if (isHidden && ta) ta.value = getSummaryText();
+  postHeight();
+}
+
+// Newsletter capture — same Google Apps Script endpoint the main site posts to.
+const NEWSLETTER_ENDPOINT = "https://script.google.com/macros/s/AKfycbw21p8PuG5jGQ7JXf7j-tX1-OZBeA1p6negAuzi7TmiyPkjEoshxLbtGc6avUVskGiK/exec";
+const SUB_GROUPS = "t1d";
+
+function openSummaryMail(to) {
+  const subject = encodeURIComponent(U.emailSubject + ' — ' + new Date().toLocaleDateString(U.locale));
+  const body = encodeURIComponent(getSummaryText());
+  window.location.href = 'mailto:' + encodeURIComponent(to) + '?subject=' + subject + '&body=' + body;
+}
+
+// Subscribe the visitor to the newsletter, then open a ready-to-send email of their
+// summary addressed to themselves. Only the email they type is sent to the endpoint —
+// their answers stay on-device and travel only via their own mail client.
+function subscribeSummary(e) {
+  e.preventDefault();
+  const form = e.target;
+  const email = ((form.querySelector('.sub-email') || {}).value || '').trim();
+  const consent = !!(form.querySelector('.sub-consent-box') || {}).checked;
+  const status = form.querySelector('.sub-status');
+  const setStatus = (msg, cls) => { if (status) { status.textContent = msg; status.className = 'sub-status' + (cls ? ' ' + cls : ''); } postHeight(); };
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { setStatus(U.subErrEmail, 'err'); return; }
+  if (!consent) { setStatus(U.subErrConsent, 'err'); return; }
+  setStatus(U.subBusy, '');
+  const rec = { email: email, lang: LANG, source: 'blood-sugar-investigator', groups: SUB_GROUPS, consent: 'yes', at: new Date().toISOString() };
+  try {
+    const body = Object.keys(rec).map(k => k + '=' + encodeURIComponent(rec[k])).join('&');
+    fetch(NEWSLETTER_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: body });
+  } catch (err) {}
+  setStatus(U.subDone, 'ok');
+  openSummaryMail(email);   // synchronous — stays within the user gesture
+}
+
+function copySummary() {
+  const text = getSummaryText();
+  const btn = document.getElementById('copyBtn');
+  const reset = () => { if (btn) btn.textContent = U.copy; };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => { if (btn) btn.textContent = U.copied; setTimeout(reset, 2500); }).catch(() => fallbackCopy(text, btn, reset));
+  } else { fallbackCopy(text, btn, reset); }
+}
+
+function fallbackCopy(text, btn, reset) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); if (btn) btn.textContent = U.copied; }
+  catch (e) { if (btn) btn.textContent = U.copyFail; }
+  document.body.removeChild(ta); setTimeout(reset, 2500);
+}
+
+function escHtml(str) {
+  if (str === undefined || str === null) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ─────────────────────────────────────────────
+// Auto-height for the parent iframe (matches carb-gi / cgm pattern)
+// ─────────────────────────────────────────────
+function postHeight() {
+  try { parent.postMessage({ type: 'bsi-height', height: document.documentElement.scrollHeight }, '*'); } catch (e) {}
+}
+window.addEventListener('load', postHeight);
+window.addEventListener('resize', postHeight);
+
+// ─────────────────────────────────────────────
+// Boot
+// ─────────────────────────────────────────────
+document.documentElement.lang = (LANG === 'ua') ? 'uk' : 'en';
+document.getElementById('hdrTitle').textContent = U.hdrTitle;
+document.getElementById('hdrSub').textContent = U.hdrSub;
+document.getElementById('footer').innerHTML = escHtml(U.footer);
+render();
+</script>
+</body>
+</html>

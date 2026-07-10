@@ -16,7 +16,9 @@ const cards = RESOURCES.cards;
   <div class="wrap res-grid">
     {cards.map((card) => {
       const c = card[lang];
-      const href = lang === 'ua' ? card.hrefUa : card.href;
+      const raw = lang === 'ua' ? card.hrefUa : card.href;
+      // root-relative links (carried-over tool pages) get the deploy base prefix
+      const href = raw.startsWith('/') ? import.meta.env.BASE_URL.replace(/\/$/, '') + raw : raw;
       return (
         <a class="rcard" href={href}>
           <div class="rband" style={`background:${card.band}`}>
