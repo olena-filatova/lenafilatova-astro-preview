@@ -1,0 +1,35 @@
+---
+import { RESOURCES } from '../data/site.js';
+const { lang = 'en' } = Astro.props;
+const t = RESOURCES[lang];
+const cards = RESOURCES.cards;
+---
+<section class="hero resources">
+  <div class="wrap">
+    <p class="kicker">{t.kicker}</p>
+    <h1>{t.h1}</h1>
+    <p class="lead">{t.lead}</p>
+  </div>
+</section>
+
+<section class="res-wrap">
+  <div class="wrap res-grid">
+    {cards.map((card) => {
+      const c = card[lang];
+      const href = lang === 'ua' ? card.hrefUa : card.href;
+      return (
+        <a class="rcard" href={href}>
+          <div class="rband" style={`background:${card.band}`}>
+            <span style={`color:${card.head}`}>{c.band}</span>
+          </div>
+          <div class="rbody">
+            <p class="rkicker">{c.kicker}</p>
+            <h3>{c.title}</h3>
+            <p class="rdesc">{c.desc}</p>
+            <span class="rcta">{c.cta}</span>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</section>

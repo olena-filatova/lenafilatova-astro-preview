@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ResourcesBody from '../../components/ResourcesBody.astro';
+import { RESOURCES } from '../../data/site.js';
+const t = RESOURCES.ua;
+---
+<BaseLayout lang="ua" title={t.seoTitle} description={t.seoDesc} canonical="/ua/resources">
+  <ResourcesBody lang="ua" />
+</BaseLayout>

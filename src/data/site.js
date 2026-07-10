@@ -96,6 +96,61 @@ export const BOOKING_EMBED = 'https://calendar.google.com/calendar/appointments/
 // same script that handles all site signups → Mailchimp). Posted no-cors, form-urlencoded.
 export const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw21p8PuG5jGQ7JXf7j-tX1-OZBeA1p6negAuzi7TmiyPkjEoshxLbtGc6avUVskGiK/exec';
 
+// Resources hub. Cards currently link to the live tools (absolute URLs) so every card
+// works from the preview; repoint `href`/`hrefUa` to internal paths as each tool migrates.
+export const RESOURCES = {
+  en: {
+    seoTitle: 'Tools & guides — Lena Filatova',
+    seoDesc: 'Practical, evidence-based resources to support women’s health after 40 — free to use, no strings.',
+    kicker: 'Free resources', h1: 'Tools & guides',
+    lead: 'Practical, evidence-based resources to support women’s health after 40 — free to use, no strings.',
+  },
+  ua: {
+    seoTitle: 'Інструменти та гайди — Lena Filatova',
+    seoDesc: 'Практичні, науково обґрунтовані ресурси для жіночого здоров’я після 40 — безкоштовно, без умов.',
+    kicker: 'Безкоштовні ресурси', h1: 'Інструменти та гайди',
+    lead: 'Практичні, науково обґрунтовані ресурси для жіночого здоров’я після 40 — безкоштовно, без умов.',
+  },
+  cards: [
+    {
+      band: '#eaf4ec', head: '#3f7d54',
+      href: 'https://calculator.lenafilatova.co.uk', hrefUa: 'https://calculator.lenafilatova.co.uk',
+      en: { band: 'Food & blood sugar', kicker: 'Interactive tool', title: 'Metabolic food calculator', desc: 'See how any food is likely to affect your blood sugar — glycaemic load, carbs and protein. Built for Type 1, insulin resistance and PMOS (previously PCOS).', cta: 'Open the calculator →' },
+      ua: { band: 'Їжа та цукор у крові', kicker: 'Інтерактивний інструмент', title: 'Калькулятор впливу їжі на метаболізм', desc: 'Подивіться, як конкретна їжа впливає на рівень цукру — глікемічне навантаження, вуглеводи та білок. Для діабету 1 типу, інсулінорезистентності та ПМОС (раніше СПКЯ).', cta: 'Відкрити калькулятор →' },
+    },
+    {
+      band: '#fbeee1', head: '#b0743a',
+      href: 'https://calculator.lenafilatova.co.uk', hrefUa: 'https://calculator.lenafilatova.co.uk',
+      en: { band: 'Exercise & blood sugar', kicker: 'Interactive tool', title: 'Exercise & blood sugar calculator', desc: 'See how cardio, strength and everyday movement are likely to affect your blood sugar. Built for Type 1, insulin resistance and PMOS (previously PCOS).', cta: 'Open the calculator →' },
+      ua: { band: 'Активність та цукор у крові', kicker: 'Інтерактивний інструмент', title: 'Калькулятор впливу фізичних навантажень на цукор', desc: 'Подивіться, як кардіо, силові та щоденний рух впливають на рівень цукру. Для діабету 1 типу, інсулінорезистентності та ПМОС (раніше СПКЯ).', cta: 'Відкрити калькулятор →' },
+    },
+    {
+      band: '#f5eaf1', head: '#a24b76',
+      href: 'https://lenafilatova.co.uk/resources/aid-comparison', hrefUa: 'https://lenafilatova.co.uk/resources/aid-comparison?lang=ua',
+      en: { band: 'Pumps & AID systems', kicker: 'Comparison', title: 'AID (Automated Insulin Delivery) system comparison (2026)', desc: 'Every major insulin pump and Automated Insulin Delivery system side by side — available now and in the pipeline. Filter by type, AID and status.', cta: 'Open the comparison →' },
+      ua: { band: 'Помпи та системи AID', kicker: 'Порівняння', title: 'Порівняння систем AID (автоматична подача інсуліну) (2026)', desc: 'Усі основні інсулінові помпи та системи автоматичної подачі інсуліну поряд — доступні зараз і в розробці. Фільтри за типом, AID і статусом.', cta: 'Відкрити порівняння →' },
+    },
+    {
+      band: '#e4f1f0', head: '#3a827a',
+      href: 'https://lenafilatova.co.uk/cgm-comparison.html', hrefUa: 'https://lenafilatova.co.uk/cgm-comparison-ua.html',
+      en: { band: 'CGM sensors', kicker: 'Comparison', title: 'CGM sensor comparison (2026)', desc: 'Every major continuous glucose monitor side by side — Abbott, Dexcom, Medtronic and more. Compare wear time, calibration, alerts and AID compatibility.', cta: 'Open the comparison →' },
+      ua: { band: 'Сенсори CGM', kicker: 'Порівняння', title: 'Порівняння CGM-сенсорів (2026)', desc: 'Усі основні монітори глюкози безперервної дії поряд — Abbott, Dexcom, Medtronic та інші. Порівняйте час носіння, калібрування, сповіщення й сумісність з AID.', cta: 'Відкрити порівняння →' },
+    },
+    {
+      band: '#fbf0f4', head: '#bb5480',
+      href: 'https://lenafilatova.co.uk/blood-sugar-investigator.html', hrefUa: 'https://lenafilatova.co.uk/blood-sugar-investigator-ua.html',
+      en: { band: 'Troubleshooter', kicker: 'Interactive', title: 'Blood Sugar Investigator', desc: 'A guided troubleshooter for an unexpected high or low. Answer simple questions and get the most likely cause, what to do, and a summary to share with your diabetes team.', cta: 'Start the investigation →' },
+      ua: { band: 'Помічник', kicker: 'Інтерактивний', title: 'Дослідник цукру в крові', desc: 'Покроковий помічник для несподіваного підйому чи гіпо. Дайте відповіді на прості запитання й отримайте найімовірнішу причину, що робити, і підсумок для діабетичної команди.', cta: 'Почати дослідження →' },
+    },
+    {
+      band: '#eaf0f6', head: '#4d61a0',
+      href: 'https://lenafilatova.co.uk/carb-gi-table.html', hrefUa: 'https://lenafilatova.co.uk/carb-gi-table-ua.html',
+      en: { band: 'Carbs & GI', kicker: 'Interactive table', title: 'Carbohydrate & glycaemic index table', desc: '200+ foods with carbs per 100g and glycaemic index — Ukrainian and British staples included. Filter, search and sort to see how each food is likely to affect blood sugar.', cta: 'Open the table →' },
+      ua: { band: 'Вуглеводи та ГІ', kicker: 'Інтерактивна таблиця', title: 'Таблиця вуглеводів і глікемічного індексу', desc: 'Понад 200 продуктів із вуглеводами на 100 г і глікемічним індексом — з українськими та британськими стравами. Фільтруйте, шукайте й сортуйте, щоб побачити ймовірний вплив на цукор.', cta: 'Відкрити таблицю →' },
+    },
+  ],
+};
+
 export const CONTACT = {
   en: {
     seoTitle: 'Work with me — Lena Filatova',
