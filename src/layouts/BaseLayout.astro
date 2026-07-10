@@ -1,0 +1,44 @@
+---
+// One layout, every page. Owns the <head> (SEO), the shared chrome, and the
+// JSON-LD slot. A new page just picks this layout and passes props — the SEO
+// furniture is never rewritten per page.
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const {
+  lang = 'en',
+  title,
+  description,
+  canonical,       // absolute path, e.g. '/about'
+  ogImage = '/images/lena-filatova-womens-health-coach-over-40.jpg',
+  jsonld,          // optional object → <script type="application/ld+json">
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+---
+<!doctype html>
+<html lang={lang === 'ua' ? 'uk' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+    {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main><slot /></main>
+    <Footer lang={lang} />
+  </body>
+</html>

@@ -1,0 +1,42 @@
+---
+import { NAV, FOOTER } from '../data/site.js';
+const { lang = 'en' } = Astro.props;
+const t = FOOTER[lang];
+const n = NAV[lang];
+const B = import.meta.env.BASE_URL;
+const L = lang === 'ua' ? `${B}ua/` : B;
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="brand" href={L}><span class="mark">lf</span>Lena Filatova</a>
+        <p class="blurb">{t.blurb}</p>
+      </div>
+      <div>
+        <h4>{t.explore}</h4>
+        <ul>
+          <li><a href={`${L}blog/`}>{n.blog}</a></li>
+          <li><a href={`${L}resources/`}>{n.resources}</a></li>
+          <li><a href={`${L}recipes/`}>{n.recipes}</a></li>
+          <li><a href={`${L}about/`}>{n.about}</a></li>
+          <li><a href={`${L}contact/`}>{n.contact}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>{t.categories}</h4>
+        <ul>{t.cats.map((c) => <li><a href="#">{c}</a></li>)}</ul>
+      </div>
+      <div>
+        <h4>{t.legal}</h4>
+        <ul>{t.legalLinks.map((c) => <li><a href="#">{c}</a></li>)}</ul>
+        <h4 style="margin-top:20px">{t.contact}</h4>
+        <ul><li><a href="mailto:lena@lenafilatova.co.uk">lena@lenafilatova.co.uk</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>{t.company}</p>
+      <p>{t.disclaimer}</p>
+    </div>
+  </div>
+</footer>

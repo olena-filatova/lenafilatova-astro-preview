@@ -1,0 +1,44 @@
+---
+// The About page body — ONE template, rendered from `c` (the per-language data).
+const { c, lang = 'en' } = Astro.props;
+const B = import.meta.env.BASE_URL;
+const contactHref = (lang === 'ua' ? `${B}ua/` : B) + 'contact/';
+---
+<section class="hero">
+  <div class="wrap grid">
+    <div class="photo"></div>
+    <div>
+      <p class="kicker">{c.kicker}</p>
+      <h1>{c.h1}</h1>
+      <p class="lead">{c.lead}</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap grid">
+    {c.stats.map((s) => (
+      <div class="stat"><div class="n">{s.n}</div><div class="l">{s.l}</div></div>
+    ))}
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap"><div class="col">{c.story.map((p) => <p>{p}</p>)}</div></div>
+</section>
+
+<section class="values">
+  <div class="wrap grid">
+    {c.values.map((v) => (
+      <div class="value"><h3>{v.h}</h3><p>{v.p}</p></div>
+    ))}
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap"><div class="box">
+    <h2>{c.ctaTitle}</h2>
+    <p>{c.ctaText}</p>
+    <a class="btn" href={contactHref}>{c.ctaBtn}</a>
+  </div></div>
+</section>

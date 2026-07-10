@@ -1,0 +1,27 @@
+---
+// Shared site header. Built ONCE — every page reuses it.
+import { NAV } from '../data/site.js';
+const { lang = 'en' } = Astro.props;
+const t = NAV[lang];
+const B = import.meta.env.BASE_URL;                 // '/…preview/' now, '/' at root
+const L = lang === 'ua' ? `${B}ua/` : B;            // language-scoped base
+---
+<header class="site-header">
+  <div class="wrap inner">
+    <a class="brand" href={L}><span class="mark">lf</span>Lena Filatova</a>
+    <nav class="site-nav">
+      <a href={`${L}blog/`}>{t.blog}</a>
+      <a href={`${L}resources/`}>{t.resources}</a>
+      <a href={`${L}recipes/`}>{t.recipes}</a>
+      <a href={`${L}about/`}>{t.about}</a>
+      <a href={`${L}contact/`}>{t.contact}</a>
+    </nav>
+    <div class="header-actions">
+      <span class="lang">
+        <a href={`${B}about/`} class={lang === 'en' ? 'on' : ''}>EN</a>
+        <a href={`${B}ua/about/`} class={lang === 'ua' ? 'on' : ''}>UA</a>
+      </span>
+      <a class="btn" href={`${L}contact/`}>{t.subscribe}</a>
+    </div>
+  </div>
+</header>

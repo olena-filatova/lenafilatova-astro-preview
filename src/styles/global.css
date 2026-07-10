@@ -1,0 +1,125 @@
+/* ============================================================
+   Design tokens — captured from the live Divhunt site so the
+   Astro rebuild is pixel-matched. Change the brand here, once.
+   ============================================================ */
+:root {
+  --accent: #B23A63;      /* brand magenta — logo, buttons, kickers */
+  --ink: #331B33;         /* headings / darkest text */
+  --body: #4a4450;        /* body copy */
+  --muted: #5E4A5B;       /* labels, secondary text */
+  --bg: #F6F0F5;          /* page background (soft pink) */
+  --card: #ffffff;        /* cards / panels */
+  --line: #eadfe8;        /* hairline borders */
+  --radius: 18px;
+  --maxw: 1120px;
+  --font-head: 'Spectral', Georgia, serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-head); color: var(--ink); font-weight: 500; margin: 0; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* --- kicker + buttons --- */
+.kicker {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-family: var(--font-body);
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  transition: filter .15s ease;
+}
+.btn:hover { filter: brightness(1.08); }
+
+/* --- header --- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(246,240,245,0.9);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .inner { display: flex; align-items: center; gap: 28px; height: 72px; }
+.brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-head); font-weight: 600; font-size: 20px; color: var(--ink); }
+.brand .mark { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-style: italic; font-size: 17px; }
+.site-nav { display: flex; gap: 26px; margin-left: 18px; }
+.site-nav a { color: var(--ink); font-weight: 500; font-size: 15.5px; }
+.site-nav a:hover { color: var(--accent); }
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.lang { display: inline-flex; background: #efe4ed; border-radius: 999px; padding: 3px; }
+.lang a { font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 999px; color: var(--muted); }
+.lang a.on { background: var(--ink); color: #fff; }
+
+/* --- hero --- */
+.hero { padding: 64px 0 40px; }
+.hero .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
+.hero .photo { aspect-ratio: 1/1.05; border-radius: var(--radius); background: #ece0ea; }
+.hero h1 { font-size: 50px; line-height: 1.08; margin: 0 0 20px; }
+.hero p.lead { font-size: 18px; color: var(--muted); max-width: 40ch; }
+
+/* --- stats --- */
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; padding: 40px 0; }
+.stat .n { font-family: var(--font-head); color: var(--accent); font-size: 34px; line-height: 1; margin-bottom: 8px; }
+.stat .l { color: var(--muted); font-size: 15px; }
+
+/* --- story --- */
+.story { padding: 56px 0; }
+.story .col { max-width: 68ch; }
+.story p { margin: 0 0 20px; color: var(--body); font-size: 18px; }
+
+/* --- values --- */
+.values { padding: 8px 0 56px; }
+.values .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.value { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+.value h3 { font-size: 21px; margin-bottom: 10px; }
+.value p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+/* --- cta --- */
+.cta { padding: 8px 0 72px; }
+.cta .box { background: var(--ink); color: #fff; border-radius: 24px; padding: 48px; text-align: center; }
+.cta h2 { color: #fff; font-size: 32px; margin-bottom: 12px; }
+.cta p { color: #e9dbe7; margin: 0 0 26px; }
+.cta .btn { background: var(--accent); }
+
+/* --- footer --- */
+.site-footer { background: #fff; border-top: 1px solid var(--line); padding: 56px 0 28px; }
+.site-footer .top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
+.site-footer .blurb { color: var(--muted); font-size: 15px; max-width: 34ch; margin: 14px 0 0; }
+.site-footer h4 { font-family: var(--font-body); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.site-footer a { color: var(--muted); font-size: 15px; }
+.site-footer a:hover { color: var(--accent); }
+.site-footer .legal { border-top: 1px solid var(--line); margin-top: 36px; padding-top: 22px; color: var(--muted); font-size: 13px; }
+.site-footer .legal p { margin: 0 0 8px; }
+
+@media (max-width: 820px) {
+  .hero .grid, .site-footer .top { grid-template-columns: 1fr; gap: 32px; }
+  .stats .grid { grid-template-columns: repeat(2, 1fr); }
+  .values .grid { grid-template-columns: 1fr; }
+  .site-nav { display: none; }
+  .hero h1 { font-size: 38px; }
+}

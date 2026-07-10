@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutBody from '../components/AboutBody.astro';
+import { ABOUT } from '../data/site.js';
+const c = ABOUT.en;
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Lena Filatova',
+    description: c.seoDesc,
+    url: 'https://lenafilatova.co.uk/about',
+  },
+};
+---
+<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/about" ogImage={c.ogImage} jsonld={jsonld}>
+  <AboutBody c={c} lang="en" />
+</BaseLayout>
