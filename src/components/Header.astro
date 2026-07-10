@@ -1,15 +1,20 @@
 ---
 // Shared site header. Built ONCE — every page reuses it.
+// Props:
+//   lang     — 'en' | 'ua'
+//   showList — when true, render the recipe shopping-list button (#listBtn)
+//   enHref / uaHref — where the EN/UA toggle points (defaults to About).
+//     Recipe pages pass their own counterpart so the toggle keeps the recipe.
 import { NAV } from '../data/site.js';
-const { lang = 'en' } = Astro.props;
+const { lang = 'en', showList = false, enHref, uaHref } = Astro.props;
 const t = NAV[lang];
 const B = import.meta.env.BASE_URL;                 // '/…preview/' now, '/' at root
 const L = lang === 'ua' ? `${B}ua/` : B;            // language-scoped base
-// Blog + recipes still live on the current site (recipes are their own static
-// system; blog is migrated last) — link out until they move into Astro.
+const enTo = enHref || `${B}about/`;
+const uaTo = uaHref || `${B}ua/about/`;
+// Blog still lives on the current site (migrated last) — link out until it moves.
 const LIVE = 'https://lenafilatova.co.uk';
 const liveBlog = `${LIVE}/${lang === 'ua' ? 'ua/' : ''}blog/`;
-const liveRecipes = `${LIVE}/recipes/`;
 ---
 <header class="site-header">
   <div class="wrap inner">
@@ -17,16 +22,23 @@ const liveRecipes = `${LIVE}/recipes/`;
     <nav class="site-nav">
       <a href={liveBlog}>{t.blog}</a>
       <a href={`${L}resources/`}>{t.resources}</a>
-      <a href={liveRecipes}>{t.recipes}</a>
+      <a href={`${L}recipes/`}>{t.recipes}</a>
       <a href={`${L}about/`}>{t.about}</a>
       <a href={`${L}contact/`}>{t.contact}</a>
     </nav>
     <div class="header-actions">
       <span class="lang">
-        <a href={`${B}about/`} class={lang === 'en' ? 'on' : ''}>EN</a>
-        <a href={`${B}ua/about/`} class={lang === 'ua' ? 'on' : ''}>UA</a>
+        <a href={enTo} class={lang === 'en' ? 'on' : ''}>EN</a>
+        <a href={uaTo} class={lang === 'ua' ? 'on' : ''}>UA</a>
       </span>
-      <a class="btn" href={`${L}contact/`}>{t.subscribe}</a>
+      {showList ? (
+        <button class="list-btn" id="listBtn" aria-label="Shopping list" title="Shopping list">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg>
+          <span class="list-badge" id="listBadge">0</span>
+        </button>
+      ) : (
+        <a class="btn" href={`${L}contact/`}>{t.subscribe}</a>
+      )}
     </div>
   </div>
 </header>

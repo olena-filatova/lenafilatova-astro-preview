@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import RecipeHubBody from '../../../components/RecipeHubBody.astro';
+const B = import.meta.env.BASE_URL;
+const title = 'Рецепти з низьким ГІ — Лена Філатова';
+const description = 'Рецепти з низьким глікемічним індексом для жінок 40+ — випічка без цукру, низьковуглеводні страви й десерти, українською та англійською.';
+---
+<BaseLayout
+  lang="ua"
+  title={title}
+  description={description}
+  canonical="/ua/recipes/"
+  showList={true}
+  enHref={`${B}recipes/`}
+  uaHref={`${B}ua/recipes/`}>
+  <RecipeHubBody lang="ua" />
+</BaseLayout>

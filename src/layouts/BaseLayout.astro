@@ -12,7 +12,10 @@ const {
   description,
   canonical,       // absolute path, e.g. '/about'
   ogImage = '/images/lena-filatova-womens-health-coach-over-40.jpg',
+  ogType = 'website',
   jsonld,          // optional object → <script type="application/ld+json">
+  showList = false, // recipe pages: show the shopping-list button in the header
+  enHref, uaHref,   // recipe pages: where the EN/UA toggle points
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, Astro.site).href;
@@ -26,7 +29,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -37,7 +40,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
   </head>
   <body>
-    <Header lang={lang} />
+    <Header lang={lang} showList={showList} enHref={enHref} uaHref={uaHref} />
     <main><slot /></main>
     <Footer lang={lang} />
   </body>

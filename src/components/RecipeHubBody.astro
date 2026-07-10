@@ -1,0 +1,159 @@
+---
+// Recipe hub: server-rendered card grid + Type/Diet filter chips + Load more.
+// Cards carry data-cat / data-diet; the inline script only shows/hides them
+// (no client rendering, no language toggle — language is fixed by the URL).
+import { RECIPES } from '../data/recipes.js';
+import { CAT_HUB } from '../data/recipes-lib.js';
+import '../styles/recipes.css';
+
+const { lang = 'en' } = Astro.props;
+const B = import.meta.env.BASE_URL;
+// EN⇄UA counterpart of this hub, and the param that triggers a hop to it
+// (old lenafilatova.com redirects append ?lang=ua).
+const altHubHref = lang === 'ua' ? `${B}recipes/` : `${B}ua/recipes/`;
+const otherLang = lang === 'ua' ? 'en' : 'ua';
+const R = lang === 'ua' ? `${B}ua/recipes/` : `${B}recipes/`;
+const IMG = `${B}recipes/images/`;
+
+const TYPE_CHIPS = [
+  { v: 'breakfast', en: 'Breakfast', ua: 'Сніданки' }, { v: 'main', en: 'Mains', ua: 'Основні' },
+  { v: 'dessert', en: 'Desserts', ua: 'Десерти' }, { v: 'baking', en: 'Baking', ua: 'Випічка' },
+  { v: 'snack', en: 'Snacks', ua: 'Перекуси' }, { v: 'bread', en: 'Bread', ua: 'Хліб' },
+  { v: 'sauce', en: 'Sauces', ua: 'Соуси' }, { v: 'drink', en: 'Drinks', ua: 'Напої' },
+];
+const DIET_CHIPS = [
+  { v: 'sugar-free', en: 'Sugar-free', ua: 'Без цукру' }, { v: 'gluten-free', en: 'Gluten-free', ua: 'Без глютену' },
+  { v: 'low-carb', en: 'Low carb', ua: 'Низьковуглеводне' }, { v: 'vegetarian', en: 'Vegetarian', ua: 'Вегетаріанське' },
+  { v: 'dairy-free', en: 'Dairy-free', ua: 'Без молочного' },
+];
+
+function recipeWord(n) {
+  if (lang === 'en') return n === 1 ? 'recipe' : 'recipes';
+  const a = n % 10, b = n % 100;
+  return n === 0 ? 'рецептів' : (a === 1 && b !== 11) ? 'рецепт' : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? 'рецепти' : 'рецептів';
+}
+
+const T = {
+  eyebrow: lang === 'ua' ? 'Рецепти з низьким ГІ' : 'Low-GI Recipes',
+  lede: lang === 'ua'
+    ? 'Страви, дружні до рівня цукру в крові, для жінок 40+ — випічка без цукру, низьковуглеводні страви й десерти, англійською та українською. Додавайте будь-який рецепт до спільного списку покупок.'
+    : 'Blood-sugar-friendly recipes for women 40+ — sugar-free bakes, low-carb mains and desserts, in English and Ukrainian. Add any recipe to one combined shopping list.',
+  typeLabel: lang === 'ua' ? 'Тип' : 'Type',
+  dietLabel: lang === 'ua' ? 'Дієта' : 'Diet',
+  clear: lang === 'ua' ? 'Скинути фільтри' : 'Clear filters',
+  more: lang === 'ua' ? 'Показати ще' : 'Load more',
+  emptyH: lang === 'ua' ? 'Немає рецептів за цими фільтрами' : 'No recipes match those filters',
+  emptyP: lang === 'ua' ? 'Спробуйте прибрати один фільтр.' : 'Try removing one to see more.',
+  foot: lang === 'ua'
+    ? 'Рецепти адаптовано з lenafilatova.com. Примітки щодо ГІ мають загальний характер і не замінюють медичну чи дієтичну консультацію.'
+    : 'Recipes adapted from lenafilatova.com. GI notes are for general guidance, not personalised medical or dietary advice.',
+};
+---
+<script is:inline define:vars={{ altHubHref, otherLang }}>
+  if (new RegExp('[?&]lang=' + otherLang).test(location.search)) location.replace(altHubHref);
+</script>
+
+<div class="rx wide">
+  <div class="eyebrow">{T.eyebrow}</div>
+  <h1>{T.eyebrow}</h1>
+  <p class="lede">{T.lede}</p>
+
+  <div class="filters" id="filters">
+    <div class="filter-row">
+      <span class="filter-label">{T.typeLabel}</span>
+      <div class="chips">
+        {TYPE_CHIPS.map((c) => (
+          <button class="chip" data-group="cat" data-value={c.v}>{lang === 'ua' ? c.ua : c.en}</button>
+        ))}
+      </div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">{T.dietLabel}</span>
+      <div class="chips">
+        {DIET_CHIPS.map((c) => (
+          <button class="chip" data-group="diet" data-value={c.v}>{lang === 'ua' ? c.ua : c.en}</button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="bar2">
+    <div class="count"><b id="countNum">{RECIPES.length}</b> <span id="countWord">{recipeWord(RECIPES.length)}</span></div>
+    <button class="clear" id="clearBtn" disabled>{T.clear}</button>
+  </div>
+
+  <div class="cards" id="grid">
+    {RECIPES.map((r) => (
+      <a class="rcard" href={`${R}${r.slug}/`} data-cat={r.cat} data-diet={(r.tags || []).join(' ')}>
+        <div class="thumb"><img src={`${IMG}${r.img}`} loading="lazy" decoding="async" alt={r.title[lang]} /></div>
+        <div class="body">
+          <div class="title">{r.title[lang]}</div>
+          <div class="cmeta"><span>{CAT_HUB[r.cat][lang]}</span><span>{r.meta.serves[lang]}</span></div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="more-wrap" id="moreWrap"><button class="more-btn" id="moreBtn">{T.more}</button></div>
+  <div class="empty" id="empty">
+    <h3>{T.emptyH}</h3>
+    <p>{T.emptyP}</p>
+  </div>
+
+  <p class="foot-note">{T.foot}</p>
+</div>
+
+<script define:vars={{ lang }}>
+  (function () {
+    var chips = [].slice.call(document.querySelectorAll('.chip'));
+    var grid = document.getElementById('grid');
+    var clearBtn = document.getElementById('clearBtn'), empty = document.getElementById('empty');
+    var moreWrap = document.getElementById('moreWrap'), moreBtn = document.getElementById('moreBtn');
+    var batchesShown = 1;
+
+    function perRow() {
+      var cols = getComputedStyle(grid).gridTemplateColumns;
+      var n = (cols || '').split(' ').filter(Boolean).length;
+      return n > 0 ? n : 1;
+    }
+    function batchSize() { var c = perRow(); var rows = c >= 3 ? 3 : (c === 2 ? 4 : 6); return c * rows; }
+    function recipeWord(n) {
+      if (lang === 'en') return n === 1 ? 'recipe' : 'recipes';
+      var a = n % 10, b = n % 100;
+      return n === 0 ? 'рецептів' : (a === 1 && b !== 11) ? 'рецепт' : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? 'рецепти' : 'рецептів';
+    }
+    function groups() {
+      var g = {};
+      chips.forEach(function (c) { if (!c.classList.contains('active')) return; var k = c.getAttribute('data-group'); (g[k] = g[k] || []).push(c.getAttribute('data-value')); });
+      return g;
+    }
+    function apply() {
+      var g = groups(), any = Object.keys(g).length > 0, total = 0;
+      var step = batchSize(), limit = step * batchesShown;
+      [].slice.call(grid.querySelectorAll('.rcard')).forEach(function (card) {
+        var ok = Object.keys(g).every(function (k) {
+          var have = (card.getAttribute('data-' + k) || '').split(' ');
+          return g[k].some(function (v) { return have.indexOf(v) !== -1; });
+        });
+        if (ok) { card.classList.toggle('hidden', total >= limit); total++; }
+        else { card.classList.add('hidden'); }
+      });
+      document.getElementById('countNum').textContent = total;
+      document.getElementById('countWord').textContent = recipeWord(total);
+      empty.classList.toggle('show', total === 0);
+      clearBtn.disabled = !any;
+      var remaining = total - limit, next = Math.min(step, remaining);
+      moreWrap.classList.toggle('show', remaining > 0);
+      if (remaining > 0) moreBtn.textContent = (lang === 'ua' ? 'Показати ще ' + next : 'Load ' + next + ' more');
+    }
+    function reset() { batchesShown = 1; apply(); }
+    chips.forEach(function (c) { c.addEventListener('click', function () { c.classList.toggle('active'); reset(); }); });
+    clearBtn.addEventListener('click', function () { chips.forEach(function (c) { c.classList.remove('active'); }); reset(); });
+    moreBtn.addEventListener('click', function () { batchesShown++; apply(); });
+    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(apply, 150); });
+    apply();
+  })();
+</script>
+
+<script is:inline define:vars={{ lang }}>window.LF_LANG = lang;</script>
+<script is:inline src={`${B}recipes.js`}></script>

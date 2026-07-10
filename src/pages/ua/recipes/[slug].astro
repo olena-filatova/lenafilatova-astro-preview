@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import RecipeDetailBody from '../../../components/RecipeDetailBody.astro';
+import { RECIPES } from '../../../data/recipes.js';
+import { buildJsonLd, clip, imagesOf } from '../../../data/recipes-lib.js';
+
+export function getStaticPaths() {
+  return RECIPES.map((R) => ({ params: { slug: R.slug }, props: { R } }));
+}
+
+const { R } = Astro.props;
+const B = import.meta.env.BASE_URL;
+const title = `${R.title.ua} — Рецепт з низьким ГІ`;
+const description = clip(R.why.ua, 155);
+const ogImage = `/recipes/images/${imagesOf(R)[0]}`;
+const jsonld = buildJsonLd(R, 'ua');
+---
+<BaseLayout
+  lang="ua"
+  title={title}
+  description={description}
+  canonical={`/ua/recipes/${R.slug}/`}
+  ogImage={ogImage}
+  ogType="article"
+  jsonld={jsonld}
+  showList={true}
+  enHref={`${B}recipes/${R.slug}/`}
+  uaHref={`${B}ua/recipes/${R.slug}/`}>
+  <RecipeDetailBody R={R} lang="ua" />
+</BaseLayout>
