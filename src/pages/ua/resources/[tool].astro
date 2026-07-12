@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CalculatorBody from '../../../components/CalculatorBody.astro';
+import { CALCULATORS } from '../../../data/calculators.js';
+
+export function getStaticPaths() {
+  return CALCULATORS.map((calc) => ({ params: { tool: calc.slug }, props: { calc } }));
+}
+
+const { calc } = Astro.props;
+const B = import.meta.env.BASE_URL;
+---
+<BaseLayout
+  lang="ua"
+  title={calc.ua.seoTitle}
+  description={calc.ua.seoDesc}
+  canonical={`/ua/resources/${calc.slug}/`}
+  alternates={{ en: `/resources/${calc.slug}/`, ua: `/ua/resources/${calc.slug}/` }}
+  enHref={`${B}resources/${calc.slug}/`}
+  uaHref={`${B}ua/resources/${calc.slug}/`}>
+  <CalculatorBody calc={calc} lang="ua" />
+</BaseLayout>

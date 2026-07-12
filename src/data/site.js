@@ -186,15 +186,21 @@ export const RESOURCES = {
   cards: [
     {
       band: '#eaf4ec', head: '#3f7d54',
-      href: 'https://calculator.lenafilatova.co.uk', hrefUa: 'https://calculator.lenafilatova.co.uk',
+      href: '/resources/food-calculator/', hrefUa: '/ua/resources/food-calculator/',
       en: { band: 'Food & blood sugar', kicker: 'Interactive tool', title: 'Metabolic food calculator', desc: 'See how any food is likely to affect your blood sugar — glycaemic load, carbs and protein. Built for Type 1, insulin resistance and PMOS (previously PCOS).', cta: 'Open the calculator →' },
       ua: { band: 'Їжа та цукор у крові', kicker: 'Інтерактивний інструмент', title: 'Калькулятор впливу їжі на метаболізм', desc: 'Подивіться, як конкретна їжа впливає на рівень цукру — глікемічне навантаження, вуглеводи та білок. Для діабету 1 типу, інсулінорезистентності та ПМОС (раніше СПКЯ).', cta: 'Відкрити калькулятор →' },
     },
     {
       band: '#fbeee1', head: '#b0743a',
-      href: 'https://calculator.lenafilatova.co.uk', hrefUa: 'https://calculator.lenafilatova.co.uk',
+      href: '/resources/exercise-calculator/', hrefUa: '/ua/resources/exercise-calculator/',
       en: { band: 'Exercise & blood sugar', kicker: 'Interactive tool', title: 'Exercise & blood sugar calculator', desc: 'See how cardio, strength and everyday movement are likely to affect your blood sugar. Built for Type 1, insulin resistance and PMOS (previously PCOS).', cta: 'Open the calculator →' },
       ua: { band: 'Активність та цукор у крові', kicker: 'Інтерактивний інструмент', title: 'Калькулятор впливу фізичних навантажень на цукор', desc: 'Подивіться, як кардіо, силові та щоденний рух впливають на рівень цукру. Для діабету 1 типу, інсулінорезистентності та ПМОС (раніше СПКЯ).', cta: 'Відкрити калькулятор →' },
+    },
+    {
+      band: '#f0ecf7', head: '#6e5aa6',
+      href: '/resources/insulin-pump-doses/', hrefUa: '/ua/resources/insulin-pump-doses/',
+      en: { band: 'Insulin pump starting doses', kicker: 'Interactive tool', title: 'Insulin pump starting-dose calculator', desc: 'Estimate starting pump settings — basal, carb ratio and correction factor — when moving from pens or starting out. Adjusts for age and activity level.', cta: 'Open the calculator →' },
+      ua: { band: 'Стартові дози інсулінової помпи', kicker: 'Інтерактивний інструмент', title: 'Калькулятор стартових доз інсулінової помпи', desc: 'Оцініть стартові налаштування помпи — базал, вуглеводний коефіцієнт і фактор корекції — під час переходу зі шприц-ручок або на початку. Враховує вік та активність.', cta: 'Відкрити калькулятор →' },
     },
     {
       band: '#f5eaf1', head: '#a24b76',

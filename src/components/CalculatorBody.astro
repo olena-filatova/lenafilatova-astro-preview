@@ -1,0 +1,41 @@
+---
+// One template for the three embedded calculators. The widget script mounts
+// into the data-attribute div in a Shadow DOM (styles isolated); a small
+// inline script first syncs localStorage.lf_lang to this page's language so
+// the widget opens in the right language (it reads lf_lang, ua→uk).
+import { CALC_UI } from '../data/calculators.js';
+
+const { calc, lang = 'en' } = Astro.props;
+const c = calc[lang];
+const B = import.meta.env.BASE_URL;
+const L = lang === 'ua' ? `${B}ua/` : B;
+---
+<section class="calc-page">
+  <div class="wrap">
+    <a class="calc-back" href={`${L}resources/`}>← {CALC_UI[lang].back}</a>
+    <h1>{c.title}</h1>
+    <p class="calc-sub">{c.sub}</p>
+    <div class="calc-frame">
+      <div {...{ [calc.mountAttr]: true }}></div>
+    </div>
+    <p class="calc-open"><a href={calc.openUrl} target="_blank" rel="noopener">{c.openNew} →</a></p>
+    <p class="calc-disclaimer">{c.disclaimer}</p>
+  </div>
+</section>
+
+<script is:inline define:vars={{ lang }}>
+  try { localStorage.setItem('lf_lang', lang); } catch (e) {}
+</script>
+<script is:inline defer src={calc.script}></script>
+
+<style>
+  .calc-page { padding: 40px 0 64px; }
+  .calc-page .wrap { max-width: 880px; }
+  .calc-back { display: inline-block; margin-bottom: 28px; font-size: 14px; font-weight: 600; color: #7A6675; }
+  .calc-page h1 { font-size: clamp(30px, 4.4vw, 40px); letter-spacing: -0.4px; margin: 0 0 10px; }
+  .calc-sub { margin: 0 0 26px; font-size: 17px; line-height: 1.55; color: #6A5668; max-width: 640px; }
+  .calc-frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--card); box-shadow: 0 1px 3px rgba(51, 27, 51, 0.04); min-height: 420px; }
+  .calc-open { margin: 14px 2px 0; font-size: 13.5px; }
+  .calc-open a { color: var(--accent); font-weight: 600; }
+  .calc-disclaimer { margin: 12px 2px 0; font-size: 12.5px; line-height: 1.5; color: #9A8896; }
+</style>
