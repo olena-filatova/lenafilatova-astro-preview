@@ -7,10 +7,10 @@ const B = import.meta.env.BASE_URL;
 const L = lang === 'ua' ? `${B}ua/` : B;
 // legalLinks and these slugs are in the same order (privacy, cookies, terms, refunds, accessibility).
 const legalSlugs = Object.values(LEGAL_SLUGS);
-// Blog + recipes still live on the current site — link out until they move into Astro.
-const LIVE = 'https://lenafilatova.co.uk';
-const liveBlog = `${LIVE}/${lang === 'ua' ? 'ua/' : ''}blog/`;
-const liveRecipes = `${LIVE}/recipes/`;
+// Footer category links open the blog with that filter pre-selected (?cat=…).
+// Same order as FOOTER.cats; null = no matching blog category, plain blog link.
+const catKeys = ['perimenopause', 'nutrition', null, 'diabetes'];
+const catHref = (i) => `${L}blog/${catKeys[i] ? `?cat=${catKeys[i]}` : ''}`;
 ---
 <footer class="site-footer">
   <div class="wrap">
@@ -28,16 +28,16 @@ const liveRecipes = `${LIVE}/recipes/`;
       <div>
         <h4>{t.explore}</h4>
         <ul>
-          <li><a href={liveBlog}>{n.blog}</a></li>
+          <li><a href={`${L}blog/`}>{n.blog}</a></li>
           <li><a href={`${L}resources/`}>{n.resources}</a></li>
-          <li><a href={liveRecipes}>{n.recipes}</a></li>
+          <li><a href={`${L}recipes/`}>{n.recipes}</a></li>
           <li><a href={`${L}about/`}>{n.about}</a></li>
           <li><a href={`${L}contact/`}>{n.contact}</a></li>
         </ul>
       </div>
       <div>
         <h4>{t.categories}</h4>
-        <ul>{t.cats.map((c) => <li><a href="#">{c}</a></li>)}</ul>
+        <ul>{t.cats.map((c, i) => <li><a href={catHref(i)}>{c}</a></li>)}</ul>
       </div>
       <div>
         <h4>{t.legal}</h4>

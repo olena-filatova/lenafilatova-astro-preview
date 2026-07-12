@@ -16,10 +16,13 @@ const {
   jsonld,          // optional object → <script type="application/ld+json">
   showList = false, // recipe pages: show the shopping-list button in the header
   enHref, uaHref,   // recipe pages: where the EN/UA toggle points
+  alternates,      // optional {en, ua} site-absolute paths → hreflang links (x-default = en)
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+const altEn = alternates && new URL(alternates.en, Astro.site).href;
+const altUa = alternates && new URL(alternates.ua, Astro.site).href;
 ---
 <!doctype html>
 <html lang={lang === 'ua' ? 'uk' : 'en'}>
@@ -29,6 +32,9 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {alternates && <link rel="alternate" hreflang="en" href={altEn} />}
+    {alternates && <link rel="alternate" hreflang="uk" href={altUa} />}
+    {alternates && <link rel="alternate" hreflang="x-default" href={altEn} />}
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

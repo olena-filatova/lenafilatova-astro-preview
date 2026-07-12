@@ -1,0 +1,76 @@
+---
+// Blog index: server-rendered card grid, newest first, with category filter
+// chips — same show/hide approach as the recipe hub (cards carry data-cats;
+// the inline script never renders content). NEW vs the Divhunt site: the old
+// blog had no filtering; categories were display-only.
+import { POSTS } from '../data/blog.js';
+import { CATS, UI } from '../data/blog-lib.js';
+import '../styles/blog.css';
+
+const { lang = 'en' } = Astro.props;
+const t = UI[lang];
+const B = import.meta.env.BASE_URL;
+const hub = lang === 'ua' ? `${B}ua/blog/` : `${B}blog/`;
+const img = (src) => B.replace(/\/$/, '') + src;
+---
+<section class="blog-hero">
+  <div class="wrap">
+    <p class="kicker">{t.hubKicker}</p>
+    <h1>{t.hubH1}</h1>
+    <p class="lede">{t.hubLead}</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="blog-filters" id="blogFilters">
+      <button class="chip on" data-cat="all">{t.all}</button>
+      {CATS.map((c) => <button class="chip" data-cat={c.key}>{c[lang]}</button>)}
+    </div>
+    <div class="blog-grid" id="blogGrid">
+      {POSTS.map((p) => (
+        <a class="bcard" href={`${hub}${p.slug}/`} data-cats={p.cats.join(' ')}>
+          <div class="thumb" style={`background-image:url('${img(p.image)}')`}>
+            {p.comingSoon && <span class="soon">{t.comingSoonBadge}</span>}
+          </div>
+          <div class="body">
+            <p class="cat">{p[lang].cat}</p>
+            <h2>{p[lang].title}</h2>
+            <p class="excerpt">{p[lang].excerpt}</p>
+            <p class="meta">{p[lang].meta}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+    <p class="blog-empty" id="blogEmpty">{t.empty}</p>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var filters = document.getElementById('blogFilters');
+    var grid = document.getElementById('blogGrid');
+    var empty = document.getElementById('blogEmpty');
+    if (!filters || !grid) return;
+    function apply(btn) {
+      [].slice.call(filters.querySelectorAll('.chip')).forEach(function (c) { c.classList.remove('on'); });
+      btn.classList.add('on');
+      var want = btn.getAttribute('data-cat');
+      var shown = 0;
+      [].slice.call(grid.querySelectorAll('.bcard')).forEach(function (card) {
+        var ok = want === 'all' || (card.getAttribute('data-cats') || '').split(' ').indexOf(want) >= 0;
+        card.classList.toggle('hidden', !ok);
+        if (ok) shown++;
+      });
+      if (empty) empty.style.display = shown ? 'none' : 'block';
+    }
+    filters.addEventListener('click', function (e) {
+      var btn = e.target.closest('.chip');
+      if (btn) apply(btn);
+    });
+    // Deep link: /blog/?cat=nutrition pre-selects a chip (footer category links).
+    var want = new URLSearchParams(window.location.search).get('cat');
+    var pre = want && filters.querySelector('.chip[data-cat="' + want.replace(/[^a-z-]/g, '') + '"]');
+    if (pre) apply(pre);
+  })();
+</script>

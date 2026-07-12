@@ -3,9 +3,11 @@ import { HOME, CONTACT_ENDPOINT } from '../data/site.js';
 const { lang = 'en' } = Astro.props;
 const t = HOME[lang];
 const B = import.meta.env.BASE_URL;
-const resourcesHref = (lang === 'ua' ? `${B}ua/` : B) + 'resources/';
-const blogHref = 'https://lenafilatova.co.uk/' + (lang === 'ua' ? 'ua/' : '') + 'blog/';
-const recipesAllHref = 'https://lenafilatova.co.uk/recipes/';
+const L = lang === 'ua' ? `${B}ua/` : B;
+const resourcesHref = `${L}resources/`;
+const blogHref = `${L}blog/`;
+const recipesAllHref = `${L}recipes/`;
+const img = (src) => B.replace(/\/$/, '') + src;
 ---
 <!-- HERO -->
 <section class="hero home">
@@ -50,8 +52,8 @@ const recipesAllHref = 'https://lenafilatova.co.uk/recipes/';
     </div>
     <div class="card-grid four">
       {HOME.recipes.map((r) => (
-        <a class="mini-card" href={r.url}>
-          <div class="mini-photo"><img src={r.img} alt={r.title[lang]} loading="lazy" /></div>
+        <a class="mini-card" href={`${L}recipes/${r.slug}/`}>
+          <div class="mini-photo"><img src={img(r.img)} alt={r.title[lang]} loading="lazy" /></div>
           <div class="mini-body">
             <span class="mini-cat">{r.cat[lang]}</span>
             <h3>{r.title[lang]}</h3>
@@ -73,8 +75,8 @@ const recipesAllHref = 'https://lenafilatova.co.uk/recipes/';
     </div>
     <div class="card-grid three">
       {HOME.posts.map((p) => (
-        <a class="mini-card" href={p.url}>
-          <div class="mini-photo"><img src={p.img} alt={p.title[lang]} loading="lazy" /></div>
+        <a class="mini-card" href={`${L}blog/${p.slug}/`}>
+          <div class="mini-photo"><img src={img(p.img)} alt={p.title[lang]} loading="lazy" /></div>
           <div class="mini-body">
             <span class="mini-cat">{p.cat[lang]}</span>
             <h3>{p.title[lang]}</h3>

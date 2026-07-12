@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogHubBody from '../../components/BlogHubBody.astro';
+
+const B = import.meta.env.BASE_URL;
+---
+<BaseLayout
+  lang="en"
+  title="Blog — evidence-based women's health after 40"
+  description="Research-backed articles on diabetes, perimenopause, nutrition, skin and weight — written by Lena Filatova, living with type 1 diabetes for 23 years."
+  canonical="/blog/"
+  alternates={{ en: '/blog/', ua: '/ua/blog/' }}
+  enHref={`${B}blog/`}
+  uaHref={`${B}ua/blog/`}>
+  <BlogHubBody lang="en" />
+</BaseLayout>

@@ -96,11 +96,10 @@ export const BOOKING_EMBED = 'https://calendar.google.com/calendar/appointments/
 // same script that handles all site signups → Mailchimp). Posted no-cors, form-urlencoded.
 export const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw21p8PuG5jGQ7JXf7j-tX1-OZBeA1p6negAuzi7TmiyPkjEoshxLbtGc6avUVskGiK/exec';
 
-const LIVE = 'https://lenafilatova.co.uk';
-
-// Homepage. Featured recipes + blog cards link to the live site for now (repoint to
-// internal paths once recipes/blog are migrated). Newsletter posts to the same
-// Apps Script as all signups (source=newsletter → Mailchimp double opt-in).
+// Homepage. Featured recipe + blog cards are slug-based (both sections live in
+// this repo now); HomeBody builds the language-scoped href and base-prefixes
+// the local image. Newsletter posts to the same Apps Script as all signups
+// (source=newsletter → Mailchimp double opt-in).
 export const HOME = {
   en: {
     seoTitle: 'Lena Filatova — Evidence-based women’s health after 40',
@@ -157,15 +156,15 @@ export const HOME = {
   helpColors: ['#f7eaf1', '#eeeaf6', '#e9f1ec', '#e9eef5'],
   helpNums: ['#a24b76', '#5a5e9c', '#3f7d54', '#4d61a0'],
   recipes: [
-    { cat: { en: 'Main', ua: 'Основне' }, title: { en: 'Zucchini Spaghetti with Salmon', ua: 'Спагеті з кабачка з лососем' }, gi: 15, carbs: 6, url: `${LIVE}/recipes/zucchini-spaghetti-salmon/`, img: `${LIVE}/recipes/images/93-zucchini-spaghetti-salmon.jpg` },
-    { cat: { en: 'Snack', ua: 'Перекус' }, title: { en: 'Almond & Pecan Cookies', ua: 'Мигдалево-пеканове печиво' }, gi: 10, carbs: 10, url: `${LIVE}/recipes/almond-pecan-cookies/`, img: `${LIVE}/recipes/images/05-almond-pecan-cookies.jpeg` },
-    { cat: { en: 'Sauce', ua: 'Соус' }, title: { en: 'Avocado Mayonnaise', ua: 'Майонез з авокадо' }, gi: 20, carbs: 3, url: `${LIVE}/recipes/avocado-mayonnaise/`, img: `${LIVE}/recipes/images/11-avocado-mayonnaise.jpg` },
-    { cat: { en: 'Dessert', ua: 'Десерт' }, title: { en: 'Sugar-free Birthday Cake', ua: 'Святковий торт без цукру' }, gi: 38, carbs: 22, url: `${LIVE}/recipes/birthday-cake-sugar-free/`, img: `${LIVE}/recipes/images/19-birthday-cake-sugar-free.jpg` },
+    { cat: { en: 'Main', ua: 'Основне' }, title: { en: 'Zucchini Spaghetti with Salmon', ua: 'Спагеті з кабачка з лососем' }, gi: 15, carbs: 6, slug: 'zucchini-spaghetti-salmon', img: '/recipes/images/93-zucchini-spaghetti-salmon.jpg' },
+    { cat: { en: 'Snack', ua: 'Перекус' }, title: { en: 'Almond & Pecan Cookies', ua: 'Мигдалево-пеканове печиво' }, gi: 10, carbs: 10, slug: 'almond-pecan-cookies', img: '/recipes/images/05-almond-pecan-cookies.jpeg' },
+    { cat: { en: 'Sauce', ua: 'Соус' }, title: { en: 'Avocado Mayonnaise', ua: 'Майонез з авокадо' }, gi: 20, carbs: 3, slug: 'avocado-mayonnaise', img: '/recipes/images/11-avocado-mayonnaise.jpg' },
+    { cat: { en: 'Dessert', ua: 'Десерт' }, title: { en: 'Sugar-free Birthday Cake', ua: 'Святковий торт без цукру' }, gi: 38, carbs: 22, slug: 'birthday-cake-sugar-free', img: '/recipes/images/19-birthday-cake-sugar-free.jpg' },
   ],
   posts: [
-    { cat: { en: 'Nutrition', ua: 'Харчування' }, title: { en: 'What to replace sugar with: the evidence on sweeteners', ua: 'Чим замінити цукор: що каже наука про підсолоджувачі' }, excerpt: { en: 'Stevia, monk fruit, allulose, erythritol, xylitol, sucralose, aspartame, honey and agave — what current research actually shows about sweeteners for blood sugar and health.', ua: 'Стевія, монк-фрут, алюлоза, еритрит, ксиліт, сукралоза, аспартам, мед і агава — що насправді показують сучасні дослідження про підсолоджувачі для рівня цукру та здоров’я.' }, date: { en: '9 July 2026', ua: '9 липня 2026' }, min: 7, url: `${LIVE}/blog/natural-sweeteners/`, img: `${LIVE}/images/natural-sweeteners-stevia-monk-fruit-allulose.jpg` },
-    { cat: { en: 'Nutrition', ua: 'Харчування' }, title: { en: 'Protein for women over 40: how much do you actually need?', ua: 'Білок для жінок після 40: скільки насправді потрібно?' }, excerpt: { en: 'Why the official 0.8g/kg guideline falls short after 40 — and the protein targets that actually protect muscle, energy and blood sugar.', ua: 'Чому офіційна норма 0,8 г/кг замала після 40 — і які орієнтири білка справді захищають м’язи, енергію та цукор у крові.' }, date: { en: '4 July 2026', ua: '4 липня 2026' }, min: 8, url: `${LIVE}/blog/protein-for-women-over-40/`, img: `${LIVE}/images/protein-for-women-over-40.jpg` },
-    { cat: { en: 'Diabetes', ua: 'Діабет' }, title: { en: 'What new research says about type 2 diabetes', ua: 'Що каже нове дослідження про діабет 2 типу' }, excerpt: { en: 'Recent findings on remission, meal order, time-restricted eating and sleep — and what’s actually worth trying.', ua: 'Нові дані про ремісію, порядок їжі, обмежене в часі харчування та сон — і що справді варто спробувати.' }, date: { en: '26 June 2026', ua: '26 червня 2026' }, min: 8, url: `${LIVE}/blog/type-2-diabetes-research/`, img: `${LIVE}/images/type-2-diabetes-research-meal-order.jpg` },
+    { cat: { en: 'Nutrition', ua: 'Харчування' }, title: { en: 'What to replace sugar with: the evidence on sweeteners', ua: 'Чим замінити цукор: що каже наука про підсолоджувачі' }, excerpt: { en: 'Stevia, monk fruit, allulose, erythritol, xylitol, sucralose, aspartame, honey and agave — what current research actually shows about sweeteners for blood sugar and health.', ua: 'Стевія, монк-фрут, алюлоза, еритрит, ксиліт, сукралоза, аспартам, мед і агава — що насправді показують сучасні дослідження про підсолоджувачі для рівня цукру та здоров’я.' }, date: { en: '9 July 2026', ua: '9 липня 2026' }, min: 7, slug: 'natural-sweeteners', img: '/images/natural-sweeteners-stevia-monk-fruit-allulose.jpg' },
+    { cat: { en: 'Nutrition', ua: 'Харчування' }, title: { en: 'Protein for women over 40: how much do you actually need?', ua: 'Білок для жінок після 40: скільки насправді потрібно?' }, excerpt: { en: 'Why the official 0.8g/kg guideline falls short after 40 — and the protein targets that actually protect muscle, energy and blood sugar.', ua: 'Чому офіційна норма 0,8 г/кг замала після 40 — і які орієнтири білка справді захищають м’язи, енергію та цукор у крові.' }, date: { en: '4 July 2026', ua: '4 липня 2026' }, min: 8, slug: 'protein-for-women-over-40', img: '/images/protein-for-women-over-40.jpg' },
+    { cat: { en: 'Diabetes', ua: 'Діабет' }, title: { en: 'What new research says about type 2 diabetes', ua: 'Що каже нове дослідження про діабет 2 типу' }, excerpt: { en: 'Recent findings on remission, meal order, time-restricted eating and sleep — and what’s actually worth trying.', ua: 'Нові дані про ремісію, порядок їжі, обмежене в часі харчування та сон — і що справді варто спробувати.' }, date: { en: '26 June 2026', ua: '26 червня 2026' }, min: 8, slug: 'type-2-diabetes-research', img: '/images/type-2-diabetes-research-meal-order.jpg' },
   ],
 };
 

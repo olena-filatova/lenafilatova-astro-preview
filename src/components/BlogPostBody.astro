@@ -1,0 +1,86 @@
+---
+// One template for every blog article. Renders the typed block list from
+// blog.js (p / h / quote / img / graph / table / refs / links / bio) plus
+// FAQ, CTA and disclaimer — the same anatomy as the live standalone pages.
+// The coming-soon post has no blocks: it shows the note + its short legacy body.
+import { UI, renderInline } from '../data/blog-lib.js';
+import '../styles/blog.css';
+
+const { post, lang = 'en' } = Astro.props;
+const a = post[lang];
+const t = UI[lang];
+const B = import.meta.env.BASE_URL;
+const L = lang === 'ua' ? `${B}ua/` : B;
+const altHref = `${lang === 'ua' ? B : `${B}ua/`}blog/${post.slug}/`;
+// Images still ship at site-absolute /images/… paths in the data.
+const img = (src) => B.replace(/\/$/, '') + src;
+---
+<article class="post">
+  <p class="cat">{a.cat}</p>
+  <h1>{a.title}</h1>
+  <p class="byline">{t.byline} · {a.meta}</p>
+  <p class="alt"><a href={altHref}>{t.readAlt}</a></p>
+  {post.comingSoon && (
+    <div class="soon-note">
+      <span class="badge">{t.comingSoonBadge}</span>
+      <span>{t.comingSoonNote}</span>
+    </div>
+  )}
+  <figure><img src={img(post.image)} alt={a.title} fetchpriority="high" /></figure>
+  <p class="lead">{a.lead}</p>
+  <div class="prose">
+    {(a.blocks || []).map((b) => {
+      if (b.t === 'p') return <p set:html={renderInline(b.text, B)} />;
+      if (b.t === 'h') return <h2>{b.text}</h2>;
+      if (b.t === 'quote') return <blockquote>{b.text}</blockquote>;
+      if (b.t === 'img' || b.t === 'graph')
+        return <figure><img src={img(b.src)} alt={b.alt} loading="lazy" />{b.cap && <figcaption>{b.cap}</figcaption>}</figure>;
+      if (b.t === 'table')
+        return <div class="tbl"><table>
+          <thead><tr>{b.head.map((h) => <th>{h}</th>)}</tr></thead>
+          <tbody>{b.rows.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+        </table></div>;
+      if (b.t === 'refs')
+        return <div class="refs">{b.items.map((r) => (
+          <div class="ref">
+            <strong>{r.claim}</strong>
+            <p>{r.detail}</p>
+            {r.url && <a href={r.url} target="_blank" rel="noopener noreferrer">{r.cite} ↗</a>}
+            {!r.url && <span class="ref-cite">{r.cite}</span>}
+          </div>
+        ))}</div>;
+      if (b.t === 'links')
+        return <div class="cards">{b.items.map((l) => (
+          <a class="card" href={l.url} target="_blank" rel="noopener noreferrer">
+            <strong>{l.name} ↗</strong>
+            <span>{l.desc}</span>
+          </a>
+        ))}</div>;
+      if (b.t === 'bio')
+        return <div class="bio">
+          <img src={img(b.img)} alt={b.alt} loading="lazy" />
+          <div><strong>{b.name}</strong><p>{b.text}</p></div>
+        </div>;
+      return null;
+    })}
+    {!a.blocks && (a.body || []).map((p) => <p>{p}</p>)}
+  </div>
+  {a.faq && a.faq.length > 0 && (
+    <section class="faq">
+      <h2>{t.faqTitle}</h2>
+      {a.faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <div class="ans"><p>{f.a}</p></div>
+        </details>
+      ))}
+    </section>
+  )}
+  <aside class="cta">
+    <h2>{t.ctaTitle}</h2>
+    <p>{t.ctaBody}</p>
+    <a href={`${L}contact/`}>{t.ctaBtn}</a>
+  </aside>
+  <p class="disclaimer">{t.disclaimer}</p>
+</article>
+<div class="post-foot"><a href={`${L}blog/`}>{t.backToBlog}</a></div>

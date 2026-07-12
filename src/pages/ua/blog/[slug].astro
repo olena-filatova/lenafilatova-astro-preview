@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogPostBody from '../../../components/BlogPostBody.astro';
+import { POSTS } from '../../../data/blog.js';
+import { buildJsonLd } from '../../../data/blog-lib.js';
+
+export function getStaticPaths() {
+  return POSTS.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const B = import.meta.env.BASE_URL;
+const a = post.ua;
+---
+<BaseLayout
+  lang="ua"
+  title={a.seoTitle || a.title}
+  description={a.metaDesc || a.excerpt}
+  canonical={`/ua/blog/${post.slug}/`}
+  ogImage={post.image}
+  ogType="article"
+  jsonld={buildJsonLd(post, 'ua')}
+  alternates={{ en: `/blog/${post.slug}/`, ua: `/ua/blog/${post.slug}/` }}
+  enHref={`${B}blog/${post.slug}/`}
+  uaHref={`${B}ua/blog/${post.slug}/`}>
+  <BlogPostBody post={post} lang="ua" />
+</BaseLayout>

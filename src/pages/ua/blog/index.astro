@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogHubBody from '../../../components/BlogHubBody.astro';
+
+const B = import.meta.env.BASE_URL;
+---
+<BaseLayout
+  lang="ua"
+  title="Блог — жіноче здоров’я після 40, засноване на доказах"
+  description="Статті, що спираються на дослідження: діабет, перименопауза, харчування, шкіра та вага — від Лєни Філатової, яка живе з діабетом 1 типу 23 роки."
+  canonical="/ua/blog/"
+  alternates={{ en: '/blog/', ua: '/ua/blog/' }}
+  enHref={`${B}blog/`}
+  uaHref={`${B}ua/blog/`}>
+  <BlogHubBody lang="ua" />
+</BaseLayout>
