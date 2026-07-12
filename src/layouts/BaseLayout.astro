@@ -4,6 +4,7 @@
 // furniture is never rewritten per page.
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
 
 const {
@@ -58,5 +59,6 @@ const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
     <Header lang={lang} showList={showList} enHref={enHref} uaHref={uaHref} />
     <main><slot /></main>
     <Footer lang={lang} />
+    <CookieConsent lang={lang} />
   </body>
 </html>
