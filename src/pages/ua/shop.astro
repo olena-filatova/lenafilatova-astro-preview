@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShopBody from '../../components/ShopBody.astro';
+import { SHOP } from '../../data/shop.js';
+---
+<BaseLayout
+  lang="ua"
+  title={SHOP.ua.seoTitle}
+  description={SHOP.ua.seoDesc}
+  canonical="/ua/shop/"
+  alternates={{ en: '/shop/', ua: '/ua/shop/' }}
+  noindex={true}>
+  <ShopBody lang="ua" />
+</BaseLayout>

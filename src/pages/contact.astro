@@ -4,6 +4,6 @@ import ContactBody from '../components/ContactBody.astro';
 import { CONTACT } from '../data/site.js';
 const c = CONTACT.en;
 ---
-<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/contact">
+<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/contact" alternates={{ en: "/contact", ua: "/ua/contact" }}>
   <ContactBody c={c} />
 </BaseLayout>

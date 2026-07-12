@@ -17,12 +17,18 @@ const {
   showList = false, // recipe pages: show the shopping-list button in the header
   enHref, uaHref,   // recipe pages: where the EN/UA toggle points
   alternates,      // optional {en, ua} site-absolute paths → hreflang links (x-default = en)
+  noindex = false, // hidden pages (e.g. shop while nothing is on sale)
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
 const altEn = alternates && new URL(alternates.en, Astro.site).href;
 const altUa = alternates && new URL(alternates.ua, Astro.site).href;
+// Preview deploys (base != '/') must never be indexed — they'd compete with
+// the live domain. Flips off automatically when `base` is dropped at cutover.
+const isPreview = import.meta.env.BASE_URL !== '/';
+const B = import.meta.env.BASE_URL;
+const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23B23A63'/%3E%3Ctext x='20' y='27' font-family='Georgia,serif' font-style='italic' font-size='20' fill='%23F6F0F5' text-anchor='middle'%3Elf%3C/text%3E%3C/svg%3E";
 ---
 <!doctype html>
 <html lang={lang === 'ua' ? 'uk' : 'en'}>
@@ -31,6 +37,9 @@ const altUa = alternates && new URL(alternates.ua, Astro.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {(isPreview || noindex) && <meta name="robots" content="noindex" />}
+    <link rel="icon" href={FAVICON} />
+    <link rel="apple-touch-icon" href={`${B}images/apple-touch-icon.png`} />
     <link rel="canonical" href={canonicalUrl} />
     {alternates && <link rel="alternate" hreflang="en" href={altEn} />}
     {alternates && <link rel="alternate" hreflang="uk" href={altUa} />}

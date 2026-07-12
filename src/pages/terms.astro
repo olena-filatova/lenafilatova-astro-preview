@@ -4,6 +4,6 @@ import LegalBody from "../components/LegalBody.astro";
 import { LEGAL } from "../data/site.js";
 const c = LEGAL.terms.en;
 ---
-<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/terms">
+<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/terms" alternates={{ en: "/terms", ua: "/ua/terms" }}>
   <LegalBody c={c} />
 </BaseLayout>

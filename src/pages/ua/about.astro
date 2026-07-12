@@ -14,6 +14,6 @@ const jsonld = {
   },
 };
 ---
-<BaseLayout lang="ua" title={c.seoTitle} description={c.seoDesc} canonical="/ua/about" ogImage={c.ogImage} jsonld={jsonld}>
+<BaseLayout lang="ua" title={c.seoTitle} description={c.seoDesc} canonical="/ua/about" alternates={{ en: "/about", ua: "/ua/about" }} ogImage={c.ogImage} jsonld={jsonld}>
   <AboutBody c={c} lang="ua" />
 </BaseLayout>

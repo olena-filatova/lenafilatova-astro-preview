@@ -4,6 +4,6 @@ import HomeBody from '../components/HomeBody.astro';
 import { HOME } from '../data/site.js';
 const t = HOME.en;
 ---
-<BaseLayout lang="en" title={t.seoTitle} description={t.seoDesc} canonical="/">
+<BaseLayout lang="en" title={t.seoTitle} description={t.seoDesc} canonical="/" alternates={{ en: "/", ua: "/ua/" }}>
   <HomeBody lang="en" />
 </BaseLayout>

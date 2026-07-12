@@ -4,6 +4,6 @@ import LegalBody from "../components/LegalBody.astro";
 import { LEGAL } from "../data/site.js";
 const c = LEGAL.privacy.en;
 ---
-<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/privacy">
+<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/privacy" alternates={{ en: "/privacy", ua: "/ua/privacy" }}>
   <LegalBody c={c} />
 </BaseLayout>

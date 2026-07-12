@@ -4,6 +4,6 @@ import LegalBody from "../../components/LegalBody.astro";
 import { LEGAL } from "../../data/site.js";
 const c = LEGAL.refunds.ua;
 ---
-<BaseLayout lang="ua" title={c.seoTitle} description={c.seoDesc} canonical="/ua/refunds">
+<BaseLayout lang="ua" title={c.seoTitle} description={c.seoDesc} canonical="/ua/refunds" alternates={{ en: "/refunds", ua: "/ua/refunds" }}>
   <LegalBody c={c} />
 </BaseLayout>

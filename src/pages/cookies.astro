@@ -4,6 +4,6 @@ import LegalBody from "../components/LegalBody.astro";
 import { LEGAL } from "../data/site.js";
 const c = LEGAL.cookies.en;
 ---
-<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/cookies">
+<BaseLayout lang="en" title={c.seoTitle} description={c.seoDesc} canonical="/cookies" alternates={{ en: "/cookies", ua: "/ua/cookies" }}>
   <LegalBody c={c} />
 </BaseLayout>

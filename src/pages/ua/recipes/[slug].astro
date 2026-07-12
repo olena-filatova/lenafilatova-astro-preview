@@ -19,7 +19,7 @@ const jsonld = buildJsonLd(R, 'ua');
   lang="ua"
   title={title}
   description={description}
-  canonical={`/ua/recipes/${R.slug}/`}
+  canonical={`/ua/recipes/${R.slug}/`} alternates={{ en: `/recipes/${R.slug}/`, ua: `/ua/recipes/${R.slug}/` }}
   ogImage={ogImage}
   ogType="article"
   jsonld={jsonld}
