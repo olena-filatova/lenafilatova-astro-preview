@@ -2,8 +2,8 @@
 
 Everything is migrated and verified on the preview
 (https://olena-filatova.github.io/lenafilatova-astro-preview/).
-This is the step-by-step for switching the real domain. **Nothing here has
-been executed** — it's Lena's call when.
+**EXECUTED 13 July 2026** — the domain now serves this repo. Steps kept
+below for the record and for rollback.
 
 ## Content freeze first
 
