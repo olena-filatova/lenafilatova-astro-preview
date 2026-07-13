@@ -63,8 +63,8 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--line);
 }
 .site-header .inner { display: flex; align-items: center; gap: 28px; height: 72px; }
-.brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-head); font-weight: 600; font-size: 20px; color: var(--ink); }
-.brand .mark { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-style: italic; font-size: 17px; }
+.brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-head); font-weight: 600; font-size: 20px; color: var(--ink); white-space: nowrap; }
+.brand .mark { flex: none; width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-style: italic; font-size: 17px; }
 .site-nav { display: flex; gap: 26px; margin-left: 18px; }
 .site-nav a { color: var(--ink); font-weight: 500; font-size: 15.5px; }
 .site-nav a:hover { color: var(--accent); }
@@ -72,6 +72,24 @@ img { max-width: 100%; display: block; }
 .lang { display: inline-flex; background: #efe4ed; border-radius: 999px; padding: 3px; }
 .lang a { font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 999px; color: var(--muted); }
 .lang a.on { background: var(--ink); color: #fff; }
+
+/* mobile menu (burger shows ≤820px, replacing .site-nav) */
+.nav-toggle {
+  display: none; border: none; background: transparent; color: var(--ink);
+  width: 40px; height: 40px; padding: 8px; cursor: pointer; flex: none;
+  align-items: center; justify-content: center;
+}
+.nav-toggle svg { width: 24px; height: 24px; }
+.nav-toggle.open { color: var(--accent); }
+.mobile-nav {
+  display: none; flex-direction: column; gap: 2px;
+  padding: 10px 24px 18px; border-top: 1px solid var(--line);
+  background: rgba(246, 240, 245, 0.97);
+}
+.mobile-nav a { padding: 12px 0; font-weight: 500; font-size: 16.5px; color: var(--ink); border-bottom: 1px solid var(--line); }
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a.btn { align-self: flex-start; margin-top: 12px; padding: 12px 24px; color: #fff; font-weight: 600; }
+.mobile-nav[hidden] { display: none !important; }
 
 /* --- hero --- */
 .hero { padding: 64px 0 40px; }
@@ -252,5 +270,12 @@ img { max-width: 100%; display: block; }
   .nl-row { flex-direction: column; }
   .newsletter .nl-box { padding: 32px 22px; }
   .site-nav { display: none; }
+  .nav-toggle { display: flex; }
+  .mobile-nav:not([hidden]) { display: flex; }
+  .header-actions .subscribe-btn { display: none; } /* lives in the burger menu instead */
+  .site-header .inner { gap: 12px; height: 64px; }
+  .brand { font-size: 18px; gap: 9px; }
+  .brand .mark { width: 34px; height: 34px; font-size: 15px; }
+  .header-actions { gap: 10px; }
   .hero h1 { font-size: 38px; }
 }

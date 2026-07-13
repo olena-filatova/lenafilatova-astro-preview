@@ -34,8 +34,33 @@ const uaTo = uaHref || `${B}ua/about/`;
           <span class="list-badge" id="listBadge">0</span>
         </button>
       ) : (
-        <a class="btn" href={`${L}contact/`}>{t.subscribe}</a>
+        <a class="btn subscribe-btn" href={`${L}contact/`}>{t.subscribe}</a>
       )}
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </div>
+  <nav class="mobile-nav" id="mobileNav" hidden>
+    <a href={`${L}blog/`}>{t.blog}</a>
+    <a href={`${L}resources/`}>{t.resources}</a>
+    <a href={`${L}recipes/`}>{t.recipes}</a>
+    <a href={`${L}about/`}>{t.about}</a>
+    <a href={`${L}contact/`}>{t.contact}</a>
+    <a class="btn" href={`${L}contact/`}>{t.subscribe}</a>
+  </nav>
 </header>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('navToggle');
+    var nav = document.getElementById('mobileNav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.hidden;
+      nav.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.classList.toggle('open', open);
+    });
+  })();
+</script>
