@@ -94,7 +94,8 @@ img { max-width: 100%; display: block; }
 /* --- hero --- */
 .hero { padding: 64px 0 40px; }
 .hero .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
-.hero .photo { aspect-ratio: 1/1.05; border-radius: var(--radius); background: #ece0ea; }
+.hero .photo { aspect-ratio: 1/1.05; border-radius: var(--radius); background: #ece0ea; overflow: hidden; }
+.hero .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; }
 .hero h1 { font-size: 50px; line-height: 1.08; margin: 0 0 20px; }
 .hero p.lead { font-size: 18px; color: var(--muted); max-width: 40ch; }
 
