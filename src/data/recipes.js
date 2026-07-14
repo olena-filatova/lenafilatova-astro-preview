@@ -486,8 +486,8 @@ export const RECIPES = [
   {
     slug: 'cornmeal-syrniki', img: '47-cornmeal-syrniki.jpg', cat: 'breakfast', gi: 56,
     tags: ['sugar-free', 'gluten-free', 'vegetarian'],
-    title: { en: 'Cornmeal Syrniki (Curd Fritters)', ua: 'Сирники з кукурудзяним борошном' },
-    why: { en: 'High-protein quark fritters made with cornmeal instead of wheat, sweetened with stevia and served with a raspberry sorbet — a filling, blood-sugar-friendly breakfast.', ua: 'Багаті на білок сирники з кукурудзяним борошном замість пшеничного, підсолоджені стевією та з малиновим сорбетом — ситний, дружній до цукру сніданок.' },
+    title: { en: 'Cornmeal Syrniki (Cottage Cheese Pancakes)', ua: 'Сирники з кукурудзяним борошном' },
+    why: { en: 'High-protein cottage cheese pancakes made with cornmeal instead of wheat, sweetened with stevia and served with a raspberry sorbet — a filling, blood-sugar-friendly breakfast.', ua: 'Багаті на білок сирники з кукурудзяним борошном замість пшеничного, підсолоджені стевією та з малиновим сорбетом — ситний, дружній до цукру сніданок.' },
     nutrition: { en: 'Per serving (est.): ~360 kcal · Carbs 28 g · Fat 10 g · Protein 40 g', ua: 'На порцію (прибл.): ~360 ккал · Вуглеводи 28 г · Жири 10 г · Білки 40 г' },
     meta: { prep: { en: '10 min', ua: '10 хв' }, cook: { en: '27 min', ua: '27 хв' }, serves: { en: 'Serves 4', ua: '4 порції' } },
     ingredients: { en: ['820 g quark','50 g cornmeal','50 g cornmeal (for coating)','3 eggs','2 tbsp stevia','1 pinch vanilla seeds','1 handful frozen raspberries'], ua: ['820 г сиру','50 г кукурудзяного борошна','50 г кукурудзяного борошна (для обвалювання)','3 яйця','2 ст. л. стевії','1 щіпка насіння ванілі','1 жменя замороженої малини'] },

@@ -15,6 +15,19 @@ const otherLang = lang === 'ua' ? 'en' : 'ua';
 const R = lang === 'ua' ? `${B}ua/recipes/` : `${B}recipes/`;
 const IMG = `${B}recipes/images/`;
 
+// Hand-picked recipes to lead the hub, in this exact order; everything else
+// follows in its original (unsorted) data order.
+const FEATURED_SLUGS = [
+  'pear-courgette-salad', 'strawberry-white-chocolate-tartlets', 'zucchini-spaghetti-salmon',
+  'broccoli-spinach-cream-soup', 'blueberry-jam', 'lemon-thyme-cookies', 'cornmeal-syrniki',
+  'ratatouille-yellow-tomatoes', 'summer-berry-pie',
+];
+const featuredSet = new Set(FEATURED_SLUGS);
+const orderedRecipes = [
+  ...FEATURED_SLUGS.map((slug) => RECIPES.find((r) => r.slug === slug)).filter(Boolean),
+  ...RECIPES.filter((r) => !featuredSet.has(r.slug)),
+];
+
 const TYPE_CHIPS = [
   { v: 'breakfast', en: 'Breakfast', ua: 'Сніданки' }, { v: 'main', en: 'Mains', ua: 'Основні' },
   { v: 'dessert', en: 'Desserts', ua: 'Десерти' }, { v: 'baking', en: 'Baking', ua: 'Випічка' },
@@ -83,7 +96,7 @@ const T = {
   </div>
 
   <div class="cards" id="grid">
-    {[...RECIPES].reverse().map((r) => (
+    {orderedRecipes.map((r) => (
       <a class="rcard" href={`${R}${r.slug}/`} data-cat={r.cat} data-diet={(r.tags || []).join(' ')}>
         <div class="thumb"><img src={`${IMG}${r.img}`} loading="lazy" decoding="async" alt={r.title[lang]} /></div>
         <div class="body">
