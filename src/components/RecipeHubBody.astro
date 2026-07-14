@@ -83,7 +83,7 @@ const T = {
   </div>
 
   <div class="cards" id="grid">
-    {RECIPES.map((r) => (
+    {[...RECIPES].reverse().map((r) => (
       <a class="rcard" href={`${R}${r.slug}/`} data-cat={r.cat} data-diet={(r.tags || []).join(' ')}>
         <div class="thumb"><img src={`${IMG}${r.img}`} loading="lazy" decoding="async" alt={r.title[lang]} /></div>
         <div class="body">
