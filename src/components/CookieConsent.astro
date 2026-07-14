@@ -22,6 +22,9 @@ const policyHref = `${L}cookies/`;
 <script is:inline defer src={`${B}cookie-consent.js`}></script>
 
 <style>
+  /* display:flex below would override the hidden attribute's UA display:none,
+     leaving the bar visible after Accept/Decline — this rule must win. */
+  .cookie-bar[hidden] { display: none !important; }
   .cookie-bar {
     position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 100;
     max-width: 560px; margin: 0 auto;
