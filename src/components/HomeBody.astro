@@ -22,7 +22,16 @@ const img = (src) => B.replace(/\/$/, '') + src;
       </div>
       <p class="hero-note"><span class="dot"></span>{t.heroNote}</p>
     </div>
-    <div class="photo"></div>
+    <div class="photo">
+      <img
+        src={img('/images/lena-filatova-womens-health-coach-over-40.jpg')}
+        alt={lang === 'ua'
+          ? 'Lena Filatova — коуч з жіночого здоров’я та харчування для жінок 40+'
+          : "Lena Filatova, women's health and nutrition coach for women over 40"}
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
   </div>
 </section>
 

@@ -6,7 +6,15 @@ const contactHref = (lang === 'ua' ? `${B}ua/` : B) + 'contact/';
 ---
 <section class="hero">
   <div class="wrap grid">
-    <div class="photo"></div>
+    <div class="photo">
+      <img
+        src={B.replace(/\/$/, '') + '/images/lena-filatova-womens-health-coach-over-40.jpg'}
+        alt={lang === 'ua'
+          ? 'Lena Filatova — коуч з жіночого здоров’я та харчування для жінок 40+'
+          : "Lena Filatova, women's health and nutrition coach for women over 40"}
+        decoding="async"
+      />
+    </div>
     <div>
       <p class="kicker">{c.kicker}</p>
       <h1>{c.h1}</h1>
