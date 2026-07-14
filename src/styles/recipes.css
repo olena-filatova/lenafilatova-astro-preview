@@ -135,6 +135,7 @@
 .rx ol.steps li.done .num::before { content: "✓"; }
 .rx ol.steps li.done .step-text { text-decoration: line-through; text-decoration-color: var(--rose-border); }
 .rx .step-text { flex: 1; padding-top: 2px; }
+.rx .step-text .step-photo { display: block; margin-top: 12px; width: min(100%, 320px); height: auto; border-radius: var(--r-sm); border: 1px solid var(--line); }
 .rx .nutri-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-card); box-shadow: var(--shadow); overflow: hidden; }
 .rx .nutri-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 18px 22px;
   background: linear-gradient(135deg, var(--rose-bg), var(--bg)); border-bottom: 1px solid var(--line); }
