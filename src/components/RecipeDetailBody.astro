@@ -147,7 +147,9 @@ const rec = {
         <div class="progress-wrap"><div class="bar"><i id="barFill"></i></div><span class="pct" id="stepPct"></span></div>
         <ol class="steps" id="steps">
           {R.method[l].map((st, i) => (
-            <li id={`step-${i + 1}`}><span class="num"></span><span class="step-text">{st}</span></li>
+            <li id={`step-${i + 1}`}><span class="num"></span><span class="step-text">{st}
+              {R.stepImgs?.[i + 1] && <img class="step-photo" src={`${IMG}${R.stepImgs[i + 1]}`} alt={`${R.title[l]} — ${l === 'ua' ? 'крок' : 'step'} ${i + 1}`} loading="lazy" width="900" height="900" />}
+            </span></li>
           ))}
         </ol>
       </div>
