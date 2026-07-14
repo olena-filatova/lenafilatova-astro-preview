@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Таблиця вуглеводів і глікемічного індексу — Lena Filatova</title>
 <meta name="description" content="Безкоштовна довідкова таблиця вуглеводів і глікемічного індексу (ГІ) продуктів — практичні, науково обґрунтовані поради щодо жіночого здоров'я після 40.">
-<link rel="canonical" href="https://lenafilatova.co.uk/carb-gi-table-ua.html">
-<link rel="alternate" hreflang="en" href="https://lenafilatova.co.uk/carb-gi-table.html">
-<link rel="alternate" hreflang="uk" href="https://lenafilatova.co.uk/carb-gi-table-ua.html">
-<link rel="alternate" hreflang="x-default" href="https://lenafilatova.co.uk/carb-gi-table.html">
+<link rel="canonical" href="https://lenafilatova.co.uk/carb-gi-table-ua">
+<link rel="alternate" hreflang="en" href="https://lenafilatova.co.uk/carb-gi-table">
+<link rel="alternate" hreflang="uk" href="https://lenafilatova.co.uk/carb-gi-table-ua">
+<link rel="alternate" hreflang="x-default" href="https://lenafilatova.co.uk/carb-gi-table">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Таблиця вуглеводів і глікемічного індексу">
 <meta property="og:description" content="Безкоштовна довідкова таблиця вуглеводів і глікемічного індексу (ГІ) повсякденних продуктів.">
-<meta property="og:url" content="https://lenafilatova.co.uk/carb-gi-table-ua.html">
+<meta property="og:url" content="https://lenafilatova.co.uk/carb-gi-table-ua">
 <meta property="og:site_name" content="Lena Filatova">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -244,11 +244,13 @@ h1 {
 
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate; /* Safari can't stick cells in a collapsed table */
+  border-spacing: 0;
   min-width: 620px;
 }
 
 thead th {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -275,11 +277,9 @@ thead th.sorted-asc::after  { content: " ↑"; opacity: 0.6; }
 thead th.sorted-desc::after { content: " ↓"; opacity: 0.6; }
 thead th:hover { color: var(--text); }
 
-tbody tr {
-  border-bottom: 1px solid var(--border);
-  transition: background 0.1s;
-}
-tbody tr:last-child { border-bottom: none; }
+tbody tr { transition: background 0.1s; }
+tbody td { border-bottom: 1px solid var(--border); }
+tbody tr:last-child td { border-bottom: none; }
 tbody tr:hover { background: var(--hover); }
 
 td {
@@ -291,6 +291,22 @@ td {
 td:nth-child(3),
 td:nth-child(4),
 td:nth-child(5) { text-align: center; }
+
+/* Sticky first column — keeps the food name visible while scrolling sideways */
+thead th:first-child {
+  left: 0;
+  z-index: 3;
+  border-right: 1px solid var(--border);
+}
+tbody td:first-child {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: #fff;
+  border-right: 1px solid var(--border);
+}
+tbody tr:hover td:first-child { background: var(--hover); }
 
 /* Food name cell */
 .food-name { font-weight: 500; }
@@ -358,6 +374,15 @@ td:nth-child(5) { text-align: center; }
 @media (max-width: 640px) {
   .filter-label { display: none; }
   .count-bar { flex-direction: column; align-items: flex-start; }
+  thead th:first-child,
+  tbody td:first-child {
+    width: 42vw;
+    min-width: 42vw;
+    max-width: 42vw;
+    white-space: normal;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
 }
 </style>
 </head>
