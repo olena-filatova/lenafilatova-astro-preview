@@ -109,3 +109,28 @@
 .post .disclaimer { font-size: 12.5px; font-style: italic; color: #9A8896; line-height: 1.5; margin: 28px 0 0; }
 .post-foot { max-width: 760px; margin: 0 auto; padding: 28px 24px 56px; font-size: 14px; color: #7A6675; }
 .post-foot a { color: #7A6675; text-decoration: underline; text-underline-offset: 2px; }
+
+/* related posts — end of article. Desktop: 3-card grid like the hub.
+   Mobile: compact thumb-left rows so all three fit one screen. */
+.related { max-width: 960px; margin: 0 auto; padding: 8px 24px 8px; }
+.related h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.2px; margin: 0 0 18px; }
+.rel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.rel-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.rel-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(51, 27, 51, 0.10); }
+.rel-card .thumb { aspect-ratio: 16 / 10; background-size: cover; background-position: center; flex: none; }
+.rel-card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 7px; }
+.rel-card .cat { font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: var(--accent); margin: 0; }
+.rel-card h3 { font-size: 17px; line-height: 1.3; letter-spacing: -0.2px; font-weight: 600; margin: 0; color: var(--ink); }
+.rel-card .meta { margin: 0; font-size: 12.5px; color: #7A6675; }
+@media (max-width: 700px) {
+  .rel-grid { grid-template-columns: 1fr; gap: 12px; }
+  .rel-card { flex-direction: row; align-items: stretch; }
+  .rel-card .thumb { width: 108px; min-height: 96px; aspect-ratio: auto; }
+  .rel-card .body { padding: 12px 14px; justify-content: center; gap: 5px; }
+  .rel-card h3 { font-size: 15.5px; }
+  .rel-card .meta { font-size: 12px; }
+}
