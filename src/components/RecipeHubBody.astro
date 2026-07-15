@@ -2,7 +2,7 @@
 // Recipe hub: server-rendered card grid + Type/Diet filter chips + Load more.
 // Cards carry data-cat / data-diet; the inline script only shows/hides them
 // (no client rendering, no language toggle — language is fixed by the URL).
-import { RECIPES } from '../data/recipes.js';
+import { PUBLISHED } from '../data/recipes.js';
 import { CAT_HUB } from '../data/recipes-lib.js';
 import '../styles/recipes.css';
 
@@ -24,8 +24,8 @@ const FEATURED_SLUGS = [
 ];
 const featuredSet = new Set(FEATURED_SLUGS);
 const orderedRecipes = [
-  ...FEATURED_SLUGS.map((slug) => RECIPES.find((r) => r.slug === slug)).filter(Boolean),
-  ...RECIPES.filter((r) => !featuredSet.has(r.slug)),
+  ...FEATURED_SLUGS.map((slug) => PUBLISHED.find((r) => r.slug === slug)).filter(Boolean),
+  ...PUBLISHED.filter((r) => !featuredSet.has(r.slug)),
 ];
 
 const TYPE_CHIPS = [
@@ -91,7 +91,7 @@ const T = {
   </div>
 
   <div class="bar2">
-    <div class="count"><b id="countNum">{RECIPES.length}</b> <span id="countWord">{recipeWord(RECIPES.length)}</span></div>
+    <div class="count"><b id="countNum">{PUBLISHED.length}</b> <span id="countWord">{recipeWord(PUBLISHED.length)}</span></div>
     <button class="clear" id="clearBtn" disabled>{T.clear}</button>
   </div>
 

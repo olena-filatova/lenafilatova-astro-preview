@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RecipeDetailBody from '../../components/RecipeDetailBody.astro';
-import { RECIPES } from '../../data/recipes.js';
+import { PUBLISHED } from '../../data/recipes.js';
 import { buildJsonLd, clip, imagesOf } from '../../data/recipes-lib.js';
 
 export function getStaticPaths() {
-  return RECIPES.map((R) => ({ params: { slug: R.slug }, props: { R } }));
+  return PUBLISHED.map((R) => ({ params: { slug: R.slug }, props: { R } }));
 }
 
 const { R } = Astro.props;

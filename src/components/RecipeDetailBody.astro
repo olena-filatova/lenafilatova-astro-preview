@@ -3,7 +3,7 @@
 // Static content lives in the HTML (SEO); a small inline script handles the
 // servings scaler, step check-off, and exposes window.LF_RECIPE so the shared
 // recipes.js can wire "add to shopping list" + share.
-import { RECIPES } from '../data/recipes.js';
+import { PUBLISHED } from '../data/recipes.js';
 import { CAT_PAGE, DIET, isHeader, giBand, GI_DISCLAIMER, imagesOf } from '../data/recipes-lib.js';
 import '../styles/recipes.css';
 
@@ -45,7 +45,7 @@ const T = {
 const band = giBand(R.gi, l);
 const imgs = imagesOf(R);
 const primary = imgs[0];
-const others = RECIPES.filter((x) => x.slug !== R.slug).slice(0, 3);
+const others = PUBLISHED.filter((x) => x.slug !== R.slug).slice(0, 3);
 
 // Payload the client script needs (both languages for the shopping list).
 const rec = {
