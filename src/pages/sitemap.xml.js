@@ -5,7 +5,7 @@
 // matching the shape of the old repo's build-sitemap.mjs output.
 // NOTE: uses the canonical origin (site), never the preview base path.
 import { POSTS } from '../data/blog.js';
-import { RECIPES } from '../data/recipes.js';
+import { PUBLISHED } from '../data/recipes.js';
 import { CALCULATORS } from '../data/calculators.js';
 import { LEGAL_SLUGS } from '../data/site.js';
 
@@ -26,7 +26,7 @@ add('/recipes/');
 Object.values(LEGAL_SLUGS).forEach((s) => add(`/${s}/`));
 CALCULATORS.forEach((c) => add(`/resources/${c.slug}/`));
 POSTS.forEach((p) => add(`/blog/${p.slug}/`, p.date, p.image));
-RECIPES.forEach((r) => {
+PUBLISHED.forEach((r) => {
   const img = Array.isArray(r.imgs) && r.imgs.length ? r.imgs[0] : r.img;
   add(`/recipes/${r.slug}/`, today, `/recipes/images/${img}`);
 });

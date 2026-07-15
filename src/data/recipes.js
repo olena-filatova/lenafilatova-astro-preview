@@ -1563,3 +1563,33 @@ export const RECIPES = [
     note: { en: 'Use tamari instead of soy sauce to make the salad gluten-free. A serrated (julienne) peeler turns the courgette and pear into "spaghetti" strips in seconds.', ua: 'Замініть соєвий соус на тамарі — і салат стане безглютеновим. Овочечистка із зубчиками перетворює кабачок і грушу на «спагеті»-соломку за секунди.' }
   }
 ];
+
+/* ------------------------------------------------------------------
+   OPS-118: recipes hidden from the site (not Lena's own cooking/photos).
+   They stay in RECIPES above so any of them can be re-published later —
+   once Lena has cooked it and has her own photos, remove its slug from
+   HIDDEN_SLUGS (and swap in her photos). All pages, hub cards, homepage
+   cards and sitemap entries render from PUBLISHED below.
+   ------------------------------------------------------------------ */
+export const HIDDEN_SLUGS = [
+  'cherry-cheesecake', 'chickpea-olive-avocado-salad', 'peanut-cookies-nobake',
+  'banana-ice-cream-pecan', 'strawberry-bites', 'raw-brownies', 'raw-chocolate-mousse',
+  'carrot-crisps-honey-yogurt', 'pineapple-chips', 'spiced-apple-chips', 'tomato-chips',
+  'banana-chips', 'orange-chocolate-truffles', 'nut-quinoa-pancakes', 'chewy-gummies',
+  'chocolate-coconut-nests', 'caramel-apples', 'marshmallow-zefir', 'lemon-coconut-balls',
+  'strawberry-cream-cheesecake', 'strawberry-banana-bake', 'coconut-chia-pudding-raspberry',
+  'maple-pumpkin-butter', 'pumpkin-hummus', 'pumpkin-ice-cream', 'pumpkin-yogurt',
+  'pumpkin-puree', 'granola-bars-blueberry', 'granola-bars-date-coconut',
+  'granola-bars-5-ingredient', 'granola-bars-chocolate-chia', 'granola-bars-homemade',
+  'granola-bars-peanut-butter', 'ginger-cookies-almond-flour', 'coconut-balls',
+  'spiced-raisin-cookies', 'almond-cranberry-cookies', 'tiramisu-cookies', 'carrot-muffins',
+  'valentine-love-salad', 'shrimp-heart-appetizer', 'caprese-valentine-salad',
+  'valentine-heart-cookies', 'frozen-strawberry-yogurt', 'chocolate-avocado-pudding',
+  'beef-balsamic-tomatoes', 'garlic-lemon-shrimp', 'salmon-asparagus-foil',
+  'turmeric-latte', 'masala-chai-latte', 'yerba-mate', 'london-fog', 'ginger-milk-cocktail',
+  'cacao-latte', 'smoothie-popsicles-chia', 'lime-cheesecake', 'fig-tart',
+  'avocado-coconut-ice-cream', 'pineapple-citrus-sorbet', 'yogurt-chia-pudding',
+  'shrimp-tartlets', 'cabbage-cranberry-salad', 'fish-stew-wine-veg', 'salmon-tartlets',
+];
+const HIDDEN = new Set(HIDDEN_SLUGS);
+export const PUBLISHED = RECIPES.filter((r) => !HIDDEN.has(r.slug));
