@@ -31,6 +31,7 @@ export const UI = {
     ctaBtn: 'Subscribe',
     disclaimer: 'The information on this website is educational and is not medical advice. Please consult your doctor if you have any doubts or further questions.',
     backToBlog: '← All articles',
+    relatedTitle: 'Keep reading',
   },
   ua: {
     hubKicker: 'Журнал',
@@ -49,6 +50,7 @@ export const UI = {
     ctaBtn: 'Підписатися',
     disclaimer: 'Інформація на цьому вебсайті має освітній характер і не є медичною порадою. Зверніться до лікаря в разі сумнівів або додаткових запитань.',
     backToBlog: '← Усі статті',
+    relatedTitle: 'Читайте також',
   },
 };
 
@@ -66,6 +68,20 @@ export function renderInline(text, base = '/') {
     }
     return `<a href="${href}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;
   });
+}
+
+// Related posts for the bottom of an article: posts sharing a category come
+// first (more shared categories win), newest first within a tier, topped up
+// with other recent posts so there are always `limit` cards. The current post
+// and the coming-soon stub are excluded.
+export function relatedPosts(post, posts, limit = 3) {
+  const cats = new Set(post.cats || []);
+  return posts
+    .filter((p) => p.slug !== post.slug && !p.comingSoon)
+    .map((p) => ({ p, shared: (p.cats || []).filter((c) => cats.has(c)).length }))
+    .sort((x, y) => y.shared - x.shared || y.p.date.localeCompare(x.p.date))
+    .slice(0, limit)
+    .map((x) => x.p);
 }
 
 export const langUrl = (lang, slug) =>

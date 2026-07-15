@@ -3,7 +3,8 @@
 // blog.js (p / h / quote / img / graph / table / refs / links / bio) plus
 // FAQ, CTA and disclaimer — the same anatomy as the live standalone pages.
 // The coming-soon post has no blocks: it shows the note + its short legacy body.
-import { UI, renderInline } from '../data/blog-lib.js';
+import { UI, renderInline, relatedPosts } from '../data/blog-lib.js';
+import { POSTS } from '../data/blog.js';
 import '../styles/blog.css';
 
 const { post, lang = 'en' } = Astro.props;
@@ -14,6 +15,7 @@ const L = lang === 'ua' ? `${B}ua/` : B;
 const altHref = `${lang === 'ua' ? B : `${B}ua/`}blog/${post.slug}/`;
 // Images still ship at site-absolute /images/… paths in the data.
 const img = (src) => B.replace(/\/$/, '') + src;
+const related = relatedPosts(post, POSTS);
 ---
 <article class="post">
   <p class="cat">{a.cat}</p>
@@ -83,4 +85,21 @@ const img = (src) => B.replace(/\/$/, '') + src;
   </aside>
   <p class="disclaimer">{t.disclaimer}</p>
 </article>
+{related.length > 0 && (
+  <aside class="related" aria-label={t.relatedTitle}>
+    <h2>{t.relatedTitle}</h2>
+    <div class="rel-grid">
+      {related.map((p) => (
+        <a class="rel-card" href={`${L}blog/${p.slug}/`}>
+          <div class="thumb" style={`background-image:url('${img(p.image)}')`}></div>
+          <div class="body">
+            <p class="cat">{p[lang].cat}</p>
+            <h3>{p[lang].title}</h3>
+            <p class="meta">{p[lang].meta}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </aside>
+)}
 <div class="post-foot"><a href={`${L}blog/`}>{t.backToBlog}</a></div>
