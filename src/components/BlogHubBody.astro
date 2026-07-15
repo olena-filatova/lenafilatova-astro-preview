@@ -8,6 +8,8 @@ import { CATS, UI } from '../data/blog-lib.js';
 import '../styles/blog.css';
 
 const { lang = 'en' } = Astro.props;
+// Sort by date so a post appended to the data file still lands on top.
+const sorted = [...POSTS].sort((a, b) => b.date.localeCompare(a.date));
 const t = UI[lang];
 const B = import.meta.env.BASE_URL;
 const hub = lang === 'ua' ? `${B}ua/blog/` : `${B}blog/`;
@@ -28,7 +30,7 @@ const img = (src) => B.replace(/\/$/, '') + src;
       {CATS.map((c) => <button class="chip" data-cat={c.key}>{c[lang]}</button>)}
     </div>
     <div class="blog-grid" id="blogGrid">
-      {POSTS.map((p) => (
+      {sorted.map((p) => (
         <a class="bcard" href={`${hub}${p.slug}/`} data-cats={p.cats.join(' ')}>
           <div class="thumb" style={`background-image:url('${img(p.image)}')`}>
             {p.comingSoon && <span class="soon">{t.comingSoonBadge}</span>}
