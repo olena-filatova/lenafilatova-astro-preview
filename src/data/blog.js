@@ -1642,7 +1642,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-womens-health-writer.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, women's health writer living with type 1 diabetes",
           "text": "Lena Filatova has lived with type 1 diabetes for 23 years. She writes about women's health, perimenopause, nutrition and diabetes management at lenafilatova.co.uk."
         }
@@ -1968,7 +1968,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-womens-health-writer.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, авторка про жіноче здоров'я, що живе з діабетом 1 типу",
           "text": "Lena Filatova живе з діабетом 1 типу вже 23 роки. Вона пише про жіноче здоров'я, перименопаузу, харчування та контроль діабету на lenafilatova.co.uk."
         }
@@ -2602,7 +2602,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-type-1-diabetes-23-years.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, women's health writer living with type 1 diabetes",
           "text": "Lena Filatova has lived with type 1 diabetes for 23 years. She writes about women's health, perimenopause and diabetes management at lenafilatova.co.uk."
         }
@@ -2779,7 +2779,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-type-1-diabetes-23-years.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, авторка про жіноче здоров'я, що живе з діабетом 1 типу",
           "text": "Lena Filatova живе з діабетом 1 типу вже 23 роки. Вона пише про жіноче здоров'я, перименопаузу та ведення діабету на lenafilatova.co.uk."
         }
@@ -3304,7 +3304,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-womens-health-writer.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, women's health writer living with type 1 diabetes",
           "text": "Lena Filatova has lived with type 1 diabetes for 23 years. She writes about women's health, perimenopause and long-term wellbeing at lenafilatova.co.uk."
         }
@@ -3493,7 +3493,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-womens-health-writer.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, авторка про жіноче здоров'я, що живе з діабетом 1 типу",
           "text": "Lena Filatova живе з діабетом 1 типу вже 23 роки. Вона пише про жіноче здоров'я, перименопаузу та довгострокове благополуччя на lenafilatova.co.uk."
         }
@@ -3736,7 +3736,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-womens-health-writer.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, women's health writer living with type 1 diabetes",
           "text": "Lena Filatova has lived with type 1 diabetes for 23 years. She writes about women's health, perimenopause and long-term wellbeing at lenafilatova.co.uk."
         }
@@ -3909,7 +3909,7 @@ export const POSTS = [
         {
           "t": "bio",
           "name": "Lena Filatova",
-          "img": "/images/lena-filatova-womens-health-writer.jpg",
+          "img": "/images/lena-filatova-author.jpg",
           "alt": "Lena Filatova, авторка про жіноче здоров’я, яка живе з діабетом 1 типу",
           "text": "Lena Filatova живе з діабетом 1 типу вже 23 роки. Вона пише про жіноче здоров’я, перименопаузу та довготривале благополуччя на lenafilatova.co.uk."
         }
