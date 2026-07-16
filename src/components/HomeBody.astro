@@ -17,7 +17,8 @@ const latestPostT = latestPost[lang];
 
 const featuredRecipe = HOME.recipe;
 
-// Featured resources: food calculator, carb/GI table, blood sugar investigator
+// Featured resources: food calculator, carb/GI table, blood sugar investigator.
+// One shows on mobile (res-extra hidden); all three show on wide screens.
 const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
 ---
 <!-- HERO -->
@@ -46,7 +47,27 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
   </div>
 </section>
 
-<!-- FROM THE BLOG: latest article -->
+<!-- WHAT I HELP WITH — compact reassurance strip, kept near the top so a
+     cold visitor sees "is this for me?" before the fresh content below -->
+<section class="section section-tight">
+  <div class="wrap">
+    <h2>{t.helpTitle}</h2>
+    <p class="section-sub">{t.helpSub}</p>
+    <div class="help-grid">
+      {t.help.map((c, i) => (
+        <div class="help-card" style={`background:${HOME.helpColors[i]}`}>
+          <span class="help-num" style={`color:${HOME.helpNums[i]}`}>{String(i + 1).padStart(2, '0')}</span>
+          <div class="help-text">
+            <h3>{c.h}</h3>
+            <p>{c.p}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FROM THE BLOG: latest article (freshest content, featured first) -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
@@ -66,27 +87,7 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
   </div>
 </section>
 
-<!-- FROM MY KITCHEN: one recipe -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div><h2>{t.recipesTitle}</h2><p class="section-sub">{t.recipesSub}</p></div>
-      <a class="see-all" href={recipesAllHref}>{t.recipesAll}</a>
-    </div>
-    <a class="feature-card" href={`${L}recipes/${featuredRecipe.slug}/`}>
-      <div class="feature-photo"><img src={img(featuredRecipe.img)} alt={featuredRecipe.title[lang]} loading="lazy" /></div>
-      <div class="feature-body">
-        <span class="mini-cat">{featuredRecipe.cat[lang]}</span>
-        <h3>{featuredRecipe.title[lang]}</h3>
-        <p class="feature-desc">{featuredRecipe.desc[lang]}</p>
-        <p class="feature-meta">GI {featuredRecipe.gi} · {featuredRecipe.carbs}{lang === 'ua' ? ' ' : 'g '}{t.carbs}</p>
-        <span class="btn">{t.recipeCta}</span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- FREE TOOLS & GUIDES: one resource -->
+<!-- FREE TOOLS & GUIDES: one card on mobile, three on wide screens -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
@@ -116,22 +117,23 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
   </div>
 </section>
 
-<!-- WHAT I HELP WITH -->
+<!-- FROM MY KITCHEN: one recipe (image mirrored vs the blog card on wide screens) -->
 <section class="section">
   <div class="wrap">
-    <h2>{t.helpTitle}</h2>
-    <p class="section-sub">{t.helpSub}</p>
-    <div class="help-grid">
-      {t.help.map((c, i) => (
-        <div class="help-card" style={`background:${HOME.helpColors[i]}`}>
-          <span class="help-num" style={`color:${HOME.helpNums[i]}`}>{String(i + 1).padStart(2, '0')}</span>
-          <div class="help-text">
-            <h3>{c.h}</h3>
-            <p>{c.p}</p>
-          </div>
-        </div>
-      ))}
+    <div class="section-head">
+      <div><h2>{t.recipesTitle}</h2><p class="section-sub">{t.recipesSub}</p></div>
+      <a class="see-all" href={recipesAllHref}>{t.recipesAll}</a>
     </div>
+    <a class="feature-card reverse" href={`${L}recipes/${featuredRecipe.slug}/`}>
+      <div class="feature-photo"><img src={img(featuredRecipe.img)} alt={featuredRecipe.title[lang]} loading="lazy" /></div>
+      <div class="feature-body">
+        <span class="mini-cat">{featuredRecipe.cat[lang]}</span>
+        <h3>{featuredRecipe.title[lang]}</h3>
+        <p class="feature-desc">{featuredRecipe.desc[lang]}</p>
+        <p class="feature-meta">GI {featuredRecipe.gi} · {featuredRecipe.carbs}{lang === 'ua' ? ' ' : 'g '}{t.carbs}</p>
+        <span class="btn">{t.recipeCta}</span>
+      </div>
+    </a>
   </div>
 </section>
 
