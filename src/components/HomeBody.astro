@@ -96,19 +96,17 @@ const featuredResourceHref = featuredResourceRaw.startsWith('/') ? B.replace(/\/
       <div><h2>{t.resourcesTitle}</h2><p class="section-sub">{t.resourcesSub}</p></div>
       <a class="see-all" href={resourcesHref}>{t.resourcesAll}</a>
     </div>
-    <div class="feature-resource">
-      <a class="rcard" href={featuredResourceHref}>
-        <div class="rband" style={`background:${featuredResource.band}`}>
-          <span style={`color:${featuredResource.head}`}>{featuredResourceT.band}</span>
-        </div>
-        <div class="rbody">
-          <p class="rkicker">{featuredResourceT.kicker}</p>
-          <h3>{featuredResourceT.title}</h3>
-          <p class="rdesc">{featuredResourceT.desc}</p>
-          <span class="rcta">{featuredResourceT.cta}</span>
-        </div>
-      </a>
-    </div>
+    <a class="feature-card resource" href={featuredResourceHref}>
+      <div class="feature-band" style={`background:${featuredResource.band}`}>
+        <span class="feature-band-label" style={`color:${featuredResource.head}`}>{featuredResourceT.band}</span>
+      </div>
+      <div class="feature-body">
+        <span class="mini-cat">{featuredResourceT.kicker}</span>
+        <h3>{featuredResourceT.title}</h3>
+        <p class="feature-desc">{featuredResourceT.desc}</p>
+        <span class="btn">{featuredResourceT.cta}</span>
+      </div>
+    </a>
   </div>
 </section>
 
