@@ -200,9 +200,6 @@ img { max-width: 100%; display: block; }
 .feature-desc { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0 0 18px; }
 .feature-meta { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
 .feature-body .btn { align-self: flex-start; }
-/* resource variant: coloured band fills the "photo" column instead of an image */
-.feature-band { display: grid; place-items: center; padding: 40px; text-align: center; }
-.feature-band-label { font-family: var(--font-head); font-size: 26px; line-height: 1.25; }
 
 /* newsletter */
 .newsletter .nl-box { background: var(--ink); border-radius: 24px; padding: 48px; text-align: center; }
@@ -272,8 +269,6 @@ img { max-width: 100%; display: block; }
   .feature-card { grid-template-columns: 1fr; }
   .feature-body { padding: 24px 22px 28px; }
   .feature-body h3 { font-size: 21px; }
-  .feature-band { padding: 30px 24px; min-height: 120px; }
-  .feature-band-label { font-size: 21px; }
   .section { padding: 40px 0; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .nl-row { flex-direction: column; }

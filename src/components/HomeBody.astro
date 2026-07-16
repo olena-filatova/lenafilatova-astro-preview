@@ -17,11 +17,8 @@ const latestPostT = latestPost[lang];
 
 const featuredRecipe = HOME.recipe;
 
-// Featured resource: the food calculator
-const featuredResource = RESOURCES.cards[0];
-const featuredResourceT = featuredResource[lang];
-const featuredResourceRaw = lang === 'ua' ? featuredResource.hrefUa : featuredResource.href;
-const featuredResourceHref = featuredResourceRaw.startsWith('/') ? B.replace(/\/$/, '') + featuredResourceRaw : featuredResourceRaw;
+// Featured resources: food calculator, carb/GI table, blood sugar investigator
+const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
 ---
 <!-- HERO -->
 <section class="hero home">
@@ -96,17 +93,26 @@ const featuredResourceHref = featuredResourceRaw.startsWith('/') ? B.replace(/\/
       <div><h2>{t.resourcesTitle}</h2><p class="section-sub">{t.resourcesSub}</p></div>
       <a class="see-all" href={resourcesHref}>{t.resourcesAll}</a>
     </div>
-    <a class="feature-card resource" href={featuredResourceHref}>
-      <div class="feature-band" style={`background:${featuredResource.band}`}>
-        <span class="feature-band-label" style={`color:${featuredResource.head}`}>{featuredResourceT.band}</span>
-      </div>
-      <div class="feature-body">
-        <span class="mini-cat">{featuredResourceT.kicker}</span>
-        <h3>{featuredResourceT.title}</h3>
-        <p class="feature-desc">{featuredResourceT.desc}</p>
-        <span class="btn">{featuredResourceT.cta}</span>
-      </div>
-    </a>
+    <div class="res-grid">
+      {featuredResources.map((card) => {
+        const c = card[lang];
+        const raw = lang === 'ua' ? card.hrefUa : card.href;
+        const href = raw.startsWith('/') ? B.replace(/\/$/, '') + raw : raw;
+        return (
+          <a class="rcard" href={href}>
+            <div class="rband" style={`background:${card.band}`}>
+              <span style={`color:${card.head}`}>{c.band}</span>
+            </div>
+            <div class="rbody">
+              <p class="rkicker">{c.kicker}</p>
+              <h3>{c.title}</h3>
+              <p class="rdesc">{c.desc}</p>
+              <span class="rcta">{c.cta}</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
   </div>
 </section>
 
