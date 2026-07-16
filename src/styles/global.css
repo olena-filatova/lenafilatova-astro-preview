@@ -265,6 +265,7 @@ img { max-width: 100%; display: block; }
   .legal-hero h1 { font-size: 34px; }
   .stats .grid { grid-template-columns: repeat(2, 1fr); }
   .values .grid, .res-grid { grid-template-columns: 1fr; }
+  .res-extra { display: none; } /* homepage: show one tool card on mobile, three on desktop */
   .hero.contact .grid, .hero.home .grid { grid-template-columns: 1fr; }
   .feature-card { grid-template-columns: 1fr; }
   .feature-body { padding: 24px 22px 28px; }

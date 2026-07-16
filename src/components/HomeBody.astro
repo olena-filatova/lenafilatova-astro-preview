@@ -94,12 +94,12 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
       <a class="see-all" href={resourcesHref}>{t.resourcesAll}</a>
     </div>
     <div class="res-grid">
-      {featuredResources.map((card) => {
+      {featuredResources.map((card, i) => {
         const c = card[lang];
         const raw = lang === 'ua' ? card.hrefUa : card.href;
         const href = raw.startsWith('/') ? B.replace(/\/$/, '') + raw : raw;
         return (
-          <a class="rcard" href={href}>
+          <a class={i === 0 ? 'rcard' : 'rcard res-extra'} href={href}>
             <div class="rband" style={`background:${card.band}`}>
               <span style={`color:${card.head}`}>{c.band}</span>
             </div>
