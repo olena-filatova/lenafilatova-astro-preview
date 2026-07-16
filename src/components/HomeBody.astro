@@ -1,5 +1,6 @@
 ---
 import { HOME, RESOURCES, CONTACT_ENDPOINT } from '../data/site.js';
+import { POSTS } from '../data/blog.js';
 const { lang = 'en' } = Astro.props;
 const t = HOME[lang];
 const B = import.meta.env.BASE_URL;
@@ -8,8 +9,19 @@ const resourcesHref = `${L}resources/`;
 const blogHref = `${L}blog/`;
 const recipesAllHref = `${L}recipes/`;
 const img = (src) => B.replace(/\/$/, '') + src;
-// Featured resources: food calculator, carb/GI table, blood sugar investigator
-const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
+
+// Latest article: computed from the blog data itself (not hand-copied) so a
+// newly published post is always what gets featured here.
+const latestPost = [...POSTS].filter((p) => !p.comingSoon).sort((a, b) => b.date.localeCompare(a.date))[0];
+const latestPostT = latestPost[lang];
+
+const featuredRecipe = HOME.recipe;
+
+// Featured resource: the food calculator
+const featuredResource = RESOURCES.cards[0];
+const featuredResourceT = featuredResource[lang];
+const featuredResourceRaw = lang === 'ua' ? featuredResource.hrefUa : featuredResource.href;
+const featuredResourceHref = featuredResourceRaw.startsWith('/') ? B.replace(/\/$/, '') + featuredResourceRaw : featuredResourceRaw;
 ---
 <!-- HERO -->
 <section class="hero home">
@@ -37,6 +49,69 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
   </div>
 </section>
 
+<!-- FROM THE BLOG: latest article -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><h2>{t.blogTitle}</h2><p class="section-sub">{t.blogSub}</p></div>
+      <a class="see-all" href={blogHref}>{t.blogAll}</a>
+    </div>
+    <a class="feature-card" href={`${L}blog/${latestPost.slug}/`}>
+      <div class="feature-photo"><img src={img(latestPost.image)} alt={latestPostT.title} loading="lazy" /></div>
+      <div class="feature-body">
+        <span class="mini-cat">{latestPostT.cat}</span>
+        <h3>{latestPostT.title}</h3>
+        <p class="feature-desc">{latestPostT.excerpt}</p>
+        <p class="feature-meta">{latestPostT.meta}</p>
+        <span class="btn">{t.blogCta}</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FROM MY KITCHEN: one recipe -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><h2>{t.recipesTitle}</h2><p class="section-sub">{t.recipesSub}</p></div>
+      <a class="see-all" href={recipesAllHref}>{t.recipesAll}</a>
+    </div>
+    <a class="feature-card" href={`${L}recipes/${featuredRecipe.slug}/`}>
+      <div class="feature-photo"><img src={img(featuredRecipe.img)} alt={featuredRecipe.title[lang]} loading="lazy" /></div>
+      <div class="feature-body">
+        <span class="mini-cat">{featuredRecipe.cat[lang]}</span>
+        <h3>{featuredRecipe.title[lang]}</h3>
+        <p class="feature-desc">{featuredRecipe.desc[lang]}</p>
+        <p class="feature-meta">GI {featuredRecipe.gi} · {featuredRecipe.carbs}{lang === 'ua' ? ' ' : 'g '}{t.carbs}</p>
+        <span class="btn">{t.recipeCta}</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FREE TOOLS & GUIDES: one resource -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><h2>{t.resourcesTitle}</h2><p class="section-sub">{t.resourcesSub}</p></div>
+      <a class="see-all" href={resourcesHref}>{t.resourcesAll}</a>
+    </div>
+    <div class="feature-resource">
+      <a class="rcard" href={featuredResourceHref}>
+        <div class="rband" style={`background:${featuredResource.band}`}>
+          <span style={`color:${featuredResource.head}`}>{featuredResourceT.band}</span>
+        </div>
+        <div class="rbody">
+          <p class="rkicker">{featuredResourceT.kicker}</p>
+          <h3>{featuredResourceT.title}</h3>
+          <p class="rdesc">{featuredResourceT.desc}</p>
+          <span class="rcta">{featuredResourceT.cta}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT I HELP WITH -->
 <section class="section">
   <div class="wrap">
@@ -46,86 +121,11 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
       {t.help.map((c, i) => (
         <div class="help-card" style={`background:${HOME.helpColors[i]}`}>
           <span class="help-num" style={`color:${HOME.helpNums[i]}`}>{String(i + 1).padStart(2, '0')}</span>
-          <h3>{c.h}</h3>
-          <p>{c.p}</p>
+          <div class="help-text">
+            <h3>{c.h}</h3>
+            <p>{c.p}</p>
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- FREE TOOLS & GUIDES -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div><h2>{t.resourcesTitle}</h2><p class="section-sub">{t.resourcesSub}</p></div>
-      <a class="see-all" href={resourcesHref}>{t.resourcesAll}</a>
-    </div>
-    <div class="res-grid">
-      {featuredResources.map((card) => {
-        const c = card[lang];
-        const raw = lang === 'ua' ? card.hrefUa : card.href;
-        const href = raw.startsWith('/') ? B.replace(/\/$/, '') + raw : raw;
-        return (
-          <a class="rcard" href={href}>
-            <div class="rband" style={`background:${card.band}`}>
-              <span style={`color:${card.head}`}>{c.band}</span>
-            </div>
-            <div class="rbody">
-              <p class="rkicker">{c.kicker}</p>
-              <h3>{c.title}</h3>
-              <p class="rdesc">{c.desc}</p>
-              <span class="rcta">{c.cta}</span>
-            </div>
-          </a>
-        );
-      })}
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED RECIPES -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div><h2>{t.recipesTitle}</h2><p class="section-sub">{t.recipesSub}</p></div>
-      <a class="see-all" href={recipesAllHref}>{t.recipesAll}</a>
-    </div>
-    <div class="card-grid four">
-      {HOME.recipes.map((r) => (
-        <a class="mini-card" href={`${L}recipes/${r.slug}/`}>
-          <div class="mini-photo"><img src={img(r.img)} alt={r.title[lang]} loading="lazy" /></div>
-          <div class="mini-body">
-            <span class="mini-cat">{r.cat[lang]}</span>
-            <h3>{r.title[lang]}</h3>
-            <p class="mini-meta">GI {r.gi} · {r.carbs}{lang === 'ua' ? ' ' : 'g '}{t.carbs}</p>
-            <span class="rcta">{t.recipeCta}</span>
-          </div>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- FROM THE BLOG -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>{t.blogTitle}</h2>
-      <a class="see-all" href={blogHref}>{t.blogAll}</a>
-    </div>
-    <div class="card-grid three">
-      {HOME.posts.map((p) => (
-        <a class="mini-card" href={`${L}blog/${p.slug}/`}>
-          <div class="mini-photo"><img src={img(p.img)} alt={p.title[lang]} loading="lazy" /></div>
-          <div class="mini-body">
-            <span class="mini-cat">{p.cat[lang]}</span>
-            <h3>{p.title[lang]}</h3>
-            <p class="mini-excerpt">{p.excerpt[lang]}</p>
-            <span class="rcta">{t.blogCta}</span>
-            <p class="mini-date">{p.date[lang]} · {p.min} {t.readMin}</p>
-          </div>
-        </a>
       ))}
     </div>
   </div>
