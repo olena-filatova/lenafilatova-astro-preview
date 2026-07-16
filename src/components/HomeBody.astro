@@ -1,5 +1,5 @@
 ---
-import { HOME, CONTACT_ENDPOINT } from '../data/site.js';
+import { HOME, RESOURCES, CONTACT_ENDPOINT } from '../data/site.js';
 const { lang = 'en' } = Astro.props;
 const t = HOME[lang];
 const B = import.meta.env.BASE_URL;
@@ -8,6 +8,8 @@ const resourcesHref = `${L}resources/`;
 const blogHref = `${L}blog/`;
 const recipesAllHref = `${L}recipes/`;
 const img = (src) => B.replace(/\/$/, '') + src;
+// Featured resources: food calculator, carb/GI table, blood sugar investigator
+const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
 ---
 <!-- HERO -->
 <section class="hero home">
@@ -48,6 +50,36 @@ const img = (src) => B.replace(/\/$/, '') + src;
           <p>{c.p}</p>
         </div>
       ))}
+    </div>
+  </div>
+</section>
+
+<!-- FREE TOOLS & GUIDES -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><h2>{t.resourcesTitle}</h2><p class="section-sub">{t.resourcesSub}</p></div>
+      <a class="see-all" href={resourcesHref}>{t.resourcesAll}</a>
+    </div>
+    <div class="res-grid">
+      {featuredResources.map((card) => {
+        const c = card[lang];
+        const raw = lang === 'ua' ? card.hrefUa : card.href;
+        const href = raw.startsWith('/') ? B.replace(/\/$/, '') + raw : raw;
+        return (
+          <a class="rcard" href={href}>
+            <div class="rband" style={`background:${card.band}`}>
+              <span style={`color:${card.head}`}>{c.band}</span>
+            </div>
+            <div class="rbody">
+              <p class="rkicker">{c.kicker}</p>
+              <h3>{c.title}</h3>
+              <p class="rdesc">{c.desc}</p>
+              <span class="rcta">{c.cta}</span>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>
