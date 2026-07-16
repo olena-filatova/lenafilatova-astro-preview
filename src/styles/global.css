@@ -177,28 +177,47 @@ img { max-width: 100%; display: block; }
 .hero-note { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); font-size: 15px; font-weight: 500; max-width: 44ch; }
 .hero-note .dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); margin-top: 6px; }
 
-/* help cards */
-.help-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-.help-card { border-radius: var(--radius); padding: 26px 24px 28px; }
-.help-num { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.7); font-family: var(--font-head); font-size: 15px; margin-bottom: 16px; }
-.help-card h3 { font-size: 20px; margin: 0 0 10px; }
-.help-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+/* help "lines" — compact colourful rows. Two-up on wide screens so they use
+   the width and read as an intentional set (not a full-width to-do list);
+   single stacked column on mobile (see the responsive block below). */
+.help-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.help-card { display: flex; align-items: center; gap: 16px; border-radius: 14px; padding: 14px 20px; }
+.help-num { flex: 0 0 auto; display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.7); font-family: var(--font-head); font-size: 14px; }
+.help-text { min-width: 0; }
+.help-card h3 { font-size: 16px; margin: 0; }
+.help-card p { margin: 2px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
 
-/* mini cards (recipes + blog) */
-.card-grid { display: grid; gap: 24px; }
-.card-grid.four { grid-template-columns: repeat(4, 1fr); }
-.card-grid.three { grid-template-columns: repeat(3, 1fr); }
-.mini-card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .15s ease, box-shadow .15s ease; }
-.mini-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(51,27,51,0.09); }
-.mini-photo { aspect-ratio: 3/2; background: #ece0ea; overflow: hidden; }
-.mini-photo img { width: 100%; height: 100%; object-fit: cover; }
-.mini-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
-.mini-cat { color: var(--accent); font-size: 11.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 9px; }
-.mini-body h3 { font-size: 18px; line-height: 1.25; margin: 0 0 10px; }
-.mini-meta { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
-.mini-excerpt { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin: 0 0 14px; flex: 1; }
-.mini-date { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
-.mini-card .rcta { color: var(--accent); font-weight: 600; font-size: 14.5px; }
+/* feature cards (single latest article / recipe, homepage) */
+.mini-cat { color: var(--accent); font-size: 11.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; margin: 0 0 9px; }
+.feature-card {
+  display: grid; grid-template-columns: 1fr 1fr; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; transition: transform .15s ease, box-shadow .15s ease;
+}
+.feature-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(51,27,51,0.09); }
+.feature-photo { aspect-ratio: 4/3; background: #ece0ea; overflow: hidden; }
+.feature-photo img { width: 100%; height: 100%; object-fit: cover; }
+.feature-body { padding: 32px 40px; display: flex; flex-direction: column; justify-content: center; }
+.feature-body h3 { font-size: 26px; line-height: 1.2; margin: 0 0 14px; }
+.feature-desc { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0 0 18px; }
+.feature-meta { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+.feature-body .btn { align-self: flex-start; }
+/* reverse: photo on the right, so the recipe card mirrors the blog card on
+   wide screens (reset to photo-on-top at the mobile breakpoint below) */
+.feature-card.reverse .feature-photo { grid-column: 2; grid-row: 1; }
+.feature-card.reverse .feature-body { grid-column: 1; grid-row: 1; }
+
+/* two more recent posts under the featured one (wide screens only) */
+.blog-more { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+.post-mini {
+  display: grid; grid-template-columns: 132px 1fr; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; transition: transform .15s ease, box-shadow .15s ease;
+}
+.post-mini:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(51,27,51,0.09); }
+.post-mini-photo { background: #ece0ea; overflow: hidden; }
+.post-mini-photo img { width: 100%; height: 100%; object-fit: cover; }
+.post-mini-body { padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; }
+.post-mini-body h3 { font-size: 17px; line-height: 1.28; margin: 0 0 8px; }
+.post-mini-meta { color: var(--muted); font-size: 13px; margin: 0; }
 
 /* newsletter */
 .newsletter .nl-box { background: var(--ink); border-radius: 24px; padding: 48px; text-align: center; }
@@ -264,9 +283,23 @@ img { max-width: 100%; display: block; }
   .legal-hero h1 { font-size: 34px; }
   .stats .grid { grid-template-columns: repeat(2, 1fr); }
   .values .grid, .res-grid { grid-template-columns: 1fr; }
+  .res-extra { display: none; } /* homepage: show one tool card on mobile, three on desktop */
   .hero.contact .grid, .hero.home .grid { grid-template-columns: 1fr; }
-  .help-grid, .card-grid.four { grid-template-columns: repeat(2, 1fr); }
-  .card-grid.three { grid-template-columns: 1fr; }
+  /* mobile hero: shrink the whole block so fresh content is reachable fast —
+     tighter padding, capped landscape photo instead of a full-height square */
+  .hero { padding: 36px 0 8px; }
+  .hero.home .grid { gap: 22px; }
+  .hero.home .photo { aspect-ratio: 3/2; max-height: 260px; }
+  .hero-cta { margin: 22px 0 18px; }
+  .feature-card { grid-template-columns: 1fr; }
+  /* reset the desktop reverse so the recipe photo still stacks on top */
+  .feature-card.reverse .feature-photo,
+  .feature-card.reverse .feature-body { grid-column: auto; grid-row: auto; }
+  .feature-body { padding: 24px 22px 28px; }
+  .feature-body h3 { font-size: 21px; }
+  .help-grid { grid-template-columns: 1fr; } /* stack the topic lines on mobile */
+  .blog-more { display: none; } /* homepage: one blog box on mobile, three on desktop */
+  .section { padding: 40px 0; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .nl-row { flex-direction: column; }
   .newsletter .nl-box { padding: 32px 22px; }
@@ -279,4 +312,12 @@ img { max-width: 100%; display: block; }
   .brand .mark { width: 34px; height: 34px; font-size: 15px; }
   .header-actions { gap: 10px; }
   .hero h1 { font-size: 38px; }
+}
+
+@media (max-width: 480px) {
+  .help-card { padding: 12px 16px; gap: 12px; }
+  .help-num { width: 30px; height: 30px; font-size: 13px; }
+  .help-card h3 { font-size: 15px; }
+  .help-card p { font-size: 13px; }
+  .rband, .rbody { padding-left: 20px; padding-right: 20px; }
 }

@@ -1,5 +1,6 @@
 ---
 import { HOME, RESOURCES, CONTACT_ENDPOINT } from '../data/site.js';
+import { POSTS } from '../data/blog.js';
 const { lang = 'en' } = Astro.props;
 const t = HOME[lang];
 const B = import.meta.env.BASE_URL;
@@ -8,7 +9,19 @@ const resourcesHref = `${L}resources/`;
 const blogHref = `${L}blog/`;
 const recipesAllHref = `${L}recipes/`;
 const img = (src) => B.replace(/\/$/, '') + src;
-// Featured resources: food calculator, carb/GI table, blood sugar investigator
+
+// Blog: newest-first, computed from the data (not hand-copied) so a newly
+// published post always leads. Desktop shows the latest large + two more
+// recent; mobile shows only the latest (the two extras are hidden in CSS).
+const recentPosts = [...POSTS].filter((p) => !p.comingSoon).sort((a, b) => b.date.localeCompare(a.date));
+const latestPost = recentPosts[0];
+const latestPostT = latestPost[lang];
+const morePosts = recentPosts.slice(1, 3);
+
+const featuredRecipe = HOME.recipe;
+
+// Featured resources: food calculator, carb/GI table, blood sugar investigator.
+// One shows on mobile (res-extra hidden); all three show on wide screens.
 const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
 ---
 <!-- HERO -->
@@ -19,8 +32,7 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
       <h1>{t.heroH1}</h1>
       <p class="lead">{t.heroLead}</p>
       <div class="hero-cta">
-        <a class="btn" href={resourcesHref}>{t.heroCta1}</a>
-        <a class="btn ghost" href={blogHref}>{t.heroCta2}</a>
+        <a class="btn" href="#newsletter">{t.heroCta2}</a>
       </div>
       <p class="hero-note"><span class="dot"></span>{t.heroNote}</p>
     </div>
@@ -37,24 +49,62 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
   </div>
 </section>
 
-<!-- WHAT I HELP WITH -->
+<!-- FROM THE BLOG: latest article (freshest content, featured first) -->
 <section class="section">
   <div class="wrap">
-    <h2>{t.helpTitle}</h2>
-    <p class="section-sub">{t.helpSub}</p>
-    <div class="help-grid">
-      {t.help.map((c, i) => (
-        <div class="help-card" style={`background:${HOME.helpColors[i]}`}>
-          <span class="help-num" style={`color:${HOME.helpNums[i]}`}>{String(i + 1).padStart(2, '0')}</span>
-          <h3>{c.h}</h3>
-          <p>{c.p}</p>
-        </div>
-      ))}
+    <div class="section-head">
+      <div><h2>{t.blogTitle}</h2><p class="section-sub">{t.blogSub}</p></div>
+      <a class="see-all" href={blogHref}>{t.blogAll}</a>
+    </div>
+    <a class="feature-card" href={`${L}blog/${latestPost.slug}/`}>
+      <div class="feature-photo"><img src={img(latestPost.image)} alt={latestPostT.title} loading="lazy" /></div>
+      <div class="feature-body">
+        <span class="mini-cat">{latestPostT.cat}</span>
+        <h3>{latestPostT.title}</h3>
+        <p class="feature-desc">{latestPostT.excerpt}</p>
+        <p class="feature-meta">{latestPostT.meta}</p>
+        <span class="btn">{t.blogCta}</span>
+      </div>
+    </a>
+    <div class="blog-more">
+      {morePosts.map((p) => {
+        const pt = p[lang];
+        return (
+          <a class="post-mini" href={`${L}blog/${p.slug}/`}>
+            <div class="post-mini-photo"><img src={img(p.image)} alt={pt.title} loading="lazy" /></div>
+            <div class="post-mini-body">
+              <span class="mini-cat">{pt.cat}</span>
+              <h3>{pt.title}</h3>
+              <p class="post-mini-meta">{pt.meta}</p>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>
 
-<!-- FREE TOOLS & GUIDES -->
+<!-- FROM MY KITCHEN: one recipe (image mirrored vs the blog card on wide screens) -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><h2>{t.recipesTitle}</h2><p class="section-sub">{t.recipesSub}</p></div>
+      <a class="see-all" href={recipesAllHref}>{t.recipesAll}</a>
+    </div>
+    <a class="feature-card reverse" href={`${L}recipes/${featuredRecipe.slug}/`}>
+      <div class="feature-photo"><img src={img(featuredRecipe.img)} alt={featuredRecipe.title[lang]} loading="lazy" /></div>
+      <div class="feature-body">
+        <span class="mini-cat">{featuredRecipe.cat[lang]}</span>
+        <h3>{featuredRecipe.title[lang]}</h3>
+        <p class="feature-desc">{featuredRecipe.desc[lang]}</p>
+        <p class="feature-meta">GI {featuredRecipe.gi} · {featuredRecipe.carbs}{lang === 'ua' ? ' ' : 'g '}{t.carbs}</p>
+        <span class="btn">{t.recipeCta}</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FREE TOOLS & GUIDES: one card on mobile, three on wide screens -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
@@ -62,12 +112,12 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
       <a class="see-all" href={resourcesHref}>{t.resourcesAll}</a>
     </div>
     <div class="res-grid">
-      {featuredResources.map((card) => {
+      {featuredResources.map((card, i) => {
         const c = card[lang];
         const raw = lang === 'ua' ? card.hrefUa : card.href;
         const href = raw.startsWith('/') ? B.replace(/\/$/, '') + raw : raw;
         return (
-          <a class="rcard" href={href}>
+          <a class={i === 0 ? 'rcard' : 'rcard res-extra'} href={href}>
             <div class="rband" style={`background:${card.band}`}>
               <span style={`color:${card.head}`}>{c.band}</span>
             </div>
@@ -84,55 +134,28 @@ const featuredResources = [0, 6, 5].map((i) => RESOURCES.cards[i]);
   </div>
 </section>
 
-<!-- FEATURED RECIPES -->
+<!-- WHAT I HELP WITH — the topic overview, now near the bottom as a lead-out
+     to the newsletter (fresh content catches attention up top instead) -->
 <section class="section">
   <div class="wrap">
-    <div class="section-head">
-      <div><h2>{t.recipesTitle}</h2><p class="section-sub">{t.recipesSub}</p></div>
-      <a class="see-all" href={recipesAllHref}>{t.recipesAll}</a>
-    </div>
-    <div class="card-grid four">
-      {HOME.recipes.map((r) => (
-        <a class="mini-card" href={`${L}recipes/${r.slug}/`}>
-          <div class="mini-photo"><img src={img(r.img)} alt={r.title[lang]} loading="lazy" /></div>
-          <div class="mini-body">
-            <span class="mini-cat">{r.cat[lang]}</span>
-            <h3>{r.title[lang]}</h3>
-            <p class="mini-meta">GI {r.gi} · {r.carbs}{lang === 'ua' ? ' ' : 'g '}{t.carbs}</p>
-            <span class="rcta">{t.recipeCta}</span>
+    <h2>{t.helpTitle}</h2>
+    <p class="section-sub">{t.helpSub}</p>
+    <div class="help-grid">
+      {t.help.map((c, i) => (
+        <div class="help-card" style={`background:${HOME.helpColors[i]}`}>
+          <span class="help-num" style={`color:${HOME.helpNums[i]}`}>{String(i + 1).padStart(2, '0')}</span>
+          <div class="help-text">
+            <h3>{c.h}</h3>
+            <p>{c.p}</p>
           </div>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- FROM THE BLOG -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>{t.blogTitle}</h2>
-      <a class="see-all" href={blogHref}>{t.blogAll}</a>
-    </div>
-    <div class="card-grid three">
-      {HOME.posts.map((p) => (
-        <a class="mini-card" href={`${L}blog/${p.slug}/`}>
-          <div class="mini-photo"><img src={img(p.img)} alt={p.title[lang]} loading="lazy" /></div>
-          <div class="mini-body">
-            <span class="mini-cat">{p.cat[lang]}</span>
-            <h3>{p.title[lang]}</h3>
-            <p class="mini-excerpt">{p.excerpt[lang]}</p>
-            <span class="rcta">{t.blogCta}</span>
-            <p class="mini-date">{p.date[lang]} · {p.min} {t.readMin}</p>
-          </div>
-        </a>
+        </div>
       ))}
     </div>
   </div>
 </section>
 
 <!-- NEWSLETTER -->
-<section class="section newsletter">
+<section class="section newsletter" id="newsletter">
   <div class="wrap nl-box">
     <h2>{t.nlTitle}</h2>
     <p class="section-sub">{t.nlSub}</p>
