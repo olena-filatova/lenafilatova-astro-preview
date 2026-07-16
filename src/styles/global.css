@@ -162,9 +162,6 @@ img { max-width: 100%; display: block; }
 
 /* --- home: shared section bits --- */
 .section { padding: 56px 0; }
-/* the "What I help with" reassurance strip sits right under the hero, so it
-   runs tight to avoid a big empty gap before the first content block */
-.section-tight { padding: 20px 0 8px; }
 .section > .wrap > h2, .section-head h2 { font-size: 30px; margin: 0 0 10px; }
 .section-sub { color: var(--muted); font-size: 17px; margin: 0 0 30px; max-width: 60ch; }
 .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 30px; }
@@ -180,9 +177,10 @@ img { max-width: 100%; display: block; }
 .hero-note { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); font-size: 15px; font-weight: 500; max-width: 44ch; }
 .hero-note .dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); margin-top: 6px; }
 
-/* help "lines" — compact colourful rows, stacked so all four sit in one
-   short scroll on mobile instead of a tall grid of cards */
-.help-grid { display: flex; flex-direction: column; gap: 10px; }
+/* help "lines" — compact colourful rows. Two-up on wide screens so they use
+   the width and read as an intentional set (not a full-width to-do list);
+   single stacked column on mobile (see the responsive block below). */
+.help-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .help-card { display: flex; align-items: center; gap: 16px; border-radius: 14px; padding: 14px 20px; }
 .help-num { flex: 0 0 auto; display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.7); font-family: var(--font-head); font-size: 14px; }
 .help-text { min-width: 0; }
@@ -207,6 +205,19 @@ img { max-width: 100%; display: block; }
    wide screens (reset to photo-on-top at the mobile breakpoint below) */
 .feature-card.reverse .feature-photo { grid-column: 2; grid-row: 1; }
 .feature-card.reverse .feature-body { grid-column: 1; grid-row: 1; }
+
+/* two more recent posts under the featured one (wide screens only) */
+.blog-more { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+.post-mini {
+  display: grid; grid-template-columns: 132px 1fr; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; transition: transform .15s ease, box-shadow .15s ease;
+}
+.post-mini:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(51,27,51,0.09); }
+.post-mini-photo { background: #ece0ea; overflow: hidden; }
+.post-mini-photo img { width: 100%; height: 100%; object-fit: cover; }
+.post-mini-body { padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; }
+.post-mini-body h3 { font-size: 17px; line-height: 1.28; margin: 0 0 8px; }
+.post-mini-meta { color: var(--muted); font-size: 13px; margin: 0; }
 
 /* newsletter */
 .newsletter .nl-box { background: var(--ink); border-radius: 24px; padding: 48px; text-align: center; }
@@ -286,8 +297,9 @@ img { max-width: 100%; display: block; }
   .feature-card.reverse .feature-body { grid-column: auto; grid-row: auto; }
   .feature-body { padding: 24px 22px 28px; }
   .feature-body h3 { font-size: 21px; }
+  .help-grid { grid-template-columns: 1fr; } /* stack the topic lines on mobile */
+  .blog-more { display: none; } /* homepage: one blog box on mobile, three on desktop */
   .section { padding: 40px 0; }
-  .section-tight { padding: 16px 0 4px; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .nl-row { flex-direction: column; }
   .newsletter .nl-box { padding: 32px 22px; }
