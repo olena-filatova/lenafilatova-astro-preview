@@ -42,6 +42,11 @@ const related = relatedPosts(post, POSTS);
           <thead><tr>{b.head.map((h) => <th>{h}</th>)}</tr></thead>
           <tbody>{b.rows.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
         </table></div>;
+      if (b.t === 'embed')
+        return <figure class="embed">
+          <iframe class="lf-embed" src={B.replace(/\/$/, '') + b.src} title={b.title || a.title} loading="lazy" scrolling="no" style={`width:100%;border:0;display:block;min-height:${b.minHeight || 620}px;`}></iframe>
+          {b.cap && <figcaption>{b.cap}</figcaption>}
+        </figure>;
       if (b.t === 'refs')
         return <div class="refs">{b.items.map((r) => (
           <div class="ref">
@@ -103,3 +108,13 @@ const related = relatedPosts(post, POSTS);
   </aside>
 )}
 <div class="post-foot"><a href={`${L}blog/`}>{t.backToBlog}</a></div>
+
+{/* Auto-resize any embedded interactive tool (embed block) to its content height. */}
+<script is:inline>
+  window.addEventListener('message', function (e) {
+    if (!e.data || e.data.type !== 'lf-embed-height' || typeof e.data.height !== 'number') return;
+    document.querySelectorAll('iframe.lf-embed').forEach(function (f) {
+      if (f.contentWindow === e.source) f.style.height = e.data.height + 'px';
+    });
+  });
+</script>

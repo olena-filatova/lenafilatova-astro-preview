@@ -38,6 +38,7 @@ const FLAT = [
   ['/cgm-comparison.html', '/cgm-comparison-ua.html'],
   ['/blood-sugar-investigator.html', '/blood-sugar-investigator-ua.html'],
   ['/carb-gi-table.html', '/carb-gi-table-ua.html'],
+  ['/t1d-cure-trials.html', '/t1d-cure-trials-ua.html'],
 ];
 
 const esc = (s) => s.replace(/&/g, '&amp;');
