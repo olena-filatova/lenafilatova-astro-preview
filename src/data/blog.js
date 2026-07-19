@@ -21,6 +21,8 @@ export const POSTS = [
     "en": {
       "cat": "Perimenopause",
       "title": "HRT prescriptions have more than doubled since 2018 — and patches are now running short",
+      "seoTitle": "HRT Prescriptions Have Doubled — Patches Now Running Short",
+      "metaDesc": "Estrogen HRT prescribing has doubled since 2018 — 1 in 20 women aged 45–54 now prescribed. Why patches are running short and what it means for perimenopause.",
       "excerpt": "New US data show estrogen HRT prescribing has doubled since 2018, with 1 in 20 women aged 45–54 now on it — driven partly by the FDA dropping its strongest warnings.",
       "meta": "10 July 2026 · 3 min read",
       "lead": "Hormone therapy is having a moment — and the numbers are striking. A new analysis of US prescribing data finds estrogen-based HRT has gone from niche to mainstream in just a few years.",
@@ -70,11 +72,35 @@ export const POSTS = [
           "q": "There's an estrogen patch shortage — what should I do?",
           "a": "Don't stop abruptly. Contact your prescriber or pharmacist about an equivalent-dose alternative — a different patch brand, or an estrogen gel or spray, which deliver hormone through the skin in the same way patches do. Switching form is usually straightforward when guided by your clinician."
         }
+      ,
+        {
+          "t": "links",
+          "title": "Related reading",
+          "items": [
+            {
+              "name": "Why skin changes so fast at menopause — and what hormone therapy can and can't do",
+              "url": "/blog/menopause-skin-oestrogen/",
+              "desc": "Oestrogen affects far more than hot flushes — the full picture on HRT and skin changes."
+            },
+            {
+              "name": "Do collagen products actually improve your skin?",
+              "url": "/blog/collagen-and-skin/",
+              "desc": "Declining oestrogen accelerates collagen loss. What the evidence says about supplementing."
+            },
+            {
+              "name": "5 myths about perimenopause and weight",
+              "url": "/blog/perimenopause-weight-myths/",
+              "desc": "What's actually true about weight changes during perimenopause."
+            }
+          ]
+        }
       ]
     },
     "ua": {
       "cat": "Перименопауза",
       "title": "Призначень ЗГТ стало вдвічі більше з 2018 року — а пластирів уже бракує",
+      "seoTitle": "Призначення ГЗТ подвоїлись — пластирі у дефіциті",
+      "metaDesc": "Призначення естрогенової ГЗТ подвоїлись з 2018 року. Чому пластирі у дефіциті — і що це означає для жінок у перименопаузі.",
       "excerpt": "Нові дані зі США показують, що призначень естрогенової ЗГТ стало вдвічі більше з 2018 року, і тепер її отримує 1 з 20 жінок віком 45–54 роки — частково через скасування найсуворіших попереджень FDA.",
       "meta": "10 липня 2026 · 3 хв читання",
       "lead": "Гормональна терапія переживає сплеск популярності — і цифри вражають. Новий аналіз даних про призначення у США показує, що естрогенова ЗГТ за кілька років перетворилася з нішевої на масову.",
@@ -2814,6 +2840,8 @@ export const POSTS = [
     "en": {
       "cat": "Skin & beauty",
       "title": "Do collagen products actually improve your skin?",
+      "seoTitle": "Collagen and Skin: What the Evidence Actually Shows",
+      "metaDesc": "Does collagen actually improve skin? We look at the evidence on supplements, creams and the nutrients your body needs to make its own.",
       "excerpt": "What the evidence really shows about collagen supplements, creams and the nutrients that support your own.",
       "meta": "14 June 2026 · 5 min read",
       "lead": "Collagen is the scaffold that keeps skin firm and elastic — and from your mid-twenties you make a little less of it each year. Here's what the evidence actually supports, and what's mostly marketing.",
@@ -2967,11 +2995,34 @@ export const POSTS = [
           "q": "Does menopause affect collagen?",
           "a": "Yes, significantly. Oestrogen supports collagen synthesis in the skin, and its decline during perimenopause and menopause accelerates collagen loss at roughly 1–2% per year — beyond what age alone would explain. HRT has evidence for partially restoring skin collagen and elasticity. Talk to your GP or a menopause specialist if this is a concern."
         }
-      ]
+      ,
+        {
+          "t": "links",
+          "title": "Related reading",
+          "items": [
+            {
+              "name": "Why skin changes so fast at menopause — and what HRT can and can't do",
+              "url": "/blog/menopause-skin-oestrogen/",
+              "desc": "Oestrogen supports collagen production and skin hydration. Here's what the evidence says."
+            },
+            {
+              "name": "Protein for women over 40: how much do you actually need?",
+              "url": "/blog/protein-for-women-over-40/",
+              "desc": "Collagen is a protein. Getting enough protein in midlife supports skin structure as well as muscle."
+            },
+            {
+              "name": "HRT prescriptions have doubled — patches are now running short",
+              "url": "/blog/hrt-prescriptions-doubling/",
+              "desc": "Oestrogen affects skin and collagen. New data on the HRT surge and what patch shortages mean."
+            }
+          ]
+        }]
     },
     "ua": {
       "cat": "Краса та шкіра",
       "title": "Чи справді колагенові засоби покращують шкіру?",
+      "seoTitle": "Колаген і шкіра: що насправді показують дослідження",
+      "metaDesc": "Чи справді колаген покращує шкіру? Розглядаємо докази щодо добавок, кремів і поживних речовин для підтримки власного колагену.",
       "excerpt": "Що насправді показують дослідження про колагенові добавки, креми та поживні речовини для вашого колагену.",
       "meta": "14 червня 2026 · 5 хв читання",
       "lead": "Колаген — це каркас, що робить шкіру пружною й еластичною, і з середини двадцятих років ви щороку виробляєте його трохи менше. Ось що насправді підтверджують докази, а що переважно маркетинг.",
