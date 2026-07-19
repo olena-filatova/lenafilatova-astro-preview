@@ -4015,6 +4015,7 @@ export const POSTS = [
   {
     "slug": "cortisol-belly-perimenopause",
     "date": "2026-07-15",
+    "featured": true,
     "image": "/images/cortisol-belly-perimenopause.jpg",
     "cats": [
       "perimenopause",

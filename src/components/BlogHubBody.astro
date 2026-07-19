@@ -3,6 +3,12 @@
 // chips — same show/hide approach as the recipe hub (cards carry data-cats;
 // the inline script never renders content). NEW vs the Divhunt site: the old
 // blog had no filtering; categories were display-only.
+//
+// Posts flagged `featured: true` in blog.js (max 3 shown) get an editorial
+// band above the filters: one large lead card, plus compact side cards when
+// more than one is flagged. The band appears only on the "All" view; picking
+// a category chip hides it and the featured posts rejoin the plain grid so
+// filters stay complete.
 import { POSTS } from '../data/blog.js';
 import { CATS, UI } from '../data/blog-lib.js';
 import '../styles/blog.css';
@@ -10,6 +16,8 @@ import '../styles/blog.css';
 const { lang = 'en' } = Astro.props;
 // Sort by date so a post appended to the data file still lands on top.
 const sorted = [...POSTS].sort((a, b) => b.date.localeCompare(a.date));
+const featured = sorted.filter((p) => p.featured && !p.comingSoon).slice(0, 3);
+const [lead, ...minis] = featured;
 const t = UI[lang];
 const B = import.meta.env.BASE_URL;
 const hub = lang === 'ua' ? `${B}ua/blog/` : `${B}blog/`;
@@ -23,15 +31,52 @@ const img = (src) => B.replace(/\/$/, '') + src;
   </div>
 </section>
 
+{lead && (
+  <section class="featured" id="blogFeatured">
+    <div class="wrap">
+      <div class="featured-head"><span class="fk">{t.featured}</span><span class="rule"></span></div>
+      <div class={`featured-grid${minis.length ? '' : ' solo'}`}>
+        <a class="flead" href={`${hub}${lead.slug}/`} style={`background-image:url('${img(lead.image)}')`}>
+          <div class="body">
+            <p class="cat">{lead[lang].cat}</p>
+            <h2>{lead[lang].title}</h2>
+            <p class="excerpt">{lead[lang].excerpt}</p>
+            <p class="meta">{lead[lang].meta}</p>
+          </div>
+        </a>
+        {minis.length > 0 && (
+          <div class="fside">
+            {minis.map((p) => (
+              <a class="fmini" href={`${hub}${p.slug}/`}>
+                <span class="thumb" style={`background-image:url('${img(p.image)}')`}></span>
+                <span class="body">
+                  <span class="cat">{p[lang].cat}</span>
+                  <h3>{p[lang].title}</h3>
+                  <span class="meta">{p[lang].meta}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
 <section>
   <div class="wrap">
     <div class="blog-filters" id="blogFilters">
       <button class="chip on" data-cat="all">{t.all}</button>
       {CATS.map((c) => <button class="chip" data-cat={c.key}>{c[lang]}</button>)}
     </div>
+    {lead && <div class="latest-head"><span class="fk">{t.latest}</span><span class="rule"></span></div>}
     <div class="blog-grid" id="blogGrid">
       {sorted.map((p) => (
-        <a class="bcard" href={`${hub}${p.slug}/`} data-cats={p.cats.join(' ')}>
+        <a
+          class={`bcard${p.featured && !p.comingSoon && featured.includes(p) ? ' hidden' : ''}`}
+          href={`${hub}${p.slug}/`}
+          data-cats={p.cats.join(' ')}
+          data-featured={featured.includes(p) ? '1' : undefined}>
           <div class="thumb" style={`background-image:url('${img(p.image)}')`}>
             {p.comingSoon && <span class="soon">{t.comingSoonBadge}</span>}
           </div>
@@ -53,18 +98,26 @@ const img = (src) => B.replace(/\/$/, '') + src;
     var filters = document.getElementById('blogFilters');
     var grid = document.getElementById('blogGrid');
     var empty = document.getElementById('blogEmpty');
+    var band = document.getElementById('blogFeatured');
+    var latest = document.querySelector('.latest-head');
     if (!filters || !grid) return;
     function apply(btn) {
       [].slice.call(filters.querySelectorAll('.chip')).forEach(function (c) { c.classList.remove('on'); });
       btn.classList.add('on');
       var want = btn.getAttribute('data-cat');
+      var all = want === 'all';
+      // Featured band only makes sense on the unfiltered view; on a category
+      // view the featured posts show as ordinary grid cards instead.
+      if (band) band.style.display = all ? '' : 'none';
+      if (latest) latest.style.display = all ? '' : 'none';
       var shown = 0;
       [].slice.call(grid.querySelectorAll('.bcard')).forEach(function (card) {
-        var ok = want === 'all' || (card.getAttribute('data-cats') || '').split(' ').indexOf(want) >= 0;
+        var inBand = all && band && card.hasAttribute('data-featured');
+        var ok = !inBand && (all || (card.getAttribute('data-cats') || '').split(' ').indexOf(want) >= 0);
         card.classList.toggle('hidden', !ok);
         if (ok) shown++;
       });
-      if (empty) empty.style.display = shown ? 'none' : 'block';
+      if (empty) empty.style.display = shown || (all && band) ? 'none' : 'block';
     }
     filters.addEventListener('click', function (e) {
       var btn = e.target.closest('.chip');
