@@ -45,7 +45,7 @@ export const POSTS = [
         },
         {
           "t": "p",
-          "text": "Below is a filterable tracker of the most notable programmes. Tap any card to open the full detail — what it is, who can take part (including age), results so far, the honest pros and cons, and a link to the official study on ClinicalTrials.gov. Use the chips to filter by approach, phase or whether it is recruiting. Every fact here was checked against the trial registry and sponsor reports in July 2026."
+          "text": "Below is a filterable tracker of the most notable programmes. Tap any card to open the full detail — what it is, who can take part (including age), results so far, the honest pros and cons, and a link to the official study on ClinicalTrials.gov. Filter by country, whether it's recruiting, whether it's free to join, interventional or observational, approach or phase — and open the glossary if a term is new. It also includes free screening studies (like TrialNet and the UK's ELSA) that are often the first step to taking part. Every fact here was checked against the trial registry and sponsor reports in July 2026."
         },
         {
           "t": "embed",
@@ -234,7 +234,7 @@ export const POSTS = [
         },
         {
           "t": "p",
-          "text": "Нижче — трекер із фільтрами найпомітніших програм. Натисніть на будь-яку картку, щоб відкрити повні деталі — що це, хто може взяти участь (зокрема вік), результати наразі, чесні плюси й мінуси та посилання на офіційне дослідження на ClinicalTrials.gov. Користуйтеся фільтрами за підходом, фазою чи тим, чи триває набір. Кожен факт тут перевірений за реєстром досліджень і звітами спонсорів у липні 2026 року."
+          "text": "Нижче — трекер із фільтрами найпомітніших програм. Натисніть на будь-яку картку, щоб відкрити повні деталі — що це, хто може взяти участь (зокрема вік), результати наразі, чесні плюси й мінуси та посилання на офіційне дослідження на ClinicalTrials.gov. Фільтруйте за країною, статусом набору, безкоштовністю, типом (інтервенційне чи спостережне), підходом або фазою — і відкрийте глосарій, якщо якийсь термін новий. Трекер також містить безкоштовні скринінгові дослідження (як-от TrialNet і британське ELSA), які часто є першим кроком до участі. Кожен факт тут перевірений за реєстром досліджень і звітами спонсорів у липні 2026 року."
         },
         {
           "t": "embed",

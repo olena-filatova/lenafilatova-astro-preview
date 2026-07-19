@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Трекер досліджень щодо лікування діабету 1 типу — Лена Філатова</title>
-<meta name="description" content="Трекер із фільтрами найперспективніших клінічних досліджень, спрямованих на лікування або зупинку діабету 1 типу — підхід, фаза, хто може брати участь, результати, плюси й мінуси та як знайти дослідження на ClinicalTrials.gov.">
+<meta name="description" content="Трекер із фільтрами найперспективніших клінічних досліджень, спрямованих на лікування або зупинку діабету 1 типу — фільтруйте за країною, статусом набору, безкоштовністю, типом (інтервенційне чи спостережне), підходом і фазою, із поясненнями простими словами.">
 <link rel="canonical" href="https://lenafilatova.co.uk/t1d-cure-trials-ua.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,14 +21,26 @@
   --a-vaccine:#B26A34;--a-vaccine-bg:#FBEEE1;
   --a-preserve:#005FCC;--a-preserve-bg:#EAF1FC;
   --a-islet:#8E3A1E;  --a-islet-bg:#F8ECE7;
+  --a-screen:#0d7d7d; --a-screen-bg:#e2f4f4;
   --a-other:#666;     --a-other-bg:#f2f2f2;
 }
 body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:var(--text); background:#fff; font-size:15px; line-height:1.55; }
 .page { max-width:900px; margin:0 auto; padding:16px clamp(14px,3vw,28px) 28px; }
 
+.glossary { border:1px solid var(--border); border-radius:var(--radius); background:#fff; margin-bottom:1rem; }
+.glossary > summary { list-style:none; cursor:pointer; padding:0.8rem 1rem; font-size:0.9rem; font-weight:700; color:var(--accent); display:flex; align-items:center; gap:0.5rem; }
+.glossary > summary::-webkit-details-marker { display:none; }
+.glossary > summary::before { content:"？"; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:var(--accent); color:#fff; font-size:0.72rem; font-weight:700; flex-shrink:0; }
+.glossary[open] > summary { border-bottom:1px solid var(--border); }
+.gloss-body { padding:0.5rem 1rem 1rem; }
+.gloss-item { padding:0.55rem 0; border-bottom:1px solid #f0f0f0; }
+.gloss-item:last-child { border-bottom:none; }
+.gloss-term { font-weight:700; font-size:0.86rem; color:var(--text); }
+.gloss-def { font-size:0.85rem; color:#444; line-height:1.55; margin-top:0.1rem; }
+
 .filters { display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.25rem; padding:1.1rem; background:var(--hover); border:1px solid var(--border); border-radius:var(--radius); }
 .filter-row { display:flex; align-items:flex-start; gap:0.6rem; flex-wrap:wrap; }
-.filter-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); padding-top:0.45rem; min-width:82px; flex-shrink:0; }
+.filter-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); padding-top:0.5rem; min-width:110px; flex-shrink:0; }
 .chips { display:flex; flex-wrap:wrap; gap:0.4rem; }
 .chip { display:inline-flex; align-items:center; padding:0.32rem 0.72rem; border-radius:20px; border:1.5px solid var(--border); background:#fff; font-size:0.8rem; font-weight:500; color:var(--text); cursor:pointer; transition:all 0.15s; white-space:nowrap; user-select:none; }
 .chip:hover { border-color:#aaa; background:#f5f5f5; }
@@ -39,6 +51,8 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
 #search:focus { border-color:var(--accent); }
 #clearBtn { padding:0.32rem 0.85rem; border-radius:20px; border:1.5px solid var(--border); background:#fff; font-size:0.8rem; color:var(--muted); cursor:pointer; transition:all 0.15s; align-self:center; }
 #clearBtn:hover { border-color:#aaa; color:var(--text); }
+.country-sel { padding:0.4rem 0.75rem; border:1.5px solid var(--border); border-radius:20px; font-size:0.82rem; font-family:inherit; background:#fff; color:var(--text); cursor:pointer; outline:none; min-width:190px; }
+.country-sel:focus { border-color:var(--accent); }
 
 .count-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem; flex-wrap:wrap; gap:0.5rem; }
 .count-badge { font-size:0.85rem; font-weight:600; color:var(--muted); }
@@ -63,7 +77,9 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
 .b-approach.preserve{background:var(--a-preserve-bg);color:var(--a-preserve);}
 .b-approach.treg{background:var(--a-preserve-bg);color:var(--a-preserve);}
 .b-approach.islet{background:var(--a-islet-bg);color:var(--a-islet);}
+.b-approach.screen{background:var(--a-screen-bg);color:var(--a-screen);}
 .b-phase { background:#EEF0FF; color:#3A43B0; }
+.b-obs { background:var(--a-screen-bg); color:var(--a-screen); }
 .b-status { border:1px solid var(--border); background:#fff; color:var(--muted); font-weight:600; }
 .b-status.recruiting { background:var(--green-bg); color:var(--green); border-color:transparent; }
 .b-status.approved { background:#fff4d6; color:#8a6400; border-color:transparent; }
@@ -77,6 +93,8 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
 .field { padding:0.7rem 0 0; }
 .field-label { font-size:0.66rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:0.2rem; }
 .field-val { font-size:0.9rem; color:var(--text); line-height:1.6; }
+.meta-line { display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem; padding-top:0.75rem; font-size:0.8rem; color:var(--muted); }
+.meta-line b { color:var(--text); font-weight:600; }
 .proscons { display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; padding-top:0.8rem; }
 .pc-box { border-radius:8px; padding:0.6rem 0.7rem; font-size:0.84rem; line-height:1.5; }
 .pc-pros { background:var(--green-bg); color:#1f5537; }
@@ -95,11 +113,18 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
   .filter-label { display:none; }
   .proscons { grid-template-columns:1fr; }
   .ch-name { font-size:0.95rem; }
+  .country-sel { width:100%; }
 }
 </style>
 </head>
 <body>
 <div class="page">
+
+  <details class="glossary">
+    <summary>Нові в клінічних дослідженнях? Натисніть, щоб дізнатися, що означають терміни</summary>
+    <div class="gloss-body" id="glossBody"></div>
+  </details>
+
   <div class="filters">
     <div class="filter-row">
       <div class="search-wrap">
@@ -109,16 +134,28 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
       <button id="clearBtn">Скинути</button>
     </div>
     <div class="filter-row">
+      <span class="filter-label">Країна</span>
+      <select id="countrySel" class="country-sel"><option value="all">Усі країни</option></select>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Набір?</span>
+      <div class="chips" id="chips-recruit"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Вартість участі</span>
+      <div class="chips" id="chips-cost"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Тип дослідження</span>
+      <div class="chips" id="chips-studytype"></div>
+    </div>
+    <div class="filter-row">
       <span class="filter-label">Підхід</span>
       <div class="chips" id="chips-approach"></div>
     </div>
     <div class="filter-row">
       <span class="filter-label">Фаза</span>
       <div class="chips" id="chips-phase"></div>
-    </div>
-    <div class="filter-row">
-      <span class="filter-label">Статус</span>
-      <div class="chips" id="chips-status"></div>
     </div>
   </div>
 
@@ -130,15 +167,37 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
   <div class="cards-list" id="list"></div>
   <div class="no-results" id="noResults" style="display:none;">Жодне дослідження не відповідає обраним фільтрам.</div>
 
-  <div class="footnote"><strong>Освітній трекер — не медична порада й не заклик брати участь у якомусь дослідженні.</strong> Фази, критерії участі, локації та результати часто змінюються; завжди перевіряйте актуальні деталі на офіційній сторінці дослідження й обговорюйте будь-яку участь зі своєю діабетичною командою. «Орієнтовна доступність» — це приблизна оптимістична оцінка за умови, що терапія й далі буде успішною; більшість експериментальних методів так і не виходять на ринок, а терміни зсуваються. Первинне джерело для кожного дослідження — <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (шукайте за номером NCT); деякі також є в реєстрі досліджень ЄС або на сайті спонсора.</div>
+  <div class="footnote"><strong>Освітній трекер — не медична порада й не заклик брати участь у якомусь дослідженні.</strong> Фази, критерії участі, локації, вартість і результати часто змінюються; завжди перевіряйте актуальні деталі на офіційній сторінці дослідження й обговорюйте будь-яку участь зі своєю діабетичною командою. «Орієнтовна доступність» — це приблизна оптимістична оцінка за умови, що терапія й далі буде успішною; більшість експериментальних методів так і не виходять на ринок. «Безкоштовна участь» означає, що участь не коштує вам нічого (дослідження покриває своє лікування); вона не включає ваш проїзд, якщо не зазначено інакше. Первинне джерело для кожного дослідження — <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (шукайте за номером NCT); деякі також є в реєстрі ЄС, ISRCTN або на сайті спонсора.</div>
 </div>
 
 <script>
+/* ── GLOSSARY ─────────────────────────────────────────────────────────── */
+const GLOSSARY = [
+  ["Фаза 1", "Перші випробування на людях — зазвичай у невеликій групі. Головно перевіряють, чи безпечне лікування і як його переносить організм."],
+  ["Фаза 2", "Перевіряють, чи лікування справді працює, і підбирають правильну дозу, вже на більшій кількості людей."],
+  ["Фаза 3", "Велике дослідження, щоб підтвердити ефективність і безпеку. Це останній великий крок перед схваленням регуляторами."],
+  ["Фаза 1/2 або 2/3", "Дві стадії, поєднані в одне дослідження, щоб зекономити час — поширено в новіших дослідженнях."],
+  ["Схвалено", "Регулятори дозволили, і лікар може призначити — хоча в яких країнах доступно і скільки коштує, все ще різниться."],
+  ["Інтервенційне", "Дослідження щось вам дає — препарат, клітини чи пристрій — щоб побачити, як це діє."],
+  ["Спостережне", "Дослідження спостерігає й вимірює (наприклад, аналізи крові), не даючи лікування. Скринінгові та моніторингові дослідження — це те, як багато людей уперше дізнаються, що підходять для інших досліджень."],
+  ["Набір триває", "Дослідження зараз активно набирає нових учасників."],
+  ["Активне, без набору", "Дослідження триває, але його група вже заповнена."],
+  ["Безкоштовна участь", "Участь не коштує вам нічого — дослідження покриває своє лікування. (Вам не платять зарплату; деякі дослідження допомагають із проїздом.)"],
+  ["Номер NCT", "Ідентифікатор дослідження на ClinicalTrials.gov. Знайдіть його там, щоб побачити актуальний статус, повні критерії та контакти."],
+  ["Острівцеві / бета-клітини", "Клітини підшлункової залози, що виробляють інсулін, — саме їх втрачають при діабеті 1 типу."],
+  ["Автоантитіла · стадія 1–2", "Імунні маркери, які показують, що діабет 1 типу розвивається, часто за роки до симптомів. Простий аналіз крові може їх виявити — саме це роблять скринінгові дослідження."],
+  ["Пригнічення імунітету", "Препарати, що заспокоюють імунну систему, аби вона не відторгала пересаджені клітини. Вони діють, але підвищують ризик інфекцій."]
+];
+
+/* ── DATA ─────────────────────────────────────────────────────────────── */
 const DATA = [
   {
     id:"teplizumab", name:"Теплізумаб (TZIELD)", sponsor:"Provention Bio / Sanofi",
     approach:"immuno", approachLabel:"Імунотерапія (заспокоїти атаку)",
     phase:"approved", phaseLabel:"Схвалено", status:"approved", statusLabel:"Доступно зараз",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"approved", costLabel:"Схвалено — за рецептом",
+    countries:["США"],
     location:"Схвалений і застосовується у США; дослідження PROTECT проходило у США, Канаді, Великій Британії та Європі",
     timing:"Доступний зараз у США — схвалений у 2022 році, а у квітні 2026 схвалений вік розширили до 1 року й старше.",
     description:"Приблизно двотижневий курс інфузій, який заспокоює атаку імунної системи на клітини, що виробляють інсулін. У людей із високим ризиком він відкладає початок повноцінного діабету 1 типу.",
@@ -153,6 +212,9 @@ const DATA = [
     id:"zimislecel", name:"Зиміслецел (VX-880) — дослідження FORWARD", sponsor:"Vertex Pharmaceuticals",
     approach:"stem", approachLabel:"Заміна острівцевих клітин (стовбурові клітини)",
     phase:"p3", phaseLabel:"Фаза 3", status:"recruiting", statusLabel:"Набір триває",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["США","Канада","Велика Британія","Франція","Німеччина","Італія","Нідерланди","Норвегія","Швейцарія","Саудівська Аравія"],
     location:"Близько 28 центрів у США, Канаді, Великій Британії, Франції, Німеччині, Італії, Нідерландах, Норвегії, Швейцарії та Саудівській Аравії",
     timing:"У найкращому разі приблизно 2027+. Vertex каже, що планує почати подання регуляторам у 2026 році, — але до FDA поки нічого не подано, тож це не «на розгляді».",
     description:"Вирощені в лабораторії острівцеві клітини, що виробляють інсулін, одноразово вводяться в кровотік печінки, щоб організм знову міг виробляти власний інсулін. Реципієнти довічно приймають препарати проти відторгнення.",
@@ -167,6 +229,9 @@ const DATA = [
     id:"tegoprubart-islet", name:"Трансплантація острівців із теґопрубартом (м'якше проти відторгнення)", sponsor:"Університет Чикаго · препарат Eledon · фінансує Breakthrough T1D",
     approach:"islet", approachLabel:"Трансплантація острівців",
     phase:"p12", phaseLabel:"Фаза 1/2", status:"recruiting", statusLabel:"Набір триває",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["США"],
     location:"Університет Чикаго, Іллінойс, США (один центр)",
     timing:"Приблизно 2030+. Обмежено запасом донорських клітин і потребує більших контрольованих досліджень.",
     description:"Донорські острівцеві клітини трансплантують, але замість звичних жорстких препаратів проти відторгнення пацієнти отримують теґопрубарт — м'якше антитіло, що блокує один імунний «допоміжний» сигнал і бережніше ставиться до пересаджених клітин і нирок.",
@@ -181,6 +246,9 @@ const DATA = [
     id:"sernova", name:"Sernova Cell Pouch", sponsor:"Sernova Biotherapeutics",
     approach:"islet", approachLabel:"Трансплантація острівців",
     phase:"p12", phaseLabel:"Фаза 1/2", status:"active", statusLabel:"Активне, без набору",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["США"],
     location:"Університет Чикаго, Іллінойс, США (один центр)",
     timing:"Приблизно 2030+. Підтверджувальна група лише починається, а поточна версія все ще потребує донорських клітин і пригнічення імунітету.",
     description:"Невеликий «кишеньковий» пристрій імплантують під шкіру; він відрощує власне кровопостачання, а потім його наповнюють донорськими острівцевими клітинами, щоб дати їм безпечний, живлений дім. За потреби його можна видалити.",
@@ -195,7 +263,10 @@ const DATA = [
     id:"baricitinib", name:"Барицитиніб (Olumiant) — таблетка щодня", sponsor:"Інститут Св. Вінсента, Мельбурн (Фаза 2) · Eli Lilly (Фаза 3)",
     approach:"immuno", approachLabel:"Імунотерапія (заспокоїти атаку)",
     phase:"p3", phaseLabel:"Фаза 3", status:"recruiting", statusLabel:"Набір триває",
-    location:"Завершена Фаза 2 проходила в Австралії; нова Фаза 3 охоплює близько 18 країн, зокрема США",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["Австралія","Бельгія","Бразилія","Канада","Фінляндія","Франція","Німеччина","Ізраїль","Італія","Японія","Нідерланди","Норвегія","Польща","Португалія","Іспанія","Швеція","Велика Британія","США"],
+    location:"Завершена Фаза 2 проходила в Австралії; Фаза 3 із набором охоплює близько 18 країн Північної Америки, Європи, Ізраїлю, Японії, Бразилії та Австралії",
     timing:"Це вже схвалена таблетка від артриту, тож за умови підтвердження в дослідженнях вона могла б рухатися відносно швидко — але для діабету 1 типу вона ще не схвалена й не рекомендована. Фаза 3 триває приблизно до 2031 року.",
     description:"Таблетка раз на день (уже застосовується при артриті), що приглушує запальний сигнал, який керує атакою на клітини інсуліну. Вирізняється тим, що це дешевий, уже наявний пероральний препарат, а не інфузія.",
     design:"Завершена Фаза 2 (BANDIT) лікувала людей із нещодавнім діагнозом. Нова Фаза 3 перевіряє, чи може він відкласти діабет 1 типу в людей із ризиком.",
@@ -209,7 +280,10 @@ const DATA = [
     id:"frexalimab", name:"Фрексалімаб — дослідження FABULINUS", sponsor:"Sanofi",
     approach:"immuno", approachLabel:"Імунотерапія (заспокоїти атаку)",
     phase:"p2", phaseLabel:"Фаза 2", status:"active", statusLabel:"Активне, без набору",
-    location:"97 центрів у 17 країнах (США, Канада, більша частина Західної Європи та Скандинавії)",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["Австрія","Бельгія","Канада","Чехія","Данія","Фінляндія","Франція","Німеччина","Угорщина","Італія","Польща","Словенія","Іспанія","Швеція","Велика Британія","США"],
+    location:"97 центрів у США, Канаді та значній частині Західної Європи й Скандинавії",
     timing:"Найраніше приблизно 2029–2031 — Фаза 3 буде після цього, якщо дослідження виявиться успішним.",
     description:"Антитіло, що блокує ключовий імунний «допоміжний» сигнал (CD40L), аби захистити клітини інсуліну в людей із нещодавнім діагнозом. Розроблене так, щоб уникнути ризику тромбів, який зупинив раніші препарати цього типу.",
     design:"Велика, ретельна Фаза 2b у пацієнтів із нещодавнім діагнозом. Набір завершено.",
@@ -223,6 +297,9 @@ const DATA = [
     id:"diamyd", name:"Diamyd (GAD-alum) — DIAGNODE-3", sponsor:"Diamyd Medical (Швеція)",
     approach:"vaccine", approachLabel:"Вакцина / антиген-специфічна",
     phase:"p3", phaseLabel:"Фаза 3", status:"active", statusLabel:"Активне, без набору",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["США","Чехія","Естонія","Німеччина","Угорщина","Нідерланди","Польща","Іспанія","Швеція"],
     location:"США плюс Чехія, Естонія, Німеччина, Угорщина, Нідерланди, Польща, Іспанія та Швеція",
     timing:"Основні результати очікуються приблизно в грудні 2027 року; схвалення, якщо спрацює, — орієнтовно 2028 рік або пізніше.",
     description:"Три ін'єкції діабетичного білка (GAD65) у лімфовузол, аби перенавчити імунну систему й захистити той інсулін, який людина ще має. Це точковий підхід, обмежений однією генетичною підгрупою.",
@@ -237,6 +314,9 @@ const DATA = [
     id:"sana-up421", name:"«Приховані» острівцеві клітини Sana (UP421)", sponsor:"Університетська лікарня Уппсали, із застосуванням технології редагування генів Sana",
     approach:"islet", approachLabel:"Трансплантація острівців",
     phase:"p1", phaseLabel:"Фаза 1", status:"active", statusLabel:"Активне, без набору",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["Швеція"],
     location:"Уппсала, Швеція",
     timing:"2030+. Це доказ концепції на одному пацієнті; масштабований продукт іще потребує повноцінних досліджень.",
     description:"Донорські острівцеві клітини редагують генетично, щоб вони «ховалися» від імунної системи, і вміщують у м'яз передпліччя одному пацієнту — БЕЗ жодних препаратів проти відторгнення. Перевіряють, чи клітини виживуть і працюватимуть, а не (поки) виліковують діабет.",
@@ -251,6 +331,9 @@ const DATA = [
     id:"china-cipsc", name:"Острівці з власних стовбурових клітин (Тяньцзінь, Китай)", sponsor:"Перша центральна лікарня Тяньцзіня та Пекінський університет",
     approach:"stem", approachLabel:"Заміна острівцевих клітин (стовбурові клітини)",
     phase:"p1", phaseLabel:"Фаза 1", status:"active", statusLabel:"Активне, без набору",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["Китай"],
     location:"Тяньцзінь, Китай",
     timing:"Ще роки попереду — це доказ концепції на першому пацієнті.",
     description:"Власні жирові клітини пацієнтки перепрограмували в стовбурові, перетворили на острівцеві та трансплантували в черевну стінку (місце, звідки їх можна видалити) — тож донор був не потрібен.",
@@ -265,6 +348,9 @@ const DATA = [
     id:"poltreg", name:"Клітинна терапія для заспокоєння імунітету PolTREG (PreTreg)", sponsor:"PolTREG (Польща)",
     approach:"treg", approachLabel:"Терапія регуляторними T-клітинами (Treg)",
     phase:"p2", phaseLabel:"Фаза 2", status:"recruiting", statusLabel:"Набір триває",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["Польща"],
     location:"9 центрів у Польщі",
     timing:"2032+. Це профілактичне дослідження в маленьких дітей, що завершується приблизно у 2032 році.",
     description:"У дітей із найранішими ознаками діабету 1 типу (антитіла, але ще нормальний цукор) їхні власні заспокійливі імунні клітини (Treg) вирощують у лабораторії та вводять разом із другим препаратом, щоб сповільнити атаку ще до початку діабету.",
@@ -279,6 +365,9 @@ const DATA = [
     id:"bcg", name:"Повторна вакцина БЦЖ (лабораторія Фаустман)", sponsor:"Массачусетська загальна лікарня (лабораторія Фаустман)",
     approach:"vaccine", approachLabel:"Вакцина / антиген-специфічна",
     phase:"p2", phaseLabel:"Фаза 2", status:"active", statusLabel:"Активне, без набору",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["США"],
     location:"Бостон (Чарлстаун), Массачусетс, США (один центр)",
     timing:"Найближчим часом шляху немає — залишається експериментальним, без завершених позитивних ключових результатів попри багато років.",
     description:"Повторні дози столітньої протитуберкульозної вакцини (БЦЖ) у людей, які мають діабет 1 типу роками, з метою знизити HbA1c (а не відновити інсулін) через незвичний передбачуваний вплив на обмін речовин.",
@@ -293,6 +382,9 @@ const DATA = [
     id:"sce", name:"Терапія Stem Cell Educator", sponsor:"Throne Biotechnologies (раніше Tianhe)",
     approach:"immuno", approachLabel:"Імунотерапія (заспокоїти атаку)",
     phase:"p23", phaseLabel:"Фаза 2/3", status:"unknown", statusLabel:"Статус невідомий",
+    studyType:"interventional", studyTypeLabel:"Інтервенційне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["США"],
     location:"Нью-Джерсі, США",
     timing:"Невизначено — схвалення немає, а офіційний статус дослідження нині позначений як «невідомий».",
     description:"Кров пацієнта пропускають над стовбуровими клітинами з пуповинної крові, які «навчають» імунні клітини; навчені клітини (не стовбурові) повертають, щоб перезапустити толерантність імунної системи.",
@@ -302,25 +394,83 @@ const DATA = [
     pros:"Використовує власні клітини пацієнта без фактичного введення стовбурових клітин (низький ризик інфекцій і відторгнення); без ліків.",
     cons:"⚠️ Майже всі докази надходять від розробників, практично без незалежного відтворення; ефекти виглядають скромними й тимчасовими; статус дослідження в реєстрі буквально «невідомий», а запис застарів понад два роки. Ставтеся обережно.",
     nct:"NCT04011020", url:"https://clinicaltrials.gov/study/NCT04011020"
+  },
+  {
+    id:"trialnet-p2p", name:"TrialNet Pathway to Prevention (безкоштовний скринінг)", sponsor:"TrialNet · Університет Південної Флориди · фінансування NIH",
+    approach:"screen", approachLabel:"Скринінг і моніторинг",
+    phase:"na", phaseLabel:"", status:"recruiting", statusLabel:"Набір триває",
+    studyType:"observational", studyTypeLabel:"Спостережне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["Австралія","Канада","Фінляндія","Італія","Велика Британія","США"],
+    location:"Центри в США, Великій Британії, Канаді, Австралії, Фінляндії та Італії",
+    timing:"Відкрито зараз — безкоштовний спосіб дізнатися свій ризик. Це звичайний шлях до профілактичних досліджень діабету 1 типу (і до теплізумабу).",
+    description:"Безкоштовний аналіз крові, який перевіряє родичів людей із діабетом 1 типу на ранні імунні маркери (автоантитіла), що вказують на розвиток діабету 1 типу — часто за роки до симптомів. Якщо маркери виявлено, пропонують подальший моніторинг.",
+    design:"Спостережне: аналіз крові, потім регулярний моніторинг для тих, у кого результат позитивний. Лікування не дають — але позитивний результат може зробити вас придатними до профілактичних досліджень.",
+    eligibility:"2–45 років із близьким родичем (батько/мати, дитина або брат/сестра), який має діабет 1 типу; або 2–20 років із дальшим родичем із діабетом 1 типу; або будь-хто 2–45 років, у кого вже відомо про наявність автоантитіла. Не для людей, які вже мають діабет.",
+    results:"Це не лікувальне дослідження — воно скринить велику кількість родичів і є головним каналом входу в профілактичні дослідження діабету 1 типу.",
+    pros:"Безкоштовно; виявляє діабет 1 типу за роки наперед; визнаний вхід до профілактичних досліджень і до теплізумабу; відкрито для родин у кількох країнах.",
+    cons:"Для родичів людей із діабетом 1 типу (не для широкого загалу); це скринінг і моніторинг, а не лікування; позитивний результат може бути важкою новиною.",
+    nct:"NCT00097292", url:"https://clinicaltrials.gov/study/NCT00097292"
+  },
+  {
+    id:"elsa", name:"ELSA — безкоштовний скринінг дітей (Велика Британія)", sponsor:"Університет Бірмінгема · фінансують Diabetes UK і Breakthrough T1D",
+    approach:"screen", approachLabel:"Скринінг і моніторинг",
+    phase:"na", phaseLabel:"", status:"recruiting", statusLabel:"Набір триває",
+    studyType:"observational", studyTypeLabel:"Спостережне",
+    cost:"free", costLabel:"Безкоштовна участь",
+    countries:["Велика Британія"],
+    location:"Велика Британія (широкий загал)",
+    timing:"Відкрито зараз, триває до 2029 року — безкоштовне британське скринінгове дослідження для дітей, сімейна історія діабету 1 типу не потрібна.",
+    description:"Безкоштовне британське дослідження, яке перевіряє дітей на ранні імунні маркери діабету 1 типу за допомогою простого аналізу крові з пальця, який роблять удома, у клініці чи в громаді — сімейна історія діабету 1 типу не потрібна.",
+    design:"Спостережний скринінг широкого загалу. Дітям із двома чи більше маркерами пропонують подальше тестування рівня глюкози, а також освіту, підтримку й моніторинг.",
+    eligibility:"Діти віком 2–17 років, які живуть у Великій Британії. Сімейна історія діабету 1 типу не потрібна.",
+    results:"Пілотна фаза успішно проскринила близько 20 000 дітей; відтоді дослідження розширилося до приблизно 60 000.",
+    pros:"Безкоштовно; відкрито для будь-якої британської дитини (без сімейної історії); раннє виявлення діабету 1 типу означає, що діагноз не має бути лякаючою невідкладною ситуацією; може відкрити двері до профілактичних досліджень.",
+    cons:"Лише Велика Британія; лише діти; це скринінг, а не лікування; позитивний результат тривожний для родин.",
+    nct:"ISRCTN97974414", url:"https://www.isrctn.com/ISRCTN97974414"
   }
 ];
+/* ── end DATA ─────────────────────────────────────────────────────────── */
 
 const PHASE_ORDER = ["approved","p3","p23","p2","p12","p1"];
-const STATUS_ORDER = ["recruiting","notyet","active","completed","approved","unknown"];
-const APPROACH_CLASS = { stem:"stem", encap:"encap", immuno:"immuno", vaccine:"vaccine", preserve:"preserve", treg:"treg", islet:"islet", other:"other" };
+const RECRUIT_ORDER = ["recruiting","closed","available"];
+const RECRUIT_LABEL = { recruiting:"Набір триває", closed:"Набір закрито", available:"Доступно зараз" };
+const COST_ORDER = ["free","approved"];
+const STUDYTYPE_ORDER = ["interventional","observational"];
+const APPROACH_CLASS = { stem:"stem", encap:"encap", immuno:"immuno", vaccine:"vaccine", preserve:"preserve", treg:"treg", islet:"islet", screen:"screen", other:"other" };
 
-let state = { search:"", approach:"all", phase:"all", status:"all" };
+const recruitKey = (d) => d.status === "recruiting" ? "recruiting" : (d.status === "approved" ? "available" : "closed");
+
+let state = { search:"", country:"all", recruit:"all", cost:"all", studytype:"all", approach:"all", phase:"all" };
 const openIds = new Set();
 let allExpanded = false;
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
-function buildChips(containerId, key, orderList, labelOf) {
+document.getElementById("glossBody").innerHTML = GLOSSARY.map(
+  ([t, d]) => `<div class="gloss-item"><div class="gloss-term">${esc(t)}</div><div class="gloss-def">${esc(d)}</div></div>`
+).join("");
+
+function buildCountrySelect() {
+  const set = new Set();
+  DATA.forEach(d => (d.countries || []).forEach(c => set.add(c)));
+  const opts = [...set].sort((a, b) => a.localeCompare(b, "uk"));
+  const sel = document.getElementById("countrySel");
+  sel.insertAdjacentHTML("beforeend", opts.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join(""));
+  sel.addEventListener("change", () => { state.country = sel.value; render(); });
+}
+
+function buildChips(containerId, stateKey, orderList, labelFn, valueFn) {
+  valueFn = valueFn || ((d) => d[stateKey]);
   const seen = new Map();
-  DATA.forEach(d => { if (!seen.has(d[key])) seen.set(d[key], labelOf(d)); });
+  DATA.forEach(d => {
+    const v = valueFn(d);
+    if (!v || v === "na") return;
+    if (!seen.has(v)) seen.set(v, labelFn(d));
+  });
   let keys = [...seen.keys()];
-  if (orderList) keys.sort((a,b) => orderList.indexOf(a) - orderList.indexOf(b));
-  else keys.sort((a,b) => seen.get(a).localeCompare(seen.get(b)));
+  if (orderList) keys.sort((a, b) => orderList.indexOf(a) - orderList.indexOf(b));
+  else keys.sort((a, b) => String(seen.get(a)).localeCompare(String(seen.get(b)), "uk"));
   const el = document.getElementById(containerId);
   el.innerHTML = '<button class="chip active" data-val="all">Усі</button>' +
     keys.map(k => `<button class="chip" data-val="${esc(k)}">${esc(seen.get(k))}</button>`).join("");
@@ -328,7 +478,7 @@ function buildChips(containerId, key, orderList, labelOf) {
     btn.addEventListener("click", () => {
       el.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      state[key] = btn.dataset.val;
+      state[stateKey] = btn.dataset.val;
       render();
     });
   });
@@ -337,6 +487,9 @@ function buildChips(containerId, key, orderList, labelOf) {
 function cardHtml(d) {
   const ac = APPROACH_CLASS[d.approach] || "other";
   const statusCls = (d.status === "recruiting" || d.status === "approved" || d.status === "unknown") ? d.status : "";
+  const midBadge = d.studyType === "observational"
+    ? '<span class="badge b-obs">Спостережне</span>'
+    : (d.phaseLabel ? '<span class="badge b-phase">' + esc(d.phaseLabel) + '</span>' : "");
   const open = openIds.has(d.id) ? " open" : "";
   const proscons = (d.pros || d.cons)
     ? `<div class="proscons">
@@ -351,7 +504,7 @@ function cardHtml(d) {
         <div class="ch-sponsor">${esc(d.sponsor)}</div>
         <div class="ch-badges">
           <span class="badge b-approach ${ac}">${esc(d.approachLabel)}</span>
-          <span class="badge b-phase">${esc(d.phaseLabel)}</span>
+          ${midBadge}
           <span class="badge b-status ${statusCls}">${esc(d.statusLabel)}</span>
         </div>
       </div>
@@ -366,6 +519,10 @@ function cardHtml(d) {
       ${field("Хто може взяти участь", d.eligibility)}
       ${field("Результати наразі", d.results)}
       ${proscons}
+      <div class="meta-line">
+        ${d.studyTypeLabel ? `<span>Тип: <b>${esc(d.studyTypeLabel)}</b></span>` : ""}
+        ${d.costLabel ? `<span>Вартість участі: <b>${esc(d.costLabel)}</b></span>` : ""}
+      </div>
       <div class="ref-line">
         ${d.location ? `<span class="loc-line">📍 ${esc(d.location)}</span>` : ""}
         ${d.nct ? `<span class="nct-pill">${esc(d.nct)}</span>` : ""}
@@ -378,11 +535,14 @@ function cardHtml(d) {
 function render() {
   const q = state.search.toLowerCase().trim();
   const rows = DATA.filter(d => {
+    if (state.country !== "all" && !(d.countries || []).includes(state.country)) return false;
+    if (state.recruit !== "all" && recruitKey(d) !== state.recruit) return false;
+    if (state.cost !== "all" && d.cost !== state.cost) return false;
+    if (state.studytype !== "all" && d.studyType !== state.studytype) return false;
     if (state.approach !== "all" && d.approach !== state.approach) return false;
     if (state.phase !== "all" && d.phase !== state.phase) return false;
-    if (state.status !== "all" && d.status !== state.status) return false;
     if (q) {
-      const hay = (d.name + " " + d.sponsor + " " + d.approachLabel + " " + (d.location||"") + " " + (d.description||"") + " " + (d.nct||"")).toLowerCase();
+      const hay = (d.name + " " + d.sponsor + " " + d.approachLabel + " " + (d.location || "") + " " + (d.countries || []).join(" ") + " " + (d.description || "") + " " + (d.nct || "")).toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
@@ -411,17 +571,22 @@ function bindCards() {
   });
 }
 
-buildChips("chips-approach", "approach", null, d => d.approachLabel);
-buildChips("chips-phase", "phase", PHASE_ORDER, d => d.phaseLabel);
-buildChips("chips-status", "status", STATUS_ORDER, d => d.statusLabel);
+buildCountrySelect();
+buildChips("chips-recruit", "recruit", RECRUIT_ORDER, (d) => RECRUIT_LABEL[recruitKey(d)], recruitKey);
+buildChips("chips-cost", "cost", COST_ORDER, (d) => d.costLabel);
+buildChips("chips-studytype", "studytype", STUDYTYPE_ORDER, (d) => d.studyTypeLabel, (d) => d.studyType);
+buildChips("chips-approach", "approach", null, (d) => d.approachLabel);
+buildChips("chips-phase", "phase", PHASE_ORDER, (d) => d.phaseLabel);
 
 document.getElementById("search").addEventListener("input", e => { state.search = e.target.value; render(); });
 document.getElementById("clearBtn").addEventListener("click", () => {
-  state = { search:"", approach:"all", phase:"all", status:"all" };
+  state = { search:"", country:"all", recruit:"all", cost:"all", studytype:"all", approach:"all", phase:"all" };
   document.getElementById("search").value = "";
+  document.getElementById("countrySel").value = "all";
   document.querySelectorAll(".chips").forEach(g => {
     g.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
-    g.querySelector('.chip[data-val="all"]').classList.add("active");
+    const all = g.querySelector('.chip[data-val="all"]');
+    if (all) all.classList.add("active");
   });
   render();
 });
@@ -436,6 +601,7 @@ function postHeight() {
   try { parent.postMessage({ type:"lf-embed-height", height: document.documentElement.scrollHeight }, "*"); } catch (e) {}
 }
 window.addEventListener("load", postHeight);
+document.querySelector(".glossary").addEventListener("toggle", postHeight);
 try { new ResizeObserver(postHeight).observe(document.body); } catch (e) {}
 
 render();
