@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Type 1 diabetes cure trials tracker — Lena Filatova</title>
+<meta name="description" content="A filterable tracker of the most promising Type 1 diabetes cure and disease-modifying clinical trials — approach, phase, who can join, results so far, pros and cons, and how to find each study on ClinicalTrials.gov.">
+<link rel="canonical" href="https://lenafilatova.co.uk/t1d-cure-trials.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green:#2F7A52; --green-bg:#e9f5f0; --amber:#B26A34; --amber-bg:#fff3e0;
+  --grey:#666; --grey-bg:#f2f2f2; --text:#1a1a1a; --muted:#6b7280;
+  --border:#e5e7eb; --hover:#f9fafb; --accent:#B23A63; --radius:8px;
+  /* approach colours */
+  --a-stem:#5A3FA0;   --a-stem-bg:#EEEAF8;
+  --a-encap:#0E6699;  --a-encap-bg:#E5F1F8;
+  --a-immuno:#1B7B5E; --a-immuno-bg:#E5F4EE;
+  --a-vaccine:#B26A34;--a-vaccine-bg:#FBEEE1;
+  --a-preserve:#005FCC;--a-preserve-bg:#EAF1FC;
+  --a-islet:#8E3A1E;  --a-islet-bg:#F8ECE7;
+  --a-other:#666;     --a-other-bg:#f2f2f2;
+}
+body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:var(--text); background:#fff; font-size:15px; line-height:1.55; }
+.page { max-width:900px; margin:0 auto; padding:16px clamp(14px,3vw,28px) 28px; }
+
+/* Filters */
+.filters { display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.25rem; padding:1.1rem; background:var(--hover); border:1px solid var(--border); border-radius:var(--radius); }
+.filter-row { display:flex; align-items:flex-start; gap:0.6rem; flex-wrap:wrap; }
+.filter-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); padding-top:0.45rem; min-width:82px; flex-shrink:0; }
+.chips { display:flex; flex-wrap:wrap; gap:0.4rem; }
+.chip { display:inline-flex; align-items:center; padding:0.32rem 0.72rem; border-radius:20px; border:1.5px solid var(--border); background:#fff; font-size:0.8rem; font-weight:500; color:var(--text); cursor:pointer; transition:all 0.15s; white-space:nowrap; user-select:none; }
+.chip:hover { border-color:#aaa; background:#f5f5f5; }
+.chip.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.search-wrap { position:relative; flex:1; min-width:200px; max-width:420px; }
+.search-icon { position:absolute; left:0.7rem; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none; }
+#search { width:100%; padding:0.5rem 0.75rem 0.5rem 2.2rem; border:1.5px solid var(--border); border-radius:20px; font-size:0.9rem; outline:none; transition:border-color 0.15s; background:#fff; }
+#search:focus { border-color:var(--accent); }
+#clearBtn { padding:0.32rem 0.85rem; border-radius:20px; border:1.5px solid var(--border); background:#fff; font-size:0.8rem; color:var(--muted); cursor:pointer; transition:all 0.15s; align-self:center; }
+#clearBtn:hover { border-color:#aaa; color:var(--text); }
+
+.count-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem; flex-wrap:wrap; gap:0.5rem; }
+.count-badge { font-size:0.85rem; font-weight:600; color:var(--muted); }
+.count-badge span { color:var(--text); font-size:1.05rem; }
+.expand-all { font-size:0.78rem; font-weight:600; color:var(--accent); background:none; border:none; cursor:pointer; padding:0.2rem 0.3rem; }
+
+/* Cards */
+.cards-list { display:flex; flex-direction:column; gap:0.85rem; }
+.card { border:1px solid var(--border); border-radius:12px; background:#fff; overflow:hidden; transition:box-shadow 0.15s, border-color 0.15s; }
+.card:hover { border-color:#d5d7db; box-shadow:0 2px 10px rgba(0,0,0,0.04); }
+.card-head { display:flex; align-items:flex-start; gap:0.7rem; padding:0.9rem 1rem; cursor:pointer; }
+.card-head:hover { background:var(--hover); }
+.ch-main { flex:1; min-width:0; }
+.ch-name { font-weight:700; font-size:1rem; line-height:1.3; display:block; }
+.ch-sponsor { font-size:0.8rem; color:var(--muted); margin-top:0.12rem; }
+.ch-badges { display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.55rem; }
+.badge { display:inline-flex; align-items:center; padding:0.16rem 0.55rem; border-radius:20px; font-size:0.7rem; font-weight:700; white-space:nowrap; letter-spacing:0.01em; }
+.b-approach { background:var(--a-other-bg); color:var(--a-other); }
+.b-approach.stem{background:var(--a-stem-bg);color:var(--a-stem);}
+.b-approach.encap{background:var(--a-encap-bg);color:var(--a-encap);}
+.b-approach.immuno{background:var(--a-immuno-bg);color:var(--a-immuno);}
+.b-approach.vaccine{background:var(--a-vaccine-bg);color:var(--a-vaccine);}
+.b-approach.preserve{background:var(--a-preserve-bg);color:var(--a-preserve);}
+.b-approach.treg{background:var(--a-preserve-bg);color:var(--a-preserve);}
+.b-approach.islet{background:var(--a-islet-bg);color:var(--a-islet);}
+.b-phase { background:#EEF0FF; color:#3A43B0; }
+.b-status { border:1px solid var(--border); background:#fff; color:var(--muted); font-weight:600; }
+.b-status.recruiting { background:var(--green-bg); color:var(--green); border-color:transparent; }
+.b-status.approved { background:#fff4d6; color:#8a6400; border-color:transparent; }
+.b-status.unknown { background:#fbeaec; color:#a23; border-color:transparent; }
+.ch-toggle { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:transform 0.2s; margin-top:0.15rem; }
+.card.open .ch-toggle { transform:rotate(180deg); }
+
+.card-body { display:none; padding:0 1rem 1.1rem; border-top:1px solid var(--border); }
+.card.open .card-body { display:block; }
+.timing-line { font-size:0.82rem; color:var(--amber); font-weight:600; padding:0.75rem 0 0.2rem; }
+.field { padding:0.7rem 0 0; }
+.field-label { font-size:0.66rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:0.2rem; }
+.field-val { font-size:0.9rem; color:var(--text); line-height:1.6; }
+.proscons { display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; padding-top:0.8rem; }
+.pc-box { border-radius:8px; padding:0.6rem 0.7rem; font-size:0.84rem; line-height:1.5; }
+.pc-pros { background:var(--green-bg); color:#1f5537; }
+.pc-cons { background:var(--amber-bg); color:#7a4a1f; }
+.pc-box .pc-title { font-size:0.66rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.25rem; opacity:0.85; }
+.ref-line { display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem; margin-top:0.85rem; padding-top:0.75rem; border-top:1px solid var(--border); }
+.nct-pill { font-size:0.72rem; font-weight:600; background:var(--grey-bg); color:var(--text); padding:0.18rem 0.5rem; border-radius:5px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+.ref-link { font-size:0.82rem; font-weight:600; color:var(--accent); text-decoration:none; }
+.ref-link:hover { text-decoration:underline; }
+.loc-line { font-size:0.78rem; color:var(--muted); }
+
+.no-results { text-align:center; padding:2.5rem 1rem; color:var(--muted); font-size:0.95rem; }
+.footnote { margin-top:1.8rem; padding:1rem 1.15rem; background:var(--hover); border-left:3px solid var(--border); border-radius:0 var(--radius) var(--radius) 0; font-size:0.78rem; color:var(--muted); line-height:1.75; }
+
+@media (max-width:560px) {
+  .filter-label { display:none; }
+  .proscons { grid-template-columns:1fr; }
+  .ch-name { font-size:0.95rem; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="filters">
+    <div class="filter-row">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="m14 14 4 4"/></svg>
+        <input id="search" type="text" placeholder="Search trials, sponsors, approaches…" autocomplete="off" />
+      </div>
+      <button id="clearBtn">Reset</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Approach</span>
+      <div class="chips" id="chips-approach"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Phase</span>
+      <div class="chips" id="chips-phase"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Status</span>
+      <div class="chips" id="chips-status"></div>
+    </div>
+  </div>
+
+  <div class="count-bar">
+    <p class="count-badge"><span id="countNum">0</span> trials</p>
+    <button class="expand-all" id="expandAll">Expand all</button>
+  </div>
+
+  <div class="cards-list" id="list"></div>
+  <div class="no-results" id="noResults" style="display:none;">No trials match these filters.</div>
+
+  <div class="footnote"><strong>Educational tracker — not medical advice and not a recommendation to join any trial.</strong> Trial phases, eligibility, locations and results change often; always confirm the current details on the study's official page before acting, and discuss any trial with your own diabetes team. "Estimated availability" is a rough, best-case guess if a therapy keeps succeeding — most experimental treatments never reach the market, and timelines slip. Primary source for each study is <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (search the NCT number); some also list on the EU trials register or the sponsor's site.</div>
+</div>
+
+<script>
+/* ── DATA ──────────────────────────────────────────────────────────────
+   Each record is one T1D cure / disease-modifying programme.
+   approach keys → colour class: stem | encap | immuno | vaccine | preserve | islet | other
+   phase keys (ordered): approved | p3 | p23 | p2 | p12 | p1
+   status keys: recruiting | active | notyet | completed | approved
+   PLACEHOLDER rows below — replaced with verified data before publish. */
+const DATA = [
+  {
+    id:"teplizumab", name:"Teplizumab (TZIELD)", sponsor:"Provention Bio / Sanofi",
+    approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
+    phase:"approved", phaseLabel:"Approved", status:"approved", statusLabel:"Available now",
+    location:"Approved and in use in the USA; the PROTECT trial ran in the US, Canada, UK and Europe",
+    timing:"Available now in the US — approved in 2022, and in April 2026 the approved age was widened to 1 year and up.",
+    description:"A roughly two-week course of infusions that calms the immune system's attack on the insulin-making cells. In people at high risk, it delays the start of full type 1 diabetes.",
+    design:"Given as a once-daily IV infusion for about 14 days. A separate trial (PROTECT) tested it in children just diagnosed, to protect the insulin they still had.",
+    eligibility:"Approved for stage 2 type 1 (autoantibodies plus early blood-sugar changes, but not yet full diabetes), age 1 and up — usually found by screening relatives of people with type 1. PROTECT trial: ages 8–17, diagnosed within 6 weeks.",
+    results:"In at-risk people it delayed full type 1 by about 2 years on average. The PROTECT trial (reported 2023) met its goal: newly-diagnosed children kept significantly more of their own insulin over 18 months.",
+    pros:"The only approved disease-modifying treatment; available today; a single time-limited course; now covers age 1+.",
+    cons:"It delays — it does not cure or prevent; a ~2-week IV course; side effects include low white-cell counts and rash; you first have to be found through antibody screening.",
+    nct:"NCT03875729", url:"https://clinicaltrials.gov/study/NCT03875729"
+  },
+  {
+    id:"zimislecel", name:"Zimislecel (VX-880) — FORWARD study", sponsor:"Vertex Pharmaceuticals",
+    approach:"stem", approachLabel:"Stem-cell islet replacement",
+    phase:"p3", phaseLabel:"Phase 3", status:"recruiting", statusLabel:"Recruiting",
+    location:"About 28 sites across the US, Canada, the UK, France, Germany, Italy, the Netherlands, Norway, Switzerland and Saudi Arabia",
+    timing:"Best case around 2027+. Vertex says it aims to begin global regulatory submissions in 2026 — but nothing has been filed with the FDA yet, so it is not 'under review'.",
+    description:"Lab-grown, insulin-making islet cells are infused once into the liver's blood supply, so the body can make its own insulin again. Recipients take anti-rejection drugs for life.",
+    design:"Single-group, open-label. One infusion, then long-term tracking of insulin independence and safety.",
+    eligibility:"Adults 18–65 who have had type 1 for over 5 years, with severe hypos and a reduced ability to feel them (at least 2 severe episodes in the past year). Must use a CGM. No previous transplant.",
+    results:"At the June 2025 diabetes conference, all 12 first-group patients followed for a year reached target HbA1c and time-in-range, ended their severe hypos and cut insulin by about 92% — and 10 of the 12 came off insulin completely. (Company-reported; no Phase 3 readout yet.)",
+    pros:"A functional cure shown in early patients; the highest 'off insulin' rate of any programme; the furthest along; has fast-track FDA designations.",
+    cons:"Needs lifelong immune-suppressing drugs (which carry infection and cancer risk); long-term durability is still being proven; only open to people with severe hypos.",
+    nct:"NCT04786262", url:"https://clinicaltrials.gov/study/NCT04786262"
+  },
+  {
+    id:"tegoprubart-islet", name:"Islet transplant with tegoprubart (gentler anti-rejection)", sponsor:"University of Chicago · drug by Eledon · funded by Breakthrough T1D",
+    approach:"islet", approachLabel:"Islet transplant",
+    phase:"p12", phaseLabel:"Phase 1/2", status:"recruiting", statusLabel:"Recruiting",
+    location:"University of Chicago, Illinois, USA (single site)",
+    timing:"Around 2030+. It is limited by the supply of donor cells and still needs larger controlled trials.",
+    description:"Donor islet cells are transplanted, but instead of the usual harsh anti-rejection drugs, patients get tegoprubart — a gentler antibody that blocks one immune 'help' signal, which is kinder to the transplanted cells and the kidneys.",
+    design:"A small pilot study. Islets are infused, then patients take tegoprubart to protect the cells.",
+    eligibility:"Adults 18–65 who have had type 1 for at least 5 years (onset before age 40), with frequent severe hypos and reduced hypo awareness, HbA1c 6.5–9.5% and no detectable insulin of their own. BMI 30 or under, good kidney function, no previous transplant.",
+    results:"The team reports that all 12 recipients became insulin-independent (as of June 2026), with an average HbA1c around 5.4% and no serious rejection or infections. (This is press-release and conference data, not yet peer-reviewed.)",
+    pros:"12 of 12 came off insulin; it avoids the most toxic anti-rejection drugs; the drug is already advancing in kidney transplant; actively recruiting.",
+    cons:"Still needs scarce donor islets and daily (gentler) immune suppression — so not a full cure; very small numbers; a single site; results not yet peer-reviewed.",
+    nct:"NCT06305286", url:"https://clinicaltrials.gov/study/NCT06305286"
+  },
+  {
+    id:"sernova", name:"Sernova Cell Pouch", sponsor:"Sernova Biotherapeutics",
+    approach:"islet", approachLabel:"Islet transplant",
+    phase:"p12", phaseLabel:"Phase 1/2", status:"active", statusLabel:"Active, not recruiting",
+    location:"University of Chicago, Illinois, USA (single site)",
+    timing:"Around 2030+. A confirmatory group is only just starting, and the current version still needs donor cells and immune suppression.",
+    description:"A small pouch is implanted under the skin and grows its own blood supply, then is filled with donor islet cells to give them a safe, nourished home. It can be removed if needed.",
+    design:"An early-phase trial. The pouch is implanted first, then seeded with islets; patients take anti-rejection drugs.",
+    eligibility:"Adults 18–65 with type 1 (onset before age 40) for at least 5 years, no detectable insulin of their own, and at least one severe hypo in the past year with reduced awareness. BMI 30 or under, no previous transplant. Enrollment is closed (about 17 people).",
+    results:"By May 2025, 8 of 12 patients were insulin-independent; the first group stayed off insulin from 18 months to over 4 years, with HbA1c of 6.5% or below.",
+    pros:"Durable insulin independence beyond 4 years in early patients; the device can be removed; a path toward an unlimited stem-cell supply is in development.",
+    cons:"Still relies on scarce donor cells and lifelong immune suppression; tiny numbers; a single site; the scalable stem-cell version is still in the lab.",
+    nct:"NCT03513939", url:"https://clinicaltrials.gov/study/NCT03513939"
+  },
+  {
+    id:"baricitinib", name:"Baricitinib (Olumiant) — a daily tablet", sponsor:"St Vincent's Institute, Melbourne (Phase 2) · Eli Lilly (Phase 3)",
+    approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
+    phase:"p3", phaseLabel:"Phase 3", status:"recruiting", statusLabel:"Recruiting",
+    location:"The completed Phase 2 ran in Australia; the new Phase 3 spans about 18 countries, including the US",
+    timing:"It is already an approved arthritis pill, so it could move relatively quickly if trials confirm — but it is not yet approved or recommended for type 1. The Phase 3 runs to about 2031.",
+    description:"A once-a-day tablet (already used for arthritis) that dampens an inflammatory signal driving the attack on insulin cells. It stands out for being a cheap, existing oral drug rather than an infusion.",
+    design:"The completed Phase 2 (BANDIT) treated people who were newly diagnosed. A new Phase 3 is testing whether it can delay type 1 in people at risk.",
+    eligibility:"Phase 2 (finished): ages 10–30, diagnosed within 100 days. Phase 3 (recruiting now): ages 1 to under 36, at risk (autoantibody-positive, stage 1b/2).",
+    results:"The Phase 2 was published in the New England Journal of Medicine (Dec 2023): people on baricitinib kept significantly more of their own insulin at 48 weeks, with lower insulin needs and better time-in-range. This is strong, peer-reviewed evidence. (Results trial: NCT04774224.)",
+    pros:"Clear published benefit; oral, already approved and cheap; well tolerated; a Phase 3 is now running for prevention.",
+    cons:"It preserves and slows — it does not cure; taken daily; tested only soon after diagnosis; long-term durability unknown; this class of drug carries infection and clot warnings.",
+    nct:"NCT07222137", url:"https://clinicaltrials.gov/study/NCT07222137"
+  },
+  {
+    id:"frexalimab", name:"Frexalimab — FABULINUS study", sponsor:"Sanofi",
+    approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
+    phase:"p2", phaseLabel:"Phase 2", status:"active", statusLabel:"Active, not recruiting",
+    location:"97 sites across 17 countries (the US, Canada, much of Western Europe and the Nordics)",
+    timing:"Around 2029–2031 at the earliest — a Phase 3 would follow if this trial succeeds.",
+    description:"An antibody that blocks a key immune 'help' signal (CD40L) to protect insulin cells in people who are newly diagnosed. It is engineered to avoid the clot risk that stopped earlier drugs of this type.",
+    design:"A large, rigorous Phase 2b in newly-diagnosed patients. Enrollment is complete.",
+    eligibility:"Ages 6–35, diagnosed within about 3 months, at least one autoantibody, some of their own insulin still present, weight 20 kg or more. Enrollment is closed.",
+    results:"No type 1 results yet (the trial is still blinded). The same drug showed strong effects in multiple sclerosis in 2024, which supports the approach.",
+    pros:"Major pharma backing; a large multinational trial; works from age 6; a safer new-generation version of a promising mechanism.",
+    cons:"Newly-diagnosed only; an injected immune therapy; results are not out yet; still years from approval.",
+    nct:"NCT06111586", url:"https://clinicaltrials.gov/study/NCT06111586"
+  },
+  {
+    id:"diamyd", name:"Diamyd (GAD-alum) — DIAGNODE-3", sponsor:"Diamyd Medical (Sweden)",
+    approach:"vaccine", approachLabel:"Vaccine / antigen-specific",
+    phase:"p3", phaseLabel:"Phase 3", status:"active", statusLabel:"Active, not recruiting",
+    location:"The US plus Czechia, Estonia, Germany, Hungary, the Netherlands, Poland, Spain and Sweden",
+    timing:"Main results are expected around December 2027; approval, if it works, would be roughly 2028 or later.",
+    description:"Three injections of a diabetes protein (GAD65) into a lymph node, aiming to retrain the immune system and protect the insulin a person still has. It is a precision approach limited to one genetic subgroup.",
+    design:"A Phase 3 in recently-diagnosed people who carry a specific gene type. Enrollment is closed.",
+    eligibility:"Ages 12–28, diagnosed within 6 months, and must carry the HLA DR3-DQ2 gene type (a genetic test is required); GAD65-antibody positive with some of their own insulin left.",
+    results:"No Phase 3 results yet (due around 2027). The rationale rests on an earlier trial's results in this same genetic subgroup.",
+    pros:"Targets the immune system specifically, sparing the rest of it; a simple injection; a genetically-selected group most likely to respond.",
+    cons:"Only people with the DR3-DQ2 gene type qualify (a minority); it protects remaining insulin rather than curing; the effect is still unproven; results are years away.",
+    nct:"NCT05018585", url:"https://clinicaltrials.gov/study/NCT05018585"
+  },
+  {
+    id:"sana-up421", name:"Sana 'hidden' islet cells (UP421)", sponsor:"Uppsala University Hospital, using Sana's gene-editing technology",
+    approach:"islet", approachLabel:"Islet transplant",
+    phase:"p1", phaseLabel:"Phase 1", status:"active", statusLabel:"Active, not recruiting",
+    location:"Uppsala, Sweden",
+    timing:"2030+. This is a single-patient proof of concept; a scalable product still needs full trials.",
+    description:"Donor islet cells are gene-edited to 'hide' from the immune system, then placed in a forearm muscle in one patient — with NO anti-rejection drugs. The test is whether the cells survive and work, not (yet) curing diabetes.",
+    design:"A first-in-human study in a single patient, tracking cell survival and insulin signal without any immune suppression.",
+    eligibility:"A single-patient study — not open for enrollment.",
+    results:"The cells survived, made insulin and evaded the immune system with no anti-rejection drugs at 6 months and again at 14 months. Published in the New England Journal of Medicine.",
+    pros:"No immune-suppressing drugs needed — the real breakthrough here; human proof that the 'hidden' cells last over a year; peer-reviewed.",
+    cons:"Just one patient; not designed to get anyone off insulin; uses donor cells that don't scale; still years from a real therapy.",
+    nct:"", url:"https://ir.sana.com/news-releases"
+  },
+  {
+    id:"china-cipsc", name:"Own-cell stem-cell islets (Tianjin, China)", sponsor:"Tianjin First Central Hospital & Peking University",
+    approach:"stem", approachLabel:"Stem-cell islet replacement",
+    phase:"p1", phaseLabel:"Phase 1", status:"active", statusLabel:"Active, not recruiting",
+    location:"Tianjin, China",
+    timing:"Years away — this is a first-patient proof of concept.",
+    description:"A patient's own fat cells were reprogrammed into stem cells, turned into islet cells, and transplanted into the abdominal wall (a removable site) — so no donor was needed.",
+    design:"A first-in-human case, reported in detail for one patient.",
+    eligibility:"Reported as a single case — a 25-year-old woman who was already on immune-suppressing drugs from an earlier liver transplant. Not open enrollment.",
+    results:"She became insulin-independent from day 75, with time-in-range rising to over 98% and HbA1c near normal, and this was maintained at 1 year. Published in the journal Cell (Sept 2024).",
+    pros:"Uses the patient's own cells; complete, durable insulin independence at 1 year; a removable implant site; a genuine milestone.",
+    cons:"Only one patient, who was already immune-suppressed — so it doesn't yet solve the autoimmune attack for a typical person with type 1; cost and scalability unknown; not available.",
+    nct:"ChiCTR2300072200", url:"https://www.cell.com/cell/fulltext/S0092-8674(24)01022-5"
+  },
+  {
+    id:"poltreg", name:"PolTREG immune-calming cell therapy (PreTreg)", sponsor:"PolTREG (Poland)",
+    approach:"treg", approachLabel:"Regulatory T-cell (Treg) therapy",
+    phase:"p2", phaseLabel:"Phase 2", status:"recruiting", statusLabel:"Recruiting",
+    location:"9 sites across Poland",
+    timing:"2032+. This is a prevention trial in young children, finishing around 2032.",
+    description:"In children who show the earliest signs of type 1 (antibodies but still-normal blood sugar), their own calming immune cells (Tregs) are grown in the lab and infused, along with a second drug, to slow the attack before diabetes starts.",
+    design:"A Phase 2, placebo-controlled trial of about 150 children in four groups.",
+    eligibility:"Ages 3–18 at stage 1 (at least 2 autoantibodies with still-normal glucose). Recruiting.",
+    results:"No results yet (started 2025). Earlier small studies suggested it is safe and may preserve some insulin.",
+    pros:"Uses the child's own cells; aims to prevent diabetes before it starts; placebo-controlled.",
+    cons:"A very long timeline; complex, costly personalised manufacturing; only early-stage children qualify; the added drug carries infection risk; a small company.",
+    nct:"NCT06688331", url:"https://clinicaltrials.gov/study/NCT06688331"
+  },
+  {
+    id:"bcg", name:"Repeat BCG vaccine (Faustman lab)", sponsor:"Massachusetts General Hospital (Faustman lab)",
+    approach:"vaccine", approachLabel:"Vaccine / antigen-specific",
+    phase:"p2", phaseLabel:"Phase 2", status:"active", statusLabel:"Active, not recruiting",
+    location:"Boston (Charlestown), Massachusetts, USA (single center)",
+    timing:"No near-term path — it remains investigational, without completed positive pivotal results despite many years.",
+    description:"Repeated doses of the century-old TB vaccine (BCG) in people who have had type 1 for years, aiming to lower HbA1c (not restore insulin) through an unusual proposed effect on the body's metabolism.",
+    design:"A Phase 2 in long-standing type 1, with related trials in children.",
+    eligibility:"Adults 18–65 with established type 1 and very little of their own insulin, HbA1c 6.5–8.5%. Active, not recruiting. Children's trials: ages 8 to under 18.",
+    results:"The lab reports HbA1c reductions of about 10–15% lasting several years in small groups; the results of the larger randomised trial are still unpublished.",
+    pros:"A cheap, widely-available generic vaccine with a long safety record; aimed at long-duration patients, an under-served group.",
+    cons:"⚠️ Widely questioned by other experts. The evidence rests on very small original numbers, any benefit appeared only after about 3 years and without any rise in the person's own insulin, the proposed mechanism is unorthodox, the results have not been independently reproduced, and a separate Australian trial found no benefit. Treat cure and HbA1c claims as unproven.",
+    nct:"NCT02081326", url:"https://clinicaltrials.gov/study/NCT02081326"
+  },
+  {
+    id:"sce", name:"Stem Cell Educator therapy", sponsor:"Throne Biotechnologies (formerly Tianhe)",
+    approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
+    phase:"p23", phaseLabel:"Phase 2/3", status:"unknown", statusLabel:"Status unknown",
+    location:"New Jersey, USA",
+    timing:"Uncertain — there is no approval, and the trial's official status is now listed as 'unknown'.",
+    description:"A patient's blood is passed over cord-blood-derived stem cells that 'educate' the immune cells; the educated cells (not the stem cells) are returned, aiming to reset the immune system's tolerance.",
+    design:"Registered as Phase 2/3. Blood is circulated through the device and returned to the patient.",
+    eligibility:"Ages 14 and up with type 1 within about 2 years, autoantibody positive, some of their own insulin left, using a CGM.",
+    results:"Early developer-run studies (around 2011–2015) reported short-lived improvements in insulin and HbA1c lasting up to a year. There are no verified results from this trial.",
+    pros:"Uses the patient's own cells with no stem cells actually infused (low infection and rejection risk); drug-free.",
+    cons:"⚠️ Almost all the evidence comes from the developers, with essentially no independent replication; effects look modest and temporary; the trial's registry status is literally 'unknown' and its record is over two years out of date. Treat with caution.",
+    nct:"NCT04011020", url:"https://clinicaltrials.gov/study/NCT04011020"
+  }
+];
+/* ── end DATA ─────────────────────────────────────────────────────────── */
+
+const PHASE_ORDER = ["approved","p3","p23","p2","p12","p1"];
+const STATUS_ORDER = ["recruiting","notyet","active","completed","approved","unknown"];
+const APPROACH_CLASS = { stem:"stem", encap:"encap", immuno:"immuno", vaccine:"vaccine", preserve:"preserve", treg:"treg", islet:"islet", other:"other" };
+
+let state = { search:"", approach:"all", phase:"all", status:"all" };
+const openIds = new Set();
+let allExpanded = false;
+
+const esc = (s) => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+/* Build a chip group from the distinct values present in DATA, in a sensible order. */
+function buildChips(containerId, key, orderList, labelOf) {
+  const seen = new Map();
+  DATA.forEach(d => { if (!seen.has(d[key])) seen.set(d[key], labelOf(d)); });
+  let keys = [...seen.keys()];
+  if (orderList) keys.sort((a,b) => orderList.indexOf(a) - orderList.indexOf(b));
+  else keys.sort((a,b) => seen.get(a).localeCompare(seen.get(b)));
+  const el = document.getElementById(containerId);
+  el.innerHTML = '<button class="chip active" data-val="all">All</button>' +
+    keys.map(k => `<button class="chip" data-val="${esc(k)}">${esc(seen.get(k))}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      el.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      state[key] = btn.dataset.val;
+      render();
+    });
+  });
+}
+
+function cardHtml(d) {
+  const ac = APPROACH_CLASS[d.approach] || "other";
+  const statusCls = (d.status === "recruiting" || d.status === "approved" || d.status === "unknown") ? d.status : "";
+  const open = openIds.has(d.id) ? " open" : "";
+  const proscons = (d.pros || d.cons)
+    ? `<div class="proscons">
+        ${d.pros ? `<div class="pc-box pc-pros"><div class="pc-title">Pros</div>${esc(d.pros)}</div>` : ""}
+        ${d.cons ? `<div class="pc-box pc-cons"><div class="pc-title">Cons / caveats</div>${esc(d.cons)}</div>` : ""}
+      </div>` : "";
+  const field = (label, val) => val ? `<div class="field"><div class="field-label">${label}</div><div class="field-val">${esc(val)}</div></div>` : "";
+  return `<div class="card${open}" data-id="${esc(d.id)}">
+    <div class="card-head" role="button" tabindex="0" aria-expanded="${open ? "true" : "false"}">
+      <div class="ch-main">
+        <span class="ch-name">${esc(d.name)}</span>
+        <div class="ch-sponsor">${esc(d.sponsor)}</div>
+        <div class="ch-badges">
+          <span class="badge b-approach ${ac}">${esc(d.approachLabel)}</span>
+          <span class="badge b-phase">${esc(d.phaseLabel)}</span>
+          <span class="badge b-status ${statusCls}">${esc(d.statusLabel)}</span>
+        </div>
+      </div>
+      <span class="ch-toggle" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 8l5 5 5-5"/></svg>
+      </span>
+    </div>
+    <div class="card-body">
+      ${d.timing ? `<div class="timing-line">⏳ ${esc(d.timing)}</div>` : ""}
+      ${field("What it is", d.description)}
+      ${field("How the trial works", d.design)}
+      ${field("Who can take part", d.eligibility)}
+      ${field("Results so far", d.results)}
+      ${proscons}
+      <div class="ref-line">
+        ${d.location ? `<span class="loc-line">📍 ${esc(d.location)}</span>` : ""}
+        ${d.nct ? `<span class="nct-pill">${esc(d.nct)}</span>` : ""}
+        ${d.url ? `<a class="ref-link" href="${esc(d.url)}" target="_blank" rel="noopener noreferrer">View the study ↗</a>` : ""}
+      </div>
+    </div>
+  </div>`;
+}
+
+function render() {
+  const q = state.search.toLowerCase().trim();
+  const rows = DATA.filter(d => {
+    if (state.approach !== "all" && d.approach !== state.approach) return false;
+    if (state.phase !== "all" && d.phase !== state.phase) return false;
+    if (state.status !== "all" && d.status !== state.status) return false;
+    if (q) {
+      const hay = (d.name + " " + d.sponsor + " " + d.approachLabel + " " + (d.location||"") + " " + (d.description||"") + " " + (d.nct||"")).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  const list = document.getElementById("list");
+  const noRes = document.getElementById("noResults");
+  if (rows.length === 0) { list.innerHTML = ""; noRes.style.display = "block"; }
+  else { noRes.style.display = "none"; list.innerHTML = rows.map(cardHtml).join(""); }
+  document.getElementById("countNum").textContent = rows.length;
+  bindCards();
+  postHeight();
+}
+
+function bindCards() {
+  document.querySelectorAll(".card-head").forEach(head => {
+    const card = head.closest(".card");
+    const id = card.dataset.id;
+    const toggle = () => {
+      if (openIds.has(id)) openIds.delete(id); else openIds.add(id);
+      card.classList.toggle("open");
+      head.setAttribute("aria-expanded", card.classList.contains("open") ? "true" : "false");
+      postHeight();
+    };
+    head.addEventListener("click", toggle);
+    head.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  });
+}
+
+/* Filters + reset + expand-all */
+buildChips("chips-approach", "approach", null, d => d.approachLabel);
+buildChips("chips-phase", "phase", PHASE_ORDER, d => d.phaseLabel);
+buildChips("chips-status", "status", STATUS_ORDER, d => d.statusLabel);
+
+document.getElementById("search").addEventListener("input", e => { state.search = e.target.value; render(); });
+document.getElementById("clearBtn").addEventListener("click", () => {
+  state = { search:"", approach:"all", phase:"all", status:"all" };
+  document.getElementById("search").value = "";
+  document.querySelectorAll(".chips").forEach(g => {
+    g.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+    g.querySelector('.chip[data-val="all"]').classList.add("active");
+  });
+  render();
+});
+document.getElementById("expandAll").addEventListener("click", () => {
+  allExpanded = !allExpanded;
+  if (allExpanded) DATA.forEach(d => openIds.add(d.id)); else openIds.clear();
+  document.getElementById("expandAll").textContent = allExpanded ? "Collapse all" : "Expand all";
+  render();
+});
+
+/* iframe auto-height handshake with the embedding blog post */
+function postHeight() {
+  try { parent.postMessage({ type:"lf-embed-height", height: document.documentElement.scrollHeight }, "*"); } catch (e) {}
+}
+window.addEventListener("load", postHeight);
+try { new ResizeObserver(postHeight).observe(document.body); } catch (e) {}
+
+render();
+</script>
+</body>
+</html>
