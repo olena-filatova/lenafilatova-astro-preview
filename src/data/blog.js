@@ -14,7 +14,7 @@ export const POSTS = [
   {
     "slug": "menstrual-blood-research-medicine",
     "date": "2026-07-19",
-    "image": "/images/menstrual-blood-research-medicine.jpg",
+    "image": "/images/menstrual-blood-research-medicine.png",
     "cats": [
       "perimenopause",
       "diabetes"
