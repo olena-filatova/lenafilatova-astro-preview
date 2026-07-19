@@ -3980,5 +3980,221 @@ export const POSTS = [
         }
       ]
     }
+  },
+  {
+    "slug": "anxiety-brain-fog-top-menopause-symptom",
+    "date": "2026-07-17",
+    "image": "/images/anxiety-brain-fog-top-menopause-symptom.jpg",
+    "cats": [
+      "perimenopause"
+    ],
+    "en": {
+      "cat": "Perimenopause",
+      "title": "Anxiety and brain fog, not hot flashes, are now women's top menopause complaint",
+      "excerpt": "Bonafide Health's sixth annual survey of over 2,000 women finds anxiety, brain fog and declining motivation have overtaken hot flashes as the leading menopause symptom — and nearly half say it's hit their income.",
+      "meta": "17 July 2026 · 3 min read",
+      "lead": "For years, menopause conversations have centred on hot flashes. New survey data suggests that's no longer the symptom women say is hardest to live with.",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Bonafide Health's sixth annual State of Menopause survey, covering more than 2,000 US women aged 40–64, found that anxiety, brain fog and declining motivation now top the list of menopause complaints — overtaking hot flashes for the first time since the survey began."
+        },
+        {
+          "t": "p",
+          "text": "The shift matters because it's rarely what women expect, or what they're told to expect. Hot flashes are visible and easy to name; feeling anxious, scattered or unmotivated is easier to write off as stress, burnout or \"just a bad patch\" — especially in your 40s, when work and family pressures are already high."
+        },
+        {
+          "t": "p",
+          "text": "The survey also points to a real financial cost. 56% of respondents said declining motivation was the symptom most affecting their work, and 48% said their symptoms had negatively impacted their income — with 23% reporting losses of $10,000 or more."
+        },
+        {
+          "t": "p",
+          "text": "None of this means every low mood or foggy week is menopausal. But if you're 40 or older and notice a cluster of anxiety, mental fatigue and flagging drive that doesn't match your usual patterns, it's worth raising perimenopause specifically with your doctor — rather than defaulting to a stress or mental-health diagnosis alone."
+        },
+        {
+          "t": "h",
+          "text": "What the research says"
+        },
+        {
+          "t": "refs",
+          "items": [
+            {
+              "claim": "Anxiety, brain fog and declining motivation have overtaken hot flashes as the top menopause symptom.",
+              "detail": "Bonafide Health's sixth annual State of Menopause survey of over 2,000 US women aged 40–64 found mental and cognitive symptoms now rank above hot flashes for the first time. 56% said declining motivation most affected their work performance; 48% said menopause symptoms had negatively impacted their income, and 23% reported losing $10,000 or more as a result.",
+              "cite": "Bonafide Health · Sixth Annual State of Menopause Survey, 2026",
+              "url": "https://www.globenewswire.com/news-release/2026/07/15/3327741/0/en/bonafide-health-releases-sixth-annual-state-of-menopause-results.html"
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is anxiety really a menopause symptom, or is it just stress?",
+          "a": "Both can be true at once, which is what makes it hard to spot. Hormonal shifts in perimenopause directly affect mood-regulating brain chemistry, and a 2026 survey of over 2,000 women found anxiety and brain fog now rank as the top menopause complaint, ahead of hot flashes. If new anxiety or fog appears alongside other perimenopause signs — irregular cycles, sleep changes, mood swings — it's worth mentioning to your doctor as a possible hormonal factor, not only a stress issue."
+        },
+        {
+          "q": "Why don't more women realise brain fog can be a menopause symptom?",
+          "a": "Because public awareness and clinical guidance have historically centred on hot flashes as the defining symptom. Newer, larger surveys are showing that cognitive and mood symptoms are actually more common complaints for many women, but that message hasn't caught up with general expectations yet — which is part of why so many women attribute these changes to burnout instead."
+        }
+      ]
+    },
+    "ua": {
+      "cat": "Перименопауза",
+      "title": "Тривожність і туман у голові, а не припливи — тепер головна скарга жінок у менопаузі",
+      "excerpt": "Шосте щорічне опитування Bonafide Health, у якому взяли участь понад 2000 жінок, показало: тривожність, туман у голові та зниження мотивації обійшли припливи як головний симптом менопаузи — і майже половина жінок каже, що це вдарило по їхньому доходу.",
+      "meta": "17 липня 2026 · 3 хв читання",
+      "lead": "Роками розмови про менопаузу оберталися навколо припливів. Нові дані опитування свідчать, що це вже не той симптом, з яким жінкам найважче жити.",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Шосте щорічне опитування Bonafide Health про стан менопаузи, у якому взяли участь понад 2000 жінок у США віком 40–64 роки, показало: тривожність, туман у голові та зниження мотивації тепер очолюють список скарг на менопаузу — уперше обійшовши припливи відтоді, як опитування почали проводити."
+        },
+        {
+          "t": "p",
+          "text": "Ця зміна важлива, бо рідко відповідає тому, чого жінки очікують або що їм казали очікувати. Припливи помітні й легко назвати; тривожність, розсіяність чи брак мотивації легше списати на стрес, вигорання чи «просто складний період» — особливо у 40+, коли тиск роботи й родини й так високий."
+        },
+        {
+          "t": "p",
+          "text": "Опитування також вказує на реальну фінансову ціну. 56% респонденток заявили, що зниження мотивації найбільше впливало на їхню роботу, а 48% сказали, що симптоми негативно позначилися на їхньому доході — 23% повідомили про втрату 10 000 доларів або більше."
+        },
+        {
+          "t": "p",
+          "text": "Це не означає, що будь-який поганий настрій чи туманний тиждень — обов’язково менопаузальний. Але якщо вам 40 або більше і ви помічаєте поєднання тривожності, розумової втоми та падіння драйву, яке не схоже на ваш звичний стан, варто окремо обговорити з лікарем саме перименопаузу — а не одразу зупинятися лише на діагнозі стресу чи ментального здоров’я."
+        },
+        {
+          "t": "h",
+          "text": "Що каже наука"
+        },
+        {
+          "t": "refs",
+          "items": [
+            {
+              "claim": "Тривожність, туман у голові та зниження мотивації обійшли припливи як головний симптом менопаузи.",
+              "detail": "Шосте щорічне опитування Bonafide Health про стан менопаузи серед понад 2000 жінок у США віком 40–64 роки показало, що ментальні та когнітивні симптоми вперше випередили припливи. 56% сказали, що зниження мотивації найбільше впливало на їхню роботу; 48% заявили, що симптоми менопаузи негативно позначилися на доході, а 23% повідомили про втрату 10 000 доларів або більше.",
+              "cite": "Bonafide Health · Шосте щорічне опитування про стан менопаузи, 2026",
+              "url": "https://www.globenewswire.com/news-release/2026/07/15/3327741/0/en/bonafide-health-releases-sixth-annual-state-of-menopause-results.html"
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Чи справді тривожність — це симптом менопаузи, чи це просто стрес?",
+          "a": "Може бути правдою і те, і те одночасно — саме тому це важко розпізнати. Гормональні зміни в перименопаузі напряму впливають на мозкову хімію, що регулює настрій, і опитування 2026 року серед понад 2000 жінок показало, що тривожність і туман у голові тепер головна скарга на менопаузу, випереджаючи припливи. Якщо нова тривожність чи туман з’являються поряд з іншими ознаками перименопаузи — нерегулярний цикл, зміни сну, перепади настрою — варто згадати про це лікарю як про можливий гормональний чинник, а не лише проблему стресу."
+        },
+        {
+          "q": "Чому не всі жінки знають, що туман у голові може бути симптомом менопаузи?",
+          "a": "Тому що суспільна обізнаність і клінічні рекомендації історично зосереджувалися на припливах як визначальному симптомі. Нові, масштабніші опитування показують, що когнітивні симптоми та зміни настрою насправді є частішою скаргою для багатьох жінок, але ця інформація ще не наздогнала загальні очікування — саме тому багато жінок пояснюють ці зміни вигоранням."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "type2-diabetes-women-under-40-sex-bias",
+    "date": "2026-07-17",
+    "image": "/images/type2-diabetes-women-under-40-sex-bias.jpg",
+    "cats": [
+      "diabetes"
+    ],
+    "en": {
+      "cat": "Diabetes",
+      "title": "Type 2 diabetes is rising twice as fast in women under 40 — and care hasn't caught up",
+      "excerpt": "A major 2026 Medscape clinical review argues diabetes care still treats women as if hormones don't matter, even as type 2 diabetes rises twice as fast in women under 40 than in men.",
+      "meta": "17 July 2026 · 3 min read",
+      "lead": "Diabetes guidelines are largely written as if one protocol fits everyone. A major 2026 clinical review argues that's a problem — and that it's costing younger women in particular.",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "A 2026 Medscape clinical review makes a case that's overdue: diabetes is not a gender-neutral disease, yet diabetes care is still largely built as if it were. The review highlights that type 2 diabetes is now rising twice as fast in women under 40 compared with men in the same age group."
+        },
+        {
+          "t": "p",
+          "text": "Part of the gap is biological. Hormonal shifts across a woman's life — the menstrual cycle, pregnancy, perimenopause and menopause — measurably change insulin sensitivity and glucose metabolism. The review notes insulin requirements can shift by as much as 15% across the luteal phase of the cycle alone, yet most diabetes management protocols make no allowance for it."
+        },
+        {
+          "t": "p",
+          "text": "Part of the gap is also structural. Women remain underrepresented in the clinical trials that shape treatment guidelines, so sex-specific patterns in how glucose control behaves are often invisible in the data used to write those guidelines in the first place."
+        },
+        {
+          "t": "p",
+          "text": "If your blood sugar feels harder to predict at certain points in your cycle or life stage than standard advice suggests it should be, that's not necessarily you doing something wrong. It's a reasonable prompt to track your own patterns across the month and bring that data to your diabetes team, rather than assuming a one-size protocol should already account for it."
+        },
+        {
+          "t": "h",
+          "text": "What the research says"
+        },
+        {
+          "t": "refs",
+          "items": [
+            {
+              "claim": "Type 2 diabetes is rising twice as fast in women under 40 than in men, and diabetes care underaccounts for hormonal sex differences.",
+              "detail": "A 2026 Medscape clinical review reports that hormonal changes across a woman's life — including the menstrual cycle, pregnancy, perimenopause and menopause — significantly affect glucose metabolism and insulin needs, with insulin requirements shifting by up to 15% across the luteal phase alone. The review notes women remain underrepresented in the clinical trials underpinning diabetes guidelines, and that type 2 diabetes is now increasing twice as fast in women under 40 compared with men.",
+              "cite": "Medscape · Clinical Review, 13 July 2026",
+              "url": "https://www.medscape.com/viewarticle/women-and-diabetes-care-keeping-pace-biology-2026a1000nip"
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Why is type 2 diabetes rising faster in younger women?",
+          "a": "A 2026 Medscape clinical review points to a combination of factors: hormonal changes across a woman's life that affect insulin sensitivity, and diabetes care protocols that were largely developed from trials where women were underrepresented. The result is that sex-specific patterns in glucose control are often not built into standard guidance, which may leave younger women's diabetes risk and management less well addressed."
+        },
+        {
+          "q": "Can my insulin needs really change across my menstrual cycle?",
+          "a": "Yes — the same 2026 review notes insulin requirements can shift by up to 15% during the luteal phase of the cycle. If you notice your glucose control varying in a pattern that tracks with your cycle, it's worth logging it and discussing with your diabetes team, since standard protocols don't automatically factor this in."
+        }
+      ]
+    },
+    "ua": {
+      "cat": "Діабет",
+      "title": "Діабет 2 типу зростає вдвічі швидше серед жінок до 40 — а система догляду цього ще не наздогнала",
+      "excerpt": "Великий клінічний огляд Medscape 2026 року стверджує: система догляду за діабетом досі влаштована так, ніби гормони не мають значення, попри те що діабет 2 типу зростає вдвічі швидше серед жінок до 40, ніж серед чоловіків.",
+      "meta": "17 липня 2026 · 3 хв читання",
+      "lead": "Рекомендації щодо діабету здебільшого написані так, ніби один протокол підходить усім. Великий клінічний огляд 2026 року стверджує, що це проблема — і що вона особливо дорого коштує молодшим жінкам.",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Клінічний огляд Medscape 2026 року порушує давно назрілу тему: діабет не є гендерно нейтральною хворобою, але система догляду за діабетом досі здебільшого влаштована так, ніби це так. Огляд підкреслює, що діабет 2 типу тепер зростає вдвічі швидше серед жінок до 40 років порівняно з чоловіками того ж віку."
+        },
+        {
+          "t": "p",
+          "text": "Частина розриву — біологічна. Гормональні зміни протягом життя жінки — менструальний цикл, вагітність, перименопауза та менопауза — вимірно змінюють чутливість до інсуліну та метаболізм глюкози. Огляд зазначає, що потреба в інсуліні може змінюватися до 15% лише протягом лютеїнової фази циклу, але більшість протоколів лікування діабету цього не враховують."
+        },
+        {
+          "t": "p",
+          "text": "Частина розриву — структурна. Жінки досі недостатньо представлені в клінічних дослідженнях, які формують рекомендації з лікування, тож специфічні для статі патерни контролю глюкози часто залишаються невидимими в даних, на основі яких ці рекомендації взагалі писалися."
+        },
+        {
+          "t": "p",
+          "text": "Якщо ваш рівень цукру в певні моменти циклу чи етапу життя важче передбачити, ніж це передбачає стандартна порада, це не обов’язково означає, що ви робите щось не так. Це достатня підстава відстежувати власні патерни протягом місяця й приносити ці дані своїй команді з діабету, а не припускати, що універсальний протокол уже це враховує."
+        },
+        {
+          "t": "h",
+          "text": "Що каже наука"
+        },
+        {
+          "t": "refs",
+          "items": [
+            {
+              "claim": "Діабет 2 типу зростає вдвічі швидше серед жінок до 40, ніж серед чоловіків, а система догляду за діабетом недостатньо враховує гормональні відмінності між статями.",
+              "detail": "Клінічний огляд Medscape 2026 року повідомляє, що гормональні зміни протягом життя жінки — зокрема менструальний цикл, вагітність, перименопауза та менопауза — суттєво впливають на метаболізм глюкози й потребу в інсуліні, причому потреба в інсуліні змінюється до 15% лише протягом лютеїнової фази. Огляд зазначає, що жінки досі недостатньо представлені в клінічних дослідженнях, на яких ґрунтуються рекомендації з діабету, і що діабет 2 типу тепер зростає вдвічі швидше серед жінок до 40 порівняно з чоловіками.",
+              "cite": "Medscape · Клінічний огляд, 13 липня 2026",
+              "url": "https://www.medscape.com/viewarticle/women-and-diabetes-care-keeping-pace-biology-2026a1000nip"
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Чому діабет 2 типу зростає швидше серед молодших жінок?",
+          "a": "Клінічний огляд Medscape 2026 року вказує на поєднання чинників: гормональні зміни протягом життя жінки, що впливають на чутливість до інсуліну, і протоколи лікування діабету, здебільшого розроблені на основі досліджень, де жінки були недостатньо представлені. У результаті специфічні для статі патерни контролю глюкози часто не закладені у стандартні рекомендації, що може означати гірше врахування ризику діабету та його ведення в молодших жінок."
+        },
+        {
+          "q": "Чи справді потреба в інсуліні може змінюватися протягом менструального циклу?",
+          "a": "Так — той самий огляд 2026 року зазначає, що потреба в інсуліні може змінюватися до 15% протягом лютеїнової фази циклу. Якщо ви помічаєте, що контроль глюкози змінюється за патерном, пов’язаним із циклом, варто це фіксувати й обговорювати з командою з діабету, адже стандартні протоколи автоматично цього не враховують."
+        }
+      ]
+    }
   }
 ];
