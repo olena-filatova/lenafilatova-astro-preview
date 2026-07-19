@@ -124,7 +124,7 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
 <div class="page">
 
   <details class="glossary">
-    <summary>New to clinical trials? Tap for what the terms mean</summary>
+    <summary>Unfamiliar term? Tap for what these words mean</summary>
     <div class="gloss-body" id="glossBody"></div>
   </details>
 
@@ -145,8 +145,8 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
       <div class="chips" id="chips-recruit"></div>
     </div>
     <div class="filter-row">
-      <span class="filter-label">Cost to join</span>
-      <div class="chips" id="chips-cost"></div>
+      <span class="filter-label">Paid?</span>
+      <div class="chips" id="chips-paid"></div>
     </div>
     <div class="filter-row">
       <span class="filter-label">Study type</span>
@@ -170,7 +170,7 @@ body { font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,
   <div class="cards-list" id="list"></div>
   <div class="no-results" id="noResults" style="display:none;">No studies match these filters.</div>
 
-  <div class="footnote"><strong>Educational tracker — not medical advice and not a recommendation to join any study.</strong> Phases, eligibility, locations, cost and results change often; always confirm the current details on the study's official page before acting, and discuss any study with your own diabetes team. "Estimated availability" is a rough, best-case guess if a therapy keeps succeeding — most experimental treatments never reach the market, and timelines slip. "Free to join" means taking part doesn't cost you (the study covers its treatment); it doesn't include your own travel unless stated. Primary source for each study is <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (search the NCT number); some also list on the EU trials register, ISRCTN or the sponsor's site.</div>
+  <div class="footnote"><strong>Educational tracker — not medical advice and not a recommendation to join any study.</strong> Phases, eligibility, locations, cost and results change often; always confirm the current details on the study's official page before acting, and discuss any study with your own diabetes team. "Estimated availability" is a rough, best-case guess if a therapy keeps succeeding — most experimental treatments never reach the market, and timelines slip. These studies don't pay you to take part (some may reimburse travel or expenses) — always confirm compensation with the study team. Primary source for each study is <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (search the NCT number); some also list on the EU trials register, ISRCTN or the sponsor's site.</div>
 </div>
 
 <script>
@@ -185,7 +185,8 @@ const GLOSSARY = [
   ["Observational", "The study watches and measures (for example, blood tests) without giving a treatment. Screening and monitoring studies are how many people first find out they qualify for other trials."],
   ["Recruiting", "The study is actively enrolling new participants right now."],
   ["Active, not recruiting", "The study is running, but its group is already full."],
-  ["Free to join", "Taking part costs you nothing — the study covers its treatment. (You're not paid a wage; some studies help with travel.)"],
+  ["Not paid", "These studies don't pay you to take part — you take part for free, but you're not given a wage or fee. Some studies still reimburse reasonable travel or expenses, so always confirm compensation with the study team."],
+  ["Approved medicine", "Not a trial — a treatment a doctor can prescribe now. You'd usually get it through your healthcare system or insurance, rather than by joining a study."],
   ["NCT number", "The ID for a study on ClinicalTrials.gov. Search it there to see the live status, full criteria and contact details."],
   ["Islet / beta cells", "The cells in the pancreas that make insulin — the ones lost in type 1 diabetes."],
   ["Autoantibodies · stage 1–2", "Immune markers that show type 1 is developing, often years before symptoms. A simple blood test can find them — that's what screening studies do."],
@@ -196,7 +197,7 @@ const GLOSSARY = [
    approach → colour class: stem | encap | immuno | vaccine | preserve | treg | islet | screen | other
    phase (ordered): approved | p3 | p23 | p2 | p12 | p1   (observational studies: phase "na")
    status: recruiting | active | completed | notyet | approved | unknown
-   studyType: interventional | observational        cost: free | approved
+   studyType: interventional | observational        paid: unpaid | paid | na (na = teplizumab, an approved medicine, not a trial)
    countries: full-name array for the country dropdown. */
 const DATA = [
   {
@@ -204,7 +205,7 @@ const DATA = [
     approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
     phase:"approved", phaseLabel:"Approved", status:"approved", statusLabel:"Available now",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"approved", costLabel:"Approved — on prescription",
+    paid:"na", payLabel:"Approved medicine — via insurance / healthcare (not a trial)",
     countries:["United States"],
     location:"Approved and in use in the USA; the PROTECT trial ran in the US, Canada, UK and Europe",
     timing:"Available now in the US — approved in 2022, and in April 2026 the approved age was widened to 1 year and up.",
@@ -221,7 +222,7 @@ const DATA = [
     approach:"stem", approachLabel:"Stem-cell islet replacement",
     phase:"p3", phaseLabel:"Phase 3", status:"recruiting", statusLabel:"Recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["United States","Canada","United Kingdom","France","Germany","Italy","Netherlands","Norway","Switzerland","Saudi Arabia"],
     location:"About 28 sites across the US, Canada, the UK, France, Germany, Italy, the Netherlands, Norway, Switzerland and Saudi Arabia",
     timing:"Best case around 2027+. Vertex says it aims to begin global regulatory submissions in 2026 — but nothing has been filed with the FDA yet, so it is not 'under review'.",
@@ -238,7 +239,7 @@ const DATA = [
     approach:"islet", approachLabel:"Islet transplant",
     phase:"p12", phaseLabel:"Phase 1/2", status:"recruiting", statusLabel:"Recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["United States"],
     location:"University of Chicago, Illinois, USA (single site)",
     timing:"Around 2030+. It is limited by the supply of donor cells and still needs larger controlled trials.",
@@ -255,7 +256,7 @@ const DATA = [
     approach:"islet", approachLabel:"Islet transplant",
     phase:"p12", phaseLabel:"Phase 1/2", status:"active", statusLabel:"Active, not recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["United States"],
     location:"University of Chicago, Illinois, USA (single site)",
     timing:"Around 2030+. A confirmatory group is only just starting, and the current version still needs donor cells and immune suppression.",
@@ -272,7 +273,7 @@ const DATA = [
     approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
     phase:"p3", phaseLabel:"Phase 3", status:"recruiting", statusLabel:"Recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["Australia","Belgium","Brazil","Canada","Finland","France","Germany","Israel","Italy","Japan","Netherlands","Norway","Poland","Portugal","Spain","Sweden","United Kingdom","United States"],
     location:"The completed Phase 2 ran in Australia; the recruiting Phase 3 spans about 18 countries across North America, Europe, Israel, Japan, Brazil and Australia",
     timing:"It is already an approved arthritis pill, so it could move relatively quickly if trials confirm — but it is not yet approved or recommended for type 1. The Phase 3 runs to about 2031.",
@@ -289,7 +290,7 @@ const DATA = [
     approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
     phase:"p2", phaseLabel:"Phase 2", status:"active", statusLabel:"Active, not recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["Austria","Belgium","Canada","Czechia","Denmark","Finland","France","Germany","Hungary","Italy","Poland","Slovenia","Spain","Sweden","United Kingdom","United States"],
     location:"97 sites across the US, Canada and much of Western Europe and the Nordics",
     timing:"Around 2029–2031 at the earliest — a Phase 3 would follow if this trial succeeds.",
@@ -306,7 +307,7 @@ const DATA = [
     approach:"vaccine", approachLabel:"Vaccine / antigen-specific",
     phase:"p3", phaseLabel:"Phase 3", status:"active", statusLabel:"Active, not recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["United States","Czechia","Estonia","Germany","Hungary","Netherlands","Poland","Spain","Sweden"],
     location:"The US plus Czechia, Estonia, Germany, Hungary, the Netherlands, Poland, Spain and Sweden",
     timing:"Main results are expected around December 2027; approval, if it works, would be roughly 2028 or later.",
@@ -323,7 +324,7 @@ const DATA = [
     approach:"islet", approachLabel:"Islet transplant",
     phase:"p1", phaseLabel:"Phase 1", status:"active", statusLabel:"Active, not recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["Sweden"],
     location:"Uppsala, Sweden",
     timing:"2030+. This is a single-patient proof of concept; a scalable product still needs full trials.",
@@ -340,7 +341,7 @@ const DATA = [
     approach:"stem", approachLabel:"Stem-cell islet replacement",
     phase:"p1", phaseLabel:"Phase 1", status:"active", statusLabel:"Active, not recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["China"],
     location:"Tianjin, China",
     timing:"Years away — this is a first-patient proof of concept.",
@@ -357,7 +358,7 @@ const DATA = [
     approach:"treg", approachLabel:"Regulatory T-cell (Treg) therapy",
     phase:"p2", phaseLabel:"Phase 2", status:"recruiting", statusLabel:"Recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["Poland"],
     location:"9 sites across Poland",
     timing:"2032+. This is a prevention trial in young children, finishing around 2032.",
@@ -374,7 +375,7 @@ const DATA = [
     approach:"vaccine", approachLabel:"Vaccine / antigen-specific",
     phase:"p2", phaseLabel:"Phase 2", status:"active", statusLabel:"Active, not recruiting",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["United States"],
     location:"Boston (Charlestown), Massachusetts, USA (single center)",
     timing:"No near-term path — it remains investigational, without completed positive pivotal results despite many years.",
@@ -391,7 +392,7 @@ const DATA = [
     approach:"immuno", approachLabel:"Immunotherapy (calm the attack)",
     phase:"p23", phaseLabel:"Phase 2/3", status:"unknown", statusLabel:"Status unknown",
     studyType:"interventional", studyTypeLabel:"Interventional",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["United States"],
     location:"New Jersey, USA",
     timing:"Uncertain — there is no approval, and the trial's official status is now listed as 'unknown'.",
@@ -408,7 +409,7 @@ const DATA = [
     approach:"screen", approachLabel:"Screening & monitoring",
     phase:"na", phaseLabel:"", status:"recruiting", statusLabel:"Recruiting",
     studyType:"observational", studyTypeLabel:"Observational",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["Australia","Canada","Finland","Italy","United Kingdom","United States"],
     location:"Sites across the US, UK, Canada, Australia, Finland and Italy",
     timing:"Open now — a free way to learn your risk. It's the usual route into type 1 prevention trials (and to teplizumab).",
@@ -425,7 +426,7 @@ const DATA = [
     approach:"screen", approachLabel:"Screening & monitoring",
     phase:"na", phaseLabel:"", status:"recruiting", statusLabel:"Recruiting",
     studyType:"observational", studyTypeLabel:"Observational",
-    cost:"free", costLabel:"Free to join",
+    paid:"unpaid", payLabel:"Free — you're not paid to take part",
     countries:["United Kingdom"],
     location:"United Kingdom (general population)",
     timing:"Open now, running to 2029 — a free UK screening study for children, with no family history of type 1 needed.",
@@ -443,14 +444,15 @@ const DATA = [
 const PHASE_ORDER = ["approved","p3","p23","p2","p12","p1"];
 const RECRUIT_ORDER = ["recruiting","closed","available"];
 const RECRUIT_LABEL = { recruiting:"Recruiting now", closed:"Not recruiting", available:"Available now" };
-const COST_ORDER = ["free","approved"];
+const PAID_ORDER = ["unpaid","paid"];
+const PAID_LABEL = { unpaid:"Not paid", paid:"Paid" };
 const STUDYTYPE_ORDER = ["interventional","observational"];
 const APPROACH_CLASS = { stem:"stem", encap:"encap", immuno:"immuno", vaccine:"vaccine", preserve:"preserve", treg:"treg", islet:"islet", screen:"screen", other:"other" };
 
 // Simplify the detailed status into a clear recruiting bucket for filtering.
 const recruitKey = (d) => d.status === "recruiting" ? "recruiting" : (d.status === "approved" ? "available" : "closed");
 
-let state = { search:"", country:"all", recruit:"all", cost:"all", studytype:"all", approach:"all", phase:"all" };
+let state = { search:"", country:"all", recruit:"all", paid:"all", studytype:"all", approach:"all", phase:"all" };
 const openIds = new Set();
 let allExpanded = false;
 
@@ -535,7 +537,7 @@ function cardHtml(d) {
       ${proscons}
       <div class="meta-line">
         ${d.studyTypeLabel ? `<span>Type: <b>${esc(d.studyTypeLabel)}</b></span>` : ""}
-        ${d.costLabel ? `<span>Cost to take part: <b>${esc(d.costLabel)}</b></span>` : ""}
+        ${d.payLabel ? `<span>Taking part: <b>${esc(d.payLabel)}</b></span>` : ""}
       </div>
       <div class="ref-line">
         ${d.location ? `<span class="loc-line">📍 ${esc(d.location)}</span>` : ""}
@@ -551,7 +553,7 @@ function render() {
   const rows = DATA.filter(d => {
     if (state.country !== "all" && !(d.countries || []).includes(state.country)) return false;
     if (state.recruit !== "all" && recruitKey(d) !== state.recruit) return false;
-    if (state.cost !== "all" && d.cost !== state.cost) return false;
+    if (state.paid !== "all" && d.paid !== state.paid) return false;
     if (state.studytype !== "all" && d.studyType !== state.studytype) return false;
     if (state.approach !== "all" && d.approach !== state.approach) return false;
     if (state.phase !== "all" && d.phase !== state.phase) return false;
@@ -588,14 +590,14 @@ function bindCards() {
 /* Build filters */
 buildCountrySelect();
 buildChips("chips-recruit", "recruit", RECRUIT_ORDER, (d) => RECRUIT_LABEL[recruitKey(d)], recruitKey);
-buildChips("chips-cost", "cost", COST_ORDER, (d) => d.costLabel);
+buildChips("chips-paid", "paid", PAID_ORDER, (d) => PAID_LABEL[d.paid], (d) => d.paid);
 buildChips("chips-studytype", "studytype", STUDYTYPE_ORDER, (d) => d.studyTypeLabel, (d) => d.studyType);
 buildChips("chips-approach", "approach", null, (d) => d.approachLabel);
 buildChips("chips-phase", "phase", PHASE_ORDER, (d) => d.phaseLabel);
 
 document.getElementById("search").addEventListener("input", e => { state.search = e.target.value; render(); });
 document.getElementById("clearBtn").addEventListener("click", () => {
-  state = { search:"", country:"all", recruit:"all", cost:"all", studytype:"all", approach:"all", phase:"all" };
+  state = { search:"", country:"all", recruit:"all", paid:"all", studytype:"all", approach:"all", phase:"all" };
   document.getElementById("search").value = "";
   document.getElementById("countrySel").value = "all";
   document.querySelectorAll(".chips").forEach(g => {
