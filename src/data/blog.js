@@ -1022,7 +1022,7 @@ export const POSTS = [
         },
         {
           "t": "p",
-          "text": "This is observational, so it shows a strong association rather than proof, and diet was self-reported. But it lines up with everything else we know, and the practical message is refreshingly ordinary: it isn't about cutting carbs, it's about upgrading them. Swap white bread for whole grains, reach for beans and lentils, and keep fruit and vegetables central — small midlife choices with a long tail."
+          "text": "This is observational, so it shows a strong association rather than proof, and diet was self-reported. But it lines up with everything else we know, and the practical message is refreshingly ordinary: it isn't about cutting carbs, it's about upgrading them. Swap white bread for whole grains, reach for beans and lentils, and keep fruit and vegetables central — small midlife choices with a long tail. Buckwheat is a good example of the upgrade: my [buckwheat cookies, no sugar](/recipes/buckwheat-cookies/) use it as both the grain and the flour."
         },
         {
           "t": "h",
@@ -1072,7 +1072,7 @@ export const POSTS = [
         },
         {
           "t": "p",
-          "text": "Це спостережне дослідження, тож воно показує сильний зв’язок, а не доказ, і харчування оцінювали за самозвітами. Але воно збігається з усім, що ми знаємо, і практичний висновок приємно буденний: ідеться не про те, щоб урізати вуглеводи, а про те, щоб їх покращити. Замініть білий хліб на цільнозерновий, тягніться до квасолі та сочевиці й тримайте фрукти та овочі в центрі — маленькі рішення в середньому віці з довгим наслідком."
+          "text": "Це спостережне дослідження, тож воно показує сильний зв’язок, а не доказ, і харчування оцінювали за самозвітами. Але воно збігається з усім, що ми знаємо, і практичний висновок приємно буденний: ідеться не про те, щоб урізати вуглеводи, а про те, щоб їх покращити. Замініть білий хліб на цільнозерновий, тягніться до квасолі та сочевиці й тримайте фрукти та овочі в центрі — маленькі рішення в середньому віці з довгим наслідком. Гречка — хороший приклад такого покращення: у [гречаному печиві без цукру](/ua/recipes/buckwheat-cookies/) вона і крупа, і борошно, а ягоди легко тримати під рукою як [чорничний джем: рецепт без цукру](/ua/recipes/blueberry-jam/)."
         },
         {
           "t": "h",
@@ -1370,7 +1370,7 @@ export const POSTS = [
         },
         {
           "t": "p",
-          "text": "Its taste has two quirks worth knowing. First, the sweetness comes on slowly — it arrives a moment later than you'd expect — but then lingers pleasantly for a long time. Second, and separately, stevia turns bitter if you use too much: it's intensely sweet, so a heavy hand tips it into a liquorice-like, faintly metallic aftertaste, though used lightly that bitterness simply never appears. That slow-but-lasting sweetness is exactly why stevia pairs so well with erythritol, whose sweetness does the opposite (more on that below). The leaf brewed as tea is the gentlest form; powders, tablets and syrups vary a lot by brand. My practical tip is unchanged — use far less than you think you need, and blend it with something that rounds out the flavour, such as erythritol, monk fruit or a little allulose."
+          "text": "Its taste has two quirks worth knowing. First, the sweetness comes on slowly — it arrives a moment later than you'd expect — but then lingers pleasantly for a long time. Second, and separately, stevia turns bitter if you use too much: it's intensely sweet, so a heavy hand tips it into a liquorice-like, faintly metallic aftertaste, though used lightly that bitterness simply never appears. That slow-but-lasting sweetness is exactly why stevia pairs so well with erythritol, whose sweetness does the opposite (more on that below). The leaf brewed as tea is the gentlest form; powders, tablets and syrups vary a lot by brand. My practical tip is unchanged — use far less than you think you need, and blend it with something that rounds out the flavour, such as erythritol, monk fruit or a little allulose. If you want to see that in practice, my [buckwheat cookies, no sugar](/recipes/buckwheat-cookies/) and [sugar-free blueberry jam](/recipes/blueberry-jam/) are sweetened with stevia alone."
         },
         {
           "t": "h",
@@ -1751,7 +1751,7 @@ export const POSTS = [
         },
         {
           "t": "p",
-          "text": "У смаку стевії є дві особливості, про які варто знати. По-перше, солодкість наростає повільно — приходить трохи пізніше, ніж очікуєш, — зате потім приємно тримається довго. По-друге, окремо від цього, стевія гіркне від надлишку: вона дуже солодка, тож надмір робить смак лакричним, ледь металевим, хоча якщо класти потроху, гіркота просто не з'являється. Саме ця повільна, але тривала солодкість і робить стевію ідеальною в парі з еритритом, чия солодкість поводиться навпаки (докладніше нижче). Найм'якша форма — заварене листя як чай; порошки, таблетки та сиропи сильно різняться за брендами. Моя практична порада та сама — беріть значно менше, ніж здається потрібним, і поєднуйте з чимось, що заокруглює смак, наприклад із еритритом, монк-фрутом чи дрібкою алюлози."
+          "text": "У смаку стевії є дві особливості, про які варто знати. По-перше, солодкість наростає повільно — приходить трохи пізніше, ніж очікуєш, — зате потім приємно тримається довго. По-друге, окремо від цього, стевія гіркне від надлишку: вона дуже солодка, тож надмір робить смак лакричним, ледь металевим, хоча якщо класти потроху, гіркота просто не з'являється. Саме ця повільна, але тривала солодкість і робить стевію ідеальною в парі з еритритом, чия солодкість поводиться навпаки (докладніше нижче). Найм'якша форма — заварене листя як чай; порошки, таблетки та сиропи сильно різняться за брендами. Моя практична порада та сама — беріть значно менше, ніж здається потрібним, і поєднуйте з чимось, що заокруглює смак, наприклад із еритритом, монк-фрутом чи дрібкою алюлози. Якщо хочете побачити це на практиці — [чорничний джем: рецепт без цукру](/ua/recipes/blueberry-jam/) та [гречане печиво без цукру](/ua/recipes/buckwheat-cookies/) підсолоджені самою лише стевією."
         },
         {
           "t": "h",

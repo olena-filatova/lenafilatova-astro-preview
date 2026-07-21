@@ -383,8 +383,8 @@ export const RECIPES = [
   {
     slug: 'buckwheat-cookies', img: '37-buckwheat-cookies.jpg', cat: 'baking', gi: 48,
     tags: ['gluten-free', 'vegetarian', 'dairy-free'],
-    title: { en: 'Sugar-free Buckwheat Cookies (Gluten-free)', ua: 'Гречане печиво без цукру та глютену' },
-    why: { en: 'Made from cooked buckwheat and buckwheat flour — naturally gluten-free, filling and low-GI, with just stevia to sweeten.', ua: 'З відвареної гречки та гречаного борошна — від природи без глютену, ситне й з низьким ГІ, підсолоджене лише стевією.' },
+    title: { en: 'Buckwheat Cookies, No Sugar (Gluten-free)', ua: 'Гречане печиво без цукру та глютену' },
+    why: { en: 'Buckwheat cookies with no sugar at all — sweetened with stevia, naturally gluten-free and low-GI, so a biscuit with tea stays filling rather than spiking.', ua: 'З відвареної гречки та гречаного борошна — від природи без глютену, ситне й з низьким ГІ, підсолоджене лише стевією.' },
     nutrition: { en: 'Per cookie (est.): ~65 kcal · Carbs 9 g · Fat 2 g · Protein 3 g', ua: 'На 1 печиво (прибл.): ~65 ккал · Вуглеводи 9 г · Жири 2 г · Білки 3 г' },
     meta: { prep: { en: '10 min', ua: '10 хв' }, cook: { en: '25 min', ua: '25 хв' }, serves: { en: 'Makes ~10', ua: '~10 штук' } },
     ingredients: { en: ['2 cups cooked buckwheat','⅓ cup buckwheat flour','2 eggs','1 tbsp stevia','1 tbsp honey (for a golden crust, optional)'], ua: ['2 склянки відвареної гречки','⅓ склянки гречаного борошна','2 яйця','1 ст. л. стевії','1 ст. л. меду (для рум’яної скоринки, за бажанням)'] },
@@ -928,8 +928,8 @@ export const RECIPES = [
   {
     slug: 'blueberry-jam', img: '89-blueberry-jam.jpg', cat: 'sauce', gi: 53,
     tags: ['sugar-free', 'gluten-free', 'vegetarian', 'dairy-free'],
-    title: { en: 'Sugar-free Blueberry Jam', ua: 'Чорничний джем без цукру' },
-    why: { en: 'Blueberries are one of the lowest-GI fruits and rich in antioxidants. Agar sets the jam without sugar and stevia sweetens it — so you get all the flavour with a fraction of the glycaemic load.', ua: 'Чорниця — один із фруктів з найнижчим ГІ, багата на антиоксиданти. Агар загущує джем без цукру, а стевія підсолоджує його — тож ви отримуєте весь смак із мінімальним глікемічним навантаженням.' },
+    title: { en: 'Sugar-free Blueberry Jam', ua: 'Чорничний джем: рецепт без цукру' },
+    why: { en: 'Blueberries are one of the lowest-GI fruits and rich in antioxidants. Agar sets the jam without sugar and stevia sweetens it — so you get all the flavour with a fraction of the glycaemic load.', ua: 'Чорничний джем: рецепт без цукру, на агарі та стевії. Чорниця має один із найнижчих ГІ серед ягід, тож смак повний, а глікемічне навантаження мінімальне.' },
     nutrition: { en: 'Per serving (est.): ~60 kcal · Carbs 13 g · Fat 0 g · Protein 1 g', ua: 'На порцію (прибл.): ~60 ккал · Вуглеводи 13 г · Жири 0 г · Білки 1 г' },
     meta: { prep: { en: '5 min', ua: '5 хв' }, cook: { en: '35 min', ua: '35 хв' }, serves: { en: 'Makes ~1 jar', ua: '~1 банка' } },
     ingredients: { en: ['750 g blueberries','2 tsp agar powder','2 tsp vanilla','2–3 tsp stevia powder (to taste)'], ua: ['750 г чорниці','2 ч. л. агару в порошку','2 ч. л. ванілі','2–3 ч. л. стевії в порошку (за смаком)'] },
