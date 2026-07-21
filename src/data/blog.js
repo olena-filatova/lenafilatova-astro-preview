@@ -896,6 +896,8 @@ export const POSTS = [
     "en": {
       "cat": "Diabetes",
       "title": "Every patient in a small type 1 diabetes trial became insulin-free",
+      "seoTitle": "Type 1 Trial: Every Patient Became Insulin-Free",
+      "metaDesc": "In an early UChicago trial, all 12 people with long-standing type 1 diabetes reached insulin independence after donor islet transplants. What it means.",
       "excerpt": "In an early UChicago trial, all 12 people with long-standing type 1 diabetes reached insulin independence after donor islet transplants paired with a new anti-rejection antibody.",
       "meta": "10 July 2026 · 3 min read",
       "lead": "It's the kind of result that makes you read the sentence twice: in a small pilot study, every single participant with type 1 diabetes stopped needing insulin.",
@@ -946,6 +948,8 @@ export const POSTS = [
     "ua": {
       "cat": "Діабет",
       "title": "Усі учасники невеликого дослідження діабету 1 типу відмовилися від інсуліну",
+      "seoTitle": "Дослідження: усі пацієнти без інсуліну",
+      "metaDesc": "У ранньому дослідженні UChicago всі 12 людей із давнім діабетом 1 типу досягли незалежності від інсуліну після трансплантації острівцевих клітин.",
       "excerpt": "У ранньому дослідженні в Чиказькому університеті всі 12 людей із тривалим діабетом 1 типу відмовилися від інсуліну після трансплантації донорських острівцевих клітин у поєднанні з новим антитілом проти відторгнення.",
       "meta": "10 липня 2026 · 3 хв читання",
       "lead": "Це той результат, від якого перечитуєш речення двічі: у невеликому пілотному дослідженні кожен учасник із діабетом 1 типу перестав потребувати інсуліну.",
@@ -1004,6 +1008,8 @@ export const POSTS = [
     "en": {
       "cat": "Nutrition",
       "title": "The carbs you choose in midlife shape how you age, a 32-year study finds",
+      "seoTitle": "Carb Quality in Midlife Shapes How You Age",
+      "metaDesc": "A 32-year study of 47,000 women found those eating more high-quality carbs in midlife were up to a third more likely to age healthily. Which carbs count.",
       "excerpt": "Harvard and Tufts researchers followed 47,000 women for 32 years: those eating more high-quality carbs in midlife were up to a third more likely to age healthily.",
       "meta": "10 July 2026 · 3 min read",
       "lead": "Not all carbohydrates age you the same way. A large, long-running study suggests the type you lean on in your 40s and 50s quietly shapes how well you will be in your 70s.",
@@ -1054,6 +1060,8 @@ export const POSTS = [
     "ua": {
       "cat": "Харчування",
       "title": "Вуглеводи, які ви обираєте в середньому віці, впливають на старіння — 32-річне дослідження",
+      "seoTitle": "Якість вуглеводів у середині життя і старіння",
+      "metaDesc": "32-річне дослідження 47 000 жінок: ті, хто в середньому віці їв якісніші вуглеводи, на третину частіше старіли здорово. Які саме вуглеводи обирати.",
       "excerpt": "Дослідники з Гарварду й Тафтса спостерігали за 47 000 жінок упродовж 32 років: ті, хто в середньому віці їв більше якісних вуглеводів, мали до третини вищі шанси старіти здоровими.",
       "meta": "10 липня 2026 · 3 хв читання",
       "lead": "Не всі вуглеводи старять однаково. Велике, багаторічне дослідження свідчить, що тип, на який ви спираєтеся у свої 40–50, тихо формує те, наскільки добре вам буде у 70.",
@@ -1112,6 +1120,8 @@ export const POSTS = [
     "en": {
       "cat": "Skin & beauty",
       "title": "Why skin changes so fast at menopause — and what hormone therapy can and can't do",
+      "seoTitle": "Menopause Skin & Oestrogen: What HRT Can Do",
+      "metaDesc": "Falling oestrogen drives menopausal skin ageing. See what the latest reviews say HRT can — and can't — do to reverse dryness, thinning and lost collagen.",
       "excerpt": "Recent reviews confirm falling oestrogen drives much of menopausal skin ageing — thinner, drier, less elastic skin — and that HRT can partly reverse it, within limits.",
       "meta": "10 July 2026 · 3 min read",
       "lead": "If your skin seemed to change almost overnight around menopause, you weren't imagining it. Recent research lays out just how much of that shift is driven by falling oestrogen — and how much hormone therapy can undo.",
@@ -1162,6 +1172,8 @@ export const POSTS = [
     "ua": {
       "cat": "Краса та шкіра",
       "title": "Чому шкіра так швидко змінюється в менопаузі — і що може (і не може) гормональна терапія",
+      "seoTitle": "Шкіра в менопаузі й естроген: що може ЗГТ",
+      "metaDesc": "Падіння естрогену прискорює старіння шкіри в менопаузі. Огляди показують, що ЗГТ частково це відновлює — але з межами. Розбираємо, що вона може і чого ні.",
       "excerpt": "Сучасні огляди підтверджують: падіння естрогену спричиняє значну частину старіння шкіри в менопаузі — тоншу, сухішу, менш пружну шкіру — і що ЗГТ здатна частково це повернути, у певних межах.",
       "meta": "10 липня 2026 · 3 хв читання",
       "lead": "Якщо ваша шкіра ніби змінилася майже за одну ніч у менопаузі, це вам не здалося. Сучасні дослідження показують, наскільки ця зміна зумовлена падінням естрогену — і наскільки гормональна терапія здатна її повернути.",
@@ -1220,6 +1232,8 @@ export const POSTS = [
     "en": {
       "cat": "Weight loss",
       "title": "People on GLP-1 weight-loss drugs moved less, not more, a Fitbit study finds",
+      "seoTitle": "GLP-1 Users Moved Less, Not More: Fitbit Study",
+      "metaDesc": "A Fitbit study of 753 adults found daily steps and exercise fell after starting Ozempic-style GLP-1 drugs. Why movement matters for holding on to muscle.",
       "excerpt": "Tracking 753 adults' wearable data, researchers found daily steps and exercise fell after starting Ozempic-style drugs — a concern for muscle, especially in women over 40.",
       "meta": "10 July 2026 · 3 min read",
       "lead": "Weight-loss injections like Ozempic and Wegovy are reshaping bodies fast — but new data suggest they may also, quietly, be making people move less.",
@@ -1274,6 +1288,8 @@ export const POSTS = [
     "ua": {
       "cat": "Схуднення",
       "title": "Люди на препаратах GLP-1 для схуднення почали рухатися менше — дослідження з Fitbit",
+      "seoTitle": "На GLP-1 люди рухались менше: дані Fitbit",
+      "metaDesc": "Дані Fitbit по 753 дорослих: після початку GLP-1 (типу Ozempic) кроки й активність знизились. Чому рух критично важливий для збереження м'язів.",
       "excerpt": "Проаналізувавши дані трекерів 753 дорослих, дослідники виявили, що після початку препаратів на кшталт Ozempic кількість кроків і тренувань падала — це загроза для м’язів, особливо в жінок після 40.",
       "meta": "10 липня 2026 · 3 хв читання",
       "lead": "Ін’єкції для схуднення на кшталт Ozempic і Wegovy швидко змінюють тіла — але нові дані свідчать, що вони можуть також тихо змушувати людей рухатися менше.",
@@ -1336,6 +1352,8 @@ export const POSTS = [
     "en": {
       "cat": "Nutrition",
       "title": "What to replace sugar with: the evidence on sweeteners",
+      "seoTitle": "Sugar Swaps: The Evidence on Natural Sweeteners",
+      "metaDesc": "What the research really says about stevia, monk fruit, allulose, erythritol, xylitol, sucralose, aspartame, honey and agave for blood sugar and health.",
       "excerpt": "Stevia, monk fruit, allulose, erythritol, xylitol, sucralose, aspartame, honey and agave — what current research actually shows about sweeteners for blood sugar and health.",
       "meta": "9 July 2026 · 7 min read",
       "lead": "When I first wrote about natural sweeteners, the story felt settled: stevia and the sugar alcohols were the \"safe\" choices, and the main thing to get right was taste. The research has moved on since then — in places, dramatically.",
@@ -1717,6 +1735,8 @@ export const POSTS = [
     "ua": {
       "cat": "Харчування",
       "title": "Чим замінити цукор: що каже наука про підсолоджувачі",
+      "seoTitle": "Чим замінити цукор: докази про підсолоджувачі",
+      "metaDesc": "Що насправді каже наука про стевію, монк-фрут, алюлозу, еритрит, ксиліт, сукралозу, аспартам, мед і агаву для рівня цукру в крові та здоров'я.",
       "excerpt": "Стевія, монк-фрут, алюлоза, еритрит, ксиліт, сукралоза, аспартам, мед і агава — що насправді показують сучасні дослідження про підсолоджувачі для рівня цукру та здоров'я.",
       "meta": "9 липня 2026 · 7 хв читання",
       "lead": "Коли я вперше писала про натуральні підсолоджувачі, картина здавалася усталеною: стевія та цукрові спирти вважалися «безпечним» вибором, і головним було вгадати зі смаком. Відтоді наука пішла далі — місцями суттєво.",
@@ -2766,6 +2786,8 @@ export const POSTS = [
     "en": {
       "cat": "Diabetes",
       "title": "What new research says about type 2 diabetes",
+      "seoTitle": "What New Research Says About Type 2 Diabetes",
+      "metaDesc": "The latest on type 2 diabetes remission, meal order, time-restricted eating and sleep — and which evidence-based changes are actually worth trying.",
       "excerpt": "Recent findings on remission, meal order, time-restricted eating and sleep — and what's actually worth trying.",
       "meta": "26 June 2026 · 8 min read",
       "lead": "The science of type 2 diabetes is moving faster than the headlines suggest — and some of the most important findings are ones you're unlikely to hear in a ten-minute GP appointment. Here's what recent research actually says, and what's genuinely worth trying.",
@@ -2984,6 +3006,8 @@ export const POSTS = [
     "ua": {
       "cat": "Діабет",
       "title": "Що каже нове дослідження про діабет 2 типу",
+      "seoTitle": "Що нові дослідження кажуть про діабет 2 типу",
+      "metaDesc": "Найновіше про ремісію діабету 2 типу, порядок страв, обмежене в часі харчування та сон — і які зміни з доказовою базою справді варті спроби.",
       "excerpt": "Нові дані про ремісію, порядок їжі, обмежене в часі харчування та сон — і що справді варто спробувати.",
       "meta": "26 червня 2026 · 8 хв читання",
       "lead": "Наука про діабет 2 типу рухається швидше, ніж підказують заголовки — і деякі з найважливіших відкриттів навряд чи почуєш на десятихвилинному прийомі в лікаря. Ось що насправді каже сучасне дослідження і що справді варто спробувати.",
@@ -3214,8 +3238,8 @@ export const POSTS = [
       "excerpt": "Living with T1D for 23 years, I noticed everything changing in my early 40s — and no one warned me. Here's what perimenopause really does to your blood sugar, and what actually helped.",
       "meta": "20 June 2026 · 8 min read",
       "lead": "Blood sugar can get harder to manage in perimenopause — and almost no one warns you. Here's what's really happening, and what genuinely helped me.",
-      "seoTitle": "Perimenopause and Type 1 Diabetes: What's Really Happening to Your Blood Sugar",
-      "metaDesc": "Living with T1D for 23 years, I noticed everything changing in my early 40s — and no one warned me. Here's what perimenopause really does to your blood sugar, and what actually helped.",
+      "seoTitle": "Perimenopause & Diabetes: Your Blood Sugar",
+      "metaDesc": "What perimenopause really does to blood sugar in type 1 diabetes — the patterns, the hormones and the fixes, drawn from 23 years of lived experience.",
       "blocks": [
         {
           "t": "p",
@@ -3391,8 +3415,8 @@ export const POSTS = [
       "excerpt": "23 роки живу з діабетом 1 типу, і на початку своїх 40 я помітила, що все змінюється — а мене ніхто не попередив. Ось що перименопауза насправді робить із цукром у крові й що мені справді допомогло.",
       "meta": "20 червня 2026 · 8 хв читання",
       "lead": "Під час перименопаузи цукор у крові може стати важче контролювати — і майже ніхто про це не попереджає. Ось що відбувається насправді і що справді допомогло мені.",
-      "seoTitle": "Перименопауза та діабет 1 типу: що насправді відбувається з вашим цукром у крові",
-      "metaDesc": "23 роки живу з діабетом 1 типу, і на початку своїх 40 я помітила, що все змінюється — а мене ніхто не попередив. Ось що перименопауза насправді робить із цукром у крові й що мені справді допомогло.",
+      "seoTitle": "Перименопауза й діабет: ваш рівень цукру",
+      "metaDesc": "Що перименопауза насправді робить із рівнем цукру при діабеті 1 типу — патерни, гормони й рішення, на основі 23 років життя з діабетом та досвіду.",
       "blocks": [
         {
           "t": "p",
@@ -4309,6 +4333,8 @@ export const POSTS = [
     "en": {
       "cat": "Diabetes",
       "title": "How to read your glucose patterns",
+      "seoTitle": "How to Read Your Glucose Patterns: A Simple Guide",
+      "metaDesc": "A simple framework for making sense of your daily glucose numbers — spot the patterns behind your highs and lows and know exactly what to change.",
       "excerpt": "A simple framework for making sense of your daily numbers.",
       "meta": "3 June 2026 · 5 min read",
       "lead": "A simple framework for making sense of your daily numbers — without obsessing over every reading.",
@@ -4335,6 +4361,8 @@ export const POSTS = [
     "ua": {
       "cat": "Діабет",
       "title": "Як читати свої рівні глюкози",
+      "seoTitle": "Як читати свої патерни глюкози: простий гід",
+      "metaDesc": "Проста система, щоб розібратися в щоденних показниках глюкози: побачити патерни за піками й падіннями та зрозуміти, що саме змінити в харчуванні.",
       "excerpt": "Проста система, щоб зрозуміти свої щоденні показники.",
       "meta": "3 червня 2026 · 5 хв читання",
       "lead": "Проста система, щоб зрозуміти свої щоденні показники — без одержимості кожним значенням.",
@@ -4725,6 +4753,8 @@ export const POSTS = [
     "en": {
       "cat": "Perimenopause",
       "title": "Anxiety and brain fog, not hot flashes, are now women's top menopause complaint",
+      "seoTitle": "Anxiety & Brain Fog Now Top Menopause Symptom",
+      "metaDesc": "A survey of over 2,000 women finds anxiety and brain fog have overtaken hot flashes as the leading menopause symptom. What's driving the shift.",
       "excerpt": "Bonafide Health's sixth annual survey of over 2,000 women finds anxiety, brain fog and declining motivation have overtaken hot flashes as the leading menopause symptom — and nearly half say it's hit their income.",
       "meta": "17 July 2026 · 3 min read",
       "lead": "For years, menopause conversations have centred on hot flashes. New survey data suggests that's no longer the symptom women say is hardest to live with.",
@@ -4775,6 +4805,8 @@ export const POSTS = [
     "ua": {
       "cat": "Перименопауза",
       "title": "Тривожність і туман у голові, а не припливи — тепер головна скарга жінок у менопаузі",
+      "seoTitle": "Тривога й туман у голові — головний симптом",
+      "metaDesc": "Опитування понад 2000 жінок: тривога й туман у голові випередили припливи як головний симптом менопаузи. Що стоїть за цією зміною і що допомагає.",
       "excerpt": "Шосте щорічне опитування Bonafide Health, у якому взяли участь понад 2000 жінок, показало: тривожність, туман у голові та зниження мотивації обійшли припливи як головний симптом менопаузи — і майже половина жінок каже, що це вдарило по їхньому доходу.",
       "meta": "17 липня 2026 · 3 хв читання",
       "lead": "Роками розмови про менопаузу оберталися навколо припливів. Нові дані опитування свідчать, що це вже не той симптом, з яким жінкам найважче жити.",
@@ -4833,6 +4865,8 @@ export const POSTS = [
     "en": {
       "cat": "Diabetes",
       "title": "Type 2 diabetes is rising twice as fast in women under 40 — and care hasn't caught up",
+      "seoTitle": "Type 2 Diabetes Rising Fast in Women Under 40",
+      "metaDesc": "A 2026 review argues diabetes care treats women as if hormones don't matter — even as type 2 rises twice as fast in women under 40. Why the gap persists.",
       "excerpt": "A major 2026 Medscape clinical review argues diabetes care still treats women as if hormones don't matter, even as type 2 diabetes rises twice as fast in women under 40 than in men.",
       "meta": "17 July 2026 · 3 min read",
       "lead": "Diabetes guidelines are largely written as if one protocol fits everyone. A major 2026 clinical review argues that's a problem — and that it's costing younger women in particular.",
@@ -4883,6 +4917,8 @@ export const POSTS = [
     "ua": {
       "cat": "Діабет",
       "title": "Діабет 2 типу зростає вдвічі швидше серед жінок до 40 — а система догляду цього ще не наздогнала",
+      "seoTitle": "Діабет 2 типу швидко зростає у жінок до 40",
+      "metaDesc": "Огляд 2026 року: медицина лікує діабет так, ніби гормони не мають значення — попри вдвічі швидше зростання в жінок до 40. Чому розрив зберігається.",
       "excerpt": "Великий клінічний огляд Medscape 2026 року стверджує: система догляду за діабетом досі влаштована так, ніби гормони не мають значення, попри те що діабет 2 типу зростає вдвічі швидше серед жінок до 40, ніж серед чоловіків.",
       "meta": "17 липня 2026 · 3 хв читання",
       "lead": "Рекомендації щодо діабету здебільшого написані так, ніби один протокол підходить усім. Великий клінічний огляд 2026 року стверджує, що це проблема — і що вона особливо дорого коштує молодшим жінкам.",
