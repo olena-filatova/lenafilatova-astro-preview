@@ -10,10 +10,9 @@ const blogHref = `${L}blog/`;
 const recipesAllHref = `${L}recipes/`;
 const img = (src) => B.replace(/\/$/, '') + src;
 
-// Blog: newest-first, computed from the data (not hand-copied) so a newly
-// published post always leads. Desktop shows the latest large + two more
-// recent; mobile shows only the latest (the two extras are hidden in CSS).
-const recentPosts = [...POSTS].filter((p) => !p.comingSoon).sort((a, b) => b.date.localeCompare(a.date));
+// Blog: featured first, then newest-by-date. Desktop shows the lead large +
+// two more recent; mobile shows only the lead (the two extras are hidden).
+const recentPosts = [...POSTS].filter((p) => !p.comingSoon).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.date.localeCompare(a.date));
 const latestPost = recentPosts[0];
 const latestPostT = latestPost[lang];
 const morePosts = recentPosts.slice(1, 3);
