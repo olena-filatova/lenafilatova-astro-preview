@@ -32,7 +32,9 @@ PUBLISHED.forEach((r) => {
 });
 
 // Standalone tool pages carried over as flat .html files (EN/UA are separate
-// files, not /ua/ paths, so they're emitted without hreflang pairing).
+// .html files, not /ua/ paths). Each [en, ua] pair is emitted with the same
+// en / uk / x-default hreflang alternates as the Astro-managed pages, matching
+// the <link rel="alternate"> tags these pages already carry in their own <head>.
 const FLAT = [
   ['/aid-comparison.html', '/aid-comparison-ua.html'],
   ['/cgm-comparison.html', '/cgm-comparison-ua.html'],
@@ -66,8 +68,11 @@ export function GET() {
     entries.push(urlEntry(ua, lastmod, image, alts));
   }
   for (const [en, ua] of FLAT) {
-    entries.push(urlEntry(SITE + en, today, null, []));
-    entries.push(urlEntry(SITE + ua, today, null, []));
+    const enUrl = SITE + en;
+    const uaUrl = SITE + ua;
+    const alts = [['en', enUrl], ['uk', uaUrl], ['x-default', enUrl]];
+    entries.push(urlEntry(enUrl, today, null, alts));
+    entries.push(urlEntry(uaUrl, today, null, alts));
   }
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
