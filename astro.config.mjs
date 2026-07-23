@@ -17,9 +17,26 @@ const TOOL_REDIRECTS = Object.fromEntries(
   ])
 );
 
+// Recipes removed from PUBLISHED (OPS-118 hidden-slug batch) that still 404
+// while earning Search Console impressions (OPS-161). 301 the residual search
+// interest to the closest surviving destination rather than let it hit a dead
+// end. Their near-equivalents were hidden in the same batch, so there is no
+// like-for-like recipe to point at — send them to the /recipes/ hub. We do NOT
+// use a `?cat=` category URL: the hub's filter is chip-click only and ignores
+// URL query params, so `?cat=snack` would land on the unfiltered hub anyway.
+// 410 was rejected — these have real residual interest worth recovering, and a
+// static host can't cleanly serve 410. Both EN and UA pages 404 (both build
+// from PUBLISHED), so redirect both locales.
+const REMOVED_RECIPE_REDIRECTS = Object.fromEntries(
+  ['granola-bars-peanut-butter', 'granola-bars-date-coconut', 'masala-chai-latte'].flatMap((slug) => [
+    [`/recipes/${slug}/`, withBase('/recipes/')],
+    [`/ua/recipes/${slug}/`, withBase('/ua/recipes/')],
+  ])
+);
+
 export default defineConfig({
   site: 'https://lenafilatova.co.uk',
   base: BASE,
   trailingSlash: 'always',
-  redirects: TOOL_REDIRECTS,
+  redirects: { ...TOOL_REDIRECTS, ...REMOVED_RECIPE_REDIRECTS },
 });
